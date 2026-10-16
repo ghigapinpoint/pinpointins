@@ -12,8 +12,10 @@
     <header>
         <div class="nav-container">
             <a href="index.html" class="logo-area">
-                <img src="images/logo-color.png" alt="Pinpoint Solution Insurance Services">
+                <img src="images/logo-color.png" alt="Pinpoint Solution Insurance Services" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="logo-fallback-text" style="display:none;">PINPOINT SOLUTION<span>Insurance Services</span></div>
             </a>
+            <button class="menu-toggle" aria-label="Toggle Navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
             <nav class="nav-links">
                 <a href="index.html" class="active">Home</a>
                 <a href="benefits.html">Employee Benefits</a>
@@ -26,69 +28,106 @@
     </header>
 
     <main>
-        <!-- Hero with Background Image & Gradient Overlay -->
-        <section class="hero">
-            <div class="hero-content">
-                <span class="eyebrow">Choose Local. Choose Independent.</span>
-                <h1>Customizing Health Coverage to Fit Your Needs</h1>
-                <p>Backed by over two decades of industry experience, Pinpoint Solution Insurance Services LLC assists South Bay businesses, families, and community organizations with tailored protection.</p>
-                <a href="about.html#contact" class="btn-primary">Schedule a Consultation</a>
-            </div>
+        <section class="hero" style="max-width: 100%; margin: 0;">
+            <img src="images/logo-mark-white.png" alt="" class="hero-mark" onerror="this.style.display='none'">
+            <div class="eyebrow">Choose Local. Choose Independent.</div>
+            <h1>Customizing Health Coverage to Fit Your Needs</h1>
+            <p>Backed by over two decades of industry experience, Pinpoint Solution Insurance Services LLC assists South Bay businesses, families, and community organizations with the burden of navigating an ever-changing insurance landscape.</p>
+            <a href="about.html#contact" class="btn">Schedule a Consultation</a>
         </section>
 
-        <!-- Feature Cards with Photography -->
-        <section class="section-padding">
-            <h2 style="text-align: center; color: var(--primary); font-size: 2.25rem;">Tailored Solutions for Every Need</h2>
-            <p style="text-align: center; color: var(--text-muted); max-width: 650px; margin: 0.5rem auto 2rem auto;">We combine deep local expertise with a full range of top-tier carriers.</p>
+        <div class="trust-bar">
+            CA Corporate License #0131557 &nbsp;|&nbsp; Independent Brokerage Serving the South Bay &amp; All of California
+        </div>
 
+        <section>
+            <img src="images/logo-mark.png" alt="" class="section-mark" onerror="this.style.display='none'">
+            <h2>One Size Doesn't Fit All</h2>
+            <p class="section-intro">We specialize in getting the right combination of coverage that fits the unique needs of your group, family, or organization. Our team works closely with you to determine which options are best suited for your goals and budget.</p>
+            
             <div class="grid-3">
-                <div class="photo-card">
-                    <img src="images/benefits-team.jpg" alt="Employee Benefits">
-                    <div class="photo-card-body">
-                        <h3>Employee Benefits</h3>
-                        <p>Small group health, dental, vision, and disability packages tailored to help you attract and retain top talent.</p>
-                    </div>
+                <div class="card">
+                    <h3>Employee Benefits &amp; Small Group</h3>
+                    <p>Small group health, dental, vision, life, and disability income replacement plans—including HRAs, QSEHRAs, and SHOP options—structured to help you attract and retain great employees.</p>
+                    <a href="benefits.html" class="card-link">Explore Employee Benefits &rarr;</a>
                 </div>
-
-                <div class="photo-card">
-                    <img src="images/family-health.jpg" alt="Family Coverage">
-                    <div class="photo-card-body">
-                        <h3>Individual & Family</h3>
-                        <p>Personalized medical, life, and long-term care policies built to protect your loved ones at every life stage.</p>
-                    </div>
+                <div class="card">
+                    <h3>Individual &amp; Family Health</h3>
+                    <p> Personalized medical, life, long-term care, and short-term medical policies designed to protect your loved ones at every stage of life without hidden surprises.</p>
+                    <a href="about.html#contact" class="card-link">Request an Individual Quote &rarr;</a>
                 </div>
+                <div class="card">
+                    <h3>Nonprofits &amp; Churches</h3>
+                    <p>Dedicated risk management and benefits guidance for community organizations and houses of worship, including D&amp;O liability, volunteer safety, and AB 506 compliance support.</p>
+                    <a href="nonprofits-churches.html" class="card-link">Explore Nonprofit Solutions &rarr;</a>
+                </div>
+            </div>
+        </section>
 
-                <div class="photo-card">
-                    <img src="images/community-outreach.jpg" alt="Nonprofits and Churches">
-                    <div class="photo-card-body">
-                        <h3>Nonprofits & Churches</h3>
-                        <p>Specialized risk management, D&O liability, and employee benefits designed for community organizations.</p>
+        <section style="background: #ffffff; max-width: 100%; border-top: 1px solid var(--border-gray); border-bottom: 1px solid var(--border-gray);">
+            <div style="max-width: 1120px; margin: 0 auto;">
+                <h2>Our Complete California Carrier Access</h2>
+                <p class="section-intro">Pinpoint Solution Insurance Services is contracted with all major carriers, allowing us to present you with multiple objective options to fill your organization's needs.</p>
+                
+                <div class="carrier-grid">
+                    <div class="carrier-card">
+                        <img src="images/coveredca.png" alt="Covered California" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="carrier-fallback" style="display:none;">Covered California</span>
+                    </div>
+                    <div class="carrier-card">
+                        <img src="images/lacare.png" alt="L.A. Care Health Plan" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="carrier-fallback" style="display:none;">L.A. Care Health Plan</span>
+                    </div>
+                    <div class="carrier-card">
+                        <img src="images/kaiser.png" alt="Kaiser Permanente" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="carrier-fallback" style="display:none;">Kaiser Permanente</span>
+                    </div>
+                    <div class="carrier-card">
+                        <img src="images/anthem.png" alt="Anthem Blue Cross" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="carrier-fallback" style="display:none;">Anthem Blue Cross</span>
+                    </div>
+                    <div class="carrier-card">
+                        <img src="images/blueshield.png" alt="Blue Shield of California" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="carrier-fallback" style="display:none;">Blue Shield of CA</span>
+                    </div>
+                    <div class="carrier-card">
+                        <img src="images/healthnet.png" alt="Health Net" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="carrier-fallback" style="display:none;">Health Net</span>
+                    </div>
+                    <div class="carrier-card">
+                        <img src="images/aetna.png" alt="Aetna" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="carrier-fallback" style="display:none;">Aetna</span>
+                    </div>
+                    <div class="carrier-card">
+                        <img src="images/united.png" alt="UnitedHealthcare" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="carrier-fallback" style="display:none;">UnitedHealthcare</span>
+                    </div>
+                    <div class="carrier-card">
+                        <img src="images/delta.png" alt="Delta Dental" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="carrier-fallback" style="display:none;">Delta Dental</span>
+                    </div>
+                    <div class="carrier-card">
+                        <img src="images/vsp.png" alt="VSP Vision" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="carrier-fallback" style="display:none;">VSP Vision</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Carrier Partner Grid -->
-        <section style="background: var(--white); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
-            <div class="section-padding">
-                <h2 style="text-align: center; color: var(--primary); margin-bottom: 2.5rem;">Trusted California Carrier Partners</h2>
-                <div class="carrier-grid">
-                    <div class="carrier-card"><img src="images/coveredca.png" alt="Covered California"></div>
-                    <div class="carrier-card"><img src="images/lacare.png" alt="L.A. Care"></div>
-                    <div class="carrier-card"><img src="images/kaiser.png" alt="Kaiser Permanente"></div>
-                    <div class="carrier-card"><img src="images/anthem.png" alt="Anthem Blue Cross"></div>
-                    <div class="carrier-card"><img src="images/blueshield.png" alt="Blue Shield of CA"></div>
-                    <div class="carrier-card"><img src="images/healthnet.png" alt="Health Net"></div>
-                </div>
+        <section>
+            <div class="content-block" style="text-align: center;">
+                <h3>Why Partner with Pinpoint Solution Insurance Services?</h3>
+                <p style="max-width: 800px; margin: 0 auto 1.5rem auto;">Unlike going direct to a single carrier, navigating impersonal private exchanges, or getting locked into rigid PEOs, we take the time to know our clients and the individual needs of each situation. Based in the South Bay, we focus on building strong, long-term working relationships—allowing us to adapt your coverage as your organization grows and changes.</p>
+                <a href="about.html#contact" class="btn">Get Started with a Quote</a>
             </div>
         </section>
     </main>
 
     <footer>
-        <img src="images/logo-white.png" alt="Pinpoint Solution Insurance Services">
+        <img src="images/logo-white.png" alt="Pinpoint Solution Insurance Services" class="footer-logo" onerror="this.style.display='none'">
         <p><strong>Pinpoint Solution Insurance Services LLC</strong></p>
         <p>21235 Hawthorne Blvd #200, Torrance, CA 90503 &nbsp;|&nbsp; CA Corporate License #0131557</p>
-        <p style="margin-top: 1rem; opacity: 0.7;">&copy; 2026 Pinpoint Solution Insurance Services LLC. All rights reserved.</p>
+        <p style="margin-top: 1rem; opacity: 0.8;">&copy; 2026 Pinpoint Solution Insurance Services LLC. All rights reserved.</p>
     </footer>
 
 </body>
