@@ -3,54 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us & Contact | Pinpoint Insurance Services</title>
+    <title>About Us &amp; Contact | Pinpoint Solution Insurance Services</title>
+    <link rel="icon" type="image/png" href="images/logo-mark.png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
         <div class="nav-container">
-            <a href="index.html" class="logo">PINPOINT INSURANCE SERVICES</a>
-            <div class="nav-links">
+            <a href="index.html" class="logo-area">
+                <img src="images/logo-color.png" alt="Pinpoint Solution Insurance Services" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="logo-fallback-text" style="display:none;">PINPOINT SOLUTION<span>Insurance Services</span></div>
+            </a>
+            <button class="menu-toggle" aria-label="Toggle Navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+            <nav class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="benefits.html">Employee Benefits</a>
-                <a href="nonprofit.html">Nonprofit Solutions</a>
-                <a href="church.html">Church Solutions</a>
+                <a href="nonprofits-churches.html">Nonprofits & Churches</a>
                 <a href="resources.html">Resources</a>
                 <a href="about.html" class="active">About Us</a>
-                <a href="#contact" class="btn" style="padding: 0.4rem 1rem; color: #fff; font-size: 0.85rem;">Contact</a>
-            </div>
+                <a href="#contact" class="btn-nav">Contact</a>
+            </nav>
         </div>
     </header>
 
     <main>
-        <section class="hero" style="margin-top: 0; padding: 7rem 2rem 4rem 2rem;">
-            <h1>Local Roots. Professional Guidance.</h1>
-            <p>Led by Greg Higa with 22 years of industry experience, we put your interests first with transparent, relationship-driven service.</p>
+        <section class="hero" style="max-width: 100%; margin: 0; padding: 8rem 2rem 4rem 2rem;">
+            <div class="eyebrow">Our Story &amp; Service Promise</div>
+            <h1>Local Roots. Two Decades of Guidance.</h1>
+            <p>Building strong working relationships and supporting South Bay businesses, families, and ministries with responsive, personal service.</p>
         </section>
 
         <section>
             <div class="content-block">
-                <h3>Our Philosophy: People Protecting People</h3>
-                <p>Insurance can often feel cold, overly technical, and detached from reality. We wanted to build something different at Pinpoint Insurance. Greg brings over two decades of dedicated industry experience, navigating every market shift and policy evolution over the last 22 years.</p>
-                <p>As long-standing South Bay residents and active local church participants, we are deeply integrated into the fabric of the communities we serve. We understand the unique pressures facing local organizations because we experience them alongside you. We don't believe in high-pressure sales tactics or one-size-fits-all packages—just honest answers and right-sized strategies.</p>
+                <h3>Leadership &amp; Experience</h3>
+                <div class="bio-container">
+                    <div class="bio-image">
+                        <img src="images/greg-higa.jpg" alt="Greg Higa">
+                    </div>
+                    <div>
+                        <p><strong>Greg Higa</strong> started his insurance career in 2002 as a customer service representative. After several successful years helping clients resolve complex coverage questions, he made the transition to Account Executive. In 2010, he was offered the opportunity to expand and joined the ownership team of Level One Insurance Services.</p>
+                        <p>In 2013, Level One was purchased, and Greg founded <strong>Pinpoint Solution Insurance Services (PSIS)</strong> with a dedicated focus on putting clients first and building lasting relationships across the South Bay.</p>
+                        <p style="margin-bottom: 0;"><strong>Our Service Commitment:</strong> We stay in touch throughout the year with periodic reviews and ongoing enrollment assistance, and we take pride in our ability to respond to client inquiries within 24 hours.</p>
+                    </div>
+                </div>
             </div>
 
-            <div id="contact" class="compliance-box" style="background: #ffffff; max-width: 700px; margin: 4rem auto 0 auto; text-align: left; padding: 3rem;">
-                <h2 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">Start a Friendly Conversation</h2>
-                <p style="margin-bottom: 1rem;"><strong>Office Location:</strong> 21235 Hawthorne Blvd #200, Torrance, CA 90503</p>
-                <p style="margin-bottom: 1rem;"><strong>Principal Broker:</strong> Greg Higa (CA Lic #0E33475)</p>
-                <p style="margin-bottom: 1rem;"><strong>Phone:</strong> (800) 951-6456 ext. 101</p>
-                <p style="margin-bottom: 1.5rem;"><strong>Email:</strong> ghiga@pinpointins.com</p>
-                <p style="font-size: 0.9rem; color: #64748b; text-align: center; border-top: 1px solid var(--accent); padding-top: 1.5rem;">No pressure, no confusing sales pitches—just honest answers to your insurance questions.</p>
+            <div id="contact" class="contact-box">
+                <h2 style="text-align: center; color: var(--primary); margin-bottom: 0.5rem;">Start a Friendly Conversation</h2>
+                <p style="text-align: center; color: var(--text-body); margin-bottom: 2rem;">Contact us by email or phone and we will provide you with the information necessary to get you a customized quotation.</p>
+                
+                <p style="margin-bottom: 0.85rem;"><strong>Office Location:</strong> 21235 Hawthorne Blvd #200, Torrance, CA 90503</p>
+                <p style="margin-bottom: 0.85rem;"><strong>Office Phone:</strong> (310) 533-8877 &nbsp;|&nbsp; <strong>Direct:</strong> (800) 951-6456 ext. 101</p>
+                <p style="margin-bottom: 0.85rem;"><strong>Fax:</strong> (888) 821-8350</p>
+                <p style="margin-bottom: 0.85rem;"><strong>General Inquiries:</strong> <a href="mailto:info@pinpointins.com" style="color: var(--primary); font-weight: 700;">info@pinpointins.com</a></p>
+                <p style="margin-bottom: 1.5rem;"><strong>Direct Email:</strong> <a href="mailto:ghiga@pinpointins.com" style="color: var(--primary); font-weight: 700;">ghiga@pinpointins.com</a></p>
+                
+                <div style="text-align: center; margin: 2rem 0 1.5rem 0;">
+                    <a href="mailto:info@pinpointins.com?subject=Insurance%20Consultation%20Inquiry" class="btn">Email Us to Schedule a Consultation</a>
+                </div>
+
+                <p style="font-size: 0.85rem; color: var(--text-body); text-align: center; border-top: 1px solid var(--border-gray); padding-top: 1.25rem; opacity: 0.85;">No pressure, no confusing sales pitches—just honest answers to your insurance questions.</p>
             </div>
         </section>
     </main>
 
     <footer>
+        <img src="images/logo-white.png" alt="Pinpoint Solution Insurance Services" class="footer-logo" onerror="this.style.display='none'">
         <p><strong>Pinpoint Solution Insurance Services LLC</strong></p>
-        <p>CA Corporate License #0131557 | Principal Broker Greg Higa CA License #0E33475</p>
-        <p style="margin-top: 1rem;">&copy; 2026 Pinpoint Solution Insurance Services LLC. All rights reserved.</p>
+        <p>21235 Hawthorne Blvd #200, Torrance, CA 90503 &nbsp;|&nbsp; CA Corporate License #0131557</p>
+        <p style="margin-top: 1rem; opacity: 0.8;">&copy; 2026 Pinpoint Solution Insurance Services LLC. All rights reserved.</p>
     </footer>
 
 </body>
