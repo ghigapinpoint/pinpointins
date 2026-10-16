@@ -3,60 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Benefits | Pinpoint Insurance Services</title>
+    <title>Employee Benefits | Pinpoint Solution Insurance Services</title>
+    <link rel="icon" type="image/png" href="images/logo-mark.png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
         <div class="nav-container">
-            <a href="index.html" class="logo">PINPOINT INSURANCE SERVICES</a>
-            <div class="nav-links">
+            <a href="index.html" class="logo-area">
+                <img src="images/logo-color.png" alt="Pinpoint Solution Insurance Services" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="logo-fallback-text" style="display:none;">PINPOINT SOLUTION<span>Insurance Services</span></div>
+            </a>
+            <button class="menu-toggle" aria-label="Toggle Navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+            <nav class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="benefits.html" class="active">Employee Benefits</a>
-                <a href="nonprofit.html">Nonprofit Solutions</a>
-                <a href="church.html">Church Solutions</a>
+                <a href="nonprofits-churches.html">Nonprofits & Churches</a>
                 <a href="resources.html">Resources</a>
                 <a href="about.html">About Us</a>
-                <a href="about.html#contact" class="btn" style="padding: 0.4rem 1rem; color: #fff; font-size: 0.85rem;">Contact</a>
-            </div>
+                <a href="about.html#contact" class="btn-nav">Contact</a>
+            </nav>
         </div>
     </header>
 
     <main>
-        <section class="hero" style="margin-top: 0; padding: 7rem 2rem 4rem 2rem;">
+        <section class="hero" style="max-width: 100%; margin: 0; padding: 8rem 2rem 4rem 2rem;">
+            <div class="eyebrow">Group Health &amp; Protection</div>
             <h1>Employee Benefits That Fit Your Budget and Your People</h1>
-            <p>Practical group health, life, and disability coverage for South Bay small businesses and nonprofits—structured without the corporate runaround.</p>
+            <p>Great employees are hard to find—don't allow health insurance to be your reason to lose out. Attract and retain the right team with customized, tax-deductible group coverage.</p>
         </section>
 
         <section>
             <div class="content-block">
-                <h3>Taking Care of Your Team Without the Complexities</h3>
-                <p>Finding the right health and insurance benefits for a small team shouldn't feel like a puzzle. We help local businesses and nonprofits sort through group medical, dental, vision, life, and disability options to find plans that actually match your operating budget.</p>
-                <p>We know you aren't a massive corporation with an HR department of fifty people. Whether you're offering benefits for the first time or trying to make sense of a steep renewal increase, we sit down with you, look at the numbers together, and figure out a sustainable path forward.</p>
+                <h3>Tailored Group Coverage for South Bay Employers</h3>
+                <p>Pinpoint Solution Insurance Services was established to assist companies with the burden of navigating through the ever-changing health insurance industry. All situations are unique, and groups as small as a single employee may qualify for a group policy.</p>
+                <p>The cost of group health insurance is tax-deductible for employers, and we help you evaluate flexible enrollment dates, employer contribution strategies, Small Business Health Options Program (SHOP) plans, and Health Reimbursement Arrangements (HRAs / QSEHRAs) to keep your business competitive and financially sound.</p>
             </div>
 
-            <div class="grid-3" style="margin-top: 3rem;">
+            <h2 style="margin-top: 3.5rem;">Understanding Health Plan &amp; Network Types</h2>
+            <p class="section-intro">Each plan and carrier offers a variety of doctor networks to choose from. We help you and your employees weigh provider network size, primary care referrals, and premium costs.</p>
+
+            <div class="grid-2">
                 <div class="card">
-                    <h3>Group Medical, Dental & Vision</h3>
-                    <p>We guide you through carrier selections (including major California networks like Kaiser, Anthem, and Blue Shield) to help weigh HMO, PPO, and HSA-compatible structures based on your team's actual healthcare habits.</p>
+                    <h3>PPO (Preferred Provider Organization)</h3>
+                    <p>Members can see any doctor or specialist and receive coverage without a primary care referral. Procedure costs will be higher if you see a doctor or specialist outside of your plan's network.</p>
                 </div>
                 <div class="card">
-                    <h3>Income Protection & Life</h3>
-                    <p>Short-term disability, long-term disability, and group life insurance policies are often surprisingly affordable, offering invaluable peace of mind to employees and their families during unexpected medical crises.</p>
+                    <h3>HMO (Health Maintenance Organization)</h3>
+                    <p>Members select a primary care doctor who manages overall care and provides referrals to specialists. Care is covered only when seeing doctors inside the network (except in emergencies).</p>
                 </div>
                 <div class="card">
-                    <h3>Smart Renewal Strategies</h3>
-                    <p>Instead of absorbing shock-wave rate hikes every year, we evaluate contribution strategies, tier levels, and cost-sharing options well ahead of your renewal date to keep your organization financially sound.</p>
+                    <h3>EPO (Exclusive Provider Organization)</h3>
+                    <p>Members can see any doctor or specialist inside the network without needing a referral, but there is no coverage for out-of-network providers.</p>
+                </div>
+                <div class="card">
+                    <h3>HDHP &amp; HSA-Qualified Plans</h3>
+                    <p>High Deductible Health Plans where costs for services are the member's responsibility until the deductible is met. Many of these plans are paired with tax-advantaged Health Savings Accounts (HSAs).</p>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 4rem;">Additional Employee Benefit Lines</h2>
+            <div class="grid-3" style="margin-top: 2rem;">
+                <div class="card">
+                    <h3>Dental &amp; Vision</h3>
+                    <p>Essential supplemental coverage through leading networks like Delta Dental and VSP Vision that employees value highly at a low cost to employers.</p>
+                </div>
+                <div class="card">
+                    <h3>Group Life Insurance</h3>
+                    <p>Foundational financial security and peace of mind for your employees' families and beneficiaries.</p>
+                </div>
+                <div class="card">
+                    <h3>Disability Income Replacement</h3>
+                    <p>Short-term and long-term disability coverage that protects your team's income if an illness or injury prevents them from working.</p>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
+        <img src="images/logo-white.png" alt="Pinpoint Solution Insurance Services" class="footer-logo" onerror="this.style.display='none'">
         <p><strong>Pinpoint Solution Insurance Services LLC</strong></p>
-        <p>CA Corporate License #0131557 | Principal Broker Greg Higa CA License #0E33475</p>
-        <p style="margin-top: 1rem;">&copy; 2026 Pinpoint Solution Insurance Services LLC. All rights reserved.</p>
+        <p>21235 Hawthorne Blvd #200, Torrance, CA 90503 &nbsp;|&nbsp; CA Corporate License #0131557</p>
+        <p style="margin-top: 1rem; opacity: 0.8;">&copy; 2026 Pinpoint Solution Insurance Services LLC. All rights reserved.</p>
     </footer>
 
 </body>
