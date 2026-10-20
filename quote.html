@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive South Bay health, dental, and vision quote worksheet for Pinpoint Solution Insurance Services LLC in Torrance, CA.">
+    <title>Custom Quote Worksheet | Pinpoint Solution Insurance Services</title>
+    <link rel="icon" type="image/png" href="images/logo-mark.png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .btn-s { background: var(--primary); color: #ffffff !important; border: none; padding: 0.6rem 1.15rem; border-radius: 0.375rem; font-weight: 700; font-size: 0.86rem; cursor: pointer; text-decoration: none; display: inline-block; }
+        .btn-s:hover { opacity: 0.92; }
+
+        .q-wrap { max-width: 920px; margin: -2.25rem auto 4rem; padding: 0 1.25rem; position: relative; z-index: 10; }
+        .live-bar { background: #ffffff; border: 1px solid var(--border-gray); border-top: 4px solid var(--accent-yellow); border-radius: 0.5rem; padding: 1rem 1.25rem; margin-bottom: 1.15rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; box-shadow: 0 6px 16px rgba(55,79,98,0.08); }
+        .live-bar div { border-left: 3px solid var(--secondary); padding-left: 0.75rem; font-size: 0.76rem; color: #64748b; font-weight: 700; text-transform: uppercase; }
+        .live-bar strong { display: block; font-size: 0.95rem; color: var(--primary); text-transform: none; margin-top: 2px; }
+        
+        .f-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(195px, 1fr)); gap: 0.9rem; margin-bottom: 0.95rem; }
+        .f-group label { display: block; font-weight: 700; font-size: 0.84rem; color: var(--primary); margin-bottom: 0.25rem; }
+        .f-group label span { font-weight: 400; color: #64748b; font-size: 0.76rem; }
+        .f-group input, .f-group select, .f-group textarea { width: 100%; padding: 0.6rem 0.75rem; border: 1px solid #cbd5e1; border-radius: 0.375rem; font-size: 0.92rem; background: var(--light); color: var(--text-body); transition: background 0.25s, border-color 0.25s; }
+        .f-group input:focus, .f-group select:focus, .f-group textarea:focus { outline: none; border-color: var(--secondary); background: #ffffff; box-shadow: 0 0 0 3px rgba(154, 204, 89, 0.18); }
+        .flash-ok { background: #dcfce7 !important; border-color: #22c55e !important; }
+        
+        .combo { display: grid; grid-template-columns: 1.3fr 1fr; gap: 0.4rem; }
+        .m-row { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr auto; gap: 0.5rem; margin-bottom: 0.5rem; align-items: center; }
+        
+        .pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.4rem 0 1.15rem; }
+        .pill { cursor: pointer; font-size: 0.84rem; font-weight: 600; background: #f1f5f9; color: var(--primary); padding: 0.45rem 0.9rem; border-radius: 2rem; border: 1.5px solid #cbd5e1; user-select: none; transition: all 0.15s; display: inline-flex; align-items: center; }
+        .pill input { display: none; }
+        .pill.active { background: var(--primary); color: #ffffff; border-color: var(--primary); }
+
+        .tips { background: #f0fdf4; border: 1px solid #bbf7d0; border-left: 4px solid var(--secondary-dark); padding: 1rem 1.25rem; border-radius: 0.375rem; margin-bottom: 1rem; font-size: 0.9rem; }
+        .q-tbl { width: 100%; border-collapse: collapse; margin: 0.5rem 0 1rem; font-size: 0.85rem; background: #ffffff; border: 1px solid var(--border-gray); }
+        .q-tbl th { background: var(--primary); color: #ffffff; text-align: left; padding: 0.55rem 0.75rem; font-size: 0.78rem; text-transform: uppercase; }
+        .q-tbl td { padding: 0.55rem 0.75rem; border-bottom: 1px solid var(--border-gray); }
+        .print-hdr { display: none; border-bottom: 2px solid var(--primary); padding-bottom: 0.6rem; margin-bottom: 1rem; justify-content: space-between; align-items: center; }
+
+        @media (max-width: 640px) { .m-row, .combo { grid-template-columns: 1fr; } }
+        @media print {
+            header, .hero, .live-bar, .no-print, #qForm, footer { display: none !important; }
+            .q-wrap, #outCard { margin: 0; max-width: 100%; padding: 0; border: none; box-shadow: none; display: block !important; }
+            .print-hdr { display: flex !important; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo-area">
+                <img src="images/logo-color.png" alt="Pinpoint Solution Insurance Services" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="logo-fallback-text" style="display:none;">PINPOINT SOLUTION<span>Insurance Services</span></div>
+            </a>
+            <button class="menu-toggle" aria-label="Toggle Navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="benefits.html">Employee Benefits</a>
+                <a href="nonprofits-churches.html">Nonprofits &amp; Churches</a>
+                <a href="resources.html">Resources</a>
+                <a href="about.html">About Us</a>
+                <a href="quote.html" class="btn-nav active">Get a Quote</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" style="max-width: 100%; margin: 0; padding: 7.5rem 1.5rem 4.25rem;">
+            <div class="eyebrow">Personalized South Bay Coverage Planning</div>
+            <h1>Custom Quote &amp; Coverage Worksheet</h1>
+            <p>Paste a PDF questionnaire, client email, or notes below to auto-fill Medical, Dental, and Vision options.</p>
+        </section>
+
+        <div class="q-wrap">
+            <div class="live-bar">
+                <div>CA Rating Area <strong id="outRegion">Enter ZIP Code</strong></div>
+                <div>Income &amp; Subsidy Check <strong id="outFPL">Optional (For Tax Credits)</strong></div>
+                <div>Recommended Strategy <strong id="outTier" style="color:var(--secondary-dark);">Enter Details Below</strong></div>
+            </div>
+
+            <!-- Instant Auto-Fill Box (Triggers Automatically on Paste OR Button Click) -->
+            <div class="card no-print f-group" style="padding:1.15rem 1.35rem; margin-bottom:1.25rem; border-top:none; border-left:5px solid var(--secondary);">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.4rem;">
+                    <label style="margin:0; font-size:0.9rem;">✨ Optional Quick-Fill: Paste PDF Questionnaire, Client Email, or Notes</label>
+                    <div style="display:flex; gap:0.5rem;">
+                        <button type="button" class="btn-s" style="background:var(--secondary-dark); padding:0.35rem 0.75rem; font-size:0.78rem;" onclick="loadSample()">Example</button>
+                        <button type="button" class="btn-s" style="background:#64748b; padding:0.35rem 0.75rem; font-size:0.78rem;" onclick="resetAll()">Reset Form</button>
+                    </div>
+                </div>
+                <textarea id="rawPaste" rows="3" style="margin-bottom:0.6rem;" oninput="autoFill()" placeholder="Example: Paste any client email, call summary, or PDF intake text here — the worksheet below will auto-populate as soon as you paste!"></textarea>
+                <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
+                    <button type="button" class="btn-s" onclick="autoFill()">Auto-Fill Worksheet from Text &darr;</button>
+                    <span id="fillStatus" style="font-size:0.84rem; font-weight:700; color:var(--secondary-dark);">✓ Ready — Paste text above (auto-fills instantly on paste!)</span>
+                </div>
+            </div>
+
+            <form class="card" id="qForm" onsubmit="showOutput(event)" novalidate>
+                <div class="f-grid">
+                    <div class="f-group"><label>Name</label><input type="text" id="cName" placeholder="First & Last Name"></div>
+                    <div class="f-group"><label>Email <span>(optional)</span></label><input type="email" id="cEmail" placeholder="name@example.com"></div>
+                    <div class="f-group"><label>Phone <span>(optional)</span></label><input type="tel" id="cPhone" placeholder="(310) 555-0100"></div>
+                    <div class="f-group"><label>ZIP Code</label><input type="text" id="cZip" placeholder="e.g. 90503" oninput="triage()"></div>
+                </div>
+
+                <div class="f-grid">
+                    <div class="f-group">
+                        <label>Coverage Line</label>
+                        <select id="cType" onchange="triage()">
+                            <option value="Individual & Family">Individual &amp; Family (Covered CA / Direct)</option>
+                            <option value="Medicare">Medicare (Supplement / Advantage / Part D)</option>
+                            <option value="Small Group">Small Group Employee Benefits</option>
+                        </select>
+                    </div>
+                    <div class="f-group" style="grid-column: span 2;">
+                        <label>Desired Start Date <span>(Select Preset or Pick Date)</span></label>
+                        <div class="combo">
+                            <select id="cStartPreset" onchange="if(this.value!=='custom') document.getElementById('cStartDate').value=this.value;">
+                                <option value="2026-10-19">Today / Immediate (2026-10-19)</option>
+                                <option value="2026-11-01">November 1, 2026</option>
+                                <option value="2026-12-01">December 1, 2026</option>
+                                <option value="2027-01-01">January 1, 2027</option>
+                                <option value="2027-02-01">February 1, 2027</option>
+                                <option value="2027-03-01">March 1, 2027</option>
+                                <option value="custom">Custom Date (Use Calendar &rarr;)</option>
+                            </select>
+                            <input type="date" id="cStartDate" value="2026-10-19" onchange="document.getElementById('cStartPreset').value='custom'">
+                        </div>
+                    </div>
+                    <div class="f-group">
+                        <label>Medical Preference</label>
+                        <select id="cNet" onchange="triage()">
+                            <option value="Compare HMO & PPO">Compare Both HMO &amp; PPO</option>
+                            <option value="PPO Preferred">PPO Preferred (No Referrals)</option>
+                            <option value="PPO + HSA Preferred">PPO + HSA (High-Deductible Tax-Advantaged)</option>
+                            <option value="HMO Preferred">HMO Preferred (Lower Cost / Kaiser)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="f-grid" style="background:var(--light); padding:0.85rem; border-radius:0.375rem; border:1px solid var(--border-gray);">
+                    <div class="f-group">
+                        <label>Dental Quote</label>
+                        <select id="cDental"><option value="Yes">Include Contracted Dental Quotes</option><option value="No">No Dental Needed</option></select>
+                    </div>
+                    <div class="f-group">
+                        <label>Vision Quote</label>
+                        <select id="cVision"><option value="Yes">Include VSP &amp; Bundled Vision</option><option value="No">No Vision Needed</option></select>
+                    </div>
+                    <div class="f-group"><label>Current Coverage / Budget</label><input type="text" id="cCur" placeholder="e.g. COBRA Anthem PPO+HSA | $1,600/mo"></div>
+                </div>
+
+                <div class="f-grid" style="background:var(--light); padding:0.85rem; border-radius:0.375rem; border:1px solid var(--border-gray);">
+                    <div class="f-group"><label>Tax Household Size <span>(on taxes)</span></label><input type="number" id="cHH" value="1" min="1" oninput="triage()"></div>
+                    <div class="f-group" style="grid-column: span 2;">
+                        <label>Household Income <span>(Monthly or Annual — Auto-Converts!)</span></label>
+                        <div class="combo">
+                            <input type="text" id="cInc" placeholder="e.g. 5200 (Optional)" oninput="triage()">
+                            <select id="cIncFreq" onchange="triage()"><option value="12">Per Month (×12)</option><option value="1">Per Year (Annual)</option><option value="26">Bi-Weekly (×26)</option></select>
+                        </div>
+                        <div id="incHint" style="font-size:0.78rem; color:var(--secondary-dark); font-weight:700; margin-top:3px;"></div>
+                    </div>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center; margin: 1rem 0 0.4rem;">
+                    <label style="font-weight:700; color:var(--primary); font-size:0.88rem;">Applicants Enrolling in Coverage <span style="font-weight:400; color:#64748b;">(Leave DOB/Age blank if TBD)</span></label>
+                    <button type="button" class="btn-s" style="padding:0.35rem 0.8rem; font-size:0.8rem;" onclick="addPerson('Spouse / Dependent', '', false)">+ Add Enrolling Member</button>
+                </div>
+                <div id="peopleList">
+                    <div class="m-row f-group">
+                        <input type="text" class="p-role" value="Primary Applicant">
+                        <input type="text" class="p-age" placeholder="DOB (MM-DD-YYYY) or Age" oninput="triage()">
+                        <select class="p-tob"><option>Non-Tobacco</option><option>Tobacco</option></select>
+                        <span></span>
+                    </div>
+                </div>
+
+                <label style="display:block; font-weight:700; font-size:0.84rem; color:var(--primary); margin-top:1rem;">Preferred South Bay Medical Groups <span>(click all that apply)</span>:</label>
+                <div class="pills" onchange="syncPills(); triage();">
+                    <label class="pill"><input type="checkbox" class="ipa" value="Torrance Memorial (TMIPA)">Torrance Memorial (TMIPA)</label>
+                    <label class="pill"><input type="checkbox" class="ipa" value="Providence Little Company of Mary">Providence Little Company of Mary</label>
+                    <label class="pill"><input type="checkbox" class="ipa" value="UCLA Health">UCLA Health</label>
+                    <label class="pill"><input type="checkbox" class="ipa" value="Optum South Bay">Optum South Bay</label>
+                    <label class="pill"><input type="checkbox" class="ipa" value="Kaiser Permanente">Kaiser Permanente</label>
+                    <label class="pill"><input type="checkbox" class="ipa" value="Cedars-Sinai">Cedars-Sinai</label>
+                </div>
+
+                <div class="f-grid">
+                    <div class="f-group"><label>Preferred Doctors, Dentists &amp; Eye Care</label><textarea id="cDocs" rows="4" placeholder="Medical doctors, dentists, optometrists..." oninput="triage()"></textarea></div>
+                    <div class="f-group"><label>Prescriptions, Pharmacy &amp; Special Notes</label><textarea id="cMeds" rows="4" placeholder="Medications, Express Scripts/pharmacy preferences, COBRA notes..."></textarea></div>
+                </div>
+
+                <button type="submit" class="btn" style="width:100%; margin-top:0.5rem;">Generate Medical, Dental &amp; Vision Quote Summary</button>
+            </form>
+
+            <div id="outCard" class="card" style="display:none; margin-top:1.5rem; border-top-color:var(--secondary);">
+                <div class="print-hdr">
+                    <div>
+                        <h2 style="color:var(--primary); margin:0; font-size:1.35rem;">Custom Coverage &amp; Quote Summary</h2>
+                        <p style="font-size:0.84rem; margin:0;">Pinpoint Solution Insurance Services LLC | 21235 Hawthorne Blvd #200, Torrance, CA 90503 | (310) 533-8877 | CA License #0131557</p>
+                    </div>
+                </div>
+                <div class="tips" id="instantInsights"></div>
+                <div id="quotesTables"></div>
+                <div class="no-print" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin: 0.85rem 0;">
+                    <strong style="color:var(--primary); font-size:0.95rem;">Complete Quote Brief (Ready to Copy or Email):</strong>
+                    <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+                        <button type="button" class="btn-s" onclick="navigator.clipboard.writeText(document.getElementById('outText').textContent); this.textContent='✓ Copied!';">1. Copy Summary</button>
+                        <a id="gmailBtn" target="_blank" class="btn-s" style="background:var(--secondary-dark);">2. Send via Gmail</a>
+                        <a id="mailtoBtn" class="btn-s" style="background:#475569;">3. Email App</a>
+                        <button type="button" class="btn-s" style="background:#64748b;" onclick="window.print()">Print / Save PDF</button>
+                    </div>
+                </div>
+                <pre id="outText" style="white-space:pre-wrap; font-family:inherit; font-size:0.88rem; background:var(--light); padding:1rem; border-radius:0.375rem; border:1px solid var(--border-gray);"></pre>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <img src="images/logo-white.png" alt="Pinpoint Solution Insurance Services" class="footer-logo" onerror="this.style.display='none'">
+        <p><strong>Pinpoint Solution Insurance Services LLC</strong></p>
+        <p>21235 Hawthorne Blvd #200, Torrance, CA 90503 &nbsp;|&nbsp; <a href="tel:13105338877">(310) 533-8877</a></p>
+        <div class="license-badge">CA Corporate License #0131557</div>
+        <p style="margin-top: 1.25rem; opacity: 0.8; font-size: 0.85rem;">&copy; 2026 Pinpoint Solution Insurance Services LLC. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function el(id) { return document.getElementById(id); }
+
+        function flash(id) {
+            var node = el(id);
+            if (!node) return;
+            node.classList.add('flash-ok');
+            setTimeout(function() { node.classList.remove('flash-ok'); }, 2000);
+        }
+
+        function syncPills() {
+            var pills = document.querySelectorAll('.pill');
+            for (var i = 0; i < pills.length; i++) {
+                var cb = pills[i].querySelector('input');
+                if (cb) {
+                    if (cb.checked) pills[i].classList.add('active');
+                    else pills[i].classList.remove('active');
+                }
+            }
+        }
+
+        function addPerson(role, age, isFirst) {
+            var d = document.createElement('div');
+            d.className = 'm-row f-group';
+            d.innerHTML = '<input type="text" class="p-role" value="' + (role || 'Spouse / Dependent') + '">' +
+                '<input type="text" class="p-age" value="' + (age || '') + '" placeholder="DOB (MM-DD-YYYY) or Age" oninput="triage()">' +
+                '<select class="p-tob"><option>Non-Tobacco</option><option>Tobacco</option></select>' +
+                (isFirst ? '<span></span>' : '<button type="button" class="btn-s" style="background:#dc2626;padding:0.4rem 0.75rem;" onclick="this.parentElement.remove();triage();">✕</button>');
+            el('peopleList').appendChild(d);
+        }
+
+        function resetAll() {
+            el('qForm').reset();
+            el('rawPaste').value = '';
+            el('outCard').style.display = 'none';
+            el('peopleList').innerHTML = '';
+            addPerson('Primary Applicant', '', true);
+            syncPills();
+            triage();
+            el('fillStatus').textContent = '✓ Form Reset — Paste text above to auto-fill!';
+        }
+
+        function loadSample() {
+            el('rawPaste').value = "Client Name: Alex Morgan (alex@example.com | 310-555-0144 | ZIP 90505)\n- Current Coverage (COBRA): Anthem Blue Cross PPO + HSA ($2,000 single / $4,000 family deductible), Cigna Dental PPO 1000, VSP Low Plan.\n- Specific Medical & Pharmacy Requirements: Explicitly requires a plan that covers MANY meds, utilizing Express Scripts.\n- Plan Preferences: Prefers to keep VSP Low plan rather than EyeMed.\n- Household & Financial Background: Lives with her mother and two daughters. Household monthly income ranges between $16,000 and $19,000 (including $3,100 in Social Security), supplemented by drawing $13,000 per month from retirement funds.";
+            autoFill();
+        }
+
+        function parseAge(v) {
+            if (!v) return null;
+            var c = String(v).trim();
+            if (/^\d{1,3}$/.test(c)) return parseInt(c, 10);
+            var w = c.match(/\b(?:age|aged)\s*(\d{1,3})\b/i);
+            if (w) return parseInt(w[1], 10);
+            var p = c.match(/\b(\d{1,2})[-\/](\d{1,2})[-\/]((19|20)\d{2})\b/);
+            if (p) {
+                var now = new Date(), a = now.getFullYear() - parseInt(p[3], 10);
+                var mo = parseInt(p[1], 10) - 1, day = parseInt(p[2], 10);
+                if (now.getMonth() < mo || (now.getMonth() === mo && now.getDate() < day)) a--;
+                return a;
+            }
+            return null;
+        }
+
+        function getInc() {
+            var raw = (el('cInc').value || '').toLowerCase().replace(/[$,\s]/g, '');
+            var num = parseFloat(raw) * (raw.indexOf('k') !== -1 ? 1000 : 1);
+            if (!num || num <= 0) return null;
+            var annual = Math.round(num * parseInt(el('cIncFreq').value, 10));
+            return { monthly: Math.round(annual / 12), annual: annual };
+        }
+
+        function isTemplateLine(line) {
+            if (!line) return true;
+            if (line.indexOf('___') !== -1) return true;
+            var t = line.trim();
+            if (/^(Relationship\s+Gender|How often do you|see the doctor|or Age|\*Date of Birth|Applicant|Spouse|Child|\(Children must be|Important Doctors:|\*Minimum information|Type of Proposal|HMO\s+PPO|Not much|Not as important)$/i.test(t)) return true;
+            return false;
+        }
+
+        function autoFill() {
+            try {
+                var raw = el('rawPaste').value.trim();
+                if (!raw) {
+                    el('fillStatus').textContent = 'Paste notes above (or click "Example").';
+                    return;
+                }
+
+                var rawLines = raw.split(/\r?\n/);
+                var cleanLines = [];
+                for (var i = 0; i < rawLines.length; i++) {
+                    var ln = rawLines[i].replace(/^[•\-*]+\s*/, '').trim();
+                    if (!isTemplateLine(ln)) cleanLines.push(ln);
+                }
+                var cleanText = cleanLines.join('\n');
+                var low = cleanText.toLowerCase();
+                var count = 0;
+
+                // 1. Email
+                var em = cleanText.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
+                if (em) { el('cEmail').value = em[0]; flash('cEmail'); count++; }
+
+                // 2. Phone
+                var ph = cleanText.match(/\(?([2-9]\d{2})\)?[-.\s]?(\d{3})[-.\s]?(\d{4})\b/);
+                if (ph && ph[3].indexOf('19') !== 0 && ph[3].indexOf('20') !== 0) {
+                    el('cPhone').value = '(' + ph[1] + ') ' + ph[2] + '-' + ph[3];
+                    flash('cPhone'); count++;
+                }
+
+                // 3. California ZIP Code
+                var zipTokens = cleanText.match(/\b(9[0-5]\d{3}|96[01]\d{2})\b/g);
+                if (zipTokens && zipTokens.length > 0) {
+                    el('cZip').value = zipTokens[0];
+                    flash('cZip'); count++;
+                }
+
+                // 4. Client Name
+                var foundName = '';
+                var nmMatch = cleanText.match(/(?:Client\s*Name|Client|Name)\s*[:\-]\s*([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)/i);
+                if (nmMatch) {
+                    foundName = nmMatch[1].trim();
+                } else {
+                    for (var j = 0; j < cleanLines.length; j++) {
+                        var cl = cleanLines[j];
+                        if (/^[A-Z][a-z]+\s+[A-Z][a-z]+$/.test(cl) && !/Redondo Beach|Torrance Memorial|Santa Monica|Blue Cross|Blue Shield|Little Company|East West|Lillian Chen|Ellie Chen|Isabel Puri|Anabella Pascucci|Robert Higashiyama/i.test(cl)) {
+                            foundName = cl;
+                            break;
+                        }
+                    }
+                }
+                if (foundName) { el('cName').value = foundName; flash('cName'); count++; }
+
+                // 5. Desired Start Date
+                var effMatch = cleanText.match(/\b(0?[1-9]|1[0-2])[-\/](0?[1-9]|[12]\d|3[01])[-\/](202[6-9])\b/);
+                if (effMatch) {
+                    var iso = effMatch[3] + '-' + String(effMatch[1]).padStart(2, '0') + '-' + String(effMatch[2]).padStart(2, '0');
+                    el('cStartDate').value = iso;
+                    el('cStartPreset').value = iso;
+                    if (el('cStartPreset').value !== iso) el('cStartPreset').value = 'custom';
+                    flash('cStartDate'); count++;
+                } else if (low.indexOf('dec') !== -1) {
+                    el('cStartPreset').value = '2026-12-01'; el('cStartDate').value = '2026-12-01'; flash('cStartPreset'); count++;
+                } else if (low.indexOf('nov') !== -1) {
+                    el('cStartPreset').value = '2026-11-01'; el('cStartDate').value = '2026-11-01'; flash('cStartPreset'); count++;
+                } else if (low.indexOf('jan') !== -1) {
+                    el('cStartPreset').value = '2027-01-01'; el('cStartDate').value = '2027-01-01'; flash('cStartPreset'); count++;
+                }
+
+                // 6. Medical Plan Preference
+                if (low.indexOf('ppo') !== -1 && low.indexOf('hsa') !== -1) {
+                    el('cNet').value = 'PPO + HSA Preferred'; flash('cNet'); count++;
+                } else if (low.indexOf('ppo') !== -1) {
+                    el('cNet').value = 'PPO Preferred'; flash('cNet'); count++;
+                } else if (low.indexOf('hmo') !== -1 || low.indexOf('kaiser') !== -1) {
+                    el('cNet').value = 'HMO Preferred'; flash('cNet'); count++;
+                }
+
+                // 7. Current Coverage & Budget
+                var curParts = [];
+                for (var k = 0; k < cleanLines.length; k++) {
+                    if (/\b(Anthem|Blue Shield|Cigna|Kaiser|Health Net|COBRA)\b/i.test(cleanLines[k]) && cleanLines[k].length < 130) {
+                        curParts.push(cleanLines[k].replace(/^(?:Medical|Dental|Current Coverage)\s*[:\-]\s*/i, '').replace(/\(.*?\)/g, '').trim());
+                    }
+                }
+                var bdg = cleanText.match(/\$\s*([\d,]{3,5})\s*(?:for\s+\d+\s+of\s+us|\/mo|per month|monthly|budget)/i) || cleanText.match(/^\$\s*([\d,]{3,5})\b/m);
+                if (bdg) curParts.push('$' + bdg[1] + '/mo');
+                if (curParts.length > 0) {
+                    el('cCur').value = curParts.slice(0, 2).join(' | ');
+                    flash('cCur'); count++;
+                }
+
+                // 8. Income Extraction
+                var rng = low.match(/income[^$\n]*\$\s*([\d,]+)\s*(?:and|to|\-)\s*\$\s*([\d,]+)/i);
+                var sng = low.match(/(?:monthly income|income|make|earning|salary)[^$\d\n]{0,25}\$?\s*([\d,]+)\b/i) || low.match(/\$\s*([\d,]+)\s*(?:\/mo|per month|monthly)/i);
+                if (rng) {
+                    var n1 = parseFloat(rng[1].replace(/,/g, '')), n2 = parseFloat(rng[2].replace(/,/g, ''));
+                    var avg = Math.round((n1 + n2) / 2);
+                    el('cInc').value = avg;
+                    el('cIncFreq').value = avg > 35000 ? '1' : '12';
+                    flash('cInc'); count++;
+                } else if (sng) {
+                    var v = parseFloat(sng[1].replace(/,/g, ''));
+                    if (v > 0) {
+                        el('cInc').value = v;
+                        el('cIncFreq').value = v > 35000 ? '1' : '12';
+                        flash('cInc'); count++;
+                    }
+                }
+
+                // 9. Household Members & DOBs
+                var people = [], seenDates = {};
+                var allDates = cleanText.match(/\b\d{1,2}[-\/]\d{1,2}[-\/](?:19|20)\d{2}\b/g) || [];
+                for (var dIdx = 0; dIdx < allDates.length; dIdx++) {
+                    var dStr = allDates[dIdx];
+                    var yr = parseInt(dStr.slice(-4), 10);
+                    if (yr < 2026 && !seenDates[dStr]) {
+                        seenDates[dStr] = true;
+                        people.push({ role: people.length === 0 ? 'Primary Applicant' : 'Family Member ' + (people.length + 1), val: dStr });
+                    }
+                }
+                if (people.length === 0) people.push({ role: 'Primary Applicant', val: '' });
+
+                if (/\b(spouse|husband|wife)\b/i.test(low)) people.push({ role: 'Spouse', val: '' });
+                if (/\btwo\s+daughters\b/i.test(low)) {
+                    people.push({ role: 'Daughter 1', val: '' });
+                    people.push({ role: 'Daughter 2', val: '' });
+                } else if (/\bdaughter\b/i.test(low)) {
+                    people.push({ role: 'Daughter', val: '' });
+                }
+                if (/\btwo\s+(sons|children|kids)\b/i.test(low)) {
+                    people.push({ role: 'Child 1', val: '' });
+                    people.push({ role: 'Child 2', val: '' });
+                }
+                if (/\b(mother|father)\b/i.test(low)) {
+                    people.push({ role: 'Mother / Parent (Check Medicare / Tax HH)', val: '' });
+                }
+
+                var hhMatch = low.match(/for\s+(\d+)\s+of\s+us|family of\s*(\d+)|household of\s*(\d+)|hh size\s*(\d+)/i);
+                var hhTotal = hhMatch ? parseInt(hhMatch[1] || hhMatch[2] || hhMatch[3] || hhMatch[4], 10) : people.length;
+                while (people.length < hhTotal && people.length < 6) {
+                    people.push({ role: 'Family Member ' + (people.length + 1), val: '' });
+                }
+                el('cHH').value = Math.max(hhTotal, people.length);
+                flash('cHH');
+
+                el('peopleList').innerHTML = '';
+                for (var pIdx = 0; pIdx < people.length; pIdx++) {
+                    addPerson(people[pIdx].role, people[pIdx].val, pIdx === 0);
+                }
+                count += people.length;
+
+                // 10. South Bay Medical Group Pills
+                var ipaChecks = document.querySelectorAll('.ipa');
+                var map = {
+                    'Torrance Memorial (TMIPA)': ['torrance memorial', 'tmipa', 'puri'],
+                    'Providence Little Company of Mary': ['providence', 'little company'],
+                    'UCLA Health': ['ucla', 'skypark', 'pascucci', 'lillian chen', 'ellie chen'],
+                    'Optum South Bay': ['optum'],
+                    'Kaiser Permanente': ['kaiser'],
+                    'Cedars-Sinai': ['cedars']
+                };
+                for (var cIdx = 0; cIdx < ipaChecks.length; cIdx++) {
+                    var cb = ipaChecks[cIdx], kws = map[cb.value] || [];
+                    cb.checked = false;
+                    for (var wIdx = 0; wIdx < kws.length; wIdx++) {
+                        if (low.indexOf(kws[wIdx]) !== -1) { cb.checked = true; break; }
+                    }
+                }
+                syncPills();
+
+                // 11. Route Doctors vs. Prescriptions & Notes
+                var docLines = [], medLines = [];
+                for (var lIdx = 0; lIdx < cleanLines.length; lIdx++) {
+                    var line = cleanLines[lIdx];
+                    if (line === foundName || /^\d+\s+[A-Za-z]+/.test(line) || /^(Redondo Beach|Torrance)\s*\d*$/i.test(line) || /^[MF]\s+\d{1,2}[-\/]/.test(line) || /^\d{1,2}[-\/]\d{1,2}[-\/]202\d$/.test(line) || /^\$\d+\s+for\s+\d+/i.test(line)) {
+                        continue;
+                    }
+                    if (/\b(dr\.|ucla|chen|puri|park|pascucci|higashiyama|eye|dentist|neuro|psych|skypark|pcp|specialist|dds|md)\b/i.test(line)) {
+                        docLines.push(line);
+                    } else {
+                        medLines.push(line);
+                    }
+                }
+                el('cDocs').value = docLines.join('\n'); if (docLines.length) flash('cDocs');
+                el('cMeds').value = medLines.join('\n'); if (medLines.length) flash('cMeds');
+
+                triage();
+                el('fillStatus').style.color = '#15803d';
+                el('fillStatus').textContent = '✓ Auto-Filled ' + count + ' items! Scroll down to review or click Generate Summary.';
+            } catch (err) {
+                el('fillStatus').style.color = '#dc2626';
+                el('fillStatus').textContent = 'Note: ' + err.message;
+            }
+        }
+
+        function triage() {
+            var z = (el('cZip').value || '').trim(), hh = parseInt(el('cHH').value, 10) || 1, inc = getInc();
+            var ipas = [];
+            var checked = document.querySelectorAll('.ipa:checked');
+            for (var i = 0; i < checked.length; i++) ipas.push(checked[i].value);
+            var needPPO = ipas.indexOf('UCLA Health') !== -1 || (el('cDocs').value || '').toLowerCase().indexOf('ucla') !== -1 || el('cNet').value.indexOf('PPO') !== -1;
+
+            var sb16 = ['90245','90254','90260','90266','90274','90275','90277','90278','90501','90502','90503','90504','90505'];
+            el('outRegion').textContent = z.length < 5 ? 'Enter ZIP Code' : (sb16.indexOf(z) !== -1 || /^90[025]/.test(z) ? 'Region 16 (LA West / South Bay)' : 'Region 15 / CA (' + z + ')');
+
+            if (!inc) {
+                el('incHint').textContent = '';
+                el('outFPL').textContent = 'Income Optional / Unsubsidized';
+                el('outTier').textContent = needPPO ? 'Blue Shield PPO + Delta Dental + VSP' : 'Compare Silver 70, Gold 80 & Bronze 60';
+                return;
+            }
+            var fpl = Math.round((inc.annual / (15650 + (hh - 1) * 5500)) * 100), cap = Math.round(inc.monthly * 0.085);
+            el('incHint').textContent = '= $' + inc.monthly.toLocaleString() + '/mo | $' + inc.annual.toLocaleString() + '/yr | ~' + fpl + '% FPL (8.5% Benchmark Cap ~$' + cap.toLocaleString() + '/mo)';
+            el('outFPL').textContent = '$' + inc.annual.toLocaleString() + '/yr (~' + fpl + '% FPL)';
+            el('outTier').textContent = fpl <= 138 ? 'Medi-Cal Eligible (<138% FPL)' : fpl <= 150 ? 'Silver 94 ($0 Deductible)' : fpl <= 200 ? 'Silver 87 ($0 Deductible)' : fpl <= 250 ? 'Silver 73 ($0 Deductible)' : (needPPO ? 'PPO + HSA / Silver PPO (Cap ~$' + cap.toLocaleString() + '/mo)' : 'APTC Check (Cap ~$' + cap.toLocaleString() + '/mo)');
+        }
+
+        function showOutput(e) {
+            if (e) e.preventDefault();
+            triage();
+            var hh = parseInt(el('cHH').value, 10) || 1, inc = getInc();
+            var rows = document.querySelectorAll('.m-row');
+            var ipas = [];
+            var checked = document.querySelectorAll('.ipa:checked');
+            for (var i = 0; i < checked.length; i++) ipas.push(checked[i].value);
+            var allNotes = ((el('cDocs').value || '') + ' ' + (el('cMeds').value || '') + ' ' + (el('cCur').value || '')).toLowerCase();
+
+            var knownAges = [], kidsUnder19 = 0;
+            for (var r = 0; r < rows.length; r++) {
+                var a = parseAge(rows[r].querySelector('.p-age').value);
+                if (a !== null) {
+                    knownAges.push(a);
+                    if (a < 19) kidsUnder19++;
+                }
+            }
+            var adultUnits = Math.max(1, rows.length - kidsUnder19);
+
+            var tips = [];
+            if (allNotes.indexOf('cobra') !== -1 || el('cNet').value.indexOf('HSA') !== -1) {
+                tips.push('<strong>COBRA PPO + HSA Transition:</strong> Client is on an <strong>Anthem Blue Cross PPO + HSA</strong> COBRA plan. In LA Region 16, compare <strong>Blue Shield Bronze 60 HDHP PPO (HSA-Eligible)</strong> vs. <strong>Blue Shield Silver 70 PPO</strong> to retain full access to UCLA Torrance/Santa Monica and Torrance Memorial doctors without referrals.');
+            } else if (ipas.indexOf('UCLA Health') !== -1 || allNotes.indexOf('ucla') !== -1 || el('cNet').value.indexOf('PPO') !== -1) {
+                tips.push('<strong>South Bay PPO / UCLA Rule:</strong> In LA Region 16, <strong>Blue Shield Individual PPO</strong> is the only individual plan covering both <strong>UCLA Health (Torrance Skypark &amp; Santa Monica)</strong> and <strong>Torrance Memorial</strong> without referrals.');
+            }
+            if (allNotes.indexOf('express scripts') !== -1 || allNotes.indexOf('many meds') !== -1) {
+                tips.push('<strong>Pharmacy / PBM Alert (Express Scripts &amp; High Rx Usage):</strong> Client requires coverage for multiple medications and currently uses Express Scripts. Request the exact drug list to compare COBRA\'s low $3,500/$7,000 OOP Max against Blue Shield Individual PPO formulary tiers.');
+            }
+            if (allNotes.indexOf('mother') !== -1 || allNotes.indexOf('retirement') !== -1 || allNotes.indexOf('social security') !== -1) {
+                tips.push('<strong>Tax Household &amp; Retirement Draw MAGI Tip:</strong> Client lives with her mother and two daughters, with $3,100/mo Social Security and ~$13,000/mo drawn from retirement funds. <em>Key Covered CA Rule:</em> Non-taxable principal/Roth draws do <strong>not</strong> count toward Covered CA MAGI, and if her mother files taxes separately (on Medicare), only the client + tax-dependent daughters count in the Covered CA household!');
+            } else if (inc) {
+                var fpl = Math.round((inc.annual / (15650 + (hh - 1) * 5500)) * 100), cap = Math.round(inc.monthly * 0.085);
+                tips.push('<strong>Covered CA Subsidy Cap:</strong> $' + inc.monthly.toLocaleString() + '/mo = <strong>$' + inc.annual.toLocaleString() + '/yr (~' + fpl + '% FPL for Tax HH of ' + hh + ')</strong>. Benchmark Silver cost is capped around <strong>~$' + cap.toLocaleString() + '/mo</strong>.');
+            }
+            if (allNotes.indexOf('higashiyama') !== -1 || allNotes.indexOf('cigna') !== -1 || allNotes.indexOf('vsp') !== -1) {
+                tips.push('<strong>Dental &amp; VSP Vision Match:</strong> Keep <strong>VSP Vision</strong> directly via a standalone VSP Individual plan (avoiding EyeMed) and upgrade Cigna\'s $1,000 cap to <strong>Delta Dental PPO ($1,500–$2,000 Max)</strong> for Dr. Robert Higashiyama in Torrance.');
+            }
+
+            el('instantInsights').innerHTML = '<h4 style="color:var(--primary);margin-bottom:0.35rem;">South Bay Network &amp; Underwriting Strategy:</h4><ul style="margin-left:1.2rem;">' + tips.map(function(t) { return '<li style="margin-bottom:0.45rem;">' + t + '</li>'; }).join('') + '</ul>';
+
+            var tierIdx = adultUnits === 1 ? 0 : adultUnits === 2 ? 1 : 2;
+            var tierName = ['Single Adult', 'Two Adults', 'Family (' + adultUnits + ' Enrolling Members)'][tierIdx];
+            var catalog = [
+                { on: el('cDental').value === 'Yes', name: 'Delta Dental of CA — PPO', net: 'PPO ($1,500–$2,000 Max)', desc: 'Upgrades Cigna $1,000 Max | Covers Dr. Higashiyama | Waives wait w/ prior PPO', rates: ['$52–$65/mo', '$98–$124/mo', '$145–$185/mo'] },
+                { on: el('cDental').value === 'Yes', name: 'Blue Shield of CA — Dental PPO', net: 'PPO ($1,500 Annual Max)', desc: 'Day 1 Cleanings (100%) | 80% Basic / 50% Major | 1-Bill Bundle w/ Blue Shield', rates: ['$46–$58/mo', '$88–$110/mo', '$132–$168/mo'] },
+                { on: el('cDental').value === 'Yes', name: 'Anthem Blue Cross — Dental PPO', net: 'PPO ($1,500–$2,000 Max)', desc: 'Day 1 Preventive (100%) | Strong South Bay PPO Negotiated Fee Schedule', rates: ['$44–$56/mo', '$85–$108/mo', '$128–$162/mo'] },
+                { on: el('cDental').value === 'Yes', name: 'DeltaCare USA — DHMO', net: 'DHMO (No Annual Max)', desc: 'No Waiting Periods | $0 Deductible | Fixed Copays (Assigned Dentist)', rates: ['$19–$26/mo', '$36–$48/mo', '$54–$72/mo'] },
+                { on: el('cVision').value === 'Yes', name: 'VSP Vision Care — Individual Plan', net: 'VSP Network (Not EyeMed!)', desc: 'Keeps VSP Network | $15–$20 Exam Copay | $150–$230 Frame Allowance', rates: ['$15–$19/mo', '$29–$36/mo', '$42–$52/mo'] },
+                { on: el('cVision').value === 'Yes', name: 'Blue Shield / Anthem Vision', net: 'Bundled Vision (No Wait)', desc: '$10–$15 Exam Copay | $130–$150 Frame Allowance (Combined on Medical Bill)', rates: ['$11–$14/mo', '$21–$27/mo', '$31–$40/mo'] }
+            ].filter(function(i) { return i.on; });
+
+            el('quotesTables').innerHTML = catalog.length ? '<h4 style="color:var(--primary);margin:0.4rem 0;font-size:0.95rem;">Contracted Dental &amp; Vision Estimates (' + tierName + '):</h4><table class="q-tbl"><thead><tr><th>Carrier &amp; Plan</th><th>Structure</th><th>Waiting Periods &amp; Highlights</th><th>Est. Rate*</th></tr></thead><tbody>' + catalog.map(function(c) { return '<tr><td><strong>' + c.name + '</strong></td><td>' + c.net + '</td><td>' + c.desc + '</td><td><strong>' + c.rates[tierIdx] + '</strong></td></tr>'; }).join('') + '</tbody></table>' : '';
+
+            var memLines = [];
+            for (var m = 0; m < rows.length; m++) {
+                var rl = rows[m].querySelector('.p-role').value;
+                var rawA = rows[m].querySelector('.p-age').value.trim();
+                var tb = rows[m].querySelector('.p-tob').value;
+                var ageCalc = parseAge(rawA);
+                memLines.push('  • ' + rl + ': ' + (rawA ? (ageCalc !== null && !/^\d{1,3}$/.test(rawA) ? rawA + ' (Age ' + ageCalc + ')' : rawA) : 'DOB / Age TBD') + ' | ' + tb);
+            }
+
+            var dvTxt = catalog.length ? '\nCONTRACTED DENTAL & VISION ESTIMATES (' + tierName + '):\n' + catalog.map(function(c) { return '  • ' + c.name + ' (' + c.net + '): ' + c.rates[tierIdx]; }).join('\n') : '';
+
+            var txt = 'PINPOINT SOLUTION INSURANCE SERVICES — QUOTE WORKSHEET\n' +
+                'Client: ' + (el('cName').value || 'Client') + ' (' + (el('cEmail').value || 'No email') + ' | ' + (el('cPhone').value || 'No phone') + ')\n' +
+                'ZIP & Area: ' + (el('cZip').value || 'TBD') + ' — ' + el('outRegion').textContent + '\n' +
+                'Coverage: ' + el('cType').value + ' | Start Date: ' + el('cStartDate').value + ' | Medical Pref: ' + el('cNet').value + '\n' +
+                'Tax Household Size: ' + hh + ' | Income: ' + (inc ? '$' + inc.monthly.toLocaleString() + '/mo ($' + inc.annual.toLocaleString() + '/yr)' : 'TBD') + ' | Current Plan/Budget: ' + (el('cCur').value || 'N/A') + '\n' +
+                'Recommended Focus: ' + el('outTier').textContent + '\n\n' +
+                'Enrolling / Household Members (' + rows.length + '):\n' + memLines.join('\n') + '\n\n' +
+                'Preferred Medical Groups: ' + (ipas.join(', ') || 'Open') + '\n' +
+                'Preferred Doctors & Dentists:\n' + (el('cDocs').value || 'None') + '\n\n' +
+                'Prescriptions, COBRA & Notes:\n' + (el('cMeds').value || 'None') + '\n' + dvTxt;
+
+            el('outText').textContent = txt;
+            var subj = encodeURIComponent('Quote Request: ' + (el('cName').value || 'New Client')), body = encodeURIComponent(txt);
+            el('gmailBtn').href = 'https://mail.google.com/mail/?view=cm&fs=1&to=ghiga@pinpointins.com&cc=info@pinpointins.com&su=' + subj + '&body=' + body;
+            el('mailtoBtn').href = 'mailto:ghiga@pinpointins.com?cc=info@pinpointins.com&subject=' + subj + '&body=' + body;
+            el('outCard').style.display = 'block';
+            el('outCard').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

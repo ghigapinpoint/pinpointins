@@ -62,7 +62,6 @@ header {
     display: block;
 }
 
-/* Fixed CSS Typo Here */
 .logo-fallback-text {
     font-weight: 800;
     font-size: 1rem;
@@ -110,8 +109,9 @@ header {
     transition: background 0.2s, transform 0.15s;
 }
 
-.nav-links a.btn-nav:hover {
-    background: var(--dark);
+.nav-links a.btn-nav:hover,
+.nav-links a.btn-nav.active {
+    background: var(--secondary-dark);
     color: #ffffff;
     transform: translateY(-1px);
 }
@@ -164,6 +164,8 @@ header {
     text-decoration: none;
     font-weight: 700;
     font-size: 1rem;
+    border: none;
+    cursor: pointer;
     transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
     box-shadow: 0 4px 6px rgba(0,0,0,0.14);
 }
@@ -174,9 +176,31 @@ header {
     box-shadow: 0 6px 12px rgba(0,0,0,0.18);
 }
 
-/* Hero Sections (Official Slate-to-Green Linear Gradient) */
+.btn-secondary {
+    display: inline-block;
+    background: var(--primary);
+    color: #ffffff;
+    padding: 0.9rem 2.1rem;
+    border-radius: 0.375rem;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.btn-secondary:hover {
+    background: var(--secondary-dark);
+    transform: translateY(-2px);
+}
+
+/* Hero Sections (Official Slate-to-Green Linear Gradient + South Bay Coastal Photo Blend) */
 .hero {
-    background: linear-gradient(90deg, #374F62 0%, #4e7360 55%, #9ACC59 100%);
+    background-color: var(--primary);
+    background-image: 
+        linear-gradient(90deg, rgba(55, 79, 98, 0.92) 0%, rgba(78, 115, 96, 0.86) 55%, rgba(154, 204, 89, 0.88) 100%),
+        url('images/hero-south-bay.jpg');
+    background-size: cover;
+    background-position: center;
     color: #ffffff;
     padding: 9rem 2rem 5rem 2rem;
     text-align: center;
@@ -301,6 +325,15 @@ section p.section-intro {
     box-shadow: 0 10px 18px -3px rgba(55, 79, 98, 0.08);
 }
 
+.card-img-top {
+    width: 100%;
+    height: 185px;
+    object-fit: cover;
+    border-radius: 0.375rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid var(--border-gray);
+}
+
 .card h3 {
     color: var(--primary);
     margin-bottom: 0.75rem;
@@ -326,7 +359,7 @@ section p.section-intro {
     color: var(--secondary-dark);
 }
 
-/* Content Blocks */
+/* Content Blocks & Split Feature Images */
 .content-block {
     background: #ffffff;
     padding: 2.75rem 3rem;
@@ -349,6 +382,49 @@ section p.section-intro {
 
 .content-block p:last-child {
     margin-bottom: 0;
+}
+
+.content-split {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.feature-img-wrap {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 1px solid var(--border-gray);
+    border-top: 4px solid var(--secondary);
+    box-shadow: 0 6px 16px rgba(55, 79, 98, 0.1);
+    background: var(--light);
+}
+
+.feature-img-wrap img {
+    width: 100%;
+    height: 100%;
+    max-height: 360px;
+    object-fit: cover;
+    display: block;
+}
+
+/* South Bay Medical Network Badges */
+.network-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: 1.25rem;
+}
+
+.network-badge {
+    background: var(--light);
+    color: var(--primary);
+    border: 1px solid var(--border-gray);
+    border-left: 4px solid var(--secondary);
+    padding: 0.45rem 0.95rem;
+    border-radius: 0.375rem;
+    font-weight: 700;
+    font-size: 0.9rem;
 }
 
 /* Carrier Partner Grid (Grayscale to Color) */
@@ -416,8 +492,8 @@ section p.section-intro {
 }
 
 .bio-image img {
-    width: 220px;
-    height: 220px;
+    width: 200px;
+    height: 200px;
     aspect-ratio: 1 / 1;
     object-fit: cover;
     border-radius: 50%;
@@ -467,6 +543,12 @@ section p.section-intro {
 .contact-item a:hover {
     text-decoration: underline;
     color: var(--secondary-dark);
+}
+
+@media (max-width: 820px) {
+    .content-split {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 768px) {
