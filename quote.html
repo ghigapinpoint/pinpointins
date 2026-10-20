@@ -254,4 +254,290 @@
         <p style="font-size:0.9rem;" id="outputMeta">Prepared exclusively for South Bay Resident</p>
 
         <div id="networkMatchBox" style="background:var(--light); border:1px solid var(--border); padding:15px; border-radius:8px; margin:20px 0;">
-          <strong>🏥 Network Compatibility
+          <strong>🏥 Network Compatibility Check:</strong>
+          <ul id="networkList" style="margin-left:20px; font-size:0.9rem; margin-top:5px;"></ul>
+        </div>
+
+        <div class="plan-grid">
+          <div class="plan-card">
+            <div class="plan-badge" style="background:var(--border); color:var(--dark);">Lowest Monthly Cost</div>
+            <div class="plan-title">Bronze 60 HDHP PPO</div>
+            <div class="plan-price" id="priceBronze">$320 <span>/ mo est.</span></div>
+            <ul class="plan-details">
+              <li><span>Deductible:</span> <strong>$7,050</strong></li>
+              <li><span>Max Out-of-Pocket:</span> <strong>$7,050</strong></li>
+              <li><span>Primary Doctor:</span> <strong>Full Cost before Ded.</strong></li>
+              <li><span>HSA Eligible:</span> <strong>Yes (Tax Free Savings)</strong></li>
+            </ul>
+          </div>
+
+          <div class="plan-card featured">
+            <div class="plan-badge">Best Balanced Value</div>
+            <div class="plan-title">Silver 70 PPO</div>
+            <div class="plan-price" id="priceSilver">$445 <span>/ mo est.</span></div>
+            <ul class="plan-details">
+              <li><span>Deductible:</span> <strong>$5,400</strong></li>
+              <li><span>Max Out-of-Pocket:</span> <strong>$9,100</strong></li>
+              <li><span>Primary Doctor:</span> <strong>$50 Copay</strong></li>
+              <li><span>Specialist Visit:</span> <strong>$90 Copay</strong></li>
+            </ul>
+          </div>
+
+          <div class="plan-card">
+            <div class="plan-badge" style="background:var(--accent-yellow); color:#000;">Maximum Predictability</div>
+            <div class="plan-title">Gold 80 PPO / HMO</div>
+            <div class="plan-price" id="priceGold">$560 <span>/ mo est.</span></div>
+            <ul class="plan-details">
+              <li><span>Deductible:</span> <strong>$0</strong></li>
+              <li><span>Max Out-of-Pocket:</span> <strong>$8,700</strong></li>
+              <li><span>Primary Doctor:</span> <strong>$35 Copay</strong></li>
+              <li><span>Specialist Visit:</span> <strong>$65 Copay</strong></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bundle-calculator">
+          <h3 style="font-size:1.05rem; color:var(--dark); margin-bottom:10px;">Optional Dental & Vision Add-On Calculator</h3>
+          <div class="bundle-row">
+            <label><input type="checkbox" id="addDelta" onchange="recalculateBundle()" checked> Delta Dental PPO ($54/mo)</label>
+            <span>+$54/mo</span>
+          </div>
+          <div class="bundle-row">
+            <label><input type="checkbox" id="addVsp" onchange="recalculateBundle()" checked> VSP Individual Vision ($17/mo)</label>
+            <span>+$17/mo</span>
+          </div>
+          <hr style="border:none; border-top:1px solid var(--border); margin:10px 0;">
+          <div class="bundle-row" style="font-weight:700; font-size:1.1rem; color:var(--primary);">
+            <span>Estimated Total Monthly Investment:</span>
+            <span id="grandTotal">$516 / mo</span>
+          </div>
+        </div>
+
+        <div style="margin-top:25px; text-align:center;">
+          <button onclick="sendIntakeToAgency()" class="btn-submit" style="background:var(--primary); color:white;">Send Selections to Daniel & Greg to Lock In Exact Rates 📩</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ai-chat-bubble" onclick="toggleAiChat()">💬 Ask Pinpoint AI</div>
+
+  <div id="aiChatWindow" class="ai-chat-window">
+    <div class="ai-chat-header">
+      <span>Pinpoint Benefits Advisor</span>
+      <span onclick="toggleAiChat()" style="cursor:pointer;">✕</span>
+    </div>
+    <div id="aiChatBody" class="ai-chat-body">
+      <div class="ai-msg">Hi! I am the Pinpoint AI Assistant. Ask me anything about South Bay doctor networks, Covered CA subsidies, or plan differences!</div>
+    </div>
+    <div class="ai-chat-footer">
+      <input type="text" id="aiInput" placeholder="Ask a question..." onkeypress="if(event.key==='Enter') sendAiMessage()">
+      <button onclick="sendAiMessage()" style="background:var(--primary); color:white; border:none; padding:6px 12px; border-radius:6px; cursor:pointer;">Send</button>
+    </div>
+  </div>
+
+  <div id="passwordModal" class="modal-overlay">
+    <div class="modal-box">
+      <h3 style="color:var(--primary); margin-bottom:10px;">Advisor Mode Access</h3>
+      <p style="font-size:0.85rem; margin-bottom:15px;">Enter the advisor passcode to unlock internal quick-paste tools:</p>
+      <input type="password" id="advisorPasscode" placeholder="Passcode" style="width:100%; padding:8px; margin-bottom:15px; border:1px solid var(--border); border-radius:6px; background:var(--light); color:var(--text);">
+      <button onclick="validateAdvisorAuth()" style="background:var(--primary); color:white; border:none; padding:8px 16px; border-radius:6px; cursor:pointer; width:100%;">Unlock Advisor Workbench</button>
+    </div>
+  </div>
+
+  <script>
+    const GOOGLE_SHEET_WEBHOOK_URL = '';
+    let expectedCaptchaResult = 0;
+    let selectedProviders = [];
+    let hasGeneratedQuote = false;
+
+    /* Theme Initialization */
+    function initTheme() {
+      const savedTheme = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        updateThemeIcon(true);
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        updateThemeIcon(false);
+      }
+    }
+
+    function toggleDarkMode() {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+        updateThemeIcon(false);
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        updateThemeIcon(true);
+      }
+    }
+
+    function updateThemeIcon(isDark) {
+      const btn = document.getElementById('themeToggleBtn');
+      if (btn) btn.innerText = isDark ? '☀️' : '🌙';
+    }
+
+    /* Math Captcha */
+    function generateMathProblem() {
+      const num1 = Math.floor(Math.random() * 10) + 1;
+      const num2 = Math.floor(Math.random() * 9) + 1;
+      expectedCaptchaResult = num1 + num2;
+      document.getElementById('mathNum1').innerText = num1;
+      document.getElementById('mathNum2').innerText = num2;
+      document.getElementById('captchaAnswer').value = '';
+    }
+
+    /* Event Listeners */
+    document.addEventListener('DOMContentLoaded', () => {
+      initTheme();
+      generateMathProblem();
+    });
+
+    function togglePill(element) {
+      element.classList.toggle('selected');
+      const val = element.getAttribute('data-value');
+      if (selectedProviders.includes(val)) {
+        selectedProviders = selectedProviders.filter(p => p !== val);
+      } else {
+        selectedProviders.push(val);
+      }
+    }
+
+    function promptAdvisorAuth() {
+      document.getElementById('passwordModal').classList.add('active');
+    }
+
+    function validateAdvisorAuth() {
+      if (document.getElementById('advisorPasscode').value === 'pinpoint2026') {
+        document.getElementById('passwordModal').classList.remove('active');
+        document.getElementById('advisorWorkbench').classList.add('active');
+      } else {
+        alert('Incorrect passcode.');
+      }
+    }
+
+    /* Smart Intake Parser */
+    function parseRawIntake() {
+      const text = document.getElementById('rawIntakeText').value;
+      if (!text) return;
+
+      // Extract Email
+      const emailMatch = text.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
+      if (emailMatch) document.getElementById('cEmail').value = emailMatch[0];
+
+      // Extract Phone Number
+      const phoneMatch = text.match(/\(?\d{3}\)?[-. ]?\d{3}[-. ]?\d{4}/);
+      if (phoneMatch) document.getElementById('cPhone').value = phoneMatch[0];
+
+      // Extract Name
+      const nameMatch = text.match(/(?:Laurie|Laurie Johnson|Client:?\s*([A-Za-z\s]+))/i);
+      if (nameMatch) document.getElementById('cName').value = nameMatch[1] || nameMatch[0];
+
+      // Extract Age or Income if explicitly present
+      const ageMatch = text.match(/age\s*(\d+)/i);
+      if (ageMatch) document.getElementById('primaryAge').value = ageMatch[1];
+
+      const incomeMatch = text.match(/\$?(\d{2,3}),?\d{3}/);
+      if (incomeMatch) document.getElementById('estIncome').value = incomeMatch[1].replace(',', '') + '000';
+
+      // Auto-select UCLA hospital pill if mentioned
+      if (text.toLowerCase().includes('ucla')) {
+        const uclaPill = document.querySelector('.pill[data-value="UCLA"]');
+        if (uclaPill && !uclaPill.classList.contains('selected')) {
+          togglePill(uclaPill);
+        }
+      }
+
+      // Auto-select Torrance Memorial pill if mentioned
+      if (text.toLowerCase().includes('torrance') || text.toLowerCase().includes('tmipa')) {
+        const tmPill = document.querySelector('.pill[data-value="TMIPA"]');
+        if (tmPill && !tmPill.classList.contains('selected')) {
+          togglePill(tmPill);
+        }
+      }
+
+      // Append summarized notes to the priorities field
+      document.getElementById('clientNotes').value = "Pasted intake notes processed: Provider continuity & prescription review requested.";
+
+      alert('Smart parser updated form fields from intake text!');
+    }
+
+    function generateCoverageRoadmap() {
+      if (hasGeneratedQuote) {
+        alert('You have already generated a roadmap in this session.');
+        return;
+      }
+
+      if (parseInt(document.getElementById('captchaAnswer').value, 10) !== expectedCaptchaResult) {
+        alert('Please solve the human verification math problem correctly.');
+        return;
+      }
+
+      const age = parseInt(document.getElementById('primaryAge').value, 10) || 40;
+      const name = document.getElementById('cName').value || 'Valued Client';
+
+      document.getElementById('priceBronze').innerHTML = `$${Math.round(250 + (age * 3.5))} <span>/ mo est.</span>`;
+      document.getElementById('priceSilver').innerHTML = `$${Math.round(330 + (age * 4.8))} <span>/ mo est.</span>`;
+      document.getElementById('priceGold').innerHTML = `$${Math.round(420 + (age * 5.9))} <span>/ mo est.</span>`;
+
+      const netList = document.getElementById('networkList');
+      netList.innerHTML = '';
+      if (selectedProviders.includes('UCLA') && selectedProviders.includes('TMIPA')) {
+        netList.innerHTML += '<li><strong>Blue Shield Individual PPO Required:</strong> Best path to maintain both UCLA Skypark and Torrance Memorial without referrals.</li>';
+      }
+      if (selectedProviders.includes('Kaiser')) {
+        netList.innerHTML += '<li><strong>Kaiser Permanente Network:</strong> Closed network requiring Kaiser facilities.</li>';
+      }
+      if (netList.children.length === 0) {
+        netList.innerHTML = '<li>Broad choice of Blue Shield, Anthem, and Health Net networks available in LA Region 16.</li>';
+      }
+
+      document.getElementById('outputMeta').innerText = `Prepared exclusively for ${name} — LA County Region 16`;
+      document.getElementById('outputSection').classList.add('active');
+      recalculateBundle();
+      hasGeneratedQuote = true;
+    }
+
+    function recalculateBundle() {
+      const age = parseInt(document.getElementById('primaryAge').value, 10) || 40;
+      let total = Math.round(330 + (age * 4.8));
+      if (document.getElementById('addDelta').checked) total += 54;
+      if (document.getElementById('addVsp').checked) total += 17;
+      document.getElementById('grandTotal').innerText = `$${total} / mo`;
+    }
+
+    function sendIntakeToAgency() {
+      const email = document.getElementById('cEmail').value;
+      window.location.href = `mailto:daniel@pinpointins.com,ghiga@pinpointins.com?subject=Coverage Roadmap Selections - ${document.getElementById('cName').value}&body=Client Email: ${email}%0D%0ANotes: ${encodeURIComponent(document.getElementById('clientNotes').value)}`;
+    }
+
+    function toggleAiChat() {
+      document.getElementById('aiChatWindow').classList.toggle('active');
+    }
+
+    function sendAiMessage() {
+      const input = document.getElementById('aiInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const chatBody = document.getElementById('aiChatBody');
+      chatBody.innerHTML += `<div class="ai-msg user">${text}</div>`;
+      input.value = '';
+
+      setTimeout(() => {
+        let reply = "I am here to help! For exact policy terms, Daniel and Greg can review your details directly.";
+        if (text.toLowerCase().includes('ucla') || text.toLowerCase().includes('torrance')) {
+          reply = "To access both UCLA Health and Torrance Memorial, a Blue Shield Individual PPO plan is usually the most effective option in Region 16.";
+        }
+        chatBody.innerHTML += `<div class="ai-msg">${reply}</div>`;
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }, 600);
+    }
+  </script>
+</body>
+</html>

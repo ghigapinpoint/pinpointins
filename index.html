@@ -1,30 +1,199 @@
-<script>
-    function applyTheme(theme) {
-        const root = document.documentElement;
-        const btn = document.getElementById('themeToggle');
-        const logoImg = document.querySelector('.logo-area img');
-        const heroMark = document.querySelector('.hero-mark');
-        const sectionMark = document.querySelector('.section-mark');
-        
-        if (theme === 'dark') {
-            root.setAttribute('data-theme', 'dark');
-            if (btn) btn.textContent = '☀️';
-            if (logoImg) logoImg.src = 'images/logo-white.png';
-            if (heroMark) heroMark.src = 'images/logo-mark-white.png';
-            if (sectionMark) sectionMark.src = 'images/logo-mark-white.png';
-        } else {
-            root.removeAttribute('data-theme');
-            if (btn) btn.textContent = '🌙';
-            if (logoImg) logoImg.src = 'images/logo-color.png';
-            if (heroMark) heroMark.src = 'images/logo-mark.png';
-            if (sectionMark) sectionMark.src = 'images/logo-mark.png';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pinpoint Solution Insurance Services LLC provides customized group employee benefits, family health insurance, and nonprofit coverage in Torrance, the South Bay, and across California.">
+    <title>Pinpoint Solution Insurance Services LLC | South Bay, CA</title>
+    <link rel="icon" type="image/png" href="images/logo-mark.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo-area">
+                <img src="images/logo-color.png" alt="Pinpoint Solution Insurance Services" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="logo-fallback-text" style="display:none;">PINPOINT SOLUTION<span>Insurance Services</span></div>
+            </a>
+            <button class="menu-toggle" aria-label="Toggle Navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+            <nav class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="benefits.html">Employee Benefits</a>
+                <a href="nonprofits-churches.html">Nonprofits &amp; Churches</a>
+                <a href="resources.html">Resources</a>
+                <a href="about.html">About Us</a>
+                <a href="quote.html" class="btn-nav">Get a Quote</a>
+                <button class="dark-mode-toggle" id="themeToggle" aria-label="Toggle Dark Mode" onclick="toggleTheme()">🌙</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" style="max-width: 100%; margin: 0;">
+            <img src="images/logo-mark-white.png" alt="" class="hero-mark" onerror="this.style.display='none'">
+            <div class="eyebrow">Choose Local. Choose Independent.</div>
+            <h1>Customizing Health Coverage to Fit Your Needs</h1>
+            <p>Backed by over two decades of industry experience, Pinpoint Solution Insurance Services LLC assists South Bay businesses, families, and community organizations with the burden of navigating an ever-changing insurance landscape.</p>
+            <a href="quote.html" class="btn">Start Your Custom Quote</a>
+        </section>
+
+        <div class="trust-bar">
+            CA Corporate License #0131557 &nbsp;|&nbsp; Independent Brokerage Serving the South Bay &amp; All of California
+        </div>
+
+        <section>
+            <img src="images/logo-mark.png" alt="" class="section-mark" onerror="this.style.display='none'">
+            <h2>One Size Doesn't Fit All</h2>
+            <p class="section-intro">We specialize in getting the right combination of coverage that fits the unique needs of your group, family, or organization. Our team works closely with you to determine which options are best suited for your goals and budget.</p>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <div>
+                        <img src="images/south-bay-networks.jpg" alt="South Bay Employee Benefits and Small Group Health Plans" class="card-img-top" onerror="this.style.display='none'">
+                        <h3>Employee Benefits &amp; Small Group</h3>
+                        <p>Small group health, dental, vision, life, and disability income replacement plans—including HRAs, QSEHRAs, and SHOP options—structured to help you attract and retain great employees.</p>
+                    </div>
+                    <a href="benefits.html" class="card-link">Explore Employee Benefits &rarr;</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <img src="images/community-families.jpg" alt="South Bay Individual and Family Health Coverage" class="card-img-top" onerror="this.style.display='none'">
+                        <h3>Individual &amp; Family Health</h3>
+                        <p>Personalized medical, dental, vision, life, and Covered California policies designed to protect your loved ones at every stage of life without hidden surprises.</p>
+                    </div>
+                    <a href="quote.html" class="card-link">Launch Interactive Quote Worksheet &rarr;</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <img src="images/nonprofit-stewardship.jpg" alt="South Bay Nonprofits and Houses of Worship Protection" class="card-img-top" onerror="this.style.display='none'">
+                        <h3>Nonprofits &amp; Churches</h3>
+                        <p>Dedicated risk management and benefits guidance for community organizations and houses of worship, including D&amp;O liability, volunteer safety, and AB 506 compliance support.</p>
+                    </div>
+                    <a href="nonprofits-churches.html" class="card-link">Explore Nonprofit Solutions &rarr;</a>
+                </div>
+            </div>
+
+            <div class="content-block content-split" style="margin-top: 3.5rem; margin-bottom: 0;">
+                <div>
+                    <h3>Deep South Bay Medical Network Expertise</h3>
+                    <p>Choosing a health plan isn't just about the insurance carrier—it's about keeping the local doctors, pediatricians, and hospitals your family or employees already trust. We help you navigate HMO, PPO, EPO, and HSA network tiers across the South Bay's premier medical groups:</p>
+                    <div class="network-badges">
+                        <span class="network-badge">Torrance Memorial (TMIPA)</span>
+                        <span class="network-badge">Providence Little Company of Mary</span>
+                        <span class="network-badge">UCLA Health</span>
+                        <span class="network-badge">Optum South Bay</span>
+                        <span class="network-badge">Kaiser Permanente</span>
+                    </div>
+                    <div style="margin-top: 1.75rem;">
+                        <a href="quote.html" class="btn">Compare Doctors &amp; Plans in Our Quote Worksheet</a>
+                    </div>
+                </div>
+                <div class="feature-img-wrap">
+                    <img src="images/south-bay-networks.jpg" alt="South Bay Medical Networks and Local Healthcare Guidance in Torrance" onerror="this.parentElement.style.display='none'">
+                </div>
+            </div>
+        </section>
+
+        <section style="background: var(--card-bg); max-width: 100%; border-top: 1px solid var(--border-gray); border-bottom: 1px solid var(--border-gray);">
+            <div style="max-width: 1120px; margin: 0 auto;">
+                <h2>Our Complete California Carrier Access</h2>
+                <p class="section-intro">Pinpoint Solution Insurance Services is contracted with all major carriers, allowing us to present you with multiple objective options to fill your organization's needs.</p>
+                
+                <div class="carrier-grid">
+                    <div class="carrier-card">
+                        <img src="images/coveredca.png" alt="Covered California" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="carrier-fallback" style="display:none;">Covered California</span>
+                    </div>
+                    <div class="carrier-card">
+                        <img src="images/lacare.png" alt="L.A. Care Health Plan" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="carrier-fallback" style="display:none;">L.A. Care Health Plan</span>
+                    </div>
+                    <div class="carrier-card">
+                        <img src="images/kaiser.png" alt="Kaiser Permanente" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="carrier-fallback" style="display:none;">Kaiser Permanente</span>
+                    </div>
+                    <div class="carrier-card">
+                        <img src="images/anthem.png" alt="Anthem Blue Cross" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="carrier-fallback" style="display:none;">Anthem Blue Cross</span>
+                    </div>
+                    <div class="carrier-card">
+                        <img src="images/blueshield.png" alt="Blue Shield of California" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="carrier-fallback" style="display:none;">Blue Shield of CA</span>
+                    </div>
+                    <div class="carrier-card">
+                        <img src="images/healthnet.png" alt="Health Net" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="carrier-fallback" style="display:none;">Health Net</span>
+                    </div>
+                    <div class="carrier-card">
+                        <img src="images/aetna.png" alt="Aetna" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="carrier-fallback" style="display:none;">Aetna</span>
+                    </div>
+                    <div class="carrier-card">
+                        <img src="images/united.png" alt="UnitedHealthcare" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="carrier-fallback" style="display:none;">UnitedHealthcare</span>
+                    </div>
+                    <div class="carrier-card">
+                        <img src="images/delta.png" alt="Delta Dental" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="carrier-fallback" style="display:none;">Delta Dental</span>
+                    </div>
+                    <div class="carrier-card">
+                        <img src="images/vsp.png" alt="VSP Vision" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="carrier-fallback" style="display:none;">VSP Vision</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="content-block" style="text-align: center;">
+                <h3>Why Partner with Pinpoint Solution Insurance Services?</h3>
+                <p style="max-width: 800px; margin: 0 auto 1.75rem auto;">Unlike going direct to a single carrier, navigating impersonal private exchanges, or getting locked into rigid PEOs, we take the time to know our clients and the individual needs of each situation. Based in the South Bay, we focus on building strong, long-term working relationships—allowing us to adapt your coverage as your organization grows and changes.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="quote.html" class="btn">Build Your Custom Quote</a>
+                    <a href="about.html#contact" class="btn-secondary">Contact Our Torrance Office</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <img src="images/logo-white.png" alt="Pinpoint Solution Insurance Services" class="footer-logo" onerror="this.style.display='none'">
+        <p><strong>Pinpoint Solution Insurance Services LLC</strong></p>
+        <p><a href="https://maps.google.com/?q=21235+Hawthorne+Blvd+%23200,+Torrance,+CA+90503" target="_blank" rel="noopener" style="color:inherit;">21235 Hawthorne Blvd #200, Torrance, CA 90503</a> &nbsp;|&nbsp; <a href="tel:13105338877">(310) 533-8877</a></p>
+        <div class="license-badge">CA Corporate License #0131557</div>
+        <p style="margin-top: 1.25rem; opacity: 0.8; font-size: 0.85rem;">&copy; 2026 Pinpoint Solution Insurance Services LLC. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function applyTheme(theme) {
+            const root = document.documentElement;
+            const btn = document.getElementById('themeToggle');
+            const logoImg = document.querySelector('.logo-area img');
+            const heroMark = document.querySelector('.hero-mark');
+            const sectionMark = document.querySelector('.section-mark');
+            
+            if (theme === 'dark') {
+                root.setAttribute('data-theme', 'dark');
+                if (btn) btn.textContent = '☀️';
+                if (logoImg) logoImg.src = 'images/logo-white.png';
+                if (heroMark) heroMark.src = 'images/logo-mark-white.png';
+                if (sectionMark) sectionMark.src = 'images/logo-mark-white.png';
+            } else {
+                root.removeAttribute('data-theme');
+                if (btn) btn.textContent = '🌙';
+                if (logoImg) logoImg.src = 'images/logo-color.png';
+                if (heroMark) heroMark.src = 'images/logo-mark.png';
+                if (sectionMark) sectionMark.src = 'images/logo-mark.png';
+            }
         }
-    }
-    applyTheme(localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
-    function toggleTheme() {
-        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-        const newTheme = isDark ? 'light' : 'dark';
-        localStorage.setItem('theme', newTheme);
-        applyTheme(newTheme);
-    }
-</script>
+        applyTheme(localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+        function toggleTheme() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const newTheme = isDark ? 'light' : 'dark';
+            localStorage.setItem('theme', newTheme);
+            applyTheme(newTheme);
+        }
+    </script>
+</body>
+</html>
