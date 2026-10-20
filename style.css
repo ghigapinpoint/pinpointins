@@ -3,6 +3,7 @@
     --secondary: #9ACC59;      /* Official Style Guide Green */
     --secondary-dark: #4b784f; /* Accessible Dark Green for links/accents */
     --accent-yellow: #FDBE40;  /* Official Style Guide Yellow */
+    --accent-yellow-hover: #e6ab33;
     --dark: #0f172a;           /* Rich Slate-Black */
     --text-body: #334155;      /* High-contrast Slate for readable body copy */
     --light: #f8fafc;          /* Clean Off-White Background */
@@ -12,10 +13,11 @@
 
 /* Harmonious Midnight Slate Dark Theme Overrides */
 [data-theme="dark"] {
-    --primary: #64829b;
+    --primary: #789bb8;
     --secondary: #9ACC59;
     --secondary-dark: #b4e16d;
-    --accent-yellow: #d99b26;
+    --accent-yellow: #FDBE40;
+    --accent-yellow-hover: #e6ab33;
     --dark: #f1f5f9;
     --text-body: #cbd5e1;
     --light: #0b1118;
@@ -23,7 +25,7 @@
     --card-bg: #111827;
 }
 
-body, header, section, .card, .content-block, .carrier-card, .contact-box, input, select, textarea {
+body, header, section, .card, .content-block, .carrier-card, input, select, textarea {
     transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
@@ -130,7 +132,8 @@ header {
 
 .nav-links a.btn-nav:hover,
 .nav-links a.btn-nav.active {
-    background: #e6ab33;
+    background: var(--accent-yellow-hover);
+    color: #0f172a;
     transform: translateY(-1px);
 }
 
@@ -178,7 +181,7 @@ header {
         border-bottom: 3px solid var(--primary);
         padding: 1.5rem;
         gap: 1.15rem;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.12);
         text-align: center;
     }
     .nav-links.open { display: flex; }
@@ -201,7 +204,7 @@ header {
 }
 
 .btn:hover {
-    background: #e6ab33;
+    background: var(--accent-yellow-hover);
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0,0,0,0.16);
 }
@@ -223,7 +226,26 @@ header {
     transform: translateY(-2px);
 }
 
-/* Hero Sections (Extra top clearance so fixed header never overlaps on mobile) */
+.btn-hero-outline {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.14);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    padding: 0.9rem 2rem;
+    border-radius: 0.375rem;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: background 0.2s, transform 0.2s, border-color 0.2s;
+}
+
+.btn-hero-outline:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* Hero Sections */
 .hero {
     background-color: #374F62;
     background-image: linear-gradient(125deg, #2c4050 0%, #374F62 55%, #4b784f 100%);
@@ -234,7 +256,7 @@ header {
 }
 
 .hero-mark { height: 48px; width: auto; margin-bottom: 1rem; opacity: 0.95; }
-.hero .eyebrow { text-transform: uppercase; letter-spacing: 1.8px; font-size: 0.82rem; font-weight: 700; color: #ffe082; margin-bottom: 0.75rem; }
+.hero .eyebrow { text-transform: uppercase; letter-spacing: 1.8px; font-size: 0.82rem; font-weight: 700; color: var(--accent-yellow); margin-bottom: 0.75rem; }
 .hero h1 { font-size: 2.4rem; max-width: 820px; margin: 0 auto 1.15rem auto; font-weight: 800; line-height: 1.22; }
 .hero p { font-size: 1.12rem; max-width: 720px; margin: 0 auto 1.75rem auto; color: #f1f5f9; }
 
@@ -301,7 +323,7 @@ section p.section-intro { text-align: center; max-width: 740px; margin: 0 auto 2
 .card-link { display: inline-block; margin-top: 1.25rem; color: var(--primary); font-weight: 700; text-decoration: underline; text-underline-offset: 4px; font-size: 0.95rem; }
 .card-link:hover { color: var(--secondary-dark); }
 
-/* Content Blocks & Clean Architectural Panels (Replaces Uncanny Stock Photos) */
+/* Content Blocks & Clean Architectural Panels */
 .content-block {
     background: var(--card-bg);
     padding: 2.75rem 3rem;
@@ -356,10 +378,10 @@ section p.section-intro { text-align: center; max-width: 740px; margin: 0 auto 2
     font-size: 0.9rem;
 }
 
-/* Carrier Grid */
+/* Carrier Grid (Keep crisp light pill surface in Dark Mode so dark carrier logos stay legible) */
 .carrier-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: 1.5rem; align-items: center; margin-top: 2rem; }
 .carrier-card {
-    background: var(--card-bg);
+    background: #ffffff;
     border: 1px solid var(--border-gray);
     border-radius: 0.5rem;
     padding: 1.25rem;
@@ -371,17 +393,21 @@ section p.section-intro { text-align: center; max-width: 740px; margin: 0 auto 2
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     text-align: center;
 }
+[data-theme="dark"] .carrier-card {
+    background: #f8fafc;
+    border-color: #334155;
+}
 
 .carrier-card:hover { transform: translateY(-3px); box-shadow: 0 8px 16px rgba(55, 79, 98, 0.08); border-color: var(--secondary); }
-.carrier-card img { max-width: 135px; max-height: 55px; object-fit: contain; filter: grayscale(100%); opacity: 0.75; transition: filter 0.3s ease, opacity 0.3s ease; }
+.carrier-card img { max-width: 135px; max-height: 55px; object-fit: contain; filter: grayscale(100%); opacity: 0.8; transition: filter 0.3s ease, opacity 0.3s ease; }
 .carrier-card:hover img { filter: grayscale(0%); opacity: 1; }
-.carrier-fallback { font-weight: 700; color: var(--primary); font-size: 0.95rem; opacity: 0.85; }
+.carrier-fallback { font-weight: 700; color: #374F62; font-size: 0.95rem; }
 
 /* Executive Bio & Real Advisor Mini Cards */
-.bio-container { display: flex; align-items: center; gap: 2.5rem; margin-top: 1.5rem; }
+.bio-container { display: flex; align-items: flex-start; gap: 2.25rem; }
 .bio-image img {
-    width: 185px; height: 185px; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 50%;
-    border: 4px solid var(--primary); box-shadow: 0 6px 16px rgba(55, 79, 98, 0.15); display: block;
+    width: 155px; height: 155px; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 50%;
+    border: 4px solid var(--primary); box-shadow: 0 6px 16px rgba(55, 79, 98, 0.15); display: block; flex-shrink: 0;
 }
 
 .advisor-mini-card {
@@ -457,21 +483,11 @@ section p.section-intro { text-align: center; max-width: 740px; margin: 0 auto 2
 }
 .copy-btn:hover { border-color: var(--secondary); }
 
-/* Contact Box */
-.contact-box {
-    background: var(--card-bg); border: 1px solid var(--border-gray); border-top: 5px solid var(--secondary);
-    border-radius: 0.5rem; max-width: 780px; margin: 3rem auto 0 auto; padding: 2.75rem; box-shadow: 0 6px 14px rgba(0,0,0,0.04);
-}
-.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 1.5rem 0; padding: 1.5rem; background: var(--light); border-radius: 0.5rem; border: 1px solid var(--border-gray); }
-.contact-item p { margin-bottom: 0.65rem; font-size: 0.95rem; }
-.contact-item a { color: var(--primary); font-weight: 700; text-decoration: none; }
-.contact-item a:hover { text-decoration: underline; color: var(--secondary-dark); }
-
 @media (max-width: 820px) { .content-split { grid-template-columns: 1fr; } }
 @media (max-width: 768px) {
     section { padding: 3.25rem 1.25rem; }
-    .bio-container { flex-direction: column; text-align: center; gap: 1.5rem; }
-    .content-block, .contact-box, .card { padding: 1.65rem 1.25rem; }
+    .bio-container { flex-direction: column; align-items: center; text-align: center; gap: 1.25rem; }
+    .content-block, .card { padding: 1.65rem 1.25rem; }
 }
 
 /* Global Footer */
