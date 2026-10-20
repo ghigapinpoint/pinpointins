@@ -96,3 +96,566 @@
     /* Provider Pills */
     .pills-container { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
     .pill { background: var(--light); border: 1px solid var(--border); padding: 8px 14px; border-radius: 20px; font-size: 0.88rem; cursor: pointer; user-select: none; transition: all 0.2s; color: var(--text); }
+    .pill.selected { background: var(--primary); color: var(--white); border-color: var(--primary); }
+
+    /* Math Verification CAPTCHA */
+    .captcha-box { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 15px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+    .captcha-question { font-weight: 600; color: var(--dark); font-size: 0.95rem; }
+    .captcha-input { width: 90px; padding: 8px; border: 1px solid var(--border); border-radius: 6px; text-align: center; font-weight: bold; background: var(--light); color: var(--text); }
+
+    /* Action Button */
+    .btn-submit { background: var(--secondary); color: var(--dark); font-size: 1.1rem; font-weight: 700; border: none; padding: 14px 28px; border-radius: 8px; width: 100%; cursor: pointer; transition: background 0.2s; text-align: center; }
+    .btn-submit:hover { background: #8bb84d; }
+
+    /* Interactive Output Cards */
+    .output-section { display: none; margin-top: 40px; }
+    .output-section.active { display: block; }
+    .plan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
+    .plan-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 20px; position: relative; box-shadow: var(--shadow); transition: background-color 0.25s ease, border-color 0.25s ease; }
+    .plan-card.featured { border: 2px solid var(--secondary); }
+    .plan-badge { position: absolute; top: -12px; right: 15px; background: var(--secondary); color: var(--dark); font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 10px; text-transform: uppercase; }
+    .plan-title { font-size: 1.15rem; color: var(--primary); font-weight: 700; }
+    .plan-price { font-size: 1.8rem; font-weight: 800; color: var(--dark); margin: 10px 0 5px 0; }
+    .plan-price span { font-size: 0.9rem; font-weight: 400; color: var(--text); opacity: 0.8; }
+    .plan-details { list-style: none; margin: 15px 0; font-size: 0.9rem; }
+    .plan-details li { margin-bottom: 8px; display: flex; justify-content: space-between; border-bottom: 1px dashed var(--border); padding-bottom: 4px; }
+
+    /* Bundle Selector */
+    .bundle-calculator { background: var(--light); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin-top: 25px; }
+    .bundle-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; color: var(--text); }
+
+    /* Floating AI Chat Assistant */
+    .ai-chat-bubble { position: fixed; bottom: 20px; right: 20px; background: var(--primary); color: white; border-radius: 50px; padding: 12px 20px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 8px; z-index: 1000; }
+    .ai-chat-window { position: fixed; bottom: 80px; right: 20px; width: 350px; height: 450px; background: var(--white); border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); display: none; flex-direction: column; z-index: 1000; overflow: hidden; border: 1px solid var(--border); }
+    .ai-chat-window.active { display: flex; }
+    .ai-chat-header { background: var(--primary); color: white; padding: 12px 15px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+    .ai-chat-body { flex: 1; padding: 15px; overflow-y: auto; font-size: 0.88rem; display: flex; flex-direction: column; gap: 10px; }
+    .ai-msg { background: var(--light); color: var(--text); padding: 8px 12px; border-radius: 8px; max-width: 85%; }
+    .ai-msg.user { background: rgba(3, 105, 161, 0.2); color: var(--text); align-self: flex-end; }
+    .ai-chat-footer { padding: 10px; border-top: 1px solid var(--border); display: flex; gap: 6px; }
+    .ai-chat-footer input { flex: 1; padding: 8px; border: 1px solid var(--border); border-radius: 6px; outline: none; font-size: 0.85rem; background: var(--light); color: var(--text); }
+
+    /* Password Modal */
+    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center; z-index: 2000; }
+    .modal-overlay.active { display: flex; }
+    .modal-box { background: var(--white); padding: 25px; border-radius: 10px; width: 320px; text-align: center; border: 1px solid var(--border); }
+    .modal-box input { background: var(--light); color: var(--text); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo-container">
+      <img src="images/logo-color.png" alt="Pinpoint Solution Logo" class="logo-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'40\'><rect width=\'120\' height=\'40\' fill=\'%23374F62\'/><text x=\'10\' y=\'25\' fill=\'white\' font-size=\'14\'>PINPOINT</text></svg>'">
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="benefits.html">Benefits</a>
+      <button class="btn-advisor-toggle" onclick="promptAdvisorAuth()">
+        🔒 Advisor Mode
+      </button>
+      <button class="dark-mode-toggle" id="themeToggle" aria-label="Toggle Dark Mode" onclick="toggleTheme()">🌙</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="hero-banner">
+      <div class="trust-badge">🔒 100% Secure & Confidential • South Bay Local Guidance</div>
+      <h1>South Bay Health Coverage Roadmap</h1>
+      <p>Compare doctor networks (UCLA, Torrance Memorial, Providence) and estimate Covered CA subsidies in under 60 seconds.</p>
+    </div>
+
+    <!-- Hidden Password-Protected Advisor Workbench Mode -->
+    <div id="advisorWorkbench" class="advisor-workbench">
+      <div class="advisor-header">
+        <h3>✨ Advisor Workbench (Daniel & Greg Internal Parser)</h3>
+        <span style="font-size:0.8rem; color:var(--text); opacity:0.8;">Unlocked (Bypasses CAPTCHA)</span>
+      </div>
+      <p style="font-size:0.82rem; color:var(--text); margin-bottom:8px;">Paste raw intake client email, PDF questionnaire, or phone notes below to auto-fill form fields instantly:</p>
+      <textarea id="rawIntakeText" class="advisor-textarea" placeholder="Paste raw notes here... e.g. Client John Doe age 52, income $92k, needs UCLA Skypark and Torrance Memorial..."></textarea>
+      <button onclick="parseRawIntake()" style="background:var(--primary); color:white; border:none; padding:6px 12px; border-radius:4px; cursor:pointer; font-size:0.85rem;">⚡ Auto-Populate Form</button>
+    </div>
+
+    <!-- Step 1: Who Needs Coverage -->
+    <div class="card">
+      <div class="card-title">1. Household & Demographic Details</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="cName">Your Name</label>
+          <input type="text" id="cName" placeholder="e.g. Alex Smith">
+        </div>
+        <div class="form-group">
+          <label for="cEmail">Email Address</label>
+          <input type="email" id="cEmail" placeholder="client@example.com">
+        </div>
+        <div class="form-group">
+          <label for="cPhone">Phone Number</label>
+          <input type="tel" id="cPhone" placeholder="(310) 555-0199">
+        </div>
+        <div class="form-group">
+          <label for="zip">Zip Code</label>
+          <input type="text" id="zip" value="90503" maxlength="5">
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="primaryAge">Primary Applicant Age</label>
+          <input type="number" id="primaryAge" value="45">
+        </div>
+        <div class="form-group">
+          <label for="spouseAge">Spouse Age (Optional)</label>
+          <input type="number" id="spouseAge" placeholder="e.g. 47">
+        </div>
+        <div class="form-group">
+          <label for="numDependents">Number of Children</label>
+          <input type="number" id="numDependents" value="0">
+        </div>
+        <div class="form-group">
+          <label for="estIncome">Est. Household Annual Income ($)</label>
+          <input type="number" id="estIncome" placeholder="e.g. 85000">
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: South Bay Doctor Networks -->
+    <div class="card">
+      <div class="card-title">2. Preferred Hospitals & Doctor Networks</div>
+      <p style="font-size:0.88rem; color:var(--text); opacity:0.8; margin-bottom:10px;">Select hospital systems you or your family want to keep:</p>
+      <div class="pills-container">
+        <div class="pill" onclick="togglePill(this)" data-value="TMIPA">Torrance Memorial (TMIPA)</div>
+        <div class="pill" onclick="togglePill(this)" data-value="UCLA">UCLA Health (Skypark / South Bay)</div>
+        <div class="pill" onclick="togglePill(this)" data-value="Providence">Providence Little Company of Mary</div>
+        <div class="pill" onclick="togglePill(this)" data-value="Optum">Optum South Bay</div>
+        <div class="pill" onclick="togglePill(this)" data-value="Kaiser">Kaiser Permanente</div>
+      </div>
+    </div>
+
+    <!-- Step 3: Client Priorities & Comments -->
+    <div class="card">
+      <div class="card-title">3. Specific Priorities or Questions</div>
+      <div class="form-group">
+        <label for="clientNotes">Comments or Additional Details for Daniel & Greg</label>
+        <textarea id="clientNotes" rows="3" placeholder="Tell us about upcoming procedures, specific prescription drugs, target monthly budget, or preferred coverage start date..."></textarea>
+      </div>
+    </div>
+
+    <!-- Anti-Bot Math CAPTCHA (Hidden automatically if Advisor Mode is unlocked) -->
+    <div id="captchaContainer" class="captcha-box card" style="box-shadow:none; margin-bottom:20px;">
+      <div class="captcha-question">
+        🤖 Human Verification: What is <span id="mathNum1">5</span> + <span id="mathNum2">3</span>?
+      </div>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <input type="number" id="captchaAnswer" class="captcha-input" placeholder="Result">
+        <button onclick="generateMathProblem()" style="background:none; border:none; cursor:pointer; font-size:1.1rem;" title="Refresh Problem">🔄</button>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button class="btn-submit" onclick="generateCoverageRoadmap()">Generate My Custom Roadmap 🚀</button>
+
+    <!-- Client Output Section -->
+    <div id="outputSection" class="output-section">
+      <div class="card" style="border-top: 4px solid var(--secondary);">
+        <h2 style="color:var(--primary); margin-bottom:5px;">Your Personalized Coverage Roadmap</h2>
+        <p style="color:var(--text); opacity:0.8; font-size:0.9rem;" id="outputMeta">Prepared exclusively for South Bay Resident</p>
+
+        <!-- Network Match Analysis -->
+        <div id="networkMatchBox" style="background:var(--light); border:1px solid var(--border); padding:15px; border-radius:8px; margin:20px 0;">
+          <strong>🏥 Network Compatibility Check:</strong>
+          <ul id="networkList" style="margin-left:20px; font-size:0.9rem; margin-top:5px;"></ul>
+        </div>
+
+        <!-- 3 Side-by-Side Medical Cards -->
+        <div class="plan-grid">
+          <!-- Option 1 -->
+          <div class="plan-card">
+            <div class="plan-badge" style="background:var(--border); color:var(--dark);">Lowest Monthly Cost</div>
+            <div class="plan-title">Bronze 60 HDHP PPO</div>
+            <div class="plan-price" id="priceBronze">$320 <span>/ mo est.</span></div>
+            <ul class="plan-details">
+              <li><span>Deductible:</span> <strong>$7,050</strong></li>
+              <li><span>Max Out-of-Pocket:</span> <strong>$7,050</strong></li>
+              <li><span>Primary Doctor:</span> <strong>Full Cost before Ded.</strong></li>
+              <li><span>HSA Eligible:</span> <strong>Yes (Tax Free Savings)</strong></li>
+            </ul>
+          </div>
+
+          <!-- Option 2 -->
+          <div class="plan-card featured">
+            <div class="plan-badge">Best Balanced Value</div>
+            <div class="plan-title">Silver 70 PPO</div>
+            <div class="plan-price" id="priceSilver">$445 <span>/ mo est.</span></div>
+            <ul class="plan-details">
+              <li><span>Deductible:</span> <strong>$5,400</strong></li>
+              <li><span>Max Out-of-Pocket:</span> <strong>$9,100</strong></li>
+              <li><span>Primary Doctor:</span> <strong>$50 Copay</strong></li>
+              <li><span>Specialist Visit:</span> <strong>$90 Copay</strong></li>
+            </ul>
+          </div>
+
+          <!-- Option 3 -->
+          <div class="plan-card">
+            <div class="plan-badge" style="background:rgba(254, 243, 199, 0.4); color:#d99b26;">Maximum Predictability</div>
+            <div class="plan-title">Gold 80 PPO / HMO</div>
+            <div class="plan-price" id="priceGold">$560 <span>/ mo est.</span></div>
+            <ul class="plan-details">
+              <li><span>Deductible:</span> <strong>$0</strong></li>
+              <li><span>Max Out-of-Pocket:</span> <strong>$8,700</strong></li>
+              <li><span>Primary Doctor:</span> <strong>$35 Copay</strong></li>
+              <li><span>Specialist Visit:</span> <strong>$65 Copay</strong></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Bundle Total Calculator -->
+        <div class="bundle-calculator">
+          <h3 style="font-size:1.05rem; color:var(--dark); margin-bottom:10px;">Optional Dental & Vision Add-On Calculator</h3>
+          <div class="bundle-row">
+            <label><input type="checkbox" id="addDelta" onchange="recalculateBundle()" checked> Delta Dental PPO ($54/mo)</label>
+            <span>+$54/mo</span>
+          </div>
+          <div class="bundle-row">
+            <label><input type="checkbox" id="addVsp" onchange="recalculateBundle()" checked> VSP Individual Vision ($17/mo)</label>
+            <span>+$17/mo</span>
+          </div>
+          <hr style="border:none; border-top:1px solid var(--border); margin:10px 0;">
+          <div class="bundle-row" style="font-weight:700; font-size:1.1rem; color:var(--primary);">
+            <span>Estimated Total Monthly Investment:</span>
+            <span id="grandTotal">$516 / mo</span>
+          </div>
+        </div>
+
+        <div style="margin-top:25px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+          <button onclick="sendIntakeToAgency()" class="btn-submit" style="background:var(--primary); color:white; flex:1; min-width:260px;">Send Selections to Daniel & Greg 📩</button>
+          
+          <!-- Advisor-Only Presentation Slide Deck Export Button -->
+          <button id="advisorSlideDeckBtn" onclick="window.print()" class="btn-submit" style="background:var(--secondary-dark); color:white; flex:1; min-width:260px; display:none;">📊 Export Client Presentation Deck (Slides)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating AI Chat Assistant -->
+  <div class="ai-chat-bubble" onclick="toggleAiChat()">
+    💬 Ask Pinpoint AI
+  </div>
+
+  <div id="aiChatWindow" class="ai-chat-window">
+    <div class="ai-chat-header">
+      <span>Pinpoint Benefits Advisor</span>
+      <span onclick="toggleAiChat()" style="cursor:pointer;">✕</span>
+    </div>
+    <div id="aiChatBody" class="ai-chat-body">
+      <div class="ai-msg">Hi! I am the Pinpoint AI Assistant. You can chat with me naturally, or tell me your name, age, income, and preferred doctors (e.g., <em>"I'm Robert, age 50, ZIP 90503, making $85k and I need Torrance Memorial"</em>), and I'll fill out the form for you!</div>
+    </div>
+    <div class="ai-chat-footer">
+      <input type="text" id="aiInput" placeholder="Type details or ask a question..." onkeypress="if(event.key==='Enter') sendAiMessage()">
+      <button onclick="sendAiMessage()" style="background:var(--primary); color:white; border:none; padding:6px 12px; border-radius:6px; cursor:pointer;">Send</button>
+    </div>
+  </div>
+
+  <!-- Password Lock Modal -->
+  <div id="passwordModal" class="modal-overlay">
+    <div class="modal-box">
+      <h3 style="color:var(--primary); margin-bottom:10px;">Advisor Mode Access</h3>
+      <p style="font-size:0.85rem; color:var(--text); opacity:0.8; margin-bottom:15px;">Enter the advisor passcode to unlock internal tools:</p>
+      
+      <!-- Password field with toggle view button -->
+      <div style="position: relative; margin-bottom: 15px;">
+        <input type="password" id="advisorPasscode" placeholder="Passcode" style="width:100%; padding:8px 38px 8px 8px; border:1px solid var(--border); border-radius:6px; background:var(--light); color:var(--text);" onkeypress="if(event.key==='Enter') validateAdvisorAuth()">
+        <button type="button" onclick="togglePasswordVisibility()" style="position: absolute; right: 6px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; font-size: 1rem;" title="Show/Hide Passcode">👁️</button>
+      </div>
+
+      <button onclick="validateAdvisorAuth()" style="background:var(--primary); color:white; border:none; padding:8px 16px; border-radius:6px; cursor:pointer; width:100%;">Unlock Advisor Workbench</button>
+    </div>
+  </div>
+
+  <script>
+    // Theme & Logo Switcher Logic
+    function applyTheme(theme) {
+        const root = document.documentElement;
+        const btn = document.getElementById('themeToggle');
+        const logoImg = document.querySelector('.logo-img');
+        if (theme === 'dark') {
+            root.setAttribute('data-theme', 'dark');
+            if (btn) btn.textContent = '☀️';
+            if (logoImg) logoImg.src = 'images/logo-white.png';
+        } else {
+            root.removeAttribute('data-theme');
+            if (btn) btn.textContent = '🌙';
+            if (logoImg) logoImg.src = 'images/logo-color.png';
+        }
+    }
+    
+    applyTheme(localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+    
+    function toggleTheme() {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        const newTheme = isDark ? 'light' : 'dark';
+        localStorage.setItem('theme', newTheme);
+        applyTheme(newTheme);
+    }
+
+    // Configuration & State
+    const GOOGLE_SHEET_WEBHOOK_URL = ''; // Paste deployed Google Apps Script Web App URL here
+    let expectedCaptchaResult = 0;
+    let selectedProviders = [];
+    let hasGeneratedQuote = false;
+    let isAdvisorMode = false;
+
+    // Math Captcha Generator
+    function generateMathProblem() {
+      const num1 = Math.floor(Math.random() * 10) + 1;
+      const num2 = Math.floor(Math.random() * 9) + 1;
+      expectedCaptchaResult = num1 + num2;
+      document.getElementById('mathNum1').innerText = num1;
+      document.getElementById('mathNum2').innerText = num2;
+      document.getElementById('captchaAnswer').value = '';
+    }
+    window.onload = generateMathProblem;
+
+    // Toggle Provider Pills
+    function togglePill(element) {
+      element.classList.toggle('selected');
+      const val = element.getAttribute('data-value');
+      if (selectedProviders.includes(val)) {
+        selectedProviders = selectedProviders.filter(p => p !== val);
+      } else {
+        selectedProviders.push(val);
+      }
+    }
+
+    // Password Protected Advisor Workbench
+    function promptAdvisorAuth() {
+      document.getElementById('passwordModal').classList.add('active');
+    }
+
+    // Toggle Passcode Visibility (Show/Hide 👁️ feature)
+    function togglePasswordVisibility() {
+      const passInput = document.getElementById('advisorPasscode');
+      if (passInput.type === 'password') {
+        passInput.type = 'text';
+      } else {
+        passInput.type = 'password';
+      }
+    }
+
+    function validateAdvisorAuth() {
+      const code = document.getElementById('advisorPasscode').value;
+      if (code === '1920') {
+        document.getElementById('passwordModal').classList.remove('active');
+        document.getElementById('advisorWorkbench').classList.add('active');
+        document.getElementById('captchaContainer').style.display = 'none'; // Bypasses CAPTCHA in Advisor Mode
+        document.getElementById('advisorSlideDeckBtn').style.display = 'block'; // Unlocks Slides Export Button
+        isAdvisorMode = true;
+        alert('Advisor Mode Unlocked (Passcode 1920)! CAPTCHA verified and Client Presentation Deck export enabled.');
+      } else {
+        alert('Incorrect passcode.');
+      }
+    }
+
+    // Enhanced Raw Intake Parser for Advisor Workbench (Anonymized template examples)
+    function parseRawIntake() {
+      const text = document.getElementById('rawIntakeText').value.trim();
+      if (!text) {
+        alert('Please paste intake text first.');
+        return;
+      }
+
+      let parsedCount = 0;
+
+      const emailMatch = text.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
+      if (emailMatch) { document.getElementById('cEmail').value = emailMatch[0]; parsedCount++; }
+
+      const phoneMatch = text.match(/\(?([2-9]\d{2})\)?[-.\s]?(\d{3})[-.\s]?(\d{4})\b/);
+      if (phoneMatch) { document.getElementById('cPhone').value = `(${phoneMatch[1]}) ${phoneMatch[2]}-${phoneMatch[3]}`; parsedCount++; }
+
+      const zipMatch = text.match(/\b(9[0-5]\d{3}|96[01]\d{2})\b/);
+      if (zipMatch) { document.getElementById('zip').value = zipMatch[0]; parsedCount++; }
+
+      const nameMatch = text.match(/(?:Client\s*Name|Client|Name|Patient)\s*[:\-]\s*([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)/i);
+      if (nameMatch) { document.getElementById('cName').value = nameMatch[1].trim(); parsedCount++; }
+
+      const ageMatch = text.match(/\b(?:age|aged)\s*(\d{1,3})\b/i) || text.match(/\b(\d{1,3})\s*(?:years\s*old|yrs\s*old)\b/i);
+      if (ageMatch) { document.getElementById('primaryAge').value = ageMatch[1]; parsedCount++; }
+
+      const incomeMatch = text.match(/(?:income|making|earn[s]?)\s*(?:of)?\s*\$?\s*([\d,]{2,7})(?:\s*k)?/i) || text.match(/\$\s*([\d,]{4,7})\b/);
+      if (incomeMatch) {
+        let rawInc = incomeMatch[1].replace(/,/g, '');
+        let numInc = parseInt(rawInc, 10);
+        if (numInc < 200 && text.toLowerCase().includes('k')) numInc *= 1000;
+        document.getElementById('estIncome').value = numInc;
+        parsedCount++;
+      }
+
+      const lowText = text.toLowerCase();
+      const providerMappings = [
+        { key: 'ucla', value: 'UCLA' },
+        { key: 'torrance', value: 'TMIPA' },
+        { key: 'tmipa', value: 'TMIPA' },
+        { key: 'providence', value: 'Providence' },
+        { key: 'optum', value: 'Optum' },
+        { key: 'kaiser', value: 'Kaiser' }
+      ];
+
+      providerMappings.forEach(item => {
+        if (lowText.includes(item.key)) {
+          const pill = document.querySelector(`.pill[data-value="${item.value}"]`);
+          if (pill && !pill.classList.contains('selected')) {
+            togglePill(pill);
+            parsedCount++;
+          }
+        }
+      });
+
+      document.getElementById('clientNotes').value = text;
+      parsedCount++;
+
+      alert(`⚡ Advisor Parser Successful! Auto-populated approximately ${parsedCount} data points from intake text.`);
+    }
+
+    // Conversational AI Assistant with Direct Form-Filling
+    function sendAiMessage() {
+      const input = document.getElementById('aiInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const chatBody = document.getElementById('aiChatBody');
+      chatBody.innerHTML += `<div class="ai-msg user">${text}</div>`;
+      input.value = '';
+      chatBody.scrollTop = chatBody.scrollHeight;
+
+      setTimeout(() => {
+        let reply = "I've noted that down! Let me know if you have any other preferences or doctors you'd like to include.";
+        const lowText = text.toLowerCase();
+        let filledFields = [];
+
+        const nameMatch = text.match(/(?:my name is|i am|this is)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)/i);
+        if (nameMatch) { document.getElementById('cName').value = nameMatch[1]; filledFields.push("Name"); }
+
+        const ageMatch = text.match(/\b(?:i am|age|aged)\s*(\d{1,3})\b/i) || text.match(/\b(\d{1,3})\s*years old\b/i);
+        if (ageMatch) { document.getElementById('primaryAge').value = ageMatch[1]; filledFields.push("Age"); }
+
+        const zipMatch = text.match(/\b(9[0-5]\d{3}|96[01]\d{2})\b/);
+        if (zipMatch) { document.getElementById('zip').value = zipMatch[0]; filledFields.push("ZIP Code"); }
+
+        const incomeMatch = text.match(/\$?(\d{2,3}),?\d{3}/);
+        if (incomeMatch && (lowText.includes('income') || lowText.includes('make') || lowText.includes('earn'))) {
+          let numInc = parseInt(incomeMatch[0].replace(/[\$,]/g, ''), 10);
+          if (numInc < 200 && lowText.includes('k')) numInc *= 1000;
+          document.getElementById('estIncome').value = numInc;
+          filledFields.push("Estimated Income");
+        }
+
+        if (lowText.includes('torrance') || lowText.includes('tmipa')) {
+          const tmPill = document.querySelector('.pill[data-value="TMIPA"]');
+          if (tmPill && !tmPill.classList.contains('selected')) { togglePill(tmPill); filledFields.push("Torrance Memorial"); }
+        }
+        if (lowText.includes('ucla')) {
+          const uclaPill = document.querySelector('.pill[data-value="UCLA"]');
+          if (uclaPill && !uclaPill.classList.contains('selected')) { togglePill(uclaPill); filledFields.push("UCLA Health"); }
+        }
+        if (lowText.includes('providence')) {
+          const provPill = document.querySelector('.pill[data-value="Providence"]');
+          if (provPill && !provPill.classList.contains('selected')) { togglePill(provPill); filledFields.push("Providence"); }
+        }
+
+        if (filledFields.length > 0) {
+          reply = `Got it! I've automatically updated your form with your ${filledFields.join(', ')}. Feel free to keep chatting or click "Generate My Custom Roadmap" whenever you're ready!`;
+        } else if (lowText.includes('ucla') || lowText.includes('torrance')) {
+          reply = "To access both UCLA Health and Torrance Memorial in LA Region 16, a Blue Shield Individual PPO plan is typically the most effective option.";
+        } else if (lowText.includes('subsidy') || lowText.includes('covered ca')) {
+          reply = "Covered CA subsidies cap benchmark Silver plans based on your household income and FPL guidelines.";
+        }
+
+        chatBody.innerHTML += `<div class="ai-msg">${reply}</div>`;
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }, 700);
+    }
+
+    // Calculate Estimated Region 16 Rates
+    function generateCoverageRoadmap() {
+      if (hasGeneratedQuote && !isAdvisorMode) {
+        alert('You have already generated a roadmap in this session. Contact Daniel & Greg directly for adjustments!');
+        return;
+      }
+
+      if (!isAdvisorMode) {
+        const userAns = parseInt(document.getElementById('captchaAnswer').value, 10);
+        if (userAns !== expectedCaptchaResult) {
+          alert('Please solve the human verification math problem correctly.');
+          return;
+        }
+      }
+
+      const age = parseInt(document.getElementById('primaryAge').value, 10) || 40;
+      const name = document.getElementById('cName').value || 'Valued Client';
+
+      const baseBronze = Math.round(250 + (age * 3.5));
+      const baseSilver = Math.round(330 + (age * 4.8));
+      const baseGold = Math.round(420 + (age * 5.9));
+
+      document.getElementById('priceBronze').innerHTML = `$${baseBronze} <span>/ mo est.</span>`;
+      document.getElementById('priceSilver').innerHTML = `$${baseSilver} <span>/ mo est.</span>`;
+      document.getElementById('priceGold').innerHTML = `$${baseGold} <span>/ mo est.</span>`;
+
+      const netList = document.getElementById('networkList');
+      netList.innerHTML = '';
+      if (selectedProviders.includes('UCLA') && selectedProviders.includes('TMIPA')) {
+        netList.innerHTML += '<li><strong>Blue Shield Individual PPO Required:</strong> Best path to maintain both UCLA Skypark and Torrance Memorial without referrals.</li>';
+      }
+      if (selectedProviders.includes('Kaiser')) {
+        netList.innerHTML += '<li><strong>Kaiser Permanente Network:</strong> Closed network requiring Kaiser facilities (Torrance/Carson).</li>';
+      }
+      if (netList.children.length === 0) {
+        netList.innerHTML = '<li>Broad choice of Blue Shield, Anthem, and Health Net networks available in LA Region 16.</li>';
+      }
+
+      document.getElementById('outputMeta').innerText = `Prepared exclusively for ${name} — LA County Region 16${isAdvisorMode ? ' [Advisor Internal Triage]' : ''}`;
+      document.getElementById('outputSection').classList.add('active');
+      recalculateBundle();
+
+      logToGoogleSheet();
+      hasGeneratedQuote = true;
+    }
+
+    function recalculateBundle() {
+      const age = parseInt(document.getElementById('primaryAge').value, 10) || 40;
+      let total = Math.round(330 + (age * 4.8));
+      if (document.getElementById('addDelta').checked) total += 54;
+      if (document.getElementById('addVsp').checked) total += 17;
+      document.getElementById('grandTotal').innerText = `$${total} / mo`;
+    }
+
+    function logToGoogleSheet() {
+      if (!GOOGLE_SHEET_WEBHOOK_URL) return;
+      const payload = {
+        cName: document.getElementById('cName').value,
+        cEmail: document.getElementById('cEmail').value,
+        cPhone: document.getElementById('cPhone').value,
+        zip: document.getElementById('zip').value,
+        primaryAge: document.getElementById('primaryAge').value,
+        estIncome: document.getElementById('estIncome').value,
+        doctors: selectedProviders,
+        clientNotes: document.getElementById('clientNotes').value
+      };
+      fetch(GOOGLE_SHEET_WEBHOOK_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(err => console.log('Sheet logging complete'));
+    }
+
+    function sendIntakeToAgency() {
+      const email = document.getElementById('cEmail').value;
+      const mailto = `mailto:daniel@pinpointins.com,ghiga@pinpointins.com?subject=Coverage Roadmap Selections - ${document.getElementById('cName').value}&body=Client Email: ${email}%0D%0ANotes: ${encodeURIComponent(document.getElementById('clientNotes').value)}`;
+      window.location.href = mailto;
+    }
+
+    function toggleAiChat() {
+      document.getElementById('aiChatWindow').classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
