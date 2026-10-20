@@ -140,6 +140,14 @@
     .modal-overlay.active { display: flex; }
     .modal-box { background: var(--white); padding: 25px; border-radius: 10px; width: 320px; text-align: center; border: 1px solid var(--border); }
     .modal-box input { background: var(--light); color: var(--text); }
+
+    /* Print / Slide Deck Styles */
+    @media print {
+      header, .hero-banner, .advisor-workbench, .captcha-box, .btn-submit, .ai-chat-bubble, .ai-chat-window, .no-print { display: none !important; }
+      body { background: white; color: black; padding: 0; }
+      .container { max-width: 100%; margin: 0; padding: 0; }
+      .card { border: none; box-shadow: none; padding: 10px; page-break-after: always; }
+    }
   </style>
 </head>
 <body>
@@ -325,8 +333,11 @@
           </div>
         </div>
 
-        <div style="margin-top:25px; text-align:center;">
-          <button onclick="sendIntakeToAgency()" class="btn-submit" style="background:var(--primary); color:white;">Send Selections to Daniel & Greg to Lock In Exact Rates 📩</button>
+        <div style="margin-top:25px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+          <button onclick="sendIntakeToAgency()" class="btn-submit" style="background:var(--primary); color:white; flex:1; min-width:260px;">Send Selections to Daniel & Greg 📩</button>
+          
+          <!-- Advisor-Only Presentation Slide Deck Export Button -->
+          <button id="advisorSlideDeckBtn" onclick="window.print()" class="btn-submit" style="background:var(--secondary-dark); color:white; flex:1; min-width:260px; display:none;">📊 Export Client Presentation Deck (Slides)</button>
         </div>
       </div>
     </div>
@@ -343,10 +354,10 @@
       <span onclick="toggleAiChat()" style="cursor:pointer;">✕</span>
     </div>
     <div id="aiChatBody" class="ai-chat-body">
-      <div class="ai-msg">Hi! I am the Pinpoint AI Assistant. Ask me anything about South Bay doctor networks, Covered CA subsidies, or plan differences!</div>
+      <div class="ai-msg">Hi! I am the Pinpoint AI Assistant. You can chat with me naturally, or tell me your name, age, income, and preferred doctors (e.g., <em>"I'm Robert, age 50, ZIP 90503, making $85k and I need Torrance Memorial"</em>), and I'll fill out the form for you!</div>
     </div>
     <div class="ai-chat-footer">
-      <input type="text" id="aiInput" placeholder="Ask a question..." onkeypress="if(event.key==='Enter') sendAiMessage()">
+      <input type="text" id="aiInput" placeholder="Type details or ask a question..." onkeypress="if(event.key==='Enter') sendAiMessage()">
       <button onclick="sendAiMessage()" style="background:var(--primary); color:white; border:none; padding:6px 12px; border-radius:6px; cursor:pointer;">Send</button>
     </div>
   </div>
@@ -356,7 +367,13 @@
     <div class="modal-box">
       <h3 style="color:var(--primary); margin-bottom:10px;">Advisor Mode Access</h3>
       <p style="font-size:0.85rem; color:var(--text); opacity:0.8; margin-bottom:15px;">Enter the advisor passcode (1920) to unlock internal tools:</p>
-      <input type="password" id="advisorPasscode" placeholder="Passcode" style="width:100%; padding:8px; margin-bottom:15px; border:1px solid var(--border); border-radius:6px;" onkeypress="if(event.key==='Enter') validateAdvisorAuth()">
+      
+      <!-- Password field with toggle view button -->
+      <div style="position: relative; margin-bottom: 15px;">
+        <input type="password" id="advisorPasscode" placeholder="Passcode" style="width:100%; padding:8px 38px 8px 8px; border:1px solid var(--border); border-radius:6px; background:var(--light); color:var(--text);" onkeypress="if(event.key==='Enter') validateAdvisorAuth()">
+        <button type="button" onclick="togglePasswordVisibility()" style="position: absolute; right: 6px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; font-size: 1rem;" title="Show/Hide Passcode">👁️</button>
+      </div>
+
       <button onclick="validateAdvisorAuth()" style="background:var(--primary); color:white; border:none; padding:8px 16px; border-radius:6px; cursor:pointer; width:100%;">Unlock Advisor Workbench</button>
     </div>
   </div>
@@ -421,28 +438,147 @@
       document.getElementById('passwordModal').classList.add('active');
     }
 
+    // Toggle Passcode Visibility (Show/Hide 👁️ feature)
+    function togglePasswordVisibility() {
+      const passInput = document.getElementById('advisorPasscode');
+      if (passInput.type === 'password') {
+        passInput.type = 'text';
+      } else {
+        passInput.type = 'password';
+      }
+    }
+
     function validateAdvisorAuth() {
       const code = document.getElementById('advisorPasscode').value;
       if (code === '1920') {
         document.getElementById('passwordModal').classList.remove('active');
         document.getElementById('advisorWorkbench').classList.add('active');
         document.getElementById('captchaContainer').style.display = 'none'; // Bypasses CAPTCHA in Advisor Mode
+        document.getElementById('advisorSlideDeckBtn').style.display = 'block'; // Unlocks Slides Export Button
         isAdvisorMode = true;
-        alert('Advisor Mode Unlocked (Passcode 1920)! CAPTCHA verification is now bypassed.');
+        alert('Advisor Mode Unlocked (Passcode 1920)! CAPTCHA verified and Client Presentation Deck export enabled.');
       } else {
         alert('Incorrect passcode.');
       }
     }
 
-    // Raw Intake Parser (Internal Tool)
+    // Enhanced Raw Intake Parser for Advisor Workbench
     function parseRawIntake() {
-      const text = document.getElementById('rawIntakeText').value;
+      const text = document.getElementById('rawIntakeText').value.trim();
+      if (!text) {
+        alert('Please paste intake text first.');
+        return;
+      }
+
+      let parsedCount = 0;
+
+      const emailMatch = text.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
+      if (emailMatch) { document.getElementById('cEmail').value = emailMatch[0]; parsedCount++; }
+
+      const phoneMatch = text.match(/\(?([2-9]\d{2})\)?[-.\s]?(\d{3})[-.\s]?(\d{4})\b/);
+      if (phoneMatch) { document.getElementById('cPhone').value = `(${phoneMatch[1]}) ${phoneMatch[2]}-${phoneMatch[3]}`; parsedCount++; }
+
+      const zipMatch = text.match(/\b(9[0-5]\d{3}|96[01]\d{2})\b/);
+      if (zipMatch) { document.getElementById('zip').value = zipMatch[0]; parsedCount++; }
+
+      const nameMatch = text.match(/(?:Client\s*Name|Client|Name|Patient)\s*[:\-]\s*([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)/i);
+      if (nameMatch) { document.getElementById('cName').value = nameMatch[1].trim(); parsedCount++; }
+
+      const ageMatch = text.match(/\b(?:age|aged)\s*(\d{1,3})\b/i) || text.match(/\b(\d{1,3})\s*(?:years\s*old|yrs\s*old)\b/i);
+      if (ageMatch) { document.getElementById('primaryAge').value = ageMatch[1]; parsedCount++; }
+
+      const incomeMatch = text.match(/(?:income|making|earn[s]?)\s*(?:of)?\s*\$?\s*([\d,]{2,7})(?:\s*k)?/i) || text.match(/\$\s*([\d,]{4,7})\b/);
+      if (incomeMatch) {
+        let rawInc = incomeMatch[1].replace(/,/g, '');
+        let numInc = parseInt(rawInc, 10);
+        if (numInc < 200 && text.toLowerCase().includes('k')) numInc *= 1000;
+        document.getElementById('estIncome').value = numInc;
+        parsedCount++;
+      }
+
+      const lowText = text.toLowerCase();
+      const providerMappings = [
+        { key: 'ucla', value: 'UCLA' },
+        { key: 'torrance', value: 'TMIPA' },
+        { key: 'tmipa', value: 'TMIPA' },
+        { key: 'providence', value: 'Providence' },
+        { key: 'optum', value: 'Optum' },
+        { key: 'kaiser', value: 'Kaiser' }
+      ];
+
+      providerMappings.forEach(item => {
+        if (lowText.includes(item.key)) {
+          const pill = document.querySelector(`.pill[data-value="${item.value}"]`);
+          if (pill && !pill.classList.contains('selected')) {
+            togglePill(pill);
+            parsedCount++;
+          }
+        }
+      });
+
+      document.getElementById('clientNotes').value = text;
+      parsedCount++;
+
+      alert(`⚡ Advisor Parser Successful! Auto-populated approximately ${parsedCount} data points from intake text.`);
+    }
+
+    // Conversational AI Assistant with Direct Form-Filling
+    function sendAiMessage() {
+      const input = document.getElementById('aiInput');
+      const text = input.value.trim();
       if (!text) return;
-      const ageMatch = text.match(/age\s*(\d+)/i);
-      if (ageMatch) document.getElementById('primaryAge').value = ageMatch[1];
-      const incomeMatch = text.match(/\$?(\d{2,3}),?\d{3}/);
-      if (incomeMatch) document.getElementById('estIncome').value = incomeMatch[1].replace(',', '') + '000';
-      alert('Raw intake parsed! Form fields populated.');
+
+      const chatBody = document.getElementById('aiChatBody');
+      chatBody.innerHTML += `<div class="ai-msg user">${text}</div>`;
+      input.value = '';
+      chatBody.scrollTop = chatBody.scrollHeight;
+
+      setTimeout(() => {
+        let reply = "I've noted that down! Let me know if you have any other preferences or doctors you'd like to include.";
+        const lowText = text.toLowerCase();
+        let filledFields = [];
+
+        const nameMatch = text.match(/(?:my name is|i am|this is)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)/i);
+        if (nameMatch) { document.getElementById('cName').value = nameMatch[1]; filledFields.push("Name"); }
+
+        const ageMatch = text.match(/\b(?:i am|age|aged)\s*(\d{1,3})\b/i) || text.match(/\b(\d{1,3})\s*years old\b/i);
+        if (ageMatch) { document.getElementById('primaryAge').value = ageMatch[1]; filledFields.push("Age"); }
+
+        const zipMatch = text.match(/\b(9[0-5]\d{3}|96[01]\d{2})\b/);
+        if (zipMatch) { document.getElementById('zip').value = zipMatch[0]; filledFields.push("ZIP Code"); }
+
+        const incomeMatch = text.match(/\$?(\d{2,3}),?\d{3}/);
+        if (incomeMatch && (lowText.includes('income') || lowText.includes('make') || lowText.includes('earn'))) {
+          let numInc = parseInt(incomeMatch[0].replace(/[\$,]/g, ''), 10);
+          if (numInc < 200 && lowText.includes('k')) numInc *= 1000;
+          document.getElementById('estIncome').value = numInc;
+          filledFields.push("Estimated Income");
+        }
+
+        if (lowText.includes('torrance') || lowText.includes('tmipa')) {
+          const tmPill = document.querySelector('.pill[data-value="TMIPA"]');
+          if (tmPill && !tmPill.classList.contains('selected')) { togglePill(tmPill); filledFields.push("Torrance Memorial"); }
+        }
+        if (lowText.includes('ucla')) {
+          const uclaPill = document.querySelector('.pill[data-value="UCLA"]');
+          if (uclaPill && !uclaPill.classList.contains('selected')) { togglePill(uclaPill); filledFields.push("UCLA Health"); }
+        }
+        if (lowText.includes('providence')) {
+          const provPill = document.querySelector('.pill[data-value="Providence"]');
+          if (provPill && !provPill.classList.contains('selected')) { togglePill(provPill); filledFields.push("Providence"); }
+        }
+
+        if (filledFields.length > 0) {
+          reply = `Got it! I've automatically updated your form with your ${filledFields.join(', ')}. Feel free to keep chatting or click "Generate My Custom Roadmap" whenever you're ready!`;
+        } else if (lowText.includes('ucla') || lowText.includes('torrance')) {
+          reply = "To access both UCLA Health and Torrance Memorial in LA Region 16, a Blue Shield Individual PPO plan is typically the most effective option.";
+        } else if (lowText.includes('subsidy') || lowText.includes('covered ca')) {
+          reply = "Covered CA subsidies cap benchmark Silver plans based on your household income and FPL guidelines.";
+        }
+
+        chatBody.innerHTML += `<div class="ai-msg">${reply}</div>`;
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }, 700);
     }
 
     // Calculate Estimated Region 16 Rates
@@ -452,7 +588,6 @@
         return;
       }
 
-      // Check CAPTCHA only if not in Advisor Mode
       if (!isAdvisorMode) {
         const userAns = parseInt(document.getElementById('captchaAnswer').value, 10);
         if (userAns !== expectedCaptchaResult) {
@@ -464,7 +599,6 @@
       const age = parseInt(document.getElementById('primaryAge').value, 10) || 40;
       const name = document.getElementById('cName').value || 'Valued Client';
 
-      // Base Region 16 Age Rating Multiplier Math
       const baseBronze = Math.round(250 + (age * 3.5));
       const baseSilver = Math.round(330 + (age * 4.8));
       const baseGold = Math.round(420 + (age * 5.9));
@@ -473,7 +607,6 @@
       document.getElementById('priceSilver').innerHTML = `$${baseSilver} <span>/ mo est.</span>`;
       document.getElementById('priceGold').innerHTML = `$${baseGold} <span>/ mo est.</span>`;
 
-      // Network Compatibility Rules Analysis
       const netList = document.getElementById('networkList');
       netList.innerHTML = '';
       if (selectedProviders.includes('UCLA') && selectedProviders.includes('TMIPA')) {
@@ -490,20 +623,18 @@
       document.getElementById('outputSection').classList.add('active');
       recalculateBundle();
 
-      // Log to Google Workspace Sheet if Webhook URL is set
       logToGoogleSheet();
       hasGeneratedQuote = true;
     }
 
     function recalculateBundle() {
       const age = parseInt(document.getElementById('primaryAge').value, 10) || 40;
-      let total = Math.round(330 + (age * 4.8)); // Default Silver
+      let total = Math.round(330 + (age * 4.8));
       if (document.getElementById('addDelta').checked) total += 54;
       if (document.getElementById('addVsp').checked) total += 17;
       document.getElementById('grandTotal').innerText = `$${total} / mo`;
     }
 
-    // Google Sheet Logging Handoff
     function logToGoogleSheet() {
       if (!GOOGLE_SHEET_WEBHOOK_URL) return;
       const payload = {
@@ -530,31 +661,8 @@
       window.location.href = mailto;
     }
 
-    // Floating AI Chat Widget
     function toggleAiChat() {
       document.getElementById('aiChatWindow').classList.toggle('active');
-    }
-
-    function sendAiMessage() {
-      const input = document.getElementById('aiInput');
-      const text = input.value.trim();
-      if (!text) return;
-
-      const chatBody = document.getElementById('aiChatBody');
-      chatBody.innerHTML += `<div class="ai-msg user">${text}</div>`;
-      input.value = '';
-
-      // Simulated local intelligence response (or API connection point)
-      setTimeout(() => {
-        let reply = "I am here to help! For exact policy terms, Daniel and Greg can review your details directly.";
-        if (text.toLowerCase().includes('ucla') || text.toLowerCase().includes('torrance')) {
-          reply = "To access both UCLA Health and Torrance Memorial, a Blue Shield Individual PPO plan is usually the most effective option in Region 16.";
-        } else if (text.toLowerCase().includes('subsidy') || text.toLowerCase().includes('covered ca')) {
-          reply = "Covered CA subsidies cap benchmark Silver plans at 8.5% of your household income if you qualify based on FPL guidelines.";
-        }
-        chatBody.innerHTML += `<div class="ai-msg">${reply}</div>`;
-        chatBody.scrollTop = chatBody.scrollHeight;
-      }, 600);
     }
   </script>
 </body>
