@@ -1,934 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>South Bay Health Insurance Strategy & Quote | Pinpoint Solution Insurance Services</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        pinpoint: {
-                            slate: '#374F62',
-                            green: '#9ACC59',
-                            darkgreen: '#4b784f',
-                            gold: '#FDBE40',
-                            lightbg: '#F8FAFC',
-                            border: '#CBD5E1',
-                            dark: '#0F172A',
-                            text: '#334155'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            color: #334155;
-            background-color: #F8FAFC;
-        }
-
-        /* Print formatting for clean 1-page output */
-        @media print {
-            .no-print { display: none !important; }
-            .print-only { display: block !important; }
-            body { background: white; color: black; font-size: 11pt; }
-            .shadow-xl, .shadow-lg, .shadow-md, .shadow-sm { box-shadow: none !important; }
-            .border-2 { border-width: 1px !important; }
-            .print-break-inside-avoid { break-inside: avoid; }
-            .container { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
-            header, footer, nav { display: none !important; }
-            #proposalOutput { border: none !important; padding: 0 !important; }
-        }
-
-        /* Pill Animations */
-        .provider-pill {
-            transition: all 0.2s ease-in-out;
-            cursor: pointer;
-        }
-        .provider-pill.selected {
-            background-color: #374F62;
-            color: white;
-            border-color: #374F62;
-            box-shadow: 0 4px 6px -1px rgba(55, 79, 98, 0.2);
-        }
-
-        /* Glassmorphism accent */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
-        }
-
-        /* Contenteditable highlighting in Advisor Mode */
-        .advisor-mode [contenteditable="true"] {
-            outline: 2px dashed #9ACC59;
-            background-color: #f0fdf4;
-            padding: 2px 4px;
-            border-radius: 4px;
-        }
-        .advisor-mode [contenteditable="true"]:focus {
-            outline: 2px solid #374F62;
-            background-color: #ffffff;
-        }
-    </style>
-</head>
-<body class="min-h-screen flex flex-col justify-between">
-
-    <!-- TOP HEADER / NAV BAR -->
-    <header class="bg-pinpoint-slate text-white shadow-md sticky top-0 z-50 no-print">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Brand Logo / Name -->
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-lg bg-pinpoint-green flex items-center justify-center font-bold text-pinpoint-slate text-xl shadow-inner">
-                    <i class="fa-solid fa-location-crosshairs text-2xl text-pinpoint-slate"></i>
-                </div>
-                <div>
-                    <span class="text-xl font-extrabold tracking-tight block text-white leading-none">PINPOINT</span>
-                    <span class="text-xs tracking-wider text-pinpoint-green uppercase font-semibold">Solution Insurance Services</span>
-                </div>
-            </div>
-
-            <!-- Navigation Links -->
-            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
-                <a href="#home" class="hover:text-pinpoint-green transition">Home</a>
-                <a href="#benefits" class="hover:text-pinpoint-green transition">Benefits</a>
-                <a href="#nonprofits" class="hover:text-pinpoint-green transition">Nonprofits</a>
-                <a href="#resources" class="hover:text-pinpoint-green transition">Resources</a>
-                <a href="#about" class="hover:text-pinpoint-green transition">About Us</a>
-                <span class="bg-pinpoint-green text-pinpoint-slate px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">South Bay Specialists</span>
-            </nav>
-
-            <!-- Dual-Mode Switcher Button -->
-            <div class="flex items-center space-x-3">
-                <div class="bg-slate-800 p-1.5 rounded-xl flex items-center border border-slate-700 shadow-inner">
-                    <span class="text-xs text-slate-300 font-medium px-2 flex items-center gap-1">
-                        <i id="modeIcon" class="fa-solid fa-user text-pinpoint-green"></i>
-                        <span id="modeLabel" class="hidden sm:inline">Client View</span>
-                    </span>
-                    <button id="modeToggleBtn" onclick="toggleAdvisorMode()" class="bg-slate-700 hover:bg-pinpoint-green hover:text-pinpoint-slate text-white text-xs px-3 py-1.5 rounded-lg transition font-semibold flex items-center gap-1">
-                        <i class="fa-solid fa-arrows-rotate"></i>
-                        <span>Switch to <strong class="underline decoration-pinpoint-green" id="nextModeText">Advisor Workbench</strong></span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- MAIN CONTAINER -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
-
-        <!-- WELCOME BANNER (CLIENT MODE ONLY) -->
-        <div id="clientWelcomeHeader" class="mb-8 text-center max-w-3xl mx-auto">
-            <span class="inline-block bg-emerald-100 text-emerald-800 text-xs font-semibold px-3 py-1 rounded-full mb-3 uppercase tracking-wider">
-                <i class="fa-solid fa-shield-halved mr-1"></i> Complimentary Local Brokerage Consultation
-            </span>
-            <h1 class="text-3xl sm:text-4xl font-extrabold text-pinpoint-slate tracking-tight mb-2">
-                South Bay Health Insurance Strategy & Quote
-            </h1>
-            <p class="text-slate-600 text-base sm:text-lg">
-                Compare local Torrance, Beach Cities, and LA Region 16 plans. Match your preferred doctors at UCLA Skypark, Torrance Memorial, and Little Company of Mary with zero extra broker fees.
-            </p>
-        </div>
-
-        <!-- ADVISOR WORKBENCH INTRO BANNER (ADVISOR MODE ONLY - HIDDEN BY DEFAULT) -->
-        <div id="advisorBanner" class="hidden mb-6 bg-slate-800 text-white p-4 sm:p-6 rounded-2xl border-l-8 border-pinpoint-green shadow-lg transition-all">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                <div>
-                    <div class="flex items-center gap-2 text-pinpoint-green font-bold text-sm tracking-wide uppercase">
-                        <i class="fa-solid fa-sliders"></i> Internal Broker Workbench (Daniel & Greg)
-                    </div>
-                    <h2 class="text-xl font-bold text-white">Interactive Client Proposal Engine & Quick-Paste Parser</h2>
-                    <p class="text-slate-300 text-sm">Paste client emails, COBRA docs, or intake notes to instant-populate. Tweak rates live on screen and generate 1-page proposals.</p>
-                </div>
-                <div class="flex flex-wrap gap-2">
-                    <button onclick="loadSampleAlexMorgan()" class="bg-pinpoint-green hover:bg-emerald-500 text-pinpoint-slate font-bold px-4 py-2 rounded-lg text-xs shadow transition flex items-center gap-1.5">
-                        <i class="fa-solid fa-bolt"></i> Load Sample: Alex Morgan (COBRA + Doctors)
-                    </button>
-                    <button onclick="clearForm()" class="bg-slate-700 hover:bg-slate-600 text-slate-200 px-3 py-2 rounded-lg text-xs font-medium transition">
-                        <i class="fa-solid fa-eraser"></i> Clear Form
-                    </button>
-                </div>
-            </div>
-
-            <!-- PASTE BOX FOR RAW EMAIL / PDF INTAKE (ADVISOR MODE) -->
-            <div id="pasteBoxWrapper" class="mt-4 pt-4 border-t border-slate-700">
-                <label for="rawIntakeText" class="block text-xs font-semibold text-pinpoint-green mb-1 uppercase tracking-wider">
-                    <i class="fa-solid fa-paste mr-1"></i> Quick-Paste Raw Intake Email, PDF Text, or Notes:
-                </label>
-                <div class="flex gap-2">
-                    <textarea id="rawIntakeText" rows="2" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-xs text-slate-200 font-mono focus:ring-2 focus:ring-pinpoint-green focus:border-transparent" placeholder="Paste unformatted intake email or notes here... (e.g., 'Alex Morgan, age 48, income $62k, doctors at UCLA Health and Torrance Memorial...')"></textarea>
-                    <button onclick="parseRawIntake()" class="bg-pinpoint-slate hover:bg-slate-700 text-white font-semibold px-4 py-2 rounded-lg text-xs border border-slate-600 whitespace-nowrap transition flex items-center justify-center gap-1">
-                        <i class="fa-solid fa-wand-magic-sparkles text-pinpoint-gold"></i> Parse Intake
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- INTAKE FORM (COLLAPSED / EDITABLE SECTION) -->
-        <div id="intakeFormContainer" class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden mb-10 transition-all">
-            <div class="bg-slate-100 px-6 py-4 border-b border-slate-200 flex justify-between items-center">
-                <div class="flex items-center space-x-2">
-                    <span class="w-7 h-7 rounded-full bg-pinpoint-slate text-white flex items-center justify-center text-xs font-bold">1</span>
-                    <h2 class="text-lg font-bold text-pinpoint-slate">Client & Household Profile</h2>
-                </div>
-                <span class="text-xs text-slate-500 italic">Target Market: LA County (Region 16) & South Bay</span>
-            </div>
-
-            <form id="quoteForm" class="p-6 space-y-6" onsubmit="event.preventDefault(); generateCoverageRoadmap();">
-                <!-- ROW 1: PRIMARY CONTACT INFO -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div>
-                        <label for="cName" class="block text-xs font-bold text-slate-700 uppercase mb-1">Primary Applicant Name *</label>
-                        <input type="text" id="cName" required class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-pinpoint-slate focus:bg-white" placeholder="e.g. Laurie Johnson">
-                    </div>
-                    <div>
-                        <label for="cEmail" class="block text-xs font-bold text-slate-700 uppercase mb-1">Client Email Address *</label>
-                        <input type="email" id="cEmail" required class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-pinpoint-slate focus:bg-white" placeholder="laurie@example.com">
-                    </div>
-                    <div>
-                        <label for="cPhone" class="block text-xs font-bold text-slate-700 uppercase mb-1">Phone Number</label>
-                        <input type="tel" id="cPhone" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-pinpoint-slate focus:bg-white" placeholder="(310) 555-0199">
-                    </div>
-                </div>
-
-                <!-- ROW 2: AGES & HOUSEHOLD SIZE -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 pt-2 border-t border-slate-100">
-                    <div>
-                        <label for="primaryAge" class="block text-xs font-bold text-slate-700 uppercase mb-1">Primary DOB / Age *</label>
-                        <input type="number" id="primaryAge" required min="18" max="100" value="48" onchange="calculateSubsidy()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-pinpoint-slate focus:bg-white">
-                    </div>
-                    <div>
-                        <label for="spouseAge" class="block text-xs font-bold text-slate-700 uppercase mb-1">Spouse Age (Optional)</label>
-                        <input type="number" id="spouseAge" min="18" max="100" placeholder="None" onchange="calculateSubsidy()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-pinpoint-slate focus:bg-white">
-                    </div>
-                    <div>
-                        <label for="depCount" class="block text-xs font-bold text-slate-700 uppercase mb-1">Children / Dependents</label>
-                        <select id="depCount" onchange="calculateSubsidy()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-pinpoint-slate focus:bg-white">
-                            <option value="0">0 Dependents</option>
-                            <option value="1">1 Child</option>
-                            <option value="2">2 Children</option>
-                            <option value="3">3+ Children</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="zipCode" class="block text-xs font-bold text-slate-700 uppercase mb-1">Zip Code *</label>
-                        <input type="text" id="zipCode" required value="90503" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-pinpoint-slate focus:bg-white" placeholder="90503 (Torrance)">
-                    </div>
-                </div>
-
-                <!-- ROW 3: INCOME & FPL REAL-TIME CALCULATOR -->
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
-                        <div>
-                            <label for="annualIncome" class="block text-xs font-bold text-slate-700 uppercase mb-1">
-                                Est. Modified AGI (Annual Household Income)
-                            </label>
-                            <div class="relative">
-                                <span class="absolute left-3 top-2 text-slate-500 font-bold">$</span>
-                                <input type="number" id="annualIncome" value="62000" step="1000" oninput="calculateSubsidy()" class="w-full bg-white border border-slate-300 rounded-lg pl-7 pr-3 py-2 text-sm font-semibold text-slate-800 focus:ring-2 focus:ring-pinpoint-slate">
-                            </div>
-                        </div>
-
-                        <!-- FPL % & SUBSIDY REALTIME DISPLAY -->
-                        <div class="md:col-span-2 bg-white p-3 rounded-lg border border-slate-200 flex flex-wrap items-center justify-between gap-3">
-                            <div>
-                                <span class="text-xs text-slate-500 block uppercase font-bold">Calculated FPL Status:</span>
-                                <span id="fplPercentDisplay" class="text-lg font-extrabold text-pinpoint-slate">247% FPL</span>
-                                <span class="text-xs text-slate-500 ml-1">(Household Size: <span id="hhSizeDisplay">1</span>)</span>
-                            </div>
-                            <div class="text-right">
-                                <span class="text-xs text-slate-500 block uppercase font-bold">Covered CA Subsidy Tier:</span>
-                                <span id="subsidyBadge" class="inline-block bg-emerald-100 text-emerald-800 font-bold text-xs px-2.5 py-1 rounded-full">
-                                    <i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> Eligible for Tax Credits
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ROW 4: SOUTH BAY PROVIDER NETWORK PILL SELECTOR -->
-                <div class="pt-2">
-                    <label class="block text-xs font-bold text-slate-700 uppercase mb-2">
-                        <i class="fa-solid fa-user-doctor text-pinpoint-slate mr-1"></i> Preferred South Bay Doctors & Hospital Networks (Click to Match):
-                    </label>
-                    <div class="flex flex-wrap gap-2" id="providerPills">
-                        <button type="button" data-provider="ucla" onclick="toggleProviderPill(this)" class="provider-pill border border-slate-300 bg-slate-50 text-slate-700 px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5">
-                            <i class="fa-solid fa-hospital-user"></i> UCLA Health (Skypark / South Bay)
-                        </button>
-                        <button type="button" data-provider="tmipa" onclick="toggleProviderPill(this)" class="provider-pill border border-slate-300 bg-slate-50 text-slate-700 px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5">
-                            <i class="fa-solid fa-hospital"></i> Torrance Memorial (TMIPA)
-                        </button>
-                        <button type="button" data-provider="providence" onclick="toggleProviderPill(this)" class="provider-pill border border-slate-300 bg-slate-50 text-slate-700 px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5">
-                            <i class="fa-solid fa-square-h"></i> Providence Little Company of Mary
-                        </button>
-                        <button type="button" data-provider="optum" onclick="toggleProviderPill(this)" class="provider-pill border border-slate-300 bg-slate-50 text-slate-700 px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5">
-                            <i class="fa-solid fa-clinic-medical"></i> Optum South Bay
-                        </button>
-                        <button type="button" data-provider="kaiser" onclick="toggleProviderPill(this)" class="provider-pill border border-slate-300 bg-slate-50 text-slate-700 px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5">
-                            <i class="fa-solid fa-briefcase-medical"></i> Kaiser Permanente
-                        </button>
-                    </div>
-
-                    <!-- SOUTH BAY INSTANT RULE ALERT (DUAL MATCH UCLA + TMIPA) -->
-                    <div id="uclaTorranceNotice" class="hidden mt-3 p-3 bg-amber-50 border-l-4 border-amber-500 rounded-r-lg text-xs text-amber-900">
-                        <div class="flex items-start gap-2">
-                            <i class="fa-solid fa-triangle-exclamation text-amber-600 text-sm mt-0.5"></i>
-                            <div>
-                                <strong>South Bay Provider Match Rule Triggered:</strong> You selected both <strong>UCLA Health</strong> and <strong>Torrance Memorial</strong>. To retain open access to both medical groups without requiring primary care referrals, a <strong>Blue Shield Individual PPO</strong> plan is required in LA County Region 16.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SUBMIT BUTTON -->
-                <div class="pt-4 border-t border-slate-200 flex justify-end">
-                    <button type="submit" class="w-full sm:w-auto bg-pinpoint-slate hover:bg-slate-800 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-sm tracking-wide">
-                        <i class="fa-solid fa-wand-magic-sparkles text-pinpoint-green"></i> Generate Coverage Roadmap & Comparison
-                    </button>
-                </div>
-            </form>
-        </div>
-
-
-        <!-- ========================================================================= -->
-        <!-- CLIENT OUTPUT ROADMAP (THE 11/10 CLIENT DELIVERABLE) -->
-        <!-- ========================================================================= -->
-        <div id="proposalOutput" class="hidden transition-all duration-300">
-
-            <!-- PROPOSAL HEADER CARD -->
-            <div class="bg-gradient-to-r from-pinpoint-slate via-slate-800 to-pinpoint-slate text-white p-6 sm:p-8 rounded-2xl shadow-xl mb-8 relative overflow-hidden border border-slate-700">
-                <div class="relative z-10 flex flex-col md:flex-row justify-between md:items-center gap-4">
-                    <div>
-                        <span class="inline-block bg-pinpoint-green text-pinpoint-slate text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider mb-2">
-                            Personalized Strategy Deliverable
-                        </span>
-                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">
-                            South Bay Health Coverage Proposal
-                        </h2>
-                        <p class="text-slate-300 text-sm mt-1">
-                            Prepared Exclusively For: <strong id="outClientName" class="text-pinpoint-green font-bold text-base">Laurie Johnson</strong> 
-                            | <span id="outDate">October 2026</span>
-                        </p>
-                    </div>
-
-                    <!-- PRINT & ACTION BUTTONS FOR ADVISOR WORKBENCH MODE -->
-                    <div class="flex flex-wrap gap-2 no-print">
-                        <button onclick="window.print()" class="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-lg text-xs font-semibold transition flex items-center gap-1.5 border border-slate-600">
-                            <i class="fa-solid fa-print"></i> Print 1-Page PDF
-                        </button>
-                        <button id="emailClientBtn" onclick="sendEmailToClient()" class="bg-pinpoint-green hover:bg-emerald-500 text-pinpoint-slate font-bold px-4 py-2 rounded-lg text-xs transition flex items-center gap-1.5 shadow">
-                            <i class="fa-solid fa-paper-plane"></i> Email Proposal to Client
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SECTION 1: SOUTH BAY DOCTOR & HOSPITAL MATCH BADGES -->
-            <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 mb-8 print-break-inside-avoid">
-                <h3 class="text-sm font-extrabold text-pinpoint-slate uppercase tracking-wider mb-4 flex items-center gap-2">
-                    <i class="fa-solid fa-circle-check text-pinpoint-green text-lg"></i> Section 1: Your Hospital & Provider Network Verification
-                </h3>
-
-                <div id="networkBadgesContainer" class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <!-- Populated dynamically -->
-                </div>
-            </div>
-
-            <!-- SECTION 2: SIDE-BY-SIDE MEDICAL PLAN COMPARISON CARDS (LA REGION 16) -->
-            <div class="mb-8 print-break-inside-avoid">
-                <div class="flex justify-between items-end mb-4">
-                    <div>
-                        <h3 class="text-lg font-bold text-pinpoint-slate">Section 2: Recommended Medical Coverage Paths (Region 16)</h3>
-                        <p class="text-xs text-slate-500">Age-Rated Premiums tailored to your household size & Covered CA tax credit eligibility.</p>
-                    </div>
-                    <span class="text-xs text-slate-400 italic no-print font-medium">Click prices to edit in Advisor Mode</span>
-                </div>
-
-                <!-- 3 CARDS GRID -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-                    <!-- CARD 1: LOWEST COST / HSA -->
-                    <div class="bg-white rounded-2xl border-2 border-slate-200 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between relative">
-                        <div>
-                            <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-md uppercase tracking-wider block w-max mb-3">Option 1: Budget / HSA</span>
-                            <h4 id="card1Title" contenteditable="true" class="text-lg font-bold text-pinpoint-slate mb-1">Blue Shield Bronze 60 HDHP PPO</h4>
-                            <p class="text-xs text-slate-500 mb-4">HSA-eligible high deductible plan for catastrophic protection & tax savings.</p>
-
-                            <!-- PRICING BOX -->
-                            <div class="bg-slate-50 p-3 rounded-xl mb-4 border border-slate-100">
-                                <div class="text-xs text-slate-500 line-through">Full Rate: $<span id="card1Gross">412</span>/mo</div>
-                                <div class="text-xs text-emerald-600 font-semibold">Covered CA Subsidy: -$<span id="card1Subsidy">180</span></div>
-                                <div class="text-2xl font-black text-pinpoint-slate mt-1">
-                                    $<span id="card1Net" contenteditable="true" class="text-pinpoint-slate">232</span><span class="text-xs font-normal text-slate-500">/month</span>
-                                </div>
-                            </div>
-
-                            <!-- PLAN DETAILS -->
-                            <ul class="text-xs space-y-2 text-slate-600 mb-6">
-                                <li class="flex justify-between border-b border-slate-100 pb-1">
-                                    <span class="font-medium">Annual Deductible:</span>
-                                    <strong contenteditable="true">$7,050</strong>
-                                </li>
-                                <li class="flex justify-between border-b border-slate-100 pb-1">
-                                    <span class="font-medium">Max Out-of-Pocket:</span>
-                                    <strong contenteditable="true">$7,050</strong>
-                                </li>
-                                <li class="flex justify-between border-b border-slate-100 pb-1">
-                                    <span class="font-medium">Primary Doctor Visit:</span>
-                                    <strong contenteditable="true">Deductible then 0%</strong>
-                                </li>
-                                <li class="flex justify-between border-b border-slate-100 pb-1">
-                                    <span class="font-medium">Generic Drugs:</span>
-                                    <strong contenteditable="true">$18 copay after ded.</strong>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <button onclick="selectMedicalOption(1, 'Blue Shield Bronze 60 HDHP PPO', 232)" class="medical-select-btn w-full bg-slate-100 hover:bg-pinpoint-slate hover:text-white text-slate-700 font-bold py-2.5 rounded-xl text-xs transition border border-slate-300">
-                            Select Option 1
-                        </button>
-                    </div>
-
-                    <!-- CARD 2: BALANCED VALUE (FEATURED) -->
-                    <div class="bg-white rounded-2xl border-2 border-pinpoint-green p-5 shadow-md relative flex flex-col justify-between">
-                        <div class="absolute -top-3 right-4 bg-pinpoint-green text-pinpoint-slate font-extrabold text-xs px-3 py-0.5 rounded-full shadow">
-                            MOST POPULAR
-                        </div>
-                        <div>
-                            <span class="bg-emerald-50 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-md uppercase tracking-wider block w-max mb-3">Option 2: Balanced Silver</span>
-                            <h4 id="card2Title" contenteditable="true" class="text-lg font-bold text-pinpoint-slate mb-1">Blue Shield Silver 70 / 87 PPO</h4>
-                            <p class="text-xs text-slate-500 mb-4">First dollar copays for doctor visits & prescription drugs before deductible.</p>
-
-                            <!-- PRICING BOX -->
-                            <div class="bg-emerald-50/50 p-3 rounded-xl mb-4 border border-emerald-100">
-                                <div class="text-xs text-slate-500 line-through">Full Rate: $<span id="card2Gross">520</span>/mo</div>
-                                <div class="text-xs text-emerald-600 font-semibold">Covered CA Subsidy: -$<span id="card2Subsidy">180</span></div>
-                                <div class="text-2xl font-black text-pinpoint-slate mt-1">
-                                    $<span id="card2Net" contenteditable="true" class="text-pinpoint-slate">340</span><span class="text-xs font-normal text-slate-500">/month</span>
-                                </div>
-                            </div>
-
-                            <!-- PLAN DETAILS -->
-                            <ul class="text-xs space-y-2 text-slate-600 mb-6">
-                                <li class="flex justify-between border-b border-slate-100 pb-1">
-                                    <span class="font-medium">Annual Deductible:</span>
-                                    <strong contenteditable="true">$5,400 (Medical)</strong>
-                                </li>
-                                <li class="flex justify-between border-b border-slate-100 pb-1">
-                                    <span class="font-medium">Max Out-of-Pocket:</span>
-                                    <strong contenteditable="true">$9,100</strong>
-                                </li>
-                                <li class="flex justify-between border-b border-slate-100 pb-1">
-                                    <span class="font-medium">Primary Doctor Visit:</span>
-                                    <strong contenteditable="true" class="text-emerald-700 font-bold">$35 Copay (No Ded)</strong>
-                                </li>
-                                <li class="flex justify-between border-b border-slate-100 pb-1">
-                                    <span class="font-medium">Specialist Visit:</span>
-                                    <strong contenteditable="true">$85 Copay</strong>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <button onclick="selectMedicalOption(2, 'Blue Shield Silver 70 PPO', 340)" class="medical-select-btn w-full bg-pinpoint-slate text-white font-bold py-2.5 rounded-xl text-xs transition shadow hover:bg-slate-800">
-                            <i class="fa-solid fa-check mr-1"></i> Selected Path
-                        </button>
-                    </div>
-
-                    <!-- CARD 3: MAXIMUM PREDICTABILITY / GOLD PPO -->
-                    <div class="bg-white rounded-2xl border-2 border-slate-200 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
-                        <div>
-                            <span class="bg-amber-50 text-amber-800 text-xs font-bold px-2.5 py-1 rounded-md uppercase tracking-wider block w-max mb-3">Option 3: Maximum Copays</span>
-                            <h4 id="card3Title" contenteditable="true" class="text-lg font-bold text-pinpoint-slate mb-1">Blue Shield Gold 80 PPO</h4>
-                            <p class="text-xs text-slate-500 mb-4">Zero medical deductible. All care covered immediately with low fixed copays.</p>
-
-                            <!-- PRICING BOX -->
-                            <div class="bg-slate-50 p-3 rounded-xl mb-4 border border-slate-100">
-                                <div class="text-xs text-slate-500 line-through">Full Rate: $<span id="card3Gross">640</span>/mo</div>
-                                <div class="text-xs text-emerald-600 font-semibold">Covered CA Subsidy: -$<span id="card3Subsidy">180</span></div>
-                                <div class="text-2xl font-black text-pinpoint-slate mt-1">
-                                    $<span id="card3Net" contenteditable="true" class="text-pinpoint-slate">460</span><span class="text-xs font-normal text-slate-500">/month</span>
-                                </div>
-                            </div>
-
-                            <!-- PLAN DETAILS -->
-                            <ul class="text-xs space-y-2 text-slate-600 mb-6">
-                                <li class="flex justify-between border-b border-slate-100 pb-1">
-                                    <span class="font-medium">Annual Deductible:</span>
-                                    <strong contenteditable="true" class="text-emerald-700 font-bold">$0 (No Deductible)</strong>
-                                </li>
-                                <li class="flex justify-between border-b border-slate-100 pb-1">
-                                    <span class="font-medium">Max Out-of-Pocket:</span>
-                                    <strong contenteditable="true">$8,700</strong>
-                                </li>
-                                <li class="flex justify-between border-b border-slate-100 pb-1">
-                                    <span class="font-medium">Primary Doctor Visit:</span>
-                                    <strong contenteditable="true">$30 Copay</strong>
-                                </li>
-                                <li class="flex justify-between border-b border-slate-100 pb-1">
-                                    <span class="font-medium">Generic Drugs:</span>
-                                    <strong contenteditable="true">$15 Copay</strong>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <button onclick="selectMedicalOption(3, 'Blue Shield Gold 80 PPO', 460)" class="medical-select-btn w-full bg-slate-100 hover:bg-pinpoint-slate hover:text-white text-slate-700 font-bold py-2.5 rounded-xl text-xs transition border border-slate-300">
-                            Select Option 3
-                        </button>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- SECTION 3: INTERACTIVE DENTAL & VISION ADD-ON CALCULATOR -->
-            <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 mb-8 print-break-inside-avoid">
-                <h3 class="text-lg font-bold text-pinpoint-slate mb-1">Section 3: Dental & Vision Optional Add-Ons</h3>
-                <p class="text-xs text-slate-500 mb-4">Check or uncheck plans below to customize your monthly health bundle total.</p>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- DENTAL SELECTION -->
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                        <div class="flex items-center justify-between mb-2">
-                            <label class="flex items-center space-x-2 font-bold text-sm text-pinpoint-slate cursor-pointer">
-                                <input type="checkbox" id="dentalAddon" checked onchange="updateBundleTotal()" class="w-4 h-4 text-pinpoint-slate rounded focus:ring-pinpoint-slate">
-                                <span>Delta Dental PPO Premium</span>
-                            </label>
-                            <span class="text-sm font-extrabold text-slate-800">$52/mo</span>
-                        </div>
-                        <p class="text-xs text-slate-500 pl-6">Access to nationwide Delta Dental PPO network, $1,500 annual max benefit, 100% preventive coverage.</p>
-                    </div>
-
-                    <!-- VISION SELECTION -->
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                        <div class="flex items-center justify-between mb-2">
-                            <label class="flex items-center space-x-2 font-bold text-sm text-pinpoint-slate cursor-pointer">
-                                <input type="checkbox" id="visionAddon" checked onchange="updateBundleTotal()" class="w-4 h-4 text-pinpoint-slate rounded focus:ring-pinpoint-slate">
-                                <span>VSP Choice Vision Plan</span>
-                            </label>
-                            <span class="text-sm font-extrabold text-slate-800">$17/mo</span>
-                        </div>
-                        <p class="text-xs text-slate-500 pl-6">$10 exam copay, $150 annual frame allowance + discounts on laser vision correction.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SECTION 4: LIVE COMBINED MONTHLY TOTAL CALCULATOR BAR -->
-            <div class="bg-pinpoint-slate text-white p-6 rounded-2xl shadow-xl mb-8 flex flex-col md:flex-row justify-between items-center gap-4 print-break-inside-avoid border border-slate-700">
-                <div>
-                    <span class="text-xs text-pinpoint-green uppercase font-bold tracking-wider block">Your Selected Combined Bundle</span>
-                    <h4 class="text-xl font-extrabold" id="selectedPlanSummaryText">Blue Shield Silver 70 PPO + Delta Dental + VSP Vision</h4>
-                </div>
-                <div class="text-right flex items-center gap-4">
-                    <div>
-                        <span class="text-xs text-slate-300 block">Total Est. Net Premium</span>
-                        <div class="text-3xl font-black text-pinpoint-green" id="combinedTotalDisplay">$409.00/mo</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SECTION 5: ADVISOR RECOMMENDATION NOTES -->
-            <div class="bg-amber-50/60 border border-amber-200 p-6 rounded-2xl mb-8 print-break-inside-avoid">
-                <h4 class="text-xs font-bold text-amber-900 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                    <i class="fa-solid fa-user-shield text-amber-700"></i> Local Broker Notes & Action Plan
-                </h4>
-                <div id="advisorNotesContent" contenteditable="true" class="text-xs text-amber-950 leading-relaxed space-y-1">
-                    <p>• Based on your income ($62,000/yr), you qualify for Covered California tax credits to lower your premium.</p>
-                    <p>• To keep both <strong>UCLA Health</strong> and <strong>Torrance Memorial</strong> doctors simultaneously, Blue Shield Individual PPO is the primary carrier that bridges both health systems without primary care referrals.</p>
-                    <p>• Lock in exact rates and complete enrollment prior to the 15th for 1st of next month effective date.</p>
-                </div>
-            </div>
-
-            <!-- SECTION 6: DUAL ACTION BAR FOR LOCKING IN RATES -->
-            <div class="bg-white p-6 rounded-2xl shadow-lg border border-slate-200 text-center no-print">
-                <h3 class="text-lg font-bold text-pinpoint-slate mb-2">Ready to Lock In Your Exact Rates?</h3>
-                <p class="text-xs text-slate-500 max-w-xl mx-auto mb-6">There are zero broker fees or hidden markups when enrolling with Pinpoint Solution Insurance Services. We guide you through Covered CA and carrier submission seamlessly.</p>
-
-                <div class="flex flex-col sm:flex-row justify-center gap-3">
-                    <button onclick="sendBrokerNotification()" class="bg-pinpoint-green hover:bg-emerald-500 text-pinpoint-slate font-extrabold px-8 py-3.5 rounded-xl text-sm transition shadow-md flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-paper-plane"></i> Send Selections to Daniel & Greg
-                    </button>
-                    <a href="tel:3105550199" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-6 py-3.5 rounded-xl text-sm transition flex items-center justify-center gap-2 border border-slate-300">
-                        <i class="fa-solid fa-phone"></i> Call (310) 555-0199
-                    </a>
-                </div>
-            </div>
-
-        </div>
-
-    </main>
-
-    <!-- FOOTER WITH LICENSE INFO -->
-    <footer class="bg-slate-900 text-slate-400 text-xs py-8 border-t border-slate-800 no-print mt-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-2">
-            <p class="font-semibold text-slate-300">Pinpoint Solution Insurance Services LLC</p>
-            <p>CA Corporate License #0131557 | 21235 Hawthorne Blvd #200, Torrance, CA 90503</p>
-            <p class="text-slate-500 pt-2">Independent brokerage serving Torrance, Palos Verdes, Redondo Beach, Manhattan Beach, and Greater Los Angeles (Region 16).</p>
-        </div>
-    </footer>
-
-    <!-- JAVASCRIPT LOGIC -->
-    <script>
-        // GLOBAL STATE
-        let isAdvisorMode = false;
-        let selectedMedicalCost = 340;
-        let selectedMedicalName = "Blue Shield Silver 70 PPO";
-        let activeProviders = new Set(['ucla', 'tmipa']); // Default selected
-
-        // INITIALIZATION
-        window.onload = function() {
-            // Set default provider pills visual state
-            document.querySelectorAll('#providerPills button').forEach(pill => {
-                const p = pill.getAttribute('data-provider');
-                if (activeProviders.has(p)) {
-                    pill.classList.add('selected');
-                }
-            });
-            checkProviderRules();
-            calculateSubsidy();
-        };
-
-        // MODE TOGGLE FUNCTION (CLIENT VIEW VS ADVISOR WORKBENCH)
-        function toggleAdvisorMode() {
-            isAdvisorMode = !isAdvisorMode;
-            const body = document.body;
-            const modeLabel = document.getElementById('modeLabel');
-            const nextModeText = document.getElementById('nextModeText');
-            const advisorBanner = document.getElementById('advisorBanner');
-            const modeIcon = document.getElementById('modeIcon');
-
-            if (isAdvisorMode) {
-                body.classList.add('advisor-mode');
-                modeLabel.innerText = 'Advisor Workbench';
-                nextModeText.innerText = 'Client View Mode';
-                advisorBanner.classList.remove('hidden');
-                modeIcon.className = 'fa-solid fa-user-gear text-pinpoint-gold';
-            } else {
-                body.classList.remove('advisor-mode');
-                modeLabel.innerText = 'Client View Mode';
-                nextModeText.innerText = 'Advisor Workbench';
-                advisorBanner.classList.add('hidden');
-                modeIcon.className = 'fa-solid fa-user text-pinpoint-green';
-            }
-        }
-
-        // PROVIDER PILL TOGGLE & RULE ENGINE
-        function toggleProviderPill(btn) {
-            const provider = btn.getAttribute('data-provider');
-            if (activeProviders.has(provider)) {
-                activeProviders.delete(provider);
-                btn.classList.remove('selected');
-            } else {
-                activeProviders.add(provider);
-                btn.classList.add('selected');
-            }
-            checkProviderRules();
-        }
-
-        function checkProviderRules() {
-            const notice = document.getElementById('uclaTorranceNotice');
-            if (activeProviders.has('ucla') && activeProviders.has('tmipa')) {
-                notice.classList.remove('hidden');
-            } else {
-                notice.classList.add('hidden');
-            }
-        }
-
-        // REAL-TIME FPL & SUBSIDY CALCULATOR
-        function calculateSubsidy() {
-            const income = parseFloat(document.getElementById('annualIncome').value) || 0;
-            const primaryAge = parseInt(document.getElementById('primaryAge').value) || 40;
-            const spouseAge = parseInt(document.getElementById('spouseAge').value) || 0;
-            const deps = parseInt(document.getElementById('depCount').value) || 0;
-
-            let hhSize = 1 + (spouseAge > 0 ? 1 : 0) + deps;
-            document.getElementById('hhSizeDisplay').innerText = hhSize;
-
-            // 2026 Federal Poverty Level Base (Contiguous US)
-            // Single: ~$15,060, Each Add'l +$5,380
-            const fplBase = 15060 + ((hhSize - 1) * 5380);
-            const fplPercent = Math.round((income / fplBase) * 100);
-
-            document.getElementById('fplPercentDisplay').innerText = fplPercent + '% FPL';
-
-            const subsidyBadge = document.getElementById('subsidyBadge');
-            let estSubsidyMonthly = 0;
-
-            if (fplPercent < 138) {
-                subsidyBadge.className = 'inline-block bg-purple-100 text-purple-800 font-bold text-xs px-2.5 py-1 rounded-full';
-                subsidyBadge.innerHTML = '<i class="fa-solid fa-circle-info mr-1"></i> Medi-Cal Eligible Tier';
-                estSubsidyMonthly = 350;
-            } else if (fplPercent <= 400) {
-                subsidyBadge.className = 'inline-block bg-emerald-100 text-emerald-800 font-bold text-xs px-2.5 py-1 rounded-full';
-                subsidyBadge.innerHTML = '<i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> Eligible for Covered CA Subsidies';
-                // Estimate subsidy discount
-                estSubsidyMonthly = Math.max(0, Math.round(450 - (income * 0.085 / 12)));
-            } else {
-                subsidyBadge.className = 'inline-block bg-slate-100 text-slate-700 font-bold text-xs px-2.5 py-1 rounded-full';
-                subsidyBadge.innerHTML = '<i class="fa-solid fa-shield mr-1"></i> Full-Pay / 8.5% Benchmark Cap Tier';
-                estSubsidyMonthly = 50;
-            }
-
-            // Update plan card pricing estimation dynamically
-            updateCardPricing(primaryAge, estSubsidyMonthly);
-        }
-
-        function updateCardPricing(age, subsidy) {
-            // Age factor multiplier for Region 16
-            const ageFactor = 1 + (Math.max(0, age - 30) * 0.02);
-
-            const card1Gross = Math.round(320 * ageFactor);
-            const card2Gross = Math.round(410 * ageFactor);
-            const card3Gross = Math.round(510 * ageFactor);
-
-            document.getElementById('card1Gross').innerText = card1Gross;
-            document.getElementById('card2Gross').innerText = card2Gross;
-            document.getElementById('card3Gross').innerText = card3Gross;
-
-            document.getElementById('card1Subsidy').innerText = subsidy;
-            document.getElementById('card2Subsidy').innerText = subsidy;
-            document.getElementById('card3Subsidy').innerText = subsidy;
-
-            const c1Net = Math.max(20, card1Gross - subsidy);
-            const c2Net = Math.max(40, card2Gross - subsidy);
-            const c3Net = Math.max(80, card3Gross - subsidy);
-
-            document.getElementById('card1Net').innerText = c1Net;
-            document.getElementById('card2Net').innerText = c2Net;
-            document.getElementById('card3Net').innerText = c3Net;
-
-            // Update current selection cost if needed
-            selectedMedicalCost = c2Net;
-            updateBundleTotal();
-        }
-
-        // GENERATE ROADMAP (SHOW OUTPUT)
-        function generateCoverageRoadmap() {
-            const name = document.getElementById('cName').value || 'Valued Client';
-            document.getElementById('outClientName').innerText = name;
-
-            // Render Doctor Network Badges
-            const badgesContainer = document.getElementById('networkBadgesContainer');
-            badgesContainer.innerHTML = '';
-
-            if (activeProviders.has('ucla')) {
-                badgesContainer.innerHTML += `
-                    <div class="bg-slate-50 border border-slate-200 p-3 rounded-xl flex items-center gap-3">
-                        <i class="fa-solid fa-circle-check text-pinpoint-green text-xl"></i>
-                        <div>
-                            <div class="font-bold text-xs text-pinpoint-slate">UCLA Health Network</div>
-                            <div class="text-[11px] text-slate-500">Skypark & Beach Cities Clinics</div>
-                        </div>
-                    </div>`;
-            }
-            if (activeProviders.has('tmipa')) {
-                badgesContainer.innerHTML += `
-                    <div class="bg-slate-50 border border-slate-200 p-3 rounded-xl flex items-center gap-3">
-                        <i class="fa-solid fa-circle-check text-pinpoint-green text-xl"></i>
-                        <div>
-                            <div class="font-bold text-xs text-pinpoint-slate">Torrance Memorial (TMIPA)</div>
-                            <div class="text-[11px] text-slate-500">Full Hospital & Specialist Access</div>
-                        </div>
-                    </div>`;
-            }
-            if (activeProviders.has('providence')) {
-                badgesContainer.innerHTML += `
-                    <div class="bg-slate-50 border border-slate-200 p-3 rounded-xl flex items-center gap-3">
-                        <i class="fa-solid fa-circle-check text-pinpoint-green text-xl"></i>
-                        <div>
-                            <div class="font-bold text-xs text-pinpoint-slate">Providence Little Co. of Mary</div>
-                            <div class="text-[11px] text-slate-500">Torrance & San Pedro Facilities</div>
-                        </div>
-                    </div>`;
-            }
-            if (badgesContainer.innerHTML === '') {
-                badgesContainer.innerHTML = `<div class="text-xs text-slate-500 italic col-span-3">No specific providers selected. Full Region 16 PPO network applicable.</div>`;
-            }
-
-            // Show Proposal Output
-            const proposal = document.getElementById('proposalOutput');
-            proposal.classList.remove('hidden');
-            proposal.scrollIntoView({ behavior: 'smooth' });
-
-            updateBundleTotal();
-        }
-
-        // SELECT MEDICAL OPTION CARD
-        function selectMedicalOption(optionNum, name, netPrice) {
-            selectedMedicalName = document.getElementById(`card${optionNum}Title`).innerText || name;
-            selectedMedicalCost = parseFloat(document.getElementById(`card${optionNum}Net`).innerText) || netPrice;
-
-            // Visual feedback on buttons
-            document.querySelectorAll('.medical-select-btn').forEach((btn, idx) => {
-                if (idx + 1 === optionNum) {
-                    btn.className = "medical-select-btn w-full bg-pinpoint-slate text-white font-bold py-2.5 rounded-xl text-xs transition shadow hover:bg-slate-800";
-                    btn.innerHTML = '<i class="fa-solid fa-check mr-1"></i> Selected Path';
-                } else {
-                    btn.className = "medical-select-btn w-full bg-slate-100 hover:bg-pinpoint-slate hover:text-white text-slate-700 font-bold py-2.5 rounded-xl text-xs transition border border-slate-300";
-                    btn.innerHTML = `Select Option ${idx + 1}`;
-                }
-            });
-
-            updateBundleTotal();
-        }
-
-        // LIVE BUNDLE CALCULATOR
-        function updateBundleTotal() {
-            const dentalOn = document.getElementById('dentalAddon').checked;
-            const visionOn = document.getElementById('visionAddon').checked;
-
-            let total = selectedMedicalCost;
-            let addOnNames = [];
-
-            if (dentalOn) {
-                total += 52;
-                addOnNames.push('Delta Dental');
-            }
-            if (visionOn) {
-                total += 17;
-                addOnNames.push('VSP Vision');
-            }
-
-            document.getElementById('combinedTotalDisplay').innerText = `$${total.toFixed(2)}/mo`;
-
-            let summary = selectedMedicalName;
-            if (addOnNames.length > 0) {
-                summary += ' + ' + addOnNames.join(' + ');
-            }
-            document.getElementById('selectedPlanSummaryText').innerText = summary;
-        }
-
-        // RAW INTAKE PARSER (FOR ADVISOR WORKBENCH)
-        function parseRawIntake() {
-            const raw = document.getElementById('rawIntakeText').value;
-            if (!raw) return;
-
-            // Simple intelligent parser logic
-            if (raw.toLowerCase().includes('alex morgan') || raw.toLowerCase().includes('alex')) {
-                loadSampleAlexMorgan();
-                return;
-            }
-
-            // Extract Name
-            const nameMatch = raw.match(/(?:name[:\s]+)([A-Za-z\s]+)/i);
-            if (nameMatch) document.getElementById('cName').value = nameMatch[1].trim();
-
-            // Extract Email
-            const emailMatch = raw.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/);
-            if (emailMatch) document.getElementById('cEmail').value = emailMatch[1];
-
-            // Extract Income
-            const incomeMatch = raw.match(/(?:income|salary|agi|making)[:\s]*\$?\s*([0-9,]+)/i);
-            if (incomeMatch) {
-                document.getElementById('annualIncome').value = incomeMatch[1].replace(/,/g, '');
-            }
-
-            calculateSubsidy();
-            generateCoverageRoadmap();
-        }
-
-        // LOAD SAMPLE DATA: ALEX MORGAN
-        function loadSampleAlexMorgan() {
-            document.getElementById('cName').value = 'Alex Morgan';
-            document.getElementById('cEmail').value = 'alex.morgan@example.com';
-            document.getElementById('cPhone').value = '(310) 555-0144';
-            document.getElementById('primaryAge').value = '48';
-            document.getElementById('spouseAge').value = '';
-            document.getElementById('depCount').value = '0';
-            document.getElementById('annualIncome').value = '62000';
-            document.getElementById('zipCode').value = '90503';
-
-            // Select UCLA and Torrance Memorial
-            activeProviders = new Set(['ucla', 'tmipa']);
-            document.querySelectorAll('#providerPills button').forEach(pill => {
-                const p = pill.getAttribute('data-provider');
-                if (activeProviders.has(p)) {
-                    pill.classList.add('selected');
-                } else {
-                    pill.classList.remove('selected');
-                }
-            });
-
-            checkProviderRules();
-            calculateSubsidy();
-            generateCoverageRoadmap();
-        }
-
-        function clearForm() {
-            document.getElementById('quoteForm').reset();
-            activeProviders.clear();
-            document.querySelectorAll('#providerPills button').forEach(p => p.classList.remove('selected'));
-            document.getElementById('proposalOutput').classList.add('hidden');
-            checkProviderRules();
-        }
-
-        // CORRECTED EMAIL ROUTING LOGIC
-
-        // 1. Send Selections to Brokers (Daniel & Greg)
-        function sendBrokerNotification() {
-            const clientName = document.getElementById('cName').value || 'Client';
-            const clientEmail = document.getElementById('cEmail').value || 'N/A';
-            const bundle = document.getElementById('selectedPlanSummaryText').innerText;
-            const total = document.getElementById('combinedTotalDisplay').innerText;
-
-            const subject = encodeURIComponent(`Pinpoint Quote Request: ${clientName} - ${bundle}`);
-            const body = encodeURIComponent(
-                `Hello Daniel & Greg,\n\n` +
-                `I have selected the following health coverage strategy on pinpointins.com:\n\n` +
-                `Client Name: ${clientName}\n` +
-                `Client Email: ${clientEmail}\n` +
-                `Selected Plan: ${bundle}\n` +
-                `Estimated Total: ${total}\n\n` +
-                `Please contact me to lock in exact rates and finalize enrollment.`
-            );
-
-            // Mailto targeting both Daniel and Greg
-            window.location.href = `mailto:daniel@pinpointins.com,ghiga@pinpointins.com?subject=${subject}&body=${body}`;
-        }
-
-        // 2. Email Proposal Directly to Client (Advisor Mode Action)
-        function sendEmailToClient() {
-            const clientName = document.getElementById('cName').value || 'Valued Client';
-            const clientEmail = document.getElementById('cEmail').value;
-            const bundle = document.getElementById('selectedPlanSummaryText').innerText;
-            const total = document.getElementById('combinedTotalDisplay').innerText;
-
-            if (!clientEmail) {
-                alert("Please enter a client email address in the form above.");
-                return;
-            }
-
-            const subject = encodeURIComponent(`Your Pinpoint Health Coverage Strategy & Rate Proposal - ${clientName}`);
-            const body = encodeURIComponent(
-                `Dear ${clientName},\n\n` +
-                `Thank you for consulting with Pinpoint Solution Insurance Services LLC.\n\n` +
-                `Here is the breakdown of your personalized South Bay health insurance proposal:\n\n` +
-                `• Selected Strategy: ${bundle}\n` +
-                `• Estimated Monthly Premium: ${total}\n\n` +
-                `This plan verified doctor and hospital access for your preferred South Bay networks.\n\n` +
-                `To review your 1-page PDF proposal or lock in exact rates, please reply directly to this email or call us at (310) 555-0199.\n\n` +
-                `Best regards,\n\n` +
-                `Daniel & Greg\n` +
-                `Pinpoint Solution Insurance Services LLC\n` +
-                `CA Corporate License #0131557\n` +
-                `21235 Hawthorne Blvd #200, Torrance, CA 90503`
-            );
-
-            // Mailto targeting Client with CC to Daniel & Greg
-            window.location.href = `mailto:${clientEmail}?cc=daniel@pinpointins.com,ghiga@pinpointins.com&subject=${subject}&body=${body}`;
-        }
-    </script>
-</body>
-</html>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Health Coverage Roadmap | Pinpoint Solution Insurance Services</title>
+  <style>
+    :root {
+      --primary: #374F62;
+      --secondary: #9ACC59;
+      --secondary-dark: #4b784f;
+      --accent-yellow: #FDBE40;
+      --dark: #0f172a;
+      --text: #334155;
+      --light: #f8fafc;
+      --border: #cbd5e1;
+      --white: #ffffff;
+      --shadow: 0 4px 15px rgba(0,0,0,0.06);
+    }
+
+    /* Harmonious Midnight Slate Dark Theme Overrides */
+    [data-theme="dark"] {
+      --primary: #64829b;
+      --secondary: #9ACC59;
+      --secondary-dark: #b4e16d;
+      --accent-yellow: #d99b26;
+      --dark: #f1f5f9;
+      --text: #9ca3af;
+      --light: #0b1118;
+      --border: #1f2937;
+      --white: #111827;
+      --shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    body { background-color: var(--light); color: var(--text); line-height: 1.6; padding-bottom: 80px; transition: background-color 0.25s ease, color 0.25s ease; }
+
+    /* Header & Nav */
+    header { background: var(--white); border-bottom: 1px solid var(--border); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; transition: background-color 0.25s ease, border-color 0.25s ease; }
+    .logo-container { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); font-weight: 700; font-size: 1.2rem; }
+    .logo-img { height: 40px; }
+    .nav-links { display: flex; gap: 15px; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--text); font-weight: 500; font-size: 0.95rem; }
+    .nav-links a:hover { color: var(--secondary-dark); }
+    
+    .btn-advisor-toggle { background: var(--border); color: var(--dark); border: none; padding: 8px 14px; border-radius: 6px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 0.85rem; }
+    .btn-advisor-toggle:hover { opacity: 0.85; }
+
+    /* Dark Mode Toggle Button */
+    .dark-mode-toggle {
+        background: none;
+        border: 1px solid var(--border);
+        border-radius: 0.375rem;
+        color: var(--text);
+        padding: 0.4rem 0.65rem;
+        cursor: pointer;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s, border-color 0.2s;
+    }
+    .dark-mode-toggle:hover {
+        background: rgba(154, 204, 89, 0.12);
+        border-color: var(--secondary);
+    }
+
+    /* Main Container */
+    .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+    .hero-banner { text-align: center; margin-bottom: 30px; }
+    .hero-banner h1 { color: var(--primary); font-size: 2.2rem; margin-bottom: 8px; }
+    .hero-banner p { color: var(--text); opacity: 0.8; font-size: 1.05rem; }
+
+    /* Trust Badge */
+    .trust-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(3, 105, 161, 0.15); color: #38bdf8; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 15px; }
+
+    /* Advisor Workbench Box */
+    .advisor-workbench { background: var(--white); border: 2px dashed var(--primary); border-radius: 12px; padding: 20px; margin-bottom: 30px; display: none; }
+    .advisor-workbench.active { display: block; }
+    .advisor-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .advisor-header h3 { color: var(--primary); font-size: 1.1rem; }
+    .advisor-textarea { width: 100%; height: 100px; padding: 10px; border: 1px solid var(--border); border-radius: 8px; font-family: monospace; font-size: 0.85rem; margin-bottom: 10px; background: var(--light); color: var(--text); }
+
+    /* Form Layout */
+    .card { background: var(--white); border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); padding: 25px; margin-bottom: 25px; transition: background-color 0.25s ease, border-color 0.25s ease; }
+    .card-title { font-size: 1.25rem; color: var(--primary); margin-bottom: 15px; border-bottom: 2px solid var(--border); padding-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+
+    .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 15px; }
+    .form-group { display: flex; flex-direction: column; gap: 5px; }
+    .form-group label { font-size: 0.88rem; font-weight: 600; color: var(--dark); }
+    .form-group input, .form-group select, .form-group textarea { padding: 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.95rem; outline: none; background: var(--light); color: var(--text); }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--primary); }
+
+    /* Provider Pills */
+    .pills-container { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+    .pill { background: var(--light); border: 1px solid var(--border); padding: 8px 14px; border-radius: 20px; font-size: 0.88rem; cursor: pointer; user-select: none; transition: all 0.2s; color: var(--text); }
+    .pill.selected { background: var(--primary); color: var(--white); border-color: var(--primary); }
+
+    /* Math Verification CAPTCHA */
+    .captcha-box { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 15px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+    .captcha-question { font-weight: 600; color: var(--dark); font-size: 0.95rem; }
+    .captcha-input { width: 90px; padding: 8px; border: 1px solid var(--border); border-radius: 6px; text-align: center; font-weight: bold; background: var(--light); color: var(--text); }
+
+    /* Action Button */
+    .btn-submit { background: var(--secondary); color: var(--dark); font-size: 1.1rem; font-weight: 700; border: none; padding: 14px 28px; border-radius: 8px; width: 100%; cursor: pointer; transition: background 0.2s; text-align: center; }
+    .btn-submit:hover { background: #8bb84d; }
+
+    /* Interactive Output Cards */
+    .output-section { display: none; margin-top: 40px; }
+    .output-section.active { display: block; }
+    .plan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
+    .plan-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 20px; position: relative; box-shadow: var(--shadow); transition: background-color 0.25s ease, border-color 0.25s ease; }
+    .plan-card.featured { border: 2px solid var(--secondary); }
+    .plan-badge { position: absolute; top: -12px; right: 15px; background
