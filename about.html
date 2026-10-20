@@ -31,6 +31,7 @@
 
     <main>
         <section class="hero" style="max-width: 100%; margin: 0; padding: 8rem 2rem 4rem 2rem;">
+            <img src="images/logo-mark-white.png" alt="" class="hero-mark" onerror="this.style.display='none'">
             <div class="eyebrow">Our Story &amp; Service Promise</div>
             <h1>Local Roots. Two Decades of Guidance.</h1>
             <p>Building strong working relationships and supporting South Bay businesses, families, and ministries with responsive, personal service.</p>
@@ -67,7 +68,7 @@
 
             <div id="contact" class="contact-box">
                 <h2 style="text-align: center; color: var(--primary); margin-bottom: 0.5rem;">Start a Friendly Conversation</h2>
-                <p style="text-align: center; color: var(--text-body); margin-bottom: 1.5rem;">Contact us by email or phone, or use our interactive quote worksheet to get a customized quotation.</p>
+                <p style="text-align: center; color: var(--text-body); margin-bottom: 1.5rem;">Contact us by phone, launch our quote worksheet, or send us a secure online message.</p>
                 
                 <div class="contact-grid">
                     <div class="contact-item">
@@ -80,14 +81,14 @@
                         <p><strong>Office Phone:</strong> <a href="tel:13105338877">(310) 533-8877</a></p>
                         <p><strong>Direct / Toll-Free:</strong> <a href="tel:18009516456">(800) 951-6456</a></p>
                         <p><strong>Fax:</strong> (888) 821-8350</p>
-                        <p><strong>General:</strong> <a href="mailto:info@pinpointins.com">info@pinpointins.com</a></p>
-                        <p><strong>Greg Direct:</strong> <a href="mailto:ghiga@pinpointins.com">ghiga@pinpointins.com</a></p>
+                        <p><strong>General Email:</strong> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@pinpointins.com&su=Insurance%20Inquiry" target="_blank" rel="noopener">info@pinpointins.com</a></p>
+                        <p><strong>Greg Direct:</strong> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ghiga@pinpointins.com&cc=info@pinpointins.com&su=Insurance%20Consultation%20Inquiry" target="_blank" rel="noopener">ghiga@pinpointins.com</a></p>
                     </div>
                 </div>
                 
                 <div style="text-align: center; margin: 2rem 0 1.5rem 0; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
                     <a href="quote.html" class="btn">Launch Interactive Quote Worksheet</a>
-                    <a href="mailto:ghiga@pinpointins.com?cc=info@pinpointins.com&subject=Insurance%20Consultation%20Inquiry" class="btn-secondary">Email Us to Schedule a Consultation</a>
+                    <button onclick="openContactModal()" class="btn-secondary">Send Us a Message Online</button>
                 </div>
 
                 <p style="font-size: 0.9rem; color: var(--text-body); text-align: center; border-top: 1px solid var(--border-gray); padding-top: 1.25rem; opacity: 0.9;">No pressure, no confusing sales pitches—just honest answers to your insurance questions.</p>
@@ -103,19 +104,55 @@
         <p style="margin-top: 1.25rem; opacity: 0.8; font-size: 0.85rem;">&copy; 2026 Pinpoint Solution Insurance Services LLC. All rights reserved.</p>
     </footer>
 
+    <!-- Interactive Contact Modal Overlay -->
+    <div id="contactModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 20px;">
+        <div class="card" style="width: 100%; max-width: 500px; position: relative; border-top: 5px solid var(--secondary);">
+            <button onclick="closeContactModal()" style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-body);">✕</button>
+            <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Send a Message to Pinpoint</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 1.25rem; color: var(--text-body);">Fill out your details below, and Daniel or Greg will respond within 24 hours.</p>
+            
+            <form onsubmit="submitContactForm(event)">
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; font-size: 0.85rem; font-weight: 700; color: var(--primary); margin-bottom: 0.3rem;">Your Name</label>
+                    <input type="text" id="modalName" required style="width: 100%; padding: 0.6rem; border: 1px solid var(--border-gray); border-radius: 0.375rem; background: var(--light); color: var(--text-body);" placeholder="First & Last Name">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; font-size: 0.85rem; font-weight: 700; color: var(--primary); margin-bottom: 0.3rem;">Your Email or Phone</label>
+                    <input type="text" id="modalContact" required style="width: 100%; padding: 0.6rem; border: 1px solid var(--border-gray); border-radius: 0.375rem; background: var(--light); color: var(--text-body);" placeholder="email@example.com or (310) 555-0199">
+                </div>
+                <div style="margin-bottom: 1.25rem;">
+                    <label style="display: block; font-size: 0.85rem; font-weight: 700; color: var(--primary); margin-bottom: 0.3rem;">Message / Coverage Question</label>
+                    <textarea id="modalMessage" rows="4" required style="width: 100%; padding: 0.6rem; border: 1px solid var(--border-gray); border-radius: 0.375rem; background: var(--light); color: var(--text-body);" placeholder="How can we help with your health or employee benefits?"></textarea>
+                </div>
+                <button type="submit" class="btn" style="width: 100%; text-align: center;">Send Message 📩</button>
+            </form>
+            <div id="modalSuccess" style="display: none; text-align: center; padding: 2rem 0;">
+                <h4 style="color: var(--secondary-dark); margin-bottom: 0.5rem;">Message Received!</h4>
+                <p style="font-size: 0.9rem;">Thank you. We will review your inquiry and get back to you within 24 hours.</p>
+            </div>
+        </div>
+    </div>
+
     <script>
         function applyTheme(theme) {
             const root = document.documentElement;
             const btn = document.getElementById('themeToggle');
             const logoImg = document.querySelector('.logo-area img');
+            const heroMark = document.querySelector('.hero-mark');
+            const sectionMark = document.querySelector('.section-mark');
+            
             if (theme === 'dark') {
                 root.setAttribute('data-theme', 'dark');
                 if (btn) btn.textContent = '☀️';
                 if (logoImg) logoImg.src = 'images/logo-white.png';
+                if (heroMark) heroMark.src = 'images/logo-mark-white.png';
+                if (sectionMark) sectionMark.src = 'images/logo-mark-white.png';
             } else {
                 root.removeAttribute('data-theme');
                 if (btn) btn.textContent = '🌙';
                 if (logoImg) logoImg.src = 'images/logo-color.png';
+                if (heroMark) heroMark.src = 'images/logo-mark.png';
+                if (sectionMark) sectionMark.src = 'images/logo-mark.png';
             }
         }
         applyTheme(localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
@@ -124,6 +161,20 @@
             const newTheme = isDark ? 'light' : 'dark';
             localStorage.setItem('theme', newTheme);
             applyTheme(newTheme);
+        }
+
+        function openContactModal() {
+            document.getElementById('contactModal').style.display = 'flex';
+        }
+        function closeContactModal() {
+            document.getElementById('contactModal').style.display = 'none';
+            document.getElementById('modalSuccess').style.display = 'none';
+        }
+        function submitContactForm(e) {
+            e.preventDefault();
+            document.querySelector('#contactModal form').style.display = 'none';
+            document.getElementById('modalSuccess').style.display = 'block';
+            setTimeout(closeContactModal, 4000);
         }
     </script>
 </body>
