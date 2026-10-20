@@ -12,15 +12,15 @@
 
 /* Harmonious Midnight Slate Dark Theme Overrides */
 [data-theme="dark"] {
-    --primary: #5c7c99;        /* Softer, luminous slate for headers in dark mode */
+    --primary: #64829b;        /* Harmonious luminous slate for dark headers */
     --secondary: #9ACC59;      /* Brand Green */
     --secondary-dark: #b4e16d; /* Lighter Green for dark mode links */
-    --accent-yellow: #FDBE40;  /* Brand Yellow */
+    --accent-yellow: #d99b26;  /* Refined, sophisticated amber for dark mode buttons */
     --dark: #f1f5f9;           /* Light text */
-    --text-body: #94a3b8;      /* Soft, glare-free slate gray for night reading */
-    --light: #131c25;          /* Harmonious deep midnight slate background */
-    --border-gray: #253342;    /* Subtle dark slate borders */
-    --card-bg: #1a2634;        /* Elevated soft slate card background */
+    --text-body: #9ca3af;      /* Soft, glare-free slate gray for comfortable night reading */
+    --light: #0b1118;          /* Deep midnight slate background */
+    --border-gray: #1f2937;    /* Subtle dark slate borders */
+    --card-bg: #111827;        /* Elevated soft midnight card background */
 }
 
 /* Smooth transition when toggling modes */
@@ -203,7 +203,7 @@ header {
 }
 
 .btn:hover {
-    background: #f5b027;
+    background: #e6ab33;
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0,0,0,0.18);
 }
