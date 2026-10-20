@@ -219,29 +219,32 @@
     <footer>
         <img src="images/logo-white.png" alt="Pinpoint Solution Insurance Services" class="footer-logo" onerror="this.style.display='none'">
         <p><strong>Pinpoint Solution Insurance Services LLC</strong></p>
-        <p>21235 Hawthorne Blvd #200, Torrance, CA 90503 &nbsp;|&nbsp; <a href="tel:13105338877">(310) 533-8877</a></p>
+        <p><a href="https://maps.google.com/?q=21235+Hawthorne+Blvd+%23200,+Torrance,+CA+90503" target="_blank" rel="noopener" style="color:inherit;">21235 Hawthorne Blvd #200, Torrance, CA 90503</a> &nbsp;|&nbsp; <a href="tel:13105338877">(310) 533-8877</a></p>
         <div class="license-badge">CA Corporate License #0131557</div>
         <p style="margin-top: 1.25rem; opacity: 0.8; font-size: 0.85rem;">&copy; 2026 Pinpoint Solution Insurance Services LLC. All rights reserved.</p>
     </footer>
 
     <script>
-        const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        if (currentTheme === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            document.getElementById('themeToggle').textContent = '☀️';
-        }
-        function toggleTheme() {
+        function applyTheme(theme) {
             const root = document.documentElement;
             const btn = document.getElementById('themeToggle');
-            if (root.getAttribute('data-theme') === 'dark') {
-                root.removeAttribute('data-theme');
-                localStorage.setItem('theme', 'light');
-                btn.textContent = '🌙';
-            } else {
+            const logoImg = document.querySelector('.logo-area img');
+            if (theme === 'dark') {
                 root.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-                btn.textContent = '☀️';
+                if (btn) btn.textContent = '☀️';
+                if (logoImg) logoImg.src = 'images/logo-white.png';
+            } else {
+                root.removeAttribute('data-theme');
+                if (btn) btn.textContent = '🌙';
+                if (logoImg) logoImg.src = 'images/logo-color.png';
             }
+        }
+        applyTheme(localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+        function toggleTheme() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const newTheme = isDark ? 'light' : 'dark';
+            localStorage.setItem('theme', newTheme);
+            applyTheme(newTheme);
         }
 
         function el(id) { return document.getElementById(id); }
