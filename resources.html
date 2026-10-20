@@ -24,6 +24,7 @@
                 <a href="resources.html" class="active">Resources</a>
                 <a href="about.html">About Us</a>
                 <a href="quote.html" class="btn-nav">Get a Quote</a>
+                <button class="dark-mode-toggle" id="themeToggle" aria-label="Toggle Dark Mode" onclick="toggleTheme()">🌙</button>
             </nav>
         </div>
     </header>
@@ -91,5 +92,25 @@
         <p style="margin-top: 1.25rem; opacity: 0.8; font-size: 0.85rem;">&copy; 2026 Pinpoint Solution Insurance Services LLC. All rights reserved.</p>
     </footer>
 
+    <script>
+        const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        if (currentTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.getElementById('themeToggle').textContent = '☀️';
+        }
+        function toggleTheme() {
+            const root = document.documentElement;
+            const btn = document.getElementById('themeToggle');
+            if (root.getAttribute('data-theme') === 'dark') {
+                root.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                btn.textContent = '🌙';
+            } else {
+                root.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                btn.textContent = '☀️';
+            }
+        }
+    </script>
 </body>
 </html>

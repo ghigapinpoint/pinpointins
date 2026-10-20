@@ -12,7 +12,7 @@
         .btn-s:hover { opacity: 0.92; }
 
         .q-wrap { max-width: 920px; margin: -2.25rem auto 4rem; padding: 0 1.25rem; position: relative; z-index: 10; }
-        .live-bar { background: #ffffff; border: 1px solid var(--border-gray); border-top: 4px solid var(--accent-yellow); border-radius: 0.5rem; padding: 1rem 1.25rem; margin-bottom: 1.15rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; box-shadow: 0 6px 16px rgba(55,79,98,0.08); }
+        .live-bar { background: var(--card-bg); border: 1px solid var(--border-gray); border-top: 4px solid var(--accent-yellow); border-radius: 0.5rem; padding: 1rem 1.25rem; margin-bottom: 1.15rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; box-shadow: 0 6px 16px rgba(55,79,98,0.08); }
         .live-bar div { border-left: 3px solid var(--secondary); padding-left: 0.75rem; font-size: 0.76rem; color: #64748b; font-weight: 700; text-transform: uppercase; }
         .live-bar strong { display: block; font-size: 0.95rem; color: var(--primary); text-transform: none; margin-top: 2px; }
         
@@ -20,19 +20,19 @@
         .f-group label { display: block; font-weight: 700; font-size: 0.84rem; color: var(--primary); margin-bottom: 0.25rem; }
         .f-group label span { font-weight: 400; color: #64748b; font-size: 0.76rem; }
         .f-group input, .f-group select, .f-group textarea { width: 100%; padding: 0.6rem 0.75rem; border: 1px solid #cbd5e1; border-radius: 0.375rem; font-size: 0.92rem; background: var(--light); color: var(--text-body); transition: background 0.25s, border-color 0.25s; }
-        .f-group input:focus, .f-group select:focus, .f-group textarea:focus { outline: none; border-color: var(--secondary); background: #ffffff; box-shadow: 0 0 0 3px rgba(154, 204, 89, 0.18); }
+        .f-group input:focus, .f-group select:focus, .f-group textarea:focus { outline: none; border-color: var(--secondary); background: var(--card-bg); box-shadow: 0 0 0 3px rgba(154, 204, 89, 0.18); }
         .flash-ok { background: #dcfce7 !important; border-color: #22c55e !important; }
         
         .combo { display: grid; grid-template-columns: 1.3fr 1fr; gap: 0.4rem; }
         .m-row { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr auto; gap: 0.5rem; margin-bottom: 0.5rem; align-items: center; }
         
         .pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.4rem 0 1.15rem; }
-        .pill { cursor: pointer; font-size: 0.84rem; font-weight: 600; background: #f1f5f9; color: var(--primary); padding: 0.45rem 0.9rem; border-radius: 2rem; border: 1.5px solid #cbd5e1; user-select: none; transition: all 0.15s; display: inline-flex; align-items: center; }
+        .pill { cursor: pointer; font-size: 0.84rem; font-weight: 600; background: var(--light); color: var(--primary); padding: 0.45rem 0.9rem; border-radius: 2rem; border: 1.5px solid #cbd5e1; user-select: none; transition: all 0.15s; display: inline-flex; align-items: center; }
         .pill input { display: none; }
         .pill.active { background: var(--primary); color: #ffffff; border-color: var(--primary); }
 
         .tips { background: #f0fdf4; border: 1px solid #bbf7d0; border-left: 4px solid var(--secondary-dark); padding: 1rem 1.25rem; border-radius: 0.375rem; margin-bottom: 1rem; font-size: 0.9rem; }
-        .q-tbl { width: 100%; border-collapse: collapse; margin: 0.5rem 0 1rem; font-size: 0.85rem; background: #ffffff; border: 1px solid var(--border-gray); }
+        .q-tbl { width: 100%; border-collapse: collapse; margin: 0.5rem 0 1rem; font-size: 0.85rem; background: var(--card-bg); border: 1px solid var(--border-gray); }
         .q-tbl th { background: var(--primary); color: #ffffff; text-align: left; padding: 0.55rem 0.75rem; font-size: 0.78rem; text-transform: uppercase; }
         .q-tbl td { padding: 0.55rem 0.75rem; border-bottom: 1px solid var(--border-gray); }
         .print-hdr { display: none; border-bottom: 2px solid var(--primary); padding-bottom: 0.6rem; margin-bottom: 1rem; justify-content: space-between; align-items: center; }
@@ -60,6 +60,7 @@
                 <a href="resources.html">Resources</a>
                 <a href="about.html">About Us</a>
                 <a href="quote.html" class="btn-nav active">Get a Quote</a>
+                <button class="dark-mode-toggle" id="themeToggle" aria-label="Toggle Dark Mode" onclick="toggleTheme()">🌙</button>
             </nav>
         </div>
     </header>
@@ -78,7 +79,7 @@
                 <div>Recommended Strategy <strong id="outTier" style="color:var(--secondary-dark);">Enter Details Below</strong></div>
             </div>
 
-            <!-- Instant Auto-Fill Box (Triggers Automatically on Paste OR Button Click) -->
+            <!-- Instant Auto-Fill Box -->
             <div class="card no-print f-group" style="padding:1.15rem 1.35rem; margin-bottom:1.25rem; border-top:none; border-left:5px solid var(--secondary);">
                 <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.4rem;">
                     <label style="margin:0; font-size:0.9rem;">✨ Optional Quick-Fill: Paste PDF Questionnaire, Client Email, or Notes</label>
@@ -224,6 +225,25 @@
     </footer>
 
     <script>
+        const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        if (currentTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.getElementById('themeToggle').textContent = '☀️';
+        }
+        function toggleTheme() {
+            const root = document.documentElement;
+            const btn = document.getElementById('themeToggle');
+            if (root.getAttribute('data-theme') === 'dark') {
+                root.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                btn.textContent = '🌙';
+            } else {
+                root.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                btn.textContent = '☀️';
+            }
+        }
+
         function el(id) { return document.getElementById(id); }
 
         function flash(id) {
@@ -320,25 +340,21 @@
                 var low = cleanText.toLowerCase();
                 var count = 0;
 
-                // 1. Email
                 var em = cleanText.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
                 if (em) { el('cEmail').value = em[0]; flash('cEmail'); count++; }
 
-                // 2. Phone
                 var ph = cleanText.match(/\(?([2-9]\d{2})\)?[-.\s]?(\d{3})[-.\s]?(\d{4})\b/);
                 if (ph && ph[3].indexOf('19') !== 0 && ph[3].indexOf('20') !== 0) {
                     el('cPhone').value = '(' + ph[1] + ') ' + ph[2] + '-' + ph[3];
                     flash('cPhone'); count++;
                 }
 
-                // 3. California ZIP Code
                 var zipTokens = cleanText.match(/\b(9[0-5]\d{3}|96[01]\d{2})\b/g);
                 if (zipTokens && zipTokens.length > 0) {
                     el('cZip').value = zipTokens[0];
                     flash('cZip'); count++;
                 }
 
-                // 4. Client Name
                 var foundName = '';
                 var nmMatch = cleanText.match(/(?:Client\s*Name|Client|Name)\s*[:\-]\s*([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)/i);
                 if (nmMatch) {
@@ -354,7 +370,6 @@
                 }
                 if (foundName) { el('cName').value = foundName; flash('cName'); count++; }
 
-                // 5. Desired Start Date
                 var effMatch = cleanText.match(/\b(0?[1-9]|1[0-2])[-\/](0?[1-9]|[12]\d|3[01])[-\/](202[6-9])\b/);
                 if (effMatch) {
                     var iso = effMatch[3] + '-' + String(effMatch[1]).padStart(2, '0') + '-' + String(effMatch[2]).padStart(2, '0');
@@ -370,7 +385,6 @@
                     el('cStartPreset').value = '2027-01-01'; el('cStartDate').value = '2027-01-01'; flash('cStartPreset'); count++;
                 }
 
-                // 6. Medical Plan Preference
                 if (low.indexOf('ppo') !== -1 && low.indexOf('hsa') !== -1) {
                     el('cNet').value = 'PPO + HSA Preferred'; flash('cNet'); count++;
                 } else if (low.indexOf('ppo') !== -1) {
@@ -379,7 +393,6 @@
                     el('cNet').value = 'HMO Preferred'; flash('cNet'); count++;
                 }
 
-                // 7. Current Coverage & Budget
                 var curParts = [];
                 for (var k = 0; k < cleanLines.length; k++) {
                     if (/\b(Anthem|Blue Shield|Cigna|Kaiser|Health Net|COBRA)\b/i.test(cleanLines[k]) && cleanLines[k].length < 130) {
@@ -393,7 +406,6 @@
                     flash('cCur'); count++;
                 }
 
-                // 8. Income Extraction
                 var rng = low.match(/income[^$\n]*\$\s*([\d,]+)\s*(?:and|to|\-)\s*\$\s*([\d,]+)/i);
                 var sng = low.match(/(?:monthly income|income|make|earning|salary)[^$\d\n]{0,25}\$?\s*([\d,]+)\b/i) || low.match(/\$\s*([\d,]+)\s*(?:\/mo|per month|monthly)/i);
                 if (rng) {
@@ -411,7 +423,6 @@
                     }
                 }
 
-                // 9. Household Members & DOBs
                 var people = [], seenDates = {};
                 var allDates = cleanText.match(/\b\d{1,2}[-\/]\d{1,2}[-\/](?:19|20)\d{2}\b/g) || [];
                 for (var dIdx = 0; dIdx < allDates.length; dIdx++) {
@@ -453,7 +464,6 @@
                 }
                 count += people.length;
 
-                // 10. South Bay Medical Group Pills
                 var ipaChecks = document.querySelectorAll('.ipa');
                 var map = {
                     'Torrance Memorial (TMIPA)': ['torrance memorial', 'tmipa', 'puri'],
@@ -472,7 +482,6 @@
                 }
                 syncPills();
 
-                // 11. Route Doctors vs. Prescriptions & Notes
                 var docLines = [], medLines = [];
                 for (var lIdx = 0; lIdx < cleanLines.length; lIdx++) {
                     var line = cleanLines[lIdx];

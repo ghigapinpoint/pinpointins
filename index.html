@@ -24,6 +24,7 @@
                 <a href="resources.html">Resources</a>
                 <a href="about.html">About Us</a>
                 <a href="quote.html" class="btn-nav">Get a Quote</a>
+                <button class="dark-mode-toggle" id="themeToggle" aria-label="Toggle Dark Mode" onclick="toggleTheme()">🌙</button>
             </nav>
         </div>
     </header>
@@ -94,52 +95,22 @@
             </div>
         </section>
 
-        <section style="background: #ffffff; max-width: 100%; border-top: 1px solid var(--border-gray); border-bottom: 1px solid var(--border-gray);">
+        <section style="background: var(--card-bg); max-width: 100%; border-top: 1px solid var(--border-gray); border-bottom: 1px solid var(--border-gray);">
             <div style="max-width: 1120px; margin: 0 auto;">
                 <h2>Our Complete California Carrier Access</h2>
                 <p class="section-intro">Pinpoint Solution Insurance Services is contracted with all major carriers, allowing us to present you with multiple objective options to fill your organization's needs.</p>
                 
                 <div class="carrier-grid">
-                    <div class="carrier-card">
-                        <img src="images/coveredca.png" alt="Covered California" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="carrier-fallback" style="display:none;">Covered California</span>
-                    </div>
-                    <div class="carrier-card">
-                        <img src="images/lacare.png" alt="L.A. Care Health Plan" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="carrier-fallback" style="display:none;">L.A. Care Health Plan</span>
-                    </div>
-                    <div class="carrier-card">
-                        <img src="images/kaiser.png" alt="Kaiser Permanente" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="carrier-fallback" style="display:none;">Kaiser Permanente</span>
-                    </div>
-                    <div class="carrier-card">
-                        <img src="images/anthem.png" alt="Anthem Blue Cross" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="carrier-fallback" style="display:none;">Anthem Blue Cross</span>
-                    </div>
-                    <div class="carrier-card">
-                        <img src="images/blueshield.png" alt="Blue Shield of California" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="carrier-fallback" style="display:none;">Blue Shield of CA</span>
-                    </div>
-                    <div class="carrier-card">
-                        <img src="images/healthnet.png" alt="Health Net" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="carrier-fallback" style="display:none;">Health Net</span>
-                    </div>
-                    <div class="carrier-card">
-                        <img src="images/aetna.png" alt="Aetna" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="carrier-fallback" style="display:none;">Aetna</span>
-                    </div>
-                    <div class="carrier-card">
-                        <img src="images/united.png" alt="UnitedHealthcare" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="carrier-fallback" style="display:none;">UnitedHealthcare</span>
-                    </div>
-                    <div class="carrier-card">
-                        <img src="images/delta.png" alt="Delta Dental" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="carrier-fallback" style="display:none;">Delta Dental</span>
-                    </div>
-                    <div class="carrier-card">
-                        <img src="images/vsp.png" alt="VSP Vision" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="carrier-fallback" style="display:none;">VSP Vision</span>
-                    </div>
+                    <div class="carrier-card"><span class="carrier-fallback">Covered California</span></div>
+                    <div class="carrier-card"><span class="carrier-fallback">L.A. Care Health Plan</span></div>
+                    <div class="carrier-card"><span class="carrier-fallback">Kaiser Permanente</span></div>
+                    <div class="carrier-card"><span class="carrier-fallback">Anthem Blue Cross</span></div>
+                    <div class="carrier-card"><span class="carrier-fallback">Blue Shield of CA</span></div>
+                    <div class="carrier-card"><span class="carrier-fallback">Health Net</span></div>
+                    <div class="carrier-card"><span class="carrier-fallback">Aetna</span></div>
+                    <div class="carrier-card"><span class="carrier-fallback">UnitedHealthcare</span></div>
+                    <div class="carrier-card"><span class="carrier-fallback">Delta Dental</span></div>
+                    <div class="carrier-card"><span class="carrier-fallback">VSP Vision</span></div>
                 </div>
             </div>
         </section>
@@ -164,5 +135,25 @@
         <p style="margin-top: 1.25rem; opacity: 0.8; font-size: 0.85rem;">&copy; 2026 Pinpoint Solution Insurance Services LLC. All rights reserved.</p>
     </footer>
 
+    <script>
+        const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        if (currentTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.getElementById('themeToggle').textContent = '☀️';
+        }
+        function toggleTheme() {
+            const root = document.documentElement;
+            const btn = document.getElementById('themeToggle');
+            if (root.getAttribute('data-theme') === 'dark') {
+                root.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                btn.textContent = '🌙';
+            } else {
+                root.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                btn.textContent = '☀️';
+            }
+        }
+    </script>
 </body>
 </html>
