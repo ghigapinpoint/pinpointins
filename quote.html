@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Contact Greg Higa and Daniel Park at Pinpoint Solution Insurance Services LLC in Torrance, CA. Request a personalized health plan, group benefits, or nonprofit coverage review.">
-    <title>Contact Us &amp; Request a Review | Pinpoint Solution Insurance Services</title>
+    <meta name="description" content="Contact Greg Higa and Daniel Park at Pinpoint Solution Insurance Services LLC in Torrance, CA. Ask a coverage question or request an accurate medical comparison.">
+    <title>Contact Us | Pinpoint Solution Insurance Services LLC</title>
     <link rel="canonical" href="https://pinpointins.com/quote.html">
-    <link rel="icon" type="image/png" href="images/logo-mark.png">
-    <link rel="stylesheet" href="style.css">
-    <!-- Prevent Flash of Unstyled Content (FOUC) in Dark Mode -->
+    <link rel="icon" type="image/png" href="images/logo-mark-white.png">
+    <link rel="stylesheet" href="style.css?v=2026.9">
     <script>
         (function() {
             const saved = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -21,10 +20,10 @@
     <header>
         <div class="nav-container">
             <a href="index.html" class="logo-area">
-                <img src="images/logo-color.png" alt="Pinpoint Solution Insurance Services" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <img src="images/logo-color.png" alt="Pinpoint Solution Insurance Services" onload="this.style.display='block'; this.nextElementSibling.style.display='none';" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                 <div class="logo-fallback-text" style="display:none;">PINPOINT SOLUTION<span>Insurance Services</span></div>
             </a>
-            <button class="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false" onclick="const nav=document.querySelector('.nav-links'); const open=nav.classList.toggle('open'); this.setAttribute('aria-expanded', open);">&#9776;</button>
+            <button class="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false" onclick="toggleMobileNav(this)">Menu</button>
             <nav class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="benefits.html">Employee Benefits</a>
@@ -32,17 +31,17 @@
                 <a href="resources.html">Resources</a>
                 <a href="about.html">About Us</a>
                 <a href="quote.html" class="btn-nav active">Contact Us</a>
-                <button class="dark-mode-toggle" id="themeToggle" aria-label="Toggle Dark Mode" onclick="toggleTheme()">🌙</button>
+                <button class="dark-mode-toggle" id="themeToggle" aria-label="Toggle Dark Mode" onclick="toggleTheme()">Dark Mode</button>
             </nav>
         </div>
     </header>
 
     <main>
-        <section class="hero" style="max-width: 100%; margin: 0;">
+        <section class="hero">
             <img src="images/logo-mark-white.png" alt="" class="hero-mark" onerror="this.style.display='none'">
-            <div class="eyebrow">Direct Local Advisory • 24-Hour Response Promise</div>
+            <div class="eyebrow">Direct Local Office • Torrance, CA</div>
             <h1>Talk With Greg or Daniel</h1>
-            <p>Whether you have a quick question about keeping your Torrance Memorial or UCLA doctors, need to compare COBRA alternatives, or want a group renewal review—reach out directly below.</p>
+            <p>Whether you have a quick question about keeping your Torrance Memorial or UCLA doctors, or want an exact side-by-side rate comparison, reach out in whatever way is easiest for you.</p>
         </section>
 
         <div class="trust-bar">
@@ -50,53 +49,53 @@
         </div>
 
         <section>
-            <!-- Direct Human Contact First -->
-            <h2>Reach Us Directly by Phone or Email</h2>
-            <p class="section-intro">Prefer a quick phone call or direct email? You don't have to fill out a form to speak with us.</p>
-
-            <div class="grid-2" style="margin-bottom: 3.5rem;">
+            <div class="grid-2" style="margin-bottom: 3rem;">
                 <div class="card" style="justify-content: flex-start;">
-                    <div class="advisor-mini-card" style="border: none; padding: 0; background: transparent; margin-bottom: 1.25rem;">
+                    <div class="team-mini-card" style="border: none; padding: 0; background: transparent; margin-bottom: 1rem;">
                         <img src="images/greg-higa.jpg" alt="Greg Higa, Principal Broker" onerror="this.style.display='none'">
                         <div>
-                            <h3 style="margin-bottom: 0.2rem;">Greg Higa</h3>
-                            <p class="advisor-role">Principal Broker • Agency CA License #0131557</p>
+                            <h3 style="margin-bottom: 0.15rem;">Greg Higa</h3>
+                            <p class="team-role">Principal Broker • CA Corporate License #0131557</p>
                         </div>
                     </div>
-                    <p style="margin-bottom: 1rem;">Direct guidance on small group benefits, employer renewals, nonprofit/church packages, and long-term coverage strategy.</p>
-                    <p style="margin-bottom: 0.5rem;"><strong>Local Office:</strong> <a href="tel:13105338877" class="card-link" style="margin-top:0;">(310) 533-8877</a></p>
-                    <p style="margin-bottom: 0.5rem;"><strong>Toll-Free:</strong> <a href="tel:18009516456" class="card-link" style="margin-top:0;">(800) 951-6456</a></p>
-                    <p style="margin-bottom: 0;"><strong>Email:</strong> <a href="mailto:ghiga@pinpointins.com" class="card-link" style="margin-top:0;">ghiga@pinpointins.com</a>
-                        <button type="button" class="copy-btn" onclick="copyEmail('ghiga@pinpointins.com', this)">Copy</button>
-                    </p>
+                    <p style="margin-bottom: 0.85rem;">Small group benefits, employer renewals, P&amp;C partner referrals, and church/nonprofit stewardship.</p>
+                    <p style="margin-bottom: 0.4rem;"><strong>Phone:</strong> <a href="tel:13105338877" class="card-link" style="margin-top:0;">(310) 533-8877</a> &nbsp;|&nbsp; <a href="tel:18009516456" class="card-link" style="margin-top:0;">(800) 951-6456</a></p>
+                    <p style="margin-bottom: 0;"><strong>Email:</strong> <button type="button" class="email-copy-chip" onclick="copyEmail('ghiga@pinpointins.com', this)">ghiga@pinpointins.com (Copy Email)</button></p>
                 </div>
 
                 <div class="card" style="justify-content: flex-start;">
-                    <div class="advisor-mini-card" style="border: none; padding: 0; background: transparent; margin-bottom: 1.25rem;">
+                    <div class="team-mini-card" style="border: none; padding: 0; background: transparent; margin-bottom: 1rem;">
                         <img src="images/daniel-park.jpg" alt="Daniel Park, Operations &amp; Client Relations" onerror="this.style.display='none'">
                         <div>
-                            <h3 style="margin-bottom: 0.2rem;">Daniel Park</h3>
-                            <p class="advisor-role">Operations &amp; Client Relations</p>
+                            <h3 style="margin-bottom: 0.15rem;">Daniel Park</h3>
+                            <p class="team-role">Operations &amp; Client Relations</p>
                         </div>
                     </div>
-                    <p style="margin-bottom: 1rem;">First-response triage, individual &amp; family plan comparisons, doctor network verification, and client enrollment assistance.</p>
-                    <p style="margin-bottom: 0.5rem;"><strong>Direct Line:</strong> <a href="tel:18009516456" class="card-link" style="margin-top:0;">(800) 951-6456 ext. 803</a></p>
-                    <p style="margin-bottom: 0.5rem;"><strong>Torrance Office:</strong> <a href="tel:13105338877" class="card-link" style="margin-top:0;">(310) 533-8877</a></p>
-                    <p style="margin-bottom: 0;"><strong>Email:</strong> <a href="mailto:daniel@pinpointins.com" class="card-link" style="margin-top:0;">daniel@pinpointins.com</a>
-                        <button type="button" class="copy-btn" onclick="copyEmail('daniel@pinpointins.com', this)">Copy</button>
-                    </p>
+                    <p style="margin-bottom: 0.85rem;">Client intake coordination, South Bay doctor network checks, side-by-side plan summaries, and administrative support.</p>
+                    <p style="margin-bottom: 0.4rem;"><strong>Phone:</strong> <a href="tel:18009516456" class="card-link" style="margin-top:0;">(800) 951-6456 ext. 803</a> &nbsp;|&nbsp; <a href="tel:13105338877" class="card-link" style="margin-top:0;">(310) 533-8877</a></p>
+                    <p style="margin-bottom: 0;"><strong>Email:</strong> <button type="button" class="email-copy-chip" onclick="copyEmail('daniel@pinpointins.com', this)">daniel@pinpointins.com (Copy Email)</button></p>
                 </div>
             </div>
 
-            <!-- Honest, Structured Consultation & Quote Request Form -->
-            <div class="content-block" style="max-width: 860px; margin: 0 auto; border-top: 5px solid var(--secondary);">
-                <h2 style="text-align: left; font-size: 1.65rem; margin-bottom: 0.5rem;">Send a Coverage Question or Request a Custom Comparison</h2>
-                <p style="margin-bottom: 1.75rem;">Why don't we show instant automated rates on this page? Because accurate California health rates depend on your exact ZIP code rating region, household structure, doctor network tier, and Covered CA subsidy eligibility. Share as much or as little as you'd like below, and we will prepare real, verified carrier numbers for you within 1 business day.</p>
+            <div class="content-block" style="max-width: 900px; margin: 0 auto; border-top: 4px solid var(--secondary);">
+                <h2 style="text-align: left; font-size: 1.55rem; margin-bottom: 0.4rem;">Send a Coverage Question or Rate Request</h2>
+                <p style="margin-bottom: 1.25rem; font-size: 0.95rem;">Select <strong>Accurate Medical Rate Comparison</strong> below to include birthdays, gender, and household income for exact California carrier numbers, or switch to <strong>General Question</strong> for a quick inquiry.</p>
+
+                <div class="mode-tabs" role="tablist">
+                    <button type="button" class="mode-tab active" id="tabMedical" onclick="setFormMode('medical')">1. Accurate Medical Rate Comparison (Includes Census)</button>
+                    <button type="button" class="mode-tab" id="tabQuestion" onclick="setFormMode('question')">2. General Question / Group or Nonprofit Inquiry</button>
+                </div>
 
                 <form id="consultationForm" onsubmit="handleConsultationSubmit(event)">
+                    <!-- Anti-Bot Honeypot (Hidden from humans) -->
+                    <div style="display:none;" aria-hidden="true">
+                        <label for="websiteUrl">Leave this field blank</label>
+                        <input type="text" id="websiteUrl" name="websiteUrl" tabindex="-1" autocomplete="off">
+                    </div>
+
                     <div class="form-grid">
                         <div class="form-group">
-                            <label for="cName">Your Name *</label>
+                            <label for="cName">Your Full Name *</label>
                             <input type="text" id="cName" name="name" required placeholder="First &amp; Last Name">
                         </div>
                         <div class="form-group">
@@ -109,35 +108,76 @@
                         </div>
                         <div class="form-group">
                             <label for="cZip">Home or Business ZIP Code *</label>
-                            <input type="text" id="cZip" name="zip" required pattern="[0-9]{5}" maxlength="5" placeholder="e.g. 90503">
+                            <input type="text" id="cZip" name="zip" required pattern="[0-9]{5}" maxlength="5" inputmode="numeric" placeholder="e.g. 90503">
                         </div>
                     </div>
 
-                    <div class="form-grid" style="margin-top: 1rem;">
-                        <div class="form-group">
-                            <label for="coverageType">What type of help are you looking for? *</label>
-                            <select id="coverageType" name="coverageType" required>
-                                <option value="Individual / Family Health Plan">Individual or Family Health Plan (Covered CA / Direct)</option>
-                                <option value="COBRA / Job Transition">Leaving a Job / Comparing COBRA Alternatives</option>
-                                <option value="Small Business Employee Benefits">Small Business / Group Employee Benefits</option>
-                                <option value="Nonprofit or Church Coverage">Nonprofit or Church Staff Benefits / Risk Review</option>
-                                <option value="General Question">General Question / Doctor Network Check</option>
-                            </select>
+                    <!-- Medical Quote Requirements Section (Name, ZIP, DOB, Gender, Household Income) -->
+                    <div id="medicalCensusSection">
+                        <div class="form-grid" style="margin-top: 1.15rem;">
+                            <div class="form-group">
+                                <label for="householdIncome">Estimated Annual Household Income (Before Taxes) *</label>
+                                <span class="field-hint">Used to check California rate subsidy eligibility (or type "Skip" if not needed).</span>
+                                <input type="text" id="householdIncome" name="householdIncome" required placeholder="e.g. $95,000 (or 'Skip')">
+                            </div>
+                            <div class="form-group">
+                                <label for="taxHouseholdSize">Number of People on Your Tax Return</label>
+                                <span class="field-hint">Include yourself, spouse, and tax dependents.</span>
+                                <input type="number" id="taxHouseholdSize" name="taxHouseholdSize" min="1" max="20" placeholder="e.g. 4">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="preferredContact">Preferred Way to Reach You</label>
-                            <select id="preferredContact" name="preferredContact">
-                                <option value="Email">Email</option>
-                                <option value="Phone Call">Phone Call</option>
-                                <option value="Either Email or Phone">Either Email or Phone</option>
-                            </select>
+
+                        <div class="census-panel">
+                            <label style="display: block; font-size: 0.94rem; font-weight: 800; color: var(--primary); margin-bottom: 0.25rem;">
+                                Birthdays &amp; Gender of All Needing Medical Coverage *
+                            </label>
+                            <p style="font-size: 0.84rem; margin-bottom: 0.9rem;">California carriers require exact dates of birth and gender to calculate medical rates (type 8 digits like <strong>04/15/1980</strong>):</p>
+
+                            <div id="censusContainer">
+                                <div class="census-row">
+                                    <div class="form-group">
+                                        <label>Person</label>
+                                        <select class="member-role">
+                                            <option value="Primary Applicant (Self)">Primary Applicant (Self)</option>
+                                            <option value="Spouse / Partner">Spouse / Partner</option>
+                                            <option value="Child / Dependent">Child / Dependent</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Birthday (MM/DD/YYYY) *</label>
+                                        <input type="text" class="member-dob" required pattern="(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/(19|20)[0-9]{2}" title="Please enter a complete birthday as MM/DD/YYYY (e.g. 04/15/1980)" placeholder="MM/DD/YYYY" maxlength="10" inputmode="numeric" oninput="formatBirthdayInput(this)">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Gender *</label>
+                                        <select class="member-gender" required>
+                                            <option value="" disabled selected>Select...</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Male">Male</option>
+                                        </select>
+                                    </div>
+                                    <div></div>
+                                </div>
+                            </div>
+                            <button type="button" class="add-member-btn" onclick="addCensusMember()">+ Add Another Family Member</button>
                         </div>
                     </div>
 
-                    <!-- Keyboard-Accessible Doctor Network Buttons -->
-                    <div style="margin-top: 1.5rem;">
-                        <label style="display: block; font-size: 0.92rem; font-weight: 700; color: var(--primary); margin-bottom: 0.4rem;">
-                            Preferred South Bay Hospitals or Medical Groups (Optional — click or press Space/Enter to select):
+                    <div style="margin-top: 1.35rem;">
+                        <label style="display: block; font-size: 0.88rem; font-weight: 700; color: var(--primary); margin-bottom: 0.35rem;">
+                            Coverage Lines of Interest (Optional):
+                        </label>
+                        <div class="pills-container" role="group" aria-label="Coverage lines">
+                            <button type="button" class="pill selected" aria-pressed="true" onclick="toggleLinePill(this)" data-value="Medical">Medical</button>
+                            <button type="button" class="pill" aria-pressed="false" onclick="toggleLinePill(this)" data-value="Dental & Vision">Dental &amp; Vision</button>
+                            <button type="button" class="pill" aria-pressed="false" onclick="toggleLinePill(this)" data-value="Small Group / HRA">Small Group / HRA</button>
+                            <button type="button" class="pill" aria-pressed="false" onclick="toggleLinePill(this)" data-value="Nonprofit / AB 506 / D&O">Nonprofit / Church</button>
+                            <button type="button" class="pill" aria-pressed="false" onclick="toggleLinePill(this)" data-value="Life / Disability">Life / Disability</button>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 1.25rem;">
+                        <label style="display: block; font-size: 0.88rem; font-weight: 700; color: var(--primary); margin-bottom: 0.35rem;">
+                            Preferred South Bay Hospitals or Medical Groups (Optional):
                         </label>
                         <div class="pills-container" role="group" aria-label="Preferred South Bay hospital networks">
                             <button type="button" class="pill" aria-pressed="false" onclick="toggleNetworkPill(this)" data-value="Torrance Memorial (TMIPA)">Torrance Memorial (TMIPA)</button>
@@ -145,33 +185,41 @@
                             <button type="button" class="pill" aria-pressed="false" onclick="toggleNetworkPill(this)" data-value="Providence Little Company of Mary">Providence Little Company of Mary</button>
                             <button type="button" class="pill" aria-pressed="false" onclick="toggleNetworkPill(this)" data-value="Optum South Bay">Optum South Bay</button>
                             <button type="button" class="pill" aria-pressed="false" onclick="toggleNetworkPill(this)" data-value="Kaiser Permanente">Kaiser Permanente</button>
-                            <button type="button" class="pill" aria-pressed="false" onclick="toggleNetworkPill(this)" data-value="Not Sure / Open to Options">Not Sure / Open to Options</button>
                         </div>
                     </div>
 
-                    <div class="form-group" style="margin-top: 1.5rem;">
-                        <label for="clientNotes">How can Greg and Daniel help? (Optional details)</label>
-                        <textarea id="clientNotes" name="notes" rows="4" placeholder="Feel free to share ages of family members to be covered, specific doctors you want to keep, organization size, or any questions on your mind..."></textarea>
+                    <div class="form-group" style="margin-top: 1.35rem;">
+                        <label for="clientNotes">Doctors, Prescriptions, or Questions to Verify (Optional)</label>
+                        <textarea id="clientNotes" name="notes" rows="3" placeholder="Share specific doctor names you'd like us to check, prescriptions, group size, or any questions..."></textarea>
                     </div>
 
-                    <div style="margin-top: 1.75rem;">
-                        <button type="submit" class="btn" style="width: 100%; text-align: center; font-size: 1.05rem;">Prepare &amp; Send My Inquiry to Daniel &amp; Greg</button>
+                    <!-- Anti-Spam Math Verification -->
+                    <div class="form-grid" style="margin-top: 1.25rem; align-items: center;">
+                        <div class="form-group" style="max-width: 280px;">
+                            <label for="mathAnswer" id="mathLabel">Human Verification: What is 4 + 3? *</label>
+                            <input type="text" id="mathAnswer" required inputmode="numeric" placeholder="Enter sum">
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 1.5rem;">
+                        <button type="submit" id="submitBtn" class="btn" style="width: 100%; text-align: center;">Send My Request to Our Torrance Office</button>
                     </div>
                 </form>
 
-                <!-- Transparent Delivery Panel (Works across all email apps + Copyable Backup) -->
-                <div id="submissionConfirm" style="display: none; margin-top: 1.75rem; padding: 1.5rem; background: var(--light); border: 2px solid var(--secondary); border-radius: 0.5rem;">
-                    <h3 style="color: var(--primary); font-size: 1.25rem; margin-bottom: 0.5rem;">Ready to Send Your Inquiry</h3>
-                    <p style="font-size: 0.95rem; margin-bottom: 1rem;">Your email app should open automatically addressed to <strong>daniel@pinpointins.com</strong> (with <strong>ghiga@pinpointins.com</strong> CC'd). If you use webmail (like Gmail in your browser) without a default mail app, click below to copy your summary:</p>
-                    <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem;">
-                        <a id="directMailtoLink" href="#" class="btn" style="padding: 0.65rem 1.25rem; font-size: 0.92rem;">Open in Default Mail App</a>
-                        <button type="button" onclick="copyPreparedMessage(this)" class="btn-secondary" style="padding: 0.65rem 1.25rem; font-size: 0.92rem; border: none; cursor: pointer;">Copy Message &amp; Email Addresses</button>
+                <!-- Confirmation & Backup Delivery Panel -->
+                <div id="submissionConfirm" style="display: none; margin-top: 1.5rem; padding: 1.4rem; background: var(--light); border: 2px solid var(--secondary); border-radius: 10px;">
+                    <h3 id="confirmHeading" style="color: var(--primary); font-size: 1.2rem; margin-bottom: 0.4rem;">Thank You — Sending Your Request...</h3>
+                    <p id="confirmSubtext" style="font-size: 0.92rem; margin-bottom: 0.9rem;">Your request is being sent directly to <strong>daniel@pinpointins.com</strong> and <strong>ghiga@pinpointins.com</strong>. A copy of your summary is also saved below for your records:</p>
+                    <pre id="preparedSummaryBox" style="background: var(--card-bg); padding: 0.9rem; border-radius: 0.375rem; border: 1px solid var(--border); font-size: 0.83rem; white-space: pre-wrap; color: var(--text); margin-bottom: 0.9rem;"></pre>
+                    <div style="display: flex; gap: 0.65rem; flex-wrap: wrap;">
+                        <button type="button" onclick="copyPreparedMessage(this)" class="btn-secondary" style="padding: 0.55rem 1.05rem; font-size: 0.86rem;">Copy Summary to Clipboard</button>
+                        <a id="gmailWebLink" href="#" target="_blank" rel="noopener" class="btn-secondary" style="padding: 0.55rem 1.05rem; font-size: 0.86rem; background: var(--dark);">Backup: Open in Gmail (Web)</a>
+                        <button type="button" onclick="resetQuoteForm()" class="btn-secondary" style="padding: 0.55rem 1.05rem; font-size: 0.86rem; background: transparent; color: var(--primary); border: 1px solid var(--border);">Edit / Send Another Request</button>
                     </div>
-                    <pre id="preparedSummaryBox" style="background: var(--card-bg); padding: 1rem; border-radius: 0.375rem; border: 1px solid var(--border-gray); font-size: 0.85rem; white-space: pre-wrap; color: var(--text-body);"></pre>
                 </div>
 
-                <p style="font-size: 0.85rem; color: var(--text-body); margin-top: 1.25rem; opacity: 0.85;">
-                    🔒 <strong>Privacy Guarantee:</strong> Your information goes solely to Pinpoint Solution Insurance Services LLC in Torrance, CA. We never sell leads or enroll you in automated spam lists.
+                <p style="font-size: 0.82rem; color: var(--text); margin-top: 1.25rem; opacity: 0.85;">
+                    <strong>Privacy Guarantee:</strong> Your census and household income information goes solely to Pinpoint Solution Insurance Services LLC in Torrance, CA. We never sell leads or share data with third-party aggregators.
                 </p>
             </div>
         </section>
@@ -180,29 +228,280 @@
     <footer>
         <img src="images/logo-white.png" alt="Pinpoint Solution Insurance Services" class="footer-logo" onerror="this.style.display='none'">
         <p><strong>Pinpoint Solution Insurance Services LLC</strong></p>
-        <p><a href="https://maps.google.com/?q=21235+Hawthorne+Blvd+%23200,+Torrance,+CA+90503" target="_blank" rel="noopener" style="color:inherit;">21235 Hawthorne Blvd #200, Torrance, CA 90503</a> &nbsp;|&nbsp; <a href="tel:13105338877">(310) 533-8877</a> &nbsp;|&nbsp; <a href="mailto:info@pinpointins.com">info@pinpointins.com</a></p>
+        <p>
+            <a href="https://maps.google.com/?q=21235+Hawthorne+Blvd+%23200,+Torrance,+CA+90503" target="_blank" rel="noopener">21235 Hawthorne Blvd #200, Torrance, CA 90503</a> &nbsp;|&nbsp;
+            <a href="tel:13105338877">(310) 533-8877</a> &nbsp;|&nbsp;
+            <a href="tel:18009516456">(800) 951-6456</a> &nbsp;|&nbsp;
+            <button type="button" class="email-copy-chip" onclick="copyEmail('info@pinpointins.com', this)">info@pinpointins.com (Copy Email)</button>
+        </p>
         <div class="license-badge">CA Corporate License #0131557</div>
-        <p class="privacy-note"><strong>Privacy Commitment:</strong> We never sell or share your personal, household, or medical network information with third-party lead aggregators. Information submitted is used strictly by Greg Higa and Daniel Park to prepare your requested insurance comparisons.</p>
-        <p style="margin-top: 1rem; opacity: 0.8; font-size: 0.85rem;">&copy; 2026 Pinpoint Solution Insurance Services LLC. All rights reserved.</p>
+        <p class="privacy-note"><strong>Privacy Commitment:</strong> We never sell or share your personal, household, or medical network information with third-party lead aggregators.</p>
+        <p style="margin-top: 0.85rem; opacity: 0.8; font-size: 0.82rem;">&copy; 2026 Pinpoint Solution Insurance Services LLC. All rights reserved.</p>
     </footer>
 
     <script>
+        // Live Google Apps Script Web App URL
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwRIwAkVyiWghOYWRIgMLCtbWDbmARIgXYXkCT_S2kWeUn3dBaADmVB93klQRH6qUd7Bg/exec";
+
+        const pageLoadTime = Date.now();
+        let mathA = Math.floor(Math.random() * 5) + 2;
+        let mathB = Math.floor(Math.random() * 5) + 1;
+        let currentMode = 'medical';
+        let selectedLines = ['Medical'];
+        let selectedNetworks = [];
+        let lastPreparedBody = '';
+
+        document.getElementById('mathLabel').textContent = `Human Verification: What is ${mathA} +${mathB}? *`;
+
+        function formatBirthdayInput(input) {
+            let digits = input.value.replace(/\D/g, '').slice(0, 8);
+            if (digits.length >= 5) {
+                input.value = digits.slice(0, 2) + '/' + digits.slice(2, 4) + '/' + digits.slice(4);
+            } else if (digits.length >= 3) {
+                input.value = digits.slice(0, 2) + '/' + digits.slice(2);
+            } else {
+                input.value = digits;
+            }
+        }
+
+        function setFormMode(mode) {
+            currentMode = mode;
+            const medSection = document.getElementById('medicalCensusSection');
+            const tabMed = document.getElementById('tabMedical');
+            const tabQ = document.getElementById('tabQuestion');
+            const incomeInput = document.getElementById('householdIncome');
+            const dobInputs = document.querySelectorAll('.member-dob');
+            const genderInputs = document.querySelectorAll('.member-gender');
+
+            if (mode === 'medical') {
+                medSection.style.display = 'block';
+                tabMed.classList.add('active');
+                tabQ.classList.remove('active');
+                incomeInput.required = true;
+                dobInputs.forEach(el => el.required = true);
+                genderInputs.forEach(el => el.required = true);
+            } else {
+                medSection.style.display = 'none';
+                tabMed.classList.remove('active');
+                tabQ.classList.add('active');
+                incomeInput.required = false;
+                dobInputs.forEach(el => el.required = false);
+                genderInputs.forEach(el => el.required = false);
+            }
+        }
+
+        function addCensusMember() {
+            const container = document.getElementById('censusContainer');
+            const isReq = currentMode === 'medical' ? 'required' : '';
+            const row = document.createElement('div');
+            row.className = 'census-row';
+            row.innerHTML = `
+                <div class="form-group">
+                    <label>Person</label>
+                    <select class="member-role">
+                        <option value="Spouse / Partner">Spouse / Partner</option>
+                        <option value="Child / Dependent" selected>Child / Dependent</option>
+                        <option value="Primary Applicant (Self)">Primary Applicant (Self)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Birthday (MM/DD/YYYY) *</label>
+                    <input type="text" class="member-dob" ${isReq} pattern="(0[1-9]|1[0-2])\\/(0[1-9]|[12][0-9]|3[01])\\/(19|20)[0-9]{2}" title="Please enter a complete birthday as MM/DD/YYYY (e.g. 04/15/1980)" placeholder="MM/DD/YYYY" maxlength="10" inputmode="numeric" oninput="formatBirthdayInput(this)">
+                </div>
+                <div class="form-group">
+                    <label>Gender *</label>
+                    <select class="member-gender" ${isReq}>
+                        <option value="" disabled selected>Select...</option>
+                        <option value="Female">Female</option>
+                        <option value="Male">Male</option>
+                    </select>
+                </div>
+                <div>
+                    <button type="button" class="remove-member-btn" onclick="this.closest('.census-row').remove()">Remove</button>
+                </div>
+            `;
+            container.appendChild(row);
+        }
+
+        function resetQuoteForm() {
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send My Request to Our Torrance Office';
+            mathA = Math.floor(Math.random() * 5) + 2;
+            mathB = Math.floor(Math.random() * 5) + 1;
+            document.getElementById('mathLabel').textContent = `Human Verification: What is ${mathA} +${mathB}? *`;
+            document.getElementById('mathAnswer').value = '';
+            document.getElementById('cName').focus();
+        }
+
+        function toggleLinePill(btn) {
+            const isPressed = btn.getAttribute('aria-pressed') === 'true';
+            btn.setAttribute('aria-pressed', String(!isPressed));
+            btn.classList.toggle('selected', !isPressed);
+            const val = btn.getAttribute('data-value');
+            if (!isPressed && !selectedLines.includes(val)) selectedLines.push(val);
+            else selectedLines = selectedLines.filter(i => i !== val);
+        }
+
+        function toggleNetworkPill(btn) {
+            const isPressed = btn.getAttribute('aria-pressed') === 'true';
+            btn.setAttribute('aria-pressed', String(!isPressed));
+            btn.classList.toggle('selected', !isPressed);
+            const val = btn.getAttribute('data-value');
+            if (!isPressed && !selectedNetworks.includes(val)) selectedNetworks.push(val);
+            else selectedNetworks = selectedNetworks.filter(i => i !== val);
+        }
+
+        function copyEmail(email, btnEl) {
+            navigator.clipboard.writeText(email).then(function() {
+                const orig = btnEl.textContent;
+                btnEl.textContent = 'Copied: ' + email;
+                setTimeout(function() { btnEl.textContent = orig; }, 2200);
+            });
+        }
+
+        async function handleConsultationSubmit(e) {
+            e.preventDefault();
+
+            const honeypot = document.getElementById('websiteUrl').value;
+            if (honeypot !== '' || (Date.now() - pageLoadTime) < 2500) {
+                return;
+            }
+
+            const userMath = parseInt(document.getElementById('mathAnswer').value.trim(), 10);
+            if (userMath !== (mathA + mathB)) {
+                alert(`Please check the human verification math question (${mathA} + ${mathB} =${mathA + mathB}).`);
+                document.getElementById('mathAnswer').focus();
+                return;
+            }
+
+            const name = document.getElementById('cName').value.trim();
+            const email = document.getElementById('cEmail').value.trim();
+            const phone = document.getElementById('cPhone').value.trim() || 'Not provided';
+            const zip = document.getElementById('cZip').value.trim();
+            const notes = document.getElementById('clientNotes').value.trim() || 'None provided';
+            const lines = selectedLines.length > 0 ? selectedLines.join(', ') : 'General';
+            const networks = selectedNetworks.length > 0 ? selectedNetworks.join(', ') : 'None specified';
+
+            let censusBlock = [];
+            let censusArray = [];
+            let income = '';
+            let hhSize = '';
+            if (currentMode === 'medical') {
+                income = document.getElementById('householdIncome').value.trim();
+                hhSize = document.getElementById('taxHouseholdSize').value.trim() || 'Not specified';
+                censusBlock.push(`Estimated Annual Household Income: ${income}`);
+                censusBlock.push(`Tax Household Size: ${hhSize}`);
+                censusBlock.push(``);
+                censusBlock.push(`Covered Members (Birthdays & Gender):`);
+                document.querySelectorAll('#censusContainer .census-row').forEach((row, idx) => {
+                    const role = row.querySelector('.member-role').value;
+                    const dob = row.querySelector('.member-dob').value;
+                    const gender = row.querySelector('.member-gender').value;
+                    censusBlock.push(`  ${idx + 1}.${role} | DOB: ${dob} \vert{} Gender:${gender}`);
+                    censusArray.push({ role, dob, gender });
+                });
+            }
+
+            // Compact, URL-free Base64 Import Token for Greg & Daniel's Private Proposal Builder
+            const payloadObj = { name, email, phone, zip, income, hh: hhSize, net: selectedNetworks, notes, census: censusArray };
+            const importToken = btoa(unescape(encodeURIComponent(JSON.stringify(payloadObj))));
+
+            const subject = `Pinpoint Inquiry (${currentMode === 'medical' ? 'Medical Quote' : 'Question'}) - ${name} (${zip})`;
+            const clientSummary = [
+                `Name: ${name}`,
+                `Email: ${email}`,
+                `Phone: ${phone}`,
+                `ZIP Code: ${zip}`,
+                ...censusBlock,
+                ``,
+                `Coverage Lines: ${lines}`,
+                `Preferred South Bay Networks: ${networks}`,
+                ``,
+                `Notes / Questions:`,
+                `${notes}`
+            ].join('\r\n');
+
+            const emailBodyForOffice = [
+                clientSummary,
+                ``,
+                `--------------------------------------------------`,
+                `PROPOSAL BUILDER IMPORT CODE (Copy & paste into proposal-builder.html):`,
+                importToken
+            ].join('\r\n');
+
+            lastPreparedBody = `To: daniel@pinpointins.com\nCC: ghiga@pinpointins.com\nSubject: ${subject}\n\n${clientSummary}`;
+
+            document.getElementById('gmailWebLink').href = `https://mail.google.com/mail/?view=cm&fs=1&to=daniel@pinpointins.com&cc=ghiga@pinpointins.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(clientSummary)}`;
+            document.getElementById('preparedSummaryBox').textContent = lastPreparedBody;
+
+            const confirmBox = document.getElementById('submissionConfirm');
+            confirmBox.style.display = 'block';
+
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending Request...';
+
+            try {
+                await fetch(APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify({
+                        honeypot: honeypot,
+                        email: email,
+                        subject: subject,
+                        body: emailBodyForOffice
+                    })
+                });
+                document.getElementById('confirmHeading').textContent = 'Thank You — Your Request Has Been Sent to Our Torrance Office';
+                document.getElementById('confirmSubtext').textContent = 'We have received your information and will respond within 1 business day. A copy of your request is shown below for your records:';
+                submitBtn.textContent = 'Request Sent';
+            } catch (err) {
+                document.getElementById('confirmHeading').textContent = 'Your Request Summary Is Ready';
+                document.getElementById('confirmSubtext').textContent = 'Please click Copy Summary or Backup: Open in Gmail below to send your request directly to daniel@pinpointins.com and ghiga@pinpointins.com:';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send My Request to Our Torrance Office';
+            }
+
+            confirmBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function copyPreparedMessage(btnEl) {
+            navigator.clipboard.writeText(lastPreparedBody).then(() => {
+                const orig = btnEl.textContent;
+                btnEl.textContent = 'Copied to Clipboard';
+                setTimeout(() => { btnEl.textContent = orig; }, 2500);
+            });
+        }
+
+        function toggleMobileNav(btn) {
+            const nav = document.querySelector('.nav-links');
+            const isOpen = nav.classList.toggle('open');
+            btn.setAttribute('aria-expanded', String(isOpen));
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const nav = document.querySelector('.nav-links');
+                const btn = document.querySelector('.menu-toggle');
+                if (nav && nav.classList.contains('open')) {
+                    nav.classList.remove('open');
+                    if (btn) btn.setAttribute('aria-expanded', 'false');
+                }
+            }
+        });
         function applyTheme(theme) {
             const root = document.documentElement;
             const btn = document.getElementById('themeToggle');
             const logoImg = document.querySelector('.logo-area img');
-            const heroMark = document.querySelector('.hero-mark');
-            
             if (theme === 'dark') {
                 root.setAttribute('data-theme', 'dark');
-                if (btn) btn.textContent = '☀️';
+                if (btn) btn.textContent = 'Light Mode';
                 if (logoImg) logoImg.src = 'images/logo-white.png';
-                if (heroMark) heroMark.src = 'images/logo-mark-white.png';
             } else {
                 root.removeAttribute('data-theme');
-                if (btn) btn.textContent = '🌙';
+                if (btn) btn.textContent = 'Dark Mode';
                 if (logoImg) logoImg.src = 'images/logo-color.png';
-                if (heroMark) heroMark.src = 'images/logo-mark-white.png';
             }
         }
         applyTheme(localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
@@ -211,77 +510,6 @@
             const newTheme = isDark ? 'light' : 'dark';
             localStorage.setItem('theme', newTheme);
             applyTheme(newTheme);
-        }
-
-        let selectedNetworks = [];
-        let lastPreparedBody = '';
-
-        function toggleNetworkPill(btn) {
-            const isPressed = btn.getAttribute('aria-pressed') === 'true';
-            btn.setAttribute('aria-pressed', String(!isPressed));
-            btn.classList.toggle('selected', !isPressed);
-            const val = btn.getAttribute('data-value');
-            if (!isPressed) {
-                selectedNetworks.push(val);
-            } else {
-                selectedNetworks = selectedNetworks.filter(item => item !== val);
-            }
-        }
-
-        function copyEmail(email, btnEl) {
-            navigator.clipboard.writeText(email).then(() => {
-                const orig = btnEl.textContent;
-                btnEl.textContent = 'Copied!';
-                setTimeout(() => { btnEl.textContent = orig; }, 2000);
-            });
-        }
-
-        function handleConsultationSubmit(e) {
-            e.preventDefault();
-            const name = document.getElementById('cName').value.trim();
-            const email = document.getElementById('cEmail').value.trim();
-            const phone = document.getElementById('cPhone').value.trim() || 'Not provided';
-            const zip = document.getElementById('cZip').value.trim();
-            const coverageType = document.getElementById('coverageType').value;
-            const preferredContact = document.getElementById('preferredContact').value;
-            const notes = document.getElementById('clientNotes').value.trim() || 'None provided';
-            const networks = selectedNetworks.length > 0 ? selectedNetworks.join(', ') : 'None specified';
-
-            const subject = `Pinpoint Inquiry: ${coverageType} - ${name} (${zip})`;
-            const body = [
-                `Name: ${name}`,
-                `Email: ${email}`,
-                `Phone: ${phone}`,
-                `ZIP Code: ${zip}`,
-                `Inquiry Type: ${coverageType}`,
-                `Preferred Contact Method: ${preferredContact}`,
-                `Preferred South Bay Networks: ${networks}`,
-                ``,
-                `Questions / Additional Details:`,
-                `${notes}`
-            ].join('\r\n');
-
-            lastPreparedBody = `To: daniel@pinpointins.com\nCC: ghiga@pinpointins.com\nSubject: ${subject}\n\n${body}`;
-
-            const mailtoUrl = `mailto:daniel@pinpointins.com?cc=ghiga@pinpointins.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            document.getElementById('directMailtoLink').href = mailtoUrl;
-            document.getElementById('preparedSummaryBox').textContent = lastPreparedBody;
-            
-            const confirmBox = document.getElementById('submissionConfirm');
-            confirmBox.style.display = 'block';
-            confirmBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-
-            setTimeout(() => {
-                window.location.href = mailtoUrl;
-            }, 350);
-        }
-
-        function copyPreparedMessage(btnEl) {
-            navigator.clipboard.writeText(lastPreparedBody).then(() => {
-                const orig = btnEl.textContent;
-                btnEl.textContent = 'Copied to Clipboard!';
-                setTimeout(() => { btnEl.textContent = orig; }, 2500);
-            });
         }
     </script>
 </body>

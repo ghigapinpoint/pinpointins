@@ -3,19 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pinpoint Solution Insurance Services LLC provides customized group employee benefits, family health insurance, and nonprofit coverage in Torrance, the South Bay, and across California.">
+    <meta name="description" content="Pinpoint Solution Insurance Services LLC provides objective group employee benefits, family health insurance, and nonprofit coverage in Torrance and the South Bay since 2002.">
     <title>Pinpoint Solution Insurance Services LLC | Torrance &amp; South Bay, CA</title>
     <link rel="canonical" href="https://pinpointins.com/">
-    <link rel="icon" type="image/png" href="images/logo-mark.png">
-    <link rel="stylesheet" href="style.css">
-    <!-- Prevent Flash of Unstyled Content (FOUC) in Dark Mode -->
+    <link rel="icon" type="image/png" href="images/logo-mark-white.png">
+    <link rel="stylesheet" href="style.css?v=2026.8">
     <script>
         (function() {
             const saved = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
             if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
         })();
     </script>
-    <!-- Local SEO Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -32,8 +30,7 @@
         "addressRegion": "CA",
         "postalCode": "90503",
         "addressCountry": "US"
-      },
-      "areaServed": ["Torrance", "Redondo Beach", "Palos Verdes", "Lomita", "Gardena", "El Segundo", "South Bay", "California"]
+      }
     }
     </script>
 </head>
@@ -42,10 +39,10 @@
     <header>
         <div class="nav-container">
             <a href="index.html" class="logo-area">
-                <img src="images/logo-color.png" alt="Pinpoint Solution Insurance Services" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <img src="images/logo-color.png" alt="Pinpoint Solution Insurance Services" onload="this.style.display='block'; this.nextElementSibling.style.display='none';" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                 <div class="logo-fallback-text" style="display:none;">PINPOINT SOLUTION<span>Insurance Services</span></div>
             </a>
-            <button class="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false" onclick="const nav=document.querySelector('.nav-links'); const open=nav.classList.toggle('open'); this.setAttribute('aria-expanded', open);">&#9776;</button>
+            <button class="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false" onclick="toggleMobileNav(this)">Menu</button>
             <nav class="nav-links">
                 <a href="index.html" class="active">Home</a>
                 <a href="benefits.html">Employee Benefits</a>
@@ -53,64 +50,61 @@
                 <a href="resources.html">Resources</a>
                 <a href="about.html">About Us</a>
                 <a href="quote.html" class="btn-nav">Contact Us</a>
-                <button class="dark-mode-toggle" id="themeToggle" aria-label="Toggle Dark Mode" onclick="toggleTheme()">🌙</button>
+                <button class="dark-mode-toggle" id="themeToggle" aria-label="Toggle Dark Mode" onclick="toggleTheme()">Dark Mode</button>
             </nav>
         </div>
     </header>
 
     <main>
-        <section class="hero" style="max-width: 100%; margin: 0;">
+        <section class="hero">
             <img src="images/logo-mark-white.png" alt="" class="hero-mark" onerror="this.style.display='none'">
-            <div class="eyebrow">Torrance &amp; South Bay Independent Advisory</div>
-            <h1>Straightforward Health &amp; Benefits Guidance from Real People</h1>
-            <p>Since 2002, we have helped South Bay employers, families, and local ministries compare health networks, manage renewals, and protect their people—without high-pressure sales pitches.</p>
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="quote.html" class="btn">Talk to Greg or Daniel</a>
-                <a href="tel:13105338877" class="btn-hero-outline">Call (310) 533-8877</a>
-            </div>
+            <div class="eyebrow">Torrance &amp; South Bay Independent Brokerage • Since 2002</div>
+            <h1>Clear, Neighborly Guidance on Health Insurance &amp; Benefits</h1>
+            <p>We help South Bay employers, families, and local ministries understand their doctor networks, compare plans objectively, and navigate renewals—without sales pressure or added broker fees.</p>
         </section>
 
         <div class="trust-bar">
-            CA Corporate License #0131557 &nbsp;|&nbsp; Independent Brokerage Serving Torrance, the South Bay &amp; All of California
+            CA Corporate License #0131557 &nbsp;|&nbsp; 21235 Hawthorne Blvd #200, Torrance, CA 90503 &nbsp;|&nbsp; (310) 533-8877
         </div>
 
         <section>
-            <img src="images/logo-mark.png" alt="" class="section-mark" onerror="this.style.display='none'">
-            <h2>How We Help Our Community</h2>
-            <p class="section-intro">Every employer, household, and ministry has different priorities. We work alongside you to evaluate doctor access, tax-advantaged options, and realistic budgets.</p>
+            <h2>How We Serve Our Community</h2>
+            <p class="section-intro">Because California health insurance rates are fixed by law, it costs nothing extra to work with our local office. We focus on keeping your trusted doctors while respecting your budget.</p>
             
             <div class="grid-3">
                 <div class="card">
                     <div>
+                        <img src="images/torrance-office-exterior.jpg" alt="South Bay commercial office building architecture" class="card-photo" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80';">
                         <span class="pillar-tag">Small Business &amp; Groups (1–100+)</span>
-                        <h3>Employee Benefits &amp; Small Group</h3>
-                        <p>Group medical, dental, vision, life, and disability plans—including HRAs, QSEHRAs, and flexible contribution structures—built to help you retain great employees and manage annual renewals.</p>
+                        <h3>Employee Benefits</h3>
+                        <p>Group medical, dental, vision, life, Level-Funded plans, and HRAs/QSEHRAs—designed to help you care for your team and manage annual renewals predictably.</p>
                     </div>
-                    <a href="benefits.html" class="card-link">Explore Employee Benefits &rarr;</a>
+                    <a href="benefits.html" class="card-link">Learn about Group Benefits &rarr;</a>
                 </div>
                 <div class="card">
                     <div>
+                        <img src="images/south-bay-medical.jpg" alt="Sunlit modern hospital campus exterior" class="card-photo" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?auto=format&fit=crop&w=900&q=80';">
                         <span class="pillar-tag">Covered CA, Direct &amp; COBRA</span>
-                        <h3>Individual, Family &amp; Transitions</h3>
-                        <p>Clear side-by-side comparisons for families, self-employed professionals, and individuals navigating job changes or COBRA alternatives—ensuring you keep the doctors you trust.</p>
+                        <h3>Individuals &amp; Families</h3>
+                        <p>Objective comparisons for families, self-employed professionals, and individuals leaving corporate coverage or weighing COBRA alternatives.</p>
                     </div>
-                    <a href="quote.html" class="card-link">Ask About Individual &amp; Family Plans &rarr;</a>
+                    <a href="quote.html" class="card-link">Verify Doctors or Compare Plans &rarr;</a>
                 </div>
                 <div class="card">
                     <div>
-                        <span class="pillar-tag">Ministries &amp; 501(c)(3) Organizations</span>
+                        <img src="images/sanctuary-architecture.jpg" alt="Wide-angle view of sunlit sanctuary architecture showing pews and vaulted ceiling" class="card-photo" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1548625361-16802b16346b?auto=format&fit=crop&w=900&q=80';">
+                        <span class="pillar-tag">Ministries &amp; 501(c)(3) Nonprofits</span>
                         <h3>Nonprofits &amp; Churches</h3>
-                        <p>Dedicated stewardship and risk guidance for community organizations and houses of worship, including pastoral &amp; staff benefits, D&amp;O liability, volunteer safety, and AB 506 compliance.</p>
+                        <p>Stewardship-focused guidance for local ministries and nonprofits, including pastoral &amp; staff benefits, D&amp;O liability, and California AB 506 readiness.</p>
                     </div>
-                    <a href="nonprofits-churches.html" class="card-link">Explore Nonprofit Solutions &rarr;</a>
+                    <a href="nonprofits-churches.html" class="card-link">Explore Nonprofit Guidance &rarr;</a>
                 </div>
             </div>
 
-            <div class="content-block content-split" style="margin-top: 3.5rem; margin-bottom: 0;">
+            <div class="content-block content-split" style="margin-top: 3rem; margin-bottom: 0;">
                 <div>
-                    <h3>Deep South Bay Medical Network Expertise</h3>
-                    <p>Choosing a health plan isn't just about the insurance company on the card—it's about keeping the local physicians, pediatricians, and hospital systems your family or team already relies on.</p>
-                    <p>We verify physician participation across HMO, PPO, EPO, and HSA tiers before you enroll, helping you avoid unexpected out-of-network bills.</p>
+                    <h3>Keeping Your South Bay Doctors &amp; Hospitals</h3>
+                    <p>The biggest frustration in health insurance is discovering too late that a specific carrier tier excludes your family's pediatrician or hospital. Before you enroll or renew, we verify physician participation across HMO, PPO, EPO, and HSA networks:</p>
                     <div class="network-badges">
                         <span class="network-badge">Torrance Memorial (TMIPA)</span>
                         <span class="network-badge">Providence Little Company of Mary</span>
@@ -118,24 +112,17 @@
                         <span class="network-badge">Optum South Bay</span>
                         <span class="network-badge">Kaiser Permanente</span>
                     </div>
-                    <div style="margin-top: 1.75rem;">
-                        <a href="quote.html" class="btn">Request a Doctor &amp; Network Check</a>
-                    </div>
                 </div>
                 <div class="architectural-panel">
-                    <h4>South Bay Network Quick-Reference</h4>
+                    <h4>Local Network Nuances We Check</h4>
                     <div class="arch-list">
                         <div class="arch-item">
-                            <strong>Torrance Memorial (TMIPA) + UCLA Health</strong>
-                            <span>Accessible together without referrals via select PPO tiers, or via dedicated HMO IPA selection.</span>
+                            <strong>TMIPA + UCLA Health Access</strong>
+                            <span>Identifying which PPO and HMO tiers include both medical groups without unexpected out-of-network billing.</span>
                         </div>
                         <div class="arch-item">
-                            <strong>Providence Little Company of Mary</strong>
-                            <span>Broad South Bay hospital &amp; specialist access across major HMO and PPO contracts in LA Region 16.</span>
-                        </div>
-                        <div class="arch-item">
-                            <strong>Optum South Bay &amp; Kaiser Permanente</strong>
-                            <span>Integrated clinic systems in Torrance, Redondo Beach, El Segundo, and Carson for predictable copays.</span>
+                            <strong>Providence &amp; Optum South Bay</strong>
+                            <span>Comparing LA Region 16 hospital contracts and primary care referral rules side by side.</span>
                         </div>
                     </div>
                 </div>
@@ -145,80 +132,51 @@
         <section style="background: var(--card-bg); max-width: 100%; border-top: 1px solid var(--border-gray); border-bottom: 1px solid var(--border-gray);">
             <div style="max-width: 1120px; margin: 0 auto;">
                 <h2>Contracted With California's Leading Carriers</h2>
-                <p class="section-intro">Because we are an independent brokerage, we aren't tied to any single insurance company. We compare options objectively across the market.</p>
+                <p class="section-intro">As an independent brokerage, we aren't tied to any single insurance company. We lay out options across the market so you can decide what fits best.</p>
                 
                 <div class="carrier-grid">
-                    <div class="carrier-card">
-                        <img src="images/coveredca.png" alt="Covered California" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="carrier-fallback" style="display:none;">Covered California</span>
-                    </div>
-                    <div class="carrier-card">
-                        <img src="images/lacare.png" alt="L.A. Care Health Plan" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="carrier-fallback" style="display:none;">L.A. Care Health Plan</span>
-                    </div>
-                    <div class="carrier-card">
-                        <img src="images/kaiser.png" alt="Kaiser Permanente" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="carrier-fallback" style="display:none;">Kaiser Permanente</span>
-                    </div>
-                    <div class="carrier-card">
-                        <img src="images/anthem.png" alt="Anthem Blue Cross" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="carrier-fallback" style="display:none;">Anthem Blue Cross</span>
-                    </div>
-                    <div class="carrier-card">
-                        <img src="images/blueshield.png" alt="Blue Shield of California" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="carrier-fallback" style="display:none;">Blue Shield of CA</span>
-                    </div>
-                    <div class="carrier-card">
-                        <img src="images/healthnet.png" alt="Health Net" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="carrier-fallback" style="display:none;">Health Net</span>
-                    </div>
-                    <div class="carrier-card">
-                        <img src="images/aetna.png" alt="Aetna" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="carrier-fallback" style="display:none;">Aetna</span>
-                    </div>
-                    <div class="carrier-card">
-                        <img src="images/united.png" alt="UnitedHealthcare" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="carrier-fallback" style="display:none;">UnitedHealthcare</span>
-                    </div>
-                    <div class="carrier-card">
-                        <img src="images/delta.png" alt="Delta Dental" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="carrier-fallback" style="display:none;">Delta Dental</span>
-                    </div>
-                    <div class="carrier-card">
-                        <img src="images/vsp.png" alt="VSP Vision" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="carrier-fallback" style="display:none;">VSP Vision</span>
-                    </div>
+                    <div class="carrier-card"><img src="images/coveredca.png" alt="Covered California" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span class="carrier-fallback" style="display:none;">Covered California</span></div>
+                    <div class="carrier-card"><img src="images/blueshield.png" alt="Blue Shield of California" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span class="carrier-fallback" style="display:none;">Blue Shield of CA</span></div>
+                    <div class="carrier-card"><img src="images/anthem.png" alt="Anthem Blue Cross" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span class="carrier-fallback" style="display:none;">Anthem Blue Cross</span></div>
+                    <div class="carrier-card"><img src="images/kaiser.png" alt="Kaiser Permanente" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span class="carrier-fallback" style="display:none;">Kaiser Permanente</span></div>
+                    <div class="carrier-card"><img src="images/healthnet.png" alt="Health Net" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span class="carrier-fallback" style="display:none;">Health Net</span></div>
+                    <div class="carrier-card"><img src="images/lacare.png" alt="L.A. Care Health Plan" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span class="carrier-fallback" style="display:none;">L.A. Care</span></div>
+                    <div class="carrier-card"><img src="images/aetna.png" alt="Aetna" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span class="carrier-fallback" style="display:none;">Aetna</span></div>
+                    <div class="carrier-card"><img src="images/united.png" alt="UnitedHealthcare" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span class="carrier-fallback" style="display:none;">UnitedHealthcare</span></div>
+                    <div class="carrier-card"><img src="images/delta.png" alt="Delta Dental" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span class="carrier-fallback" style="display:none;">Delta Dental</span></div>
+                    <div class="carrier-card"><img src="images/vsp.png" alt="VSP Vision" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span class="carrier-fallback" style="display:none;">VSP Vision</span></div>
                 </div>
             </div>
         </section>
 
         <section>
-            <div class="content-block">
-                <h3 style="text-align: center; margin-bottom: 0.5rem;">Real People in Torrance—Not a Call Center</h3>
-                <p style="text-align: center; max-width: 720px; margin: 0 auto 2rem auto;">When you have a billing question, a renewal increase, or a new employee to enroll, you talk directly with us. We respond to client inquiries within 24 hours.</p>
+            <div class="content-block" style="margin-bottom: 0;">
+                <h3 style="text-align: center; margin-bottom: 0.4rem;">Speak Directly With Us in Torrance</h3>
+                <p style="text-align: center; max-width: 680px; margin: 0 auto 1.75rem auto;">When you have a billing question, a renewal increase, or a doctor to verify, you talk directly with us—never a call center. Click an email button below to copy our address, or give us a call.</p>
                 
-                <div class="grid-2" style="margin-bottom: 2rem;">
-                    <div class="advisor-mini-card">
+                <div class="grid-2">
+                    <div class="team-mini-card">
                         <img src="images/greg-higa.jpg" alt="Greg Higa, Principal Broker" onerror="this.style.display='none'">
                         <div>
                             <h4>Greg Higa</h4>
-                            <p class="advisor-role">Principal Broker (Serving Clients Since 2002)</p>
-                            <p class="advisor-contact"><a href="tel:13105338877">(310) 533-8877</a> &nbsp;|&nbsp; <a href="mailto:ghiga@pinpointins.com">ghiga@pinpointins.com</a></p>
+                            <p class="team-role">Principal Broker • CA Corporate License #0131557</p>
+                            <p class="team-contact">
+                                <a href="tel:13105338877">(310) 533-8877</a> &nbsp;|&nbsp;
+                                <button type="button" class="email-copy-chip" onclick="copyEmail('ghiga@pinpointins.com', this)">ghiga@pinpointins.com (Copy Email)</button>
+                            </p>
                         </div>
                     </div>
-                    <div class="advisor-mini-card">
+                    <div class="team-mini-card">
                         <img src="images/daniel-park.jpg" alt="Daniel Park, Operations &amp; Client Relations" onerror="this.style.display='none'">
                         <div>
                             <h4>Daniel Park</h4>
-                            <p class="advisor-role">Operations &amp; Client Relations</p>
-                            <p class="advisor-contact"><a href="tel:18009516456">(800) 951-6456 ext. 803</a> &nbsp;|&nbsp; <a href="mailto:daniel@pinpointins.com">daniel@pinpointins.com</a></p>
+                            <p class="team-role">Operations &amp; Client Relations</p>
+                            <p class="team-contact">
+                                <a href="tel:18009516456">(800) 951-6456 ext. 803</a> &nbsp;|&nbsp;
+                                <button type="button" class="email-copy-chip" onclick="copyEmail('daniel@pinpointins.com', this)">daniel@pinpointins.com (Copy Email)</button>
+                            </p>
                         </div>
                     </div>
-                </div>
-
-                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="quote.html" class="btn">Send Us a Question or Coverage Request</a>
-                    <a href="about.html" class="btn-secondary">Learn More About Our Team</a>
                 </div>
             </div>
         </section>
@@ -227,32 +185,52 @@
     <footer>
         <img src="images/logo-white.png" alt="Pinpoint Solution Insurance Services" class="footer-logo" onerror="this.style.display='none'">
         <p><strong>Pinpoint Solution Insurance Services LLC</strong></p>
-        <p><a href="https://maps.google.com/?q=21235+Hawthorne+Blvd+%23200,+Torrance,+CA+90503" target="_blank" rel="noopener" style="color:inherit;">21235 Hawthorne Blvd #200, Torrance, CA 90503</a> &nbsp;|&nbsp; <a href="tel:13105338877">(310) 533-8877</a> &nbsp;|&nbsp; <a href="mailto:info@pinpointins.com">info@pinpointins.com</a></p>
+        <p>
+            <a href="https://maps.google.com/?q=21235+Hawthorne+Blvd+%23200,+Torrance,+CA+90503" target="_blank" rel="noopener">21235 Hawthorne Blvd #200, Torrance, CA 90503</a> &nbsp;|&nbsp;
+            <a href="tel:13105338877">(310) 533-8877</a> &nbsp;|&nbsp;
+            <a href="tel:18009516456">(800) 951-6456</a> &nbsp;|&nbsp;
+            <button type="button" class="email-copy-chip" onclick="copyEmail('info@pinpointins.com', this)">info@pinpointins.com (Copy Email)</button>
+        </p>
         <div class="license-badge">CA Corporate License #0131557</div>
-        <p class="privacy-note"><strong>Privacy Commitment:</strong> We never sell or share your personal, household, or medical network information with third-party lead aggregators. Information submitted is used strictly by Greg Higa and Daniel Park to prepare your requested insurance comparisons.</p>
-        <p style="margin-top: 1rem; opacity: 0.8; font-size: 0.85rem;">&copy; 2026 Pinpoint Solution Insurance Services LLC. All rights reserved.</p>
+        <p class="privacy-note"><strong>Privacy Commitment:</strong> We never sell or share your personal, household, or medical network information with third-party lead aggregators.</p>
+        <p style="margin-top: 0.85rem; opacity: 0.8; font-size: 0.82rem;">&copy; 2026 Pinpoint Solution Insurance Services LLC. All rights reserved.</p>
     </footer>
 
     <script>
+        function copyEmail(email, btnEl) {
+            navigator.clipboard.writeText(email).then(function() {
+                const orig = btnEl.textContent;
+                btnEl.textContent = 'Copied: ' + email;
+                setTimeout(function() { btnEl.textContent = orig; }, 2200);
+            });
+        }
+        function toggleMobileNav(btn) {
+            const nav = document.querySelector('.nav-links');
+            const isOpen = nav.classList.toggle('open');
+            btn.setAttribute('aria-expanded', String(isOpen));
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const nav = document.querySelector('.nav-links');
+                const btn = document.querySelector('.menu-toggle');
+                if (nav && nav.classList.contains('open')) {
+                    nav.classList.remove('open');
+                    if (btn) btn.setAttribute('aria-expanded', 'false');
+                }
+            }
+        });
         function applyTheme(theme) {
             const root = document.documentElement;
             const btn = document.getElementById('themeToggle');
             const logoImg = document.querySelector('.logo-area img');
-            const heroMark = document.querySelector('.hero-mark');
-            const sectionMark = document.querySelector('.section-mark');
-            
             if (theme === 'dark') {
                 root.setAttribute('data-theme', 'dark');
-                if (btn) btn.textContent = '☀️';
+                if (btn) btn.textContent = 'Light Mode';
                 if (logoImg) logoImg.src = 'images/logo-white.png';
-                if (heroMark) heroMark.src = 'images/logo-mark-white.png';
-                if (sectionMark) sectionMark.src = 'images/logo-mark-white.png';
             } else {
                 root.removeAttribute('data-theme');
-                if (btn) btn.textContent = '🌙';
+                if (btn) btn.textContent = 'Dark Mode';
                 if (logoImg) logoImg.src = 'images/logo-color.png';
-                if (heroMark) heroMark.src = 'images/logo-mark-white.png';
-                if (sectionMark) sectionMark.src = 'images/logo-mark.png';
             }
         }
         applyTheme(localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));

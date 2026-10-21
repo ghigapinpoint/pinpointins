@@ -3,20 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Practical health insurance guides, California AB 506 compliance insights, and renewal checklists for South Bay employers and nonprofits.">
-    <title>Resources &amp; Insights | Pinpoint Solution Insurance Services</title>
-    <link rel="icon" type="image/png" href="images/logo-mark.png">
-    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Practical health insurance guides, employer funding comparisons, California AB 506 compliance insights, and renewal timelines.">
+    <title>Resources &amp; Guides | Pinpoint Solution Insurance Services LLC</title>
+    <link rel="canonical" href="https://pinpointins.com/resources.html">
+    <link rel="icon" type="image/png" href="images/logo-mark-white.png">
+    <link rel="stylesheet" href="style.css?v=2026.5">
+    <script>
+        (function() {
+            const saved = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+        })();
+    </script>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <header>
         <div class="nav-container">
             <a href="index.html" class="logo-area">
-                <img src="images/logo-color.png" alt="Pinpoint Solution Insurance Services" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <img src="images/logo-color.png" alt="Pinpoint Solution Insurance Services" onload="this.style.display='block'; this.nextElementSibling.style.display='none';" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                 <div class="logo-fallback-text" style="display:none;">PINPOINT SOLUTION<span>Insurance Services</span></div>
             </a>
-            <button class="menu-toggle" aria-label="Toggle Navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+            <button class="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false" onclick="toggleMobileNav(this)">&#9776;</button>
             <nav class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="benefits.html">Employee Benefits</a>
@@ -29,11 +37,12 @@
         </div>
     </header>
 
-    <main>
-        <section class="hero" style="max-width: 100%; margin: 0;">
-            <div class="eyebrow">Compliance &amp; Decision Guides</div>
-            <h1>Practical Insights for Local Organizations</h1>
-            <p>Straightforward guidance on health plan renewals, California compliance, and risk management for South Bay leaders.</p>
+    <main id="main-content">
+        <section class="hero">
+            <img src="images/logo-mark-white.png" alt="" class="hero-mark" onerror="this.style.display='none'">
+            <div class="eyebrow">Educational Reference Guides</div>
+            <h1>Practical Insights for Employers, Families &amp; Leaders</h1>
+            <p>Straightforward reference guides on health plan renewals, employer tax vehicles, COBRA transitions, and South Bay medical networks.</p>
         </section>
 
         <div class="trust-bar">
@@ -41,59 +50,84 @@
         </div>
 
         <section>
+            <!-- Full-Frame Medical Campus Architecture Banner (No Awkward Tree Cropping) -->
+            <div class="scenic-banner">
+                <img src="images/south-bay-medical.jpg" alt="Wide-angle view of modern Southern California medical campus exterior and full landscaping" loading="lazy" style="object-position: center 45%;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?auto=format&fit=crop&w=1400&q=80';">
+                <div class="scenic-caption">Clear Reference Guides for Navigating California Health Networks &amp; Renewals</div>
+            </div>
+
             <div class="content-block content-split">
                 <div>
-                    <h3>Top 5 Mistakes to Avoid When Choosing Your Health Plans</h3>
-                    <p>Selecting group or individual health coverage doesn't have to be overwhelming. Here are the five most common pitfalls we help South Bay employers and families avoid:</p>
-                    <ol style="margin-left: 1.5rem; margin-top: 1.25rem; color: var(--text-body);">
-                        <li style="margin-bottom: 0.85rem;"><strong>Assuming "One Size Fits All":</strong> Offering a single rigid plan when a combination of HMO, PPO, or HSA tiers could better serve diverse employee needs at a lower cost.</li>
-                        <li style="margin-bottom: 0.85rem;"><strong>Overlooking Local Doctor &amp; Hospital Networks:</strong> Failing to verify whether preferred South Bay physicians (Torrance Memorial / TMIPA, Providence Little Company of Mary, UCLA Health, Optum South Bay, or Kaiser) participate in a specific carrier's network tier.</li>
-                        <li style="margin-bottom: 0.85rem;"><strong>Auto-Renewing Without a Market Review:</strong> Accepting annual rate increases without comparing competing carriers or adjusting contribution structures.</li>
-                        <li style="margin-bottom: 0.85rem;"><strong>Missing Tax-Advantaged Vehicles:</strong> Overlooking employer tax deductions, Health Savings Accounts (HSAs), or Health Reimbursement Arrangements (HRAs).</li>
-                        <li style="margin-bottom: 0.5rem;"><strong>Going Without Ongoing Enrollment Support:</strong> Choosing a plan without a dedicated local broker who stays in touch throughout the year to resolve claims, billing, or onboarding questions.</li>
+                    <h3>5 Common Pitfalls When Evaluating Health Plans</h3>
+                    <ol style="margin-left: 1.4rem; margin-top: 1rem; color: var(--text);">
+                        <li style="margin-bottom: 0.75rem;"><strong>Assuming "One Size Fits All":</strong> Offering a single rigid plan when pairing HMO, PPO, or HSA tiers can better serve diverse needs at a lower cost.</li>
+                        <li style="margin-bottom: 0.75rem;"><strong>Overlooking Local IPA &amp; Hospital Tiers:</strong> Not checking whether Torrance Memorial (TMIPA), Providence Little Company of Mary, UCLA Health, or Optum South Bay participate in a specific carrier's sub-network.</li>
+                        <li style="margin-bottom: 0.75rem;"><strong>Auto-Renewing Without Benchmarking:</strong> Accepting annual rate increases without reviewing competing carriers or adjusting contribution structures.</li>
+                        <li style="margin-bottom: 0.75rem;"><strong>Missing Tax-Advantaged Vehicles:</strong> Overlooking Health Savings Accounts (HSAs), SHOP tax credits, or QSEHRA/ICHRA reimbursements.</li>
+                        <li style="margin-bottom: 0.4rem;"><strong>Paying Full COBRA Rates Unnecessarily:</strong> Staying on expensive corporate COBRA when an individual Covered CA or direct plan covers the exact same South Bay doctors for much less.</li>
                     </ol>
                 </div>
                 <div class="architectural-panel">
-                    <h4>Annual Review Timeline</h4>
+                    <h4>Typical Annual Renewal Calendar</h4>
                     <div class="arch-list">
                         <div class="arch-item">
                             <strong>60–90 Days Before Renewal</strong>
-                            <span>Carrier renewal rates release; we benchmark competing carriers and verify doctor network changes.</span>
+                            <span>Carrier renewal rates release; we benchmark competing carriers and check doctor network changes.</span>
                         </div>
                         <div class="arch-item">
                             <strong>30–45 Days Before Renewal</strong>
-                            <span>Review side-by-side plan comparisons and finalize employer contribution or family plan changes.</span>
+                            <span>Review side-by-side comparisons and finalize employer contributions or family plan selections.</span>
                         </div>
                         <div class="arch-item">
                             <strong>Year-Round Support</strong>
-                            <span>Qualifying life events, new hires, COBRA questions, and billing support handled within 24 hours.</span>
+                            <span>Qualifying life events, new hires, and billing questions handled within 24 hours.</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="grid-3" style="margin-top: 3rem;">
-                <div class="card">
-                    <div>
-                        <h3>Understanding AB 506 Compliance</h3>
-                        <p>A clear breakdown of California's Live Scan background check mandates, mandated reporter training, and written child-safety policies for youth-serving nonprofits and churches.</p>
-                    </div>
-                    <a href="quote.html" class="card-link">Ask About AB 506 Guidance &rarr;</a>
-                </div>
-                <div class="card">
-                    <div>
-                        <h3>Church &amp; Nonprofit Risk Checklist</h3>
-                        <p>Practical steps for ministry and nonprofit leaders to evaluate facility safety, volunteer accident protection, and special event liability before issues arise.</p>
-                    </div>
-                    <a href="quote.html" class="card-link">Request a Risk Review &rarr;</a>
-                </div>
-                <div class="card">
-                    <div>
-                        <h3>Doctor &amp; Network Verification</h3>
-                        <p>Not sure which PPO or HMO tiers include both your primary care physician and preferred South Bay hospitals? Send us your doctor list and we'll check for you.</p>
-                    </div>
-                    <a href="quote.html" class="card-link">Request a Doctor Check &rarr;</a>
-                </div>
+            <h2 style="margin-top: 3.25rem;">Employer Funding Comparison Guide</h2>
+            <p class="section-intro">A quick-reference overview of the four main ways California organizations structure employee health coverage.</p>
+
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Funding Structure</th>
+                            <th class="highlight-col">Small Group (1–100)</th>
+                            <th>Level-Funded Plans</th>
+                            <th>QSEHRA / ICHRA Stipend</th>
+                            <th>SHOP (Covered CA Small Biz)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Best Fit For</strong></td>
+                            <td class="highlight-col">Predictable rates &amp; multi-carrier choice</td>
+                            <td>Healthy groups (10+ lives) seeking surplus credits</td>
+                            <td>Small teams or churches wanting a fixed monthly allowance</td>
+                            <td>Eligible groups under 25 FTEs seeking federal tax credits</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Underwriting</strong></td>
+                            <td class="highlight-col">Guaranteed issue; age-rated</td>
+                            <td>Medical underwriting</td>
+                            <td>Employees select individual plans</td>
+                            <td>Guaranteed issue; age-rated</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tax Treatment</strong></td>
+                            <td class="highlight-col">100% tax-deductible + Section 125</td>
+                            <td>100% tax-deductible + reserve credit potential</td>
+                            <td>Tax-free reimbursement up to IRS limits</td>
+                            <td>Up to 50% small business tax credit (35% for nonprofits)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="quote.html" class="btn">Have a Question About Any of These Topics? Ask Us</a>
             </div>
         </section>
     </main>
@@ -101,13 +135,30 @@
     <footer>
         <img src="images/logo-white.png" alt="Pinpoint Solution Insurance Services" class="footer-logo" onerror="this.style.display='none'">
         <p><strong>Pinpoint Solution Insurance Services LLC</strong></p>
-        <p><a href="https://maps.google.com/?q=21235+Hawthorne+Blvd+%23200,+Torrance,+CA+90503" target="_blank" rel="noopener" style="color:inherit;">21235 Hawthorne Blvd #200, Torrance, CA 90503</a> &nbsp;|&nbsp; <a href="tel:13105338877">(310) 533-8877</a> &nbsp;|&nbsp; <a href="mailto:info@pinpointins.com">info@pinpointins.com</a></p>
+        <p>
+            <a href="https://maps.google.com/?q=21235+Hawthorne+Blvd+%23200,+Torrance,+CA+90503" target="_blank" rel="noopener">21235 Hawthorne Blvd #200, Torrance, CA 90503</a> &nbsp;|&nbsp;
+            <a href="tel:13105338877">(310) 533-8877</a> &nbsp;|&nbsp;
+            <a href="tel:18009516456">(800) 951-6456</a> &nbsp;|&nbsp;
+            <button type="button" class="email-copy-chip" onclick="copyEmail('info@pinpointins.com', this)">📋 info@pinpointins.com (Copy)</button>
+        </p>
         <div class="license-badge">CA Corporate License #0131557</div>
         <p class="privacy-note"><strong>Privacy Commitment:</strong> We never sell or share your personal, household, or medical network information with third-party lead aggregators.</p>
-        <p style="margin-top: 1rem; opacity: 0.8; font-size: 0.85rem;">&copy; 2026 Pinpoint Solution Insurance Services LLC. All rights reserved.</p>
+        <p style="margin-top: 0.85rem; opacity: 0.8; font-size: 0.82rem;">&copy; 2026 Pinpoint Solution Insurance Services LLC. All rights reserved.</p>
     </footer>
 
     <script>
+        function copyEmail(email, btnEl) {
+            navigator.clipboard.writeText(email).then(function() {
+                const orig = btnEl.textContent;
+                btnEl.textContent = '✓ Copied: ' + email;
+                setTimeout(function() { btnEl.textContent = orig; }, 2200);
+            });
+        }
+        function toggleMobileNav(btn) {
+            const nav = document.querySelector('.nav-links');
+            const isOpen = nav.classList.toggle('open');
+            btn.setAttribute('aria-expanded', String(isOpen));
+        }
         function applyTheme(theme) {
             const root = document.documentElement;
             const btn = document.getElementById('themeToggle');
