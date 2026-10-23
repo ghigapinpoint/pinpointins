@@ -1,26 +1,30 @@
 :root {
     --primary: #374F62;        /* Official Style Guide Slate */
-    --primary-dark: #283a49;   /* Deep Slate for subtle hover states */
-    --secondary: #9ACC59;      /* Official Style Guide Green */
-    --secondary-dark: #4b784f; /* Accessible Dark Green for links/accents */
-    --accent-yellow: #FDBE40;  /* Official Style Guide Warm Gold for Eyebrows & Accents */
+    --primary-dark: #283a49;   /* Deep Slate for hover states */
+    --secondary-dark: #4b784f; /* Deep Forest Sage (Option B subtle accent) */
+    --sage-tint: rgba(75, 120, 79, 0.10); /* Soft Muted Forest Sage tint for category tags */
+    --sage-border: rgba(75, 120, 79, 0.26);
+    --accent-yellow: #FDBE40;  /* Warm Gold for Eyebrows & Subtle Accents */
     --dark: #0f172a;           /* Rich Slate-Black */
     --text: #334155;           /* High-contrast Slate for readable body copy */
     --light: #f8fafc;          /* Clean Off-White Background */
+    --stone: #f1f5f9;          /* Soft Warm Stone for table highlights */
     --border: #cbd5e1;         /* Card/input borders */
     --border-gray: #e2e8f0;    /* Subtle section dividers */
     --card-bg: #ffffff;
 }
 
 [data-theme="dark"] {
-    --primary: #789bb8;
-    --primary-dark: #93b4cf;
-    --secondary: #9ACC59;
-    --secondary-dark: #b4e16d;
+    --primary: #8ab0ce;
+    --primary-dark: #a3c4de;
+    --secondary-dark: #9fd47c;
+    --sage-tint: rgba(159, 212, 124, 0.12);
+    --sage-border: rgba(159, 212, 124, 0.28);
     --accent-yellow: #FDBE40;
     --dark: #f1f5f9;
     --text: #cbd5e1;
     --light: #0b1118;
+    --stone: #1e293b;
     --border: #334155;
     --border-gray: #1f2937;
     --card-bg: #111827;
@@ -45,6 +49,7 @@ body {
     line-height: 1.7;
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
 }
 
 .nowrap { white-space: nowrap; }
@@ -69,7 +74,7 @@ body {
     outline: 2px solid var(--accent-yellow);
 }
 
-/* Header & Navigation */
+/* Header & Navigation (Guaranteed Spacing Across All Browsers & Zoom Levels) */
 header {
     background: var(--card-bg);
     border-bottom: 1px solid var(--border-gray);
@@ -81,11 +86,12 @@ header {
 }
 
 .nav-container {
-    max-width: 1160px;
+    max-width: 1180px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 2.25rem;
     padding: 0.85rem 2rem;
 }
 
@@ -94,17 +100,19 @@ header {
     align-items: center;
     gap: 0.75rem;
     text-decoration: none;
+    flex-shrink: 0;
+    margin-right: 0.5rem;
 }
-.logo-area img { height: 44px; width: auto; display: block; }
+.logo-area img { height: 42px; width: auto; max-width: 220px; object-fit: contain; display: block; }
 .logo-fallback-text { font-weight: 800; font-size: 1.05rem; color: var(--dark); letter-spacing: 0.5px; line-height: 1.15; }
 .logo-fallback-text span { font-size: 0.75rem; font-weight: 600; color: var(--primary); display: block; }
 
-.nav-links { display: flex; align-items: center; gap: 1.35rem; }
+.nav-links { display: flex; align-items: center; gap: 1.35rem; flex-shrink: 0; }
 .nav-links a {
     text-decoration: none;
     color: var(--primary);
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.94rem;
     white-space: nowrap;
     padding-bottom: 4px;
     border-bottom: 2px solid transparent;
@@ -112,7 +120,7 @@ header {
 }
 .nav-links a:hover, .nav-links a.active {
     color: var(--secondary-dark);
-    border-bottom-color: var(--secondary);
+    border-bottom-color: var(--secondary-dark);
 }
 
 .nav-links a.btn-nav {
@@ -137,18 +145,18 @@ header {
     color: var(--primary);
     padding: 0.38rem 0.75rem;
     cursor: pointer;
-    font-size: 0.85rem;
+    font-size: 0.84rem;
     font-weight: 600;
     white-space: nowrap;
 }
 .dark-mode-toggle:hover, .menu-toggle:hover {
-    border-color: var(--secondary);
-    background: rgba(154, 204, 89, 0.1);
+    border-color: var(--secondary-dark);
+    background: var(--sage-tint);
 }
 .menu-toggle { display: none; font-size: 0.9rem; }
 
-@media (max-width: 960px) {
-    .nav-container { padding: 0.75rem 1.25rem; }
+@media (max-width: 1080px) {
+    .nav-container { padding: 0.75rem 1.25rem; gap: 1rem; }
     .menu-toggle { display: block; }
     .nav-links {
         display: none;
@@ -167,7 +175,7 @@ header {
     .nav-links.open { display: flex; }
 }
 
-/* Restrained, Non-Glaring Buttons (Used on Contact Form) */
+/* Restrained, Non-Glaring Buttons */
 .btn {
     display: inline-block;
     background: var(--primary);
@@ -179,7 +187,6 @@ header {
     font-size: 0.95rem;
     border: 1px solid var(--primary);
     cursor: pointer;
-    white-space: nowrap;
     transition: background 0.2s, border-color 0.2s, transform 0.15s;
 }
 .btn:hover { background: var(--secondary-dark); border-color: var(--secondary-dark); color: #ffffff; transform: translateY(-1px); }
@@ -196,15 +203,33 @@ header {
     font-size: 0.94rem;
     border: 1px solid var(--border);
     cursor: pointer;
-    white-space: nowrap;
     transition: border-color 0.2s, background 0.2s;
 }
-.btn-secondary:hover { border-color: var(--primary); background: var(--light); }
+.btn-secondary:hover { border-color: var(--secondary-dark); background: var(--sage-tint); }
 
-/* Hero with Warm Gold Eyebrow Accent */
+/* Clean Printable Worksheet Link Button (Used on Contact & Resources Pages) */
+.worksheet-link {
+    display: inline-block;
+    background: var(--sage-tint);
+    border: 1px solid var(--sage-border);
+    color: var(--secondary-dark);
+    padding: 0.32rem 0.75rem;
+    border-radius: 0.35rem;
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.worksheet-link:hover {
+    background: var(--secondary-dark);
+    border-color: var(--secondary-dark);
+    color: #ffffff;
+}
+
+/* Hero with Warm Gold Eyebrow & Subtle Deep Forest Sage Gradient Touch */
 .hero {
     background-color: #374F62;
-    background-image: linear-gradient(125deg, rgba(35, 52, 66, 0.92) 0%, rgba(55, 79, 98, 0.88) 58%, rgba(75, 120, 79, 0.86) 100%),
+    background-image: linear-gradient(125deg, rgba(35, 52, 66, 0.93) 0%, rgba(55, 79, 98, 0.89) 58%, rgba(75, 120, 79, 0.84) 100%),
                       url('images/hero-south-bay.jpg'),
                       url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80');
     background-size: cover;
@@ -274,38 +299,38 @@ section p.section-intro { text-align: center; max-width: 720px; margin: 0 auto 2
     display: block;
 }
 
-/* Grids & Cards */
-.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.85rem; }
-.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.85rem; }
+/* Grids & Cards (Option B: Slate Cards + Deep Forest Sage Category Tags) */
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.85rem; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.85rem; }
 
 .card {
     background: var(--card-bg);
     padding: 2rem;
     border-radius: 10px;
     border: 1px solid var(--border);
-    border-top: 4px solid var(--primary);
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+    border-top: 3px solid var(--primary);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.035);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 .pillar-tag {
-    white-space: nowrap;
     display: inline-block;
-    font-size: 0.76rem;
+    font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.7px;
+    letter-spacing: 0.65px;
     color: var(--secondary-dark);
-    background: rgba(154, 204, 89, 0.15);
-    padding: 0.22rem 0.6rem;
+    background: var(--sage-tint);
+    border: 1px solid var(--sage-border);
+    padding: 0.22rem 0.65rem;
     border-radius: 0.25rem;
     margin-bottom: 0.75rem;
+    line-height: 1.35;
 }
 .card h3 { color: var(--primary); margin-bottom: 0.6rem; font-size: 1.22rem; }
 .card p { color: var(--text); font-size: 0.95rem; }
 
-/* Single-Line Non-Wrapping Card Links (Prevents Hanging Arrows) */
 .card-link {
     display: inline-block;
     margin-top: 1.15rem;
@@ -313,28 +338,21 @@ section p.section-intro { text-align: center; max-width: 720px; margin: 0 auto 2
     font-weight: 700;
     text-decoration: none;
     font-size: 0.92rem;
-    white-space: nowrap;
 }
 .card-link:hover { color: var(--secondary-dark); text-decoration: underline; }
 
-/* Copyable Email Chip */
-.email-copy-chip {
-    white-space: nowrap;
-    display: inline-flex;
-    align-items: center;
-    background: rgba(154, 204, 89, 0.12);
-    border: 1px solid var(--border);
+/* Plain-Text Email Styling */
+.email-text {
     color: var(--primary);
-    padding: 0.22rem 0.65rem;
-    border-radius: 0.35rem;
-    font-size: 0.86rem;
     font-weight: 600;
-    cursor: pointer;
+    word-break: break-word;
 }
-.email-copy-chip:hover { background: rgba(154, 204, 89, 0.24); border-color: var(--secondary); }
-footer .email-copy-chip { background: rgba(255, 255, 255, 0.14); border-color: rgba(255, 255, 255, 0.3); color: #ffffff; }
+footer .email-text {
+    color: #ffffff;
+    font-weight: 600;
+}
 
-/* Educational Comparison Table */
+/* Educational Comparison Table (Architectural Slate & Warm Stone — Zero Green Borders/Tint) */
 .comparison-table-wrapper {
     overflow-x: auto;
     border-radius: 10px;
@@ -346,7 +364,7 @@ footer .email-copy-chip { background: rgba(255, 255, 255, 0.14); border-color: r
 .comparison-table th, .comparison-table td { padding: 1rem 1.2rem; border-bottom: 1px solid var(--border-gray); vertical-align: top; }
 .comparison-table thead th { background: var(--light); color: var(--primary); font-weight: 800; border-bottom: 2px solid var(--border); }
 .comparison-table th.highlight-col { background: #374F62; color: #ffffff; border-top: 3px solid var(--accent-yellow); }
-.comparison-table td.highlight-col { background: rgba(154, 204, 89, 0.08); font-weight: 600; color: var(--dark); }
+.comparison-table td.highlight-col { background: var(--stone); font-weight: 600; color: var(--dark); }
 
 /* Content Blocks & Architectural Panels */
 .content-block {
@@ -355,7 +373,7 @@ footer .email-copy-chip { background: rgba(255, 255, 255, 0.14); border-color: r
     border-radius: 10px;
     border: 1px solid var(--border);
     margin-bottom: 2rem;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.035);
 }
 .content-block h3 { color: var(--primary); margin-bottom: 0.85rem; font-size: 1.45rem; }
 .content-block p { margin-bottom: 0.95rem; color: var(--text); }
@@ -365,7 +383,7 @@ footer .email-copy-chip { background: rgba(255, 255, 255, 0.14); border-color: r
 .architectural-panel {
     background: var(--light);
     border: 1px solid var(--border);
-    border-top: 4px solid var(--secondary);
+    border-top: 3px solid var(--primary);
     border-radius: 10px;
     padding: 1.6rem;
 }
@@ -375,7 +393,7 @@ footer .email-copy-chip { background: rgba(255, 255, 255, 0.14); border-color: r
 .arch-item strong { display: block; color: var(--primary); font-size: 0.93rem; margin-bottom: 0.15rem; }
 .arch-item span { display: block; font-size: 0.85rem; color: var(--text); line-height: 1.45; }
 
-/* Style 3 Personal Sign-Off Strip (Warm Gold Left Accent, Button-Free Inline Links) */
+/* Style 3 Personal Sign-Off Strip (Wraps Cleanly on Mobile Screens) */
 .closing-note {
     margin-top: 2.75rem;
     background: var(--card-bg);
@@ -394,12 +412,12 @@ footer .email-copy-chip { background: rgba(255, 255, 255, 0.14); border-color: r
     font-weight: 700;
     text-decoration: underline;
     text-underline-offset: 3px;
-    white-space: nowrap;
 }
 .closing-note a:hover { color: var(--secondary-dark); }
 
+/* Hospital Network Badges (Subtle Deep Forest Sage Left Accent) */
 .network-badges { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.15rem; }
-.network-badge { background: var(--card-bg); color: var(--primary); border: 1px solid var(--border); border-left: 4px solid var(--secondary); padding: 0.4rem 0.85rem; border-radius: 0.375rem; font-weight: 700; font-size: 0.88rem; white-space: nowrap; }
+.network-badge { background: var(--light); color: var(--primary); border: 1px solid var(--border); border-left: 3px solid var(--secondary-dark); padding: 0.4rem 0.85rem; border-radius: 0.375rem; font-weight: 700; font-size: 0.86rem; }
 
 /* Carrier Grid */
 .carrier-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 1.25rem; align-items: center; margin-top: 1.75rem; }
@@ -409,16 +427,56 @@ footer .email-copy-chip { background: rgba(255, 255, 255, 0.14); border-color: r
 .carrier-card:hover img { filter: grayscale(0%); opacity: 1; }
 .carrier-fallback { font-weight: 700; color: #374F62; font-size: 0.92rem; }
 
-/* Team Bios & Mini Cards */
-.bio-container { display: flex; align-items: flex-start; gap: 2rem; }
-.bio-image img { width: 145px; height: 145px; object-fit: cover; border-radius: 50%; border: 4px solid var(--primary); flex-shrink: 0; }
-.team-mini-card { display: flex; align-items: center; gap: 1.15rem; background: var(--light); border: 1px solid var(--border); padding: 1.15rem; border-radius: 10px; }
-.team-mini-card img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary); flex-shrink: 0; }
+/* Team Bios & Mini Cards (Fixed Desktop Flex Bug + Generous 175px Headshots) */
+.bio-container {
+    display: flex;
+    align-items: center;
+    gap: 2.25rem;
+}
+.bio-image {
+    flex: 0 0 auto;
+}
+.bio-image img {
+    width: 175px;
+    height: 175px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3.5px solid var(--primary);
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.10);
+    display: block;
+}
+.bio-container > div:last-child {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.team-mini-card {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    background: var(--light);
+    border: 1px solid var(--border);
+    padding: 1.25rem;
+    border-radius: 10px;
+}
+.team-mini-card > div {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+.team-mini-card img {
+    width: 78px;
+    height: 78px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2.5px solid var(--primary);
+    flex-shrink: 0;
+}
 .team-mini-card h4 { color: var(--primary); font-size: 1.1rem; margin-bottom: 0.1rem; }
-.team-role { font-size: 0.84rem; color: var(--text); margin-bottom: 0.3rem !important; }
-.team-contact { font-size: 0.88rem; font-weight: 600; margin-bottom: 0 !important; display: flex; flex-wrap: wrap; align-items: center; gap: 0.45rem; }
-.team-contact a { color: var(--primary); text-decoration: none; white-space: nowrap; }
-.team-contact a:hover { text-decoration: underline; }
+.team-role { font-size: 0.84rem; color: var(--text); margin-bottom: 0.35rem !important; }
+.team-contact { font-size: 0.88rem; font-weight: 600; margin-bottom: 0 !important; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.6rem; color: var(--primary); line-height: 1.5; }
+.team-contact a { color: var(--primary); text-decoration: none; }
+.team-contact a:hover { color: var(--secondary-dark); text-decoration: underline; }
+.contact-sep { color: var(--border); }
 
 /* Contact & Census Form */
 .mode-tabs { display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
@@ -427,11 +485,11 @@ footer .email-copy-chip { background: rgba(255, 255, 255, 0.14); border-color: r
     min-width: 220px;
     padding: 0.85rem 1rem;
     border-radius: 8px;
-    border: 2px solid var(--border);
+    border: 1.5px solid var(--border);
     background: var(--light);
     color: var(--text);
     font-weight: 700;
-    font-size: 0.93rem;
+    font-size: 0.92rem;
     cursor: pointer;
     text-align: center;
 }
@@ -450,46 +508,50 @@ footer .email-copy-chip { background: rgba(255, 255, 255, 0.14); border-color: r
     color: var(--text);
 }
 .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-    outline: 2px solid var(--secondary);
+    outline: 2px solid var(--secondary-dark);
     border-color: var(--primary);
 }
 
 .census-panel {
     background: var(--light);
     border: 1px solid var(--border);
-    border-left: 4px solid var(--secondary);
+    border-left: 4px solid var(--primary);
     border-radius: 10px;
     padding: 1.25rem;
     margin-top: 1.25rem;
 }
 .census-row { display: grid; grid-template-columns: 1.2fr 1.2fr 1fr auto; gap: 0.8rem; align-items: end; margin-bottom: 0.8rem; padding-bottom: 0.8rem; border-bottom: 1px dashed var(--border); }
 .census-row:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
-.remove-member-btn { background: none; border: 1px solid var(--border); color: var(--text); padding: 0.6rem 0.8rem; border-radius: 0.4rem; font-size: 0.82rem; font-weight: 600; cursor: pointer; white-space: nowrap; }
+.remove-member-btn { background: none; border: 1px solid var(--border); color: var(--text); padding: 0.6rem 0.8rem; border-radius: 0.4rem; font-size: 0.82rem; font-weight: 600; cursor: pointer; }
 .remove-member-btn:hover { border-color: #dc2626; color: #dc2626; }
-.add-member-btn { margin-top: 0.8rem; background: var(--card-bg); border: 1px solid var(--primary); color: var(--primary); padding: 0.5rem 1rem; border-radius: 0.4rem; font-size: 0.86rem; font-weight: 700; cursor: pointer; white-space: nowrap; }
+.add-member-btn { margin-top: 0.8rem; background: var(--card-bg); border: 1px solid var(--primary); color: var(--primary); padding: 0.5rem 1rem; border-radius: 0.4rem; font-size: 0.86rem; font-weight: 700; cursor: pointer; }
 .add-member-btn:hover { background: var(--primary); color: #ffffff; }
 
 .pills-container { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 0.35rem; }
-.pill { background: var(--light); border: 1px solid var(--border); color: var(--text); padding: 0.48rem 0.9rem; border-radius: 2rem; font-size: 0.85rem; font-weight: 600; cursor: pointer; white-space: nowrap; }
-.pill:hover { border-color: var(--primary); }
+.pill { background: var(--light); border: 1px solid var(--border); color: var(--text); padding: 0.48rem 0.9rem; border-radius: 2rem; font-size: 0.85rem; font-weight: 600; cursor: pointer; }
+.pill:hover { border-color: var(--secondary-dark); }
 .pill.selected, .pill[aria-pressed="true"] { background: var(--primary); color: #ffffff; border-color: var(--primary); }
 
 @media (max-width: 860px) { .content-split { grid-template-columns: 1fr; } }
 @media (max-width: 768px) {
-    section { padding: 3rem 1.25rem; }
-    .hero h1 { font-size: 1.8rem; }
-    .scenic-banner { height: 230px; }
-    .bio-container, .team-mini-card { flex-direction: column; align-items: center; text-align: center; }
-    .team-contact { justify-content: center; }
-    .content-block, .card { padding: 1.5rem 1.25rem; }
-    .card-photo { width: calc(100% + 2.5rem); margin: -1.5rem -1.25rem 1.15rem -1.25rem; height: 165px; }
+    section { padding: 2.75rem 1.15rem; }
+    .hero { padding: 7.75rem 1.25rem 3.25rem 1.25rem; }
+    .hero h1 { font-size: 1.75rem; }
+    .scenic-banner { height: 220px; }
+    .bio-container, .team-mini-card { flex-direction: column; align-items: center; text-align: center; gap: 1.25rem; }
+    .bio-image img { width: 148px; height: 148px; }
+    .team-contact { flex-direction: column; align-items: center; gap: 0.25rem; }
+    .contact-sep { display: none; }
+    .content-block, .card { padding: 1.4rem 1.15rem; }
+    .closing-note { padding: 1.15rem 1.25rem; font-size: 0.92rem; }
+    .card-photo { width: calc(100% + 2.3rem); margin: -1.4rem -1.15rem 1.15rem -1.15rem; height: 165px; }
     .census-row { grid-template-columns: 1fr; }
 }
 
 footer { background: #374F62; color: #f1f5f9; text-align: center; padding: 3rem 1.5rem; font-size: 0.92rem; }
 .footer-logo { height: 40px; width: auto; margin-bottom: 1rem; }
 footer p { margin-bottom: 0.45rem; }
-footer a { color: #ffffff; text-decoration: none; white-space: nowrap; }
+footer a { color: #ffffff; text-decoration: none; }
 footer a:hover { text-decoration: underline; }
 .license-badge { display: inline-block; margin-top: 0.45rem; font-weight: 700; background: rgba(255, 255, 255, 0.14); padding: 0.3rem 0.9rem; border-radius: 0.3rem; }
 .privacy-note { max-width: 700px; margin: 0.9rem auto 0 auto; font-size: 0.78rem; opacity: 0.86; }

@@ -7,7 +7,7 @@
     <title>Nonprofits &amp; Churches | Pinpoint Solution Insurance Services LLC</title>
     <link rel="canonical" href="https://pinpointins.com/nonprofits-churches.html">
     <link rel="icon" type="image/png" href="images/logo-mark-white.png">
-    <link rel="stylesheet" href="style.css?v=2026.12">
+    <link rel="stylesheet" href="style.css?v=2026.15">
     <script>
         (function() {
             const saved = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -46,7 +46,7 @@
         </section>
 
         <div class="trust-bar">
-            <span class="nowrap">CA Corporate License #0I31557</span> &nbsp;|&nbsp; <span class="nowrap">Dedicated Guidance for Ministries &amp; Nonprofits</span>
+            CA Corporate License #0I31557 &nbsp;|&nbsp; Dedicated Guidance for Ministries &amp; Nonprofits
         </div>
 
         <section>
@@ -113,7 +113,7 @@
             </div>
 
             <div class="closing-note">
-                <strong>Have a question for your board or ministry team?</strong> Call our Torrance office at <a href="tel:13105338877">(310) 533-8877</a>, <a href="quote.html">send us a note</a>, or <a href="group-proposal-request.html" target="_blank" rel="noopener">open our 1-page printable group &amp; ministry worksheet</a> to review at your own pace.
+                <strong>Have a question for your board or ministry team?</strong> Call our Torrance office at <a href="tel:13105338877">(310) 533-8877</a>, <a href="quote.html">send us a note</a>, or <a href="group-proposal-request.html" target="_blank" rel="noopener">open our printable group &amp; ministry worksheet</a> to review at your own pace.
             </div>
         </section>
     </main>
@@ -125,7 +125,7 @@
             <a href="https://maps.google.com/?q=21235+Hawthorne+Blvd+%23200,+Torrance,+CA+90503" target="_blank" rel="noopener">21235 Hawthorne Blvd #200, Torrance, CA 90503</a> &nbsp;|&nbsp;
             <a href="tel:13105338877">(310) 533-8877</a> &nbsp;|&nbsp;
             <a href="tel:18009516456">(800) 951-6456</a> &nbsp;|&nbsp;
-            <button type="button" class="email-copy-chip" onclick="copyEmail('info@pinpointins.com', this)">info@pinpointins.com (Copy Email)</button>
+            <span class="email-text">info@pinpointins.com</span>
         </p>
         <div class="license-badge">CA Corporate License #0I31557</div>
         <p class="privacy-note"><strong>Privacy Commitment:</strong> We never sell or share your personal, household, or organization information with third-party lead aggregators.</p>
@@ -133,13 +133,6 @@
     </footer>
 
     <script>
-        function copyEmail(email, btnEl) {
-            navigator.clipboard.writeText(email).then(function() {
-                const orig = btnEl.textContent;
-                btnEl.textContent = 'Copied: ' + email;
-                setTimeout(function() { btnEl.textContent = orig; }, 2200);
-            });
-        }
         function toggleMobileNav(btn) {
             const nav = document.querySelector('.nav-links');
             const isOpen = nav.classList.toggle('open');

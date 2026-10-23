@@ -7,7 +7,7 @@
     <title>About Us | Pinpoint Solution Insurance Services LLC</title>
     <link rel="canonical" href="https://pinpointins.com/about.html">
     <link rel="icon" type="image/png" href="images/logo-mark-white.png">
-    <link rel="stylesheet" href="style.css?v=2026.12">
+    <link rel="stylesheet" href="style.css?v=2026.15">
     <script>
         (function() {
             const saved = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -46,7 +46,7 @@
         </section>
 
         <div class="trust-bar">
-            <span class="nowrap">CA Corporate License #0I31557</span> &nbsp;|&nbsp; <span class="nowrap">21235 Hawthorne Blvd #200, Torrance, CA 90503</span>
+            CA Corporate License #0I31557 &nbsp;|&nbsp; Independent Health &amp; Employee Benefits Advisory
         </div>
 
         <section>
@@ -88,17 +88,18 @@
                         <h3>Greg Higa</h3>
                         <p>Greg started his insurance career in 2002 as a customer service representative, where he learned firsthand how much families and employers depend on a patient, reliable advocate when navigating coverage questions and claims. After several successful years in client service, he made the transition to Account Executive, working closely with businesses to design and manage their employee benefit programs.</p>
                         <p>In 2010, Greg was offered the opportunity to expand his leadership and joined the ownership team of Level One Insurance Services. When Level One was purchased in 2013, Greg founded Pinpoint Solution Insurance Services LLC (PSIS) with a clear purpose: to lead a practice focused entirely on serving clients faithfully and building long-term relationships of deep trust.</p>
-                        <p class="team-contact" style="margin-top: 0.75rem; color: var(--primary);">
-                            <span class="nowrap">Local Office: <a href="tel:13105338877">(310) 533-8877</a></span>
-                            <span>|</span>
-                            <span class="nowrap">Toll-Free: <a href="tel:18009516456">(800) 951-6456 ext. 801</a></span>
-                            <button type="button" class="email-copy-chip" onclick="copyEmail('ghiga@pinpointins.com', this)">ghiga@pinpointins.com (Copy Email)</button>
+                        <p class="team-contact" style="margin-top: 0.75rem;">
+                            <span>Local Office: <a href="tel:13105338877">(310) 533-8877</a></span>
+                            <span class="contact-sep">|</span>
+                            <span>Toll-Free: <a href="tel:18009516456">(800) 951-6456 ext. 801</a></span>
+                            <span class="contact-sep">|</span>
+                            <span>Email: <span class="email-text">ghiga@pinpointins.com</span></span>
                         </p>
                     </div>
                 </div>
             </div>
 
-            <div class="content-block">
+            <div class="content-block" style="margin-bottom: 0;">
                 <div class="bio-container">
                     <div class="bio-image">
                         <img src="images/daniel-park.jpg" alt="Daniel Park, Operations &amp; Client Relations" onerror="this.style.display='none'">
@@ -108,16 +109,13 @@
                         <h3>Daniel Park</h3>
                         <p>Daniel oversees client relations, proposal worksheet coordination, physician directory checks, and day-to-day administrative support. With a background in education, public administration, and community leadership in Torrance, Daniel ensures that every client question is met with patience, accuracy, and prompt follow-through.</p>
                         <p>Whether you need help organizing a group or ministry census, checking South Bay hospital participation, or coordinating open enrollment paperwork for your staff, Daniel makes the process smooth and stress-free.</p>
-                        <p class="team-contact" style="margin-top: 0.75rem; color: var(--primary);">
-                            <span class="nowrap">Direct Line: <a href="tel:18009516456">(800) 951-6456 ext. 803</a></span>
-                            <button type="button" class="email-copy-chip" onclick="copyEmail('daniel@pinpointins.com', this)">daniel@pinpointins.com (Copy Email)</button>
+                        <p class="team-contact" style="margin-top: 0.75rem;">
+                            <span>Direct Line: <a href="tel:18009516456">(800) 951-6456 ext. 803</a></span>
+                            <span class="contact-sep">|</span>
+                            <span>Email: <span class="email-text">daniel@pinpointins.com</span></span>
                         </p>
                     </div>
                 </div>
-            </div>
-
-            <div class="closing-note" style="text-align: center;">
-                <strong>Visit or Reach Out to Our Torrance Office:</strong> We are located at <a href="https://maps.google.com/?q=21235+Hawthorne+Blvd+%23200,+Torrance,+CA+90503" target="_blank" rel="noopener">21235 Hawthorne Blvd #200, Torrance, CA 90503</a>. Call us anytime at <a href="tel:13105338877">(310) 533-8877</a>, or <a href="quote.html">send us a note or open a printable proposal worksheet</a>.
             </div>
         </section>
     </main>
@@ -129,7 +127,7 @@
             <a href="https://maps.google.com/?q=21235+Hawthorne+Blvd+%23200,+Torrance,+CA+90503" target="_blank" rel="noopener">21235 Hawthorne Blvd #200, Torrance, CA 90503</a> &nbsp;|&nbsp;
             <a href="tel:13105338877">(310) 533-8877</a> &nbsp;|&nbsp;
             <a href="tel:18009516456">(800) 951-6456</a> &nbsp;|&nbsp;
-            <button type="button" class="email-copy-chip" onclick="copyEmail('info@pinpointins.com', this)">info@pinpointins.com (Copy Email)</button>
+            <span class="email-text">info@pinpointins.com</span>
         </p>
         <div class="license-badge">CA Corporate License #0I31557</div>
         <p class="privacy-note"><strong>Privacy Commitment:</strong> We never sell or share your personal, household, or medical network information with third-party lead aggregators.</p>
@@ -137,13 +135,6 @@
     </footer>
 
     <script>
-        function copyEmail(email, btnEl) {
-            navigator.clipboard.writeText(email).then(function() {
-                const orig = btnEl.textContent;
-                btnEl.textContent = 'Copied: ' + email;
-                setTimeout(function() { btnEl.textContent = orig; }, 2200);
-            });
-        }
         function toggleMobileNav(btn) {
             const nav = document.querySelector('.nav-links');
             const isOpen = nav.classList.toggle('open');

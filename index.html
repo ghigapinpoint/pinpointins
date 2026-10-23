@@ -7,7 +7,7 @@
     <title>Pinpoint Solution Insurance Services LLC | Torrance &amp; South Bay, CA</title>
     <link rel="canonical" href="https://pinpointins.com/">
     <link rel="icon" type="image/png" href="images/logo-mark-white.png">
-    <link rel="stylesheet" href="style.css?v=2026.12">
+    <link rel="stylesheet" href="style.css?v=2026.15">
     <script>
         (function() {
             const saved = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -65,11 +65,11 @@
         </section>
 
         <div class="trust-bar">
-            <span class="nowrap">CA Corporate License #0I31557</span> &nbsp;|&nbsp; <span class="nowrap">21235 Hawthorne Blvd #200, Torrance, CA 90503</span> &nbsp;|&nbsp; <span class="nowrap">(310) 533-8877</span>
+            CA Corporate License #0I31557 &nbsp;|&nbsp; 21235 Hawthorne Blvd #200, Torrance, CA 90503 &nbsp;|&nbsp; (310) 533-8877
         </div>
 
         <section>
-            <div class="content-block content-split" style="margin-bottom: 3.25rem; border-top: 4px solid var(--secondary);">
+            <div class="content-block content-split" style="margin-bottom: 3.25rem;">
                 <div>
                     <span class="pillar-tag">An Advisory Practice Built on Trust</span>
                     <h3>Why We Take the Time to Know Our Clients</h3>
@@ -109,7 +109,7 @@
                         <h3>Employers &amp; Small Businesses</h3>
                         <p>Great employees are hard to find. We help you attract and retain the right team with sustainable group medical, dental, vision, life, Level-Funded plans, and HRAs/QSEHRAs.</p>
                     </div>
-                    <a href="benefits.html" class="card-link">Explore Group Benefits &rarr;</a>
+                    <a href="benefits.html" class="card-link">Explore Group Benefits&nbsp;&rarr;</a>
                 </div>
                 <div class="card">
                     <div>
@@ -118,7 +118,7 @@
                         <h3>Individuals &amp; Families</h3>
                         <p>Patient, objective comparisons for families, self-employed professionals, and individuals transitioning off corporate coverage or weighing expensive COBRA renewals.</p>
                     </div>
-                    <a href="quote.html" class="card-link">Start a Conversation &rarr;</a>
+                    <a href="quote.html" class="card-link">Start a Conversation&nbsp;&rarr;</a>
                 </div>
                 <div class="card">
                     <div>
@@ -127,7 +127,7 @@
                         <h3>Nonprofits &amp; Churches</h3>
                         <p>Faithful stewardship for local churches, ministries, and nonprofits—caring well for pastors, staff, and educators while respecting ministry and organizational budgets.</p>
                     </div>
-                    <a href="nonprofits-churches.html" class="card-link">Explore Nonprofit Guidance &rarr;</a>
+                    <a href="nonprofits-churches.html" class="card-link">Explore Nonprofit Guidance&nbsp;&rarr;</a>
                 </div>
             </div>
         </section>
@@ -153,7 +153,7 @@
         </section>
 
         <section>
-            <div class="content-block" style="margin-bottom: 0; border-top: 4px solid var(--secondary);">
+            <div class="content-block" style="margin-bottom: 0;">
                 <h3 style="text-align: center; margin-bottom: 0.4rem;">How to Get Started With Our Torrance Office</h3>
                 <p style="text-align: center; max-width: 660px; margin: 0 auto 1.75rem auto;">Reach out by phone or email first so we can listen to what you need, or visit our <a href="quote.html" style="color: var(--primary); font-weight: 700;">Contact page</a> to open a printable proposal request form at your convenience.</p>
                 
@@ -165,9 +165,10 @@
                             <p class="team-role">Principal Broker • CA Corporate License #0I31557</p>
                             <p class="team-contact">
                                 <a href="tel:13105338877">(310) 533-8877</a>
-                                <span>|</span>
+                                <span class="contact-sep">|</span>
                                 <a href="tel:18009516456">(800) 951-6456 ext. 801</a>
-                                <button type="button" class="email-copy-chip" onclick="copyEmail('ghiga@pinpointins.com', this)">ghiga@pinpointins.com (Copy Email)</button>
+                                <span class="contact-sep">|</span>
+                                <span class="email-text">ghiga@pinpointins.com</span>
                             </p>
                         </div>
                     </div>
@@ -178,7 +179,8 @@
                             <p class="team-role">Operations &amp; Client Relations</p>
                             <p class="team-contact">
                                 <a href="tel:18009516456">(800) 951-6456 ext. 803</a>
-                                <button type="button" class="email-copy-chip" onclick="copyEmail('daniel@pinpointins.com', this)">daniel@pinpointins.com (Copy Email)</button>
+                                <span class="contact-sep">|</span>
+                                <span class="email-text">daniel@pinpointins.com</span>
                             </p>
                         </div>
                     </div>
@@ -194,7 +196,7 @@
             <a href="https://maps.google.com/?q=21235+Hawthorne+Blvd+%23200,+Torrance,+CA+90503" target="_blank" rel="noopener">21235 Hawthorne Blvd #200, Torrance, CA 90503</a> &nbsp;|&nbsp;
             <a href="tel:13105338877">(310) 533-8877</a> &nbsp;|&nbsp;
             <a href="tel:18009516456">(800) 951-6456</a> &nbsp;|&nbsp;
-            <button type="button" class="email-copy-chip" onclick="copyEmail('info@pinpointins.com', this)">info@pinpointins.com (Copy Email)</button>
+            <span class="email-text">info@pinpointins.com</span>
         </p>
         <div class="license-badge">CA Corporate License #0I31557</div>
         <p class="privacy-note"><strong>Privacy Commitment:</strong> We never sell or share your personal, household, or medical network information with third-party lead aggregators.</p>
@@ -202,13 +204,6 @@
     </footer>
 
     <script>
-        function copyEmail(email, btnEl) {
-            navigator.clipboard.writeText(email).then(function() {
-                const orig = btnEl.textContent;
-                btnEl.textContent = 'Copied: ' + email;
-                setTimeout(function() { btnEl.textContent = orig; }, 2200);
-            });
-        }
         function toggleMobileNav(btn) {
             const nav = document.querySelector('.nav-links');
             const isOpen = nav.classList.toggle('open');

@@ -7,7 +7,7 @@
     <title>Resources &amp; Guides | Pinpoint Solution Insurance Services LLC</title>
     <link rel="canonical" href="https://pinpointins.com/resources.html">
     <link rel="icon" type="image/png" href="images/logo-mark-white.png">
-    <link rel="stylesheet" href="style.css?v=2026.12">
+    <link rel="stylesheet" href="style.css?v=2026.15">
     <script>
         (function() {
             const saved = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -46,7 +46,7 @@
         </section>
 
         <div class="trust-bar">
-            <span class="nowrap">CA Corporate License #0I31557</span> &nbsp;|&nbsp; <span class="nowrap">Educational Guides for Employers, Families &amp; Community Leaders</span>
+            CA Corporate License #0I31557 &nbsp;|&nbsp; Educational Guides for Employers, Families &amp; Community Leaders
         </div>
 
         <section>
@@ -71,11 +71,11 @@
                     <div class="arch-list">
                         <div class="arch-item" style="display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
                             <strong style="margin-bottom: 0;">Individual &amp; Family Proposal Request</strong>
-                            <a href="ifp-proposal-request.html" target="_blank" rel="noopener" class="email-copy-chip" style="text-decoration: none;">Open Form (Print / PDF)</a>
+                            <a href="ifp-proposal-request.html" target="_blank" rel="noopener" class="worksheet-link">Open Form (Print / PDF)</a>
                         </div>
                         <div class="arch-item" style="display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
                             <strong style="margin-bottom: 0;">Group &amp; Ministry Proposal Request</strong>
-                            <a href="group-proposal-request.html" target="_blank" rel="noopener" class="email-copy-chip" style="text-decoration: none;">Open Form (Print / PDF)</a>
+                            <a href="group-proposal-request.html" target="_blank" rel="noopener" class="worksheet-link">Open Form (Print / PDF)</a>
                         </div>
                         <div class="arch-item">
                             <strong>60–90 Day Renewal Review Calendar</strong>
@@ -138,7 +138,7 @@
             <a href="https://maps.google.com/?q=21235+Hawthorne+Blvd+%23200,+Torrance,+CA+90503" target="_blank" rel="noopener">21235 Hawthorne Blvd #200, Torrance, CA 90503</a> &nbsp;|&nbsp;
             <a href="tel:13105338877">(310) 533-8877</a> &nbsp;|&nbsp;
             <a href="tel:18009516456">(800) 951-6456</a> &nbsp;|&nbsp;
-            <button type="button" class="email-copy-chip" onclick="copyEmail('info@pinpointins.com', this)">info@pinpointins.com (Copy Email)</button>
+            <span class="email-text">info@pinpointins.com</span>
         </p>
         <div class="license-badge">CA Corporate License #0I31557</div>
         <p class="privacy-note"><strong>Privacy Commitment:</strong> We never sell or share your personal, household, or medical network information with third-party lead aggregators.</p>
@@ -146,13 +146,6 @@
     </footer>
 
     <script>
-        function copyEmail(email, btnEl) {
-            navigator.clipboard.writeText(email).then(function() {
-                const orig = btnEl.textContent;
-                btnEl.textContent = 'Copied: ' + email;
-                setTimeout(function() { btnEl.textContent = orig; }, 2200);
-            });
-        }
         function toggleMobileNav(btn) {
             const nav = document.querySelector('.nav-links');
             const isOpen = nav.classList.toggle('open');
