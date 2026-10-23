@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Internal Proposal Deck Builder | Pinpoint Solution Insurance Services LLC</title>
+    <style>
+        :root {
+            --primary: #374F62;
+            --secondary: #9ACC59;
+            --secondary-dark: #4b784f;
+            --accent-yellow: #FDBE40;
+            --dark: #0f172a;
+            --text: #334155;
+            --light: #f8fafc;
+            --border: #cbd5e1;
+            --card-bg: #ffffff;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        body { background: var(--light); color: var(--text); line-height: 1.6; padding: 2rem; }
+        .container { max-width: 1040px; margin: 0 auto; background: var(--card-bg); border: 1px solid var(--border); border-top: 5px solid var(--primary); border-radius: 10px; padding: 2.25rem; box-shadow: 0 4px 16px rgba(0,0,0,0.05); }
+        h1 { color: var(--primary); font-size: 1.65rem; margin-bottom: 0.25rem; }
+        h2 { color: var(--primary); font-size: 1.15rem; margin: 1.75rem 0 0.75rem 0; padding-bottom: 0.4rem; border-bottom: 2px solid var(--border); }
+        .tag { display: inline-block; background: rgba(154,204,89,0.18); color: var(--secondary-dark); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; padding: 0.25rem 0.65rem; border-radius: 4px; margin-bottom: 0.6rem; }
+        .import-box { background: #f1f5f9; border: 1px dashed var(--primary); border-radius: 8px; padding: 1.1rem; margin-top: 1rem; display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+        .import-box input { flex: 1; min-width: 260px; padding: 0.6rem 0.8rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.88rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+        .form-group { display: flex; flex-direction: column; gap: 0.3rem; margin-bottom: 0.65rem; }
+        .form-group label { font-size: 0.83rem; font-weight: 700; color: var(--primary); }
+        .form-group input, .form-group textarea { padding: 0.58rem 0.75rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.9rem; color: var(--text); }
+        .plan-card { background: var(--light); border: 1px solid var(--border); border-top: 4px solid var(--primary); border-radius: 8px; padding: 1.1rem; }
+        .plan-card.rec { border-top-color: var(--accent-yellow); }
+        .btn { background: var(--accent-yellow); color: var(--dark); font-weight: 700; border: none; padding: 0.85rem 1.75rem; border-radius: 8px; cursor: pointer; font-size: 1rem; }
+        .btn-sec { background: var(--primary); color: #fff; font-weight: 600; border: none; padding: 0.6rem 1.15rem; border-radius: 6px; cursor: pointer; font-size: 0.88rem; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <span class="tag">Internal Office Tool • Pinpoint Solution Insurance Services LLC</span>
+        <h1>6-Slide Client Proposal Deck Builder (1280x720 HTML / PDF)</h1>
+        <p style="font-size: 0.92rem;">Keep this file saved locally on your computer or in your Pinpoint Google Drive. Paste an Import Code from a website inquiry email below, or type the client details directly.</p>
+
+        <div class="import-box">
+            <strong style="font-size: 0.88rem; color: var(--primary);">1-Click Import from Email:</strong>
+            <input type="text" id="importTokenInput" placeholder="Paste the PROPOSAL BUILDER IMPORT CODE from your email here...">
+            <button type="button" class="btn-sec" onclick="loadFromImportToken()">Load Client Data</button>
+        </div>
+
+        <h2>1. Client &amp; Household Profile (Slides 1, 2 &amp; 3)</h2>
+        <div class="grid-4">
+            <div class="form-group"><label>Client / Family or Group Name</label><input type="text" id="cName" placeholder="e.g. The Kim Family"></div>
+            <div class="form-group"><label>ZIP Code</label><input type="text" id="cZip" value="90503"></div>
+            <div class="form-group"><label>Target Effective Date</label><input type="text" id="deckEffectiveDate" value="January 1, 2027"></div>
+            <div class="form-group"><label>Tax Household Size</label><input type="text" id="taxHouseholdSize" placeholder="e.g. 4"></div>
+        </div>
+        <div class="grid-3" style="margin-top: 0.4rem;">
+            <div class="form-group"><label>Estimated Annual Household Income</label><input type="text" id="householdIncome" placeholder="e.g. $95,000"></div>
+            <div class="form-group"><label>Current Plan / COBRA Monthly Benchmark</label><input type="text" id="deckCobraCost" placeholder="e.g. $1,850/mo (COBRA)"></div>
+            <div class="form-group"><label>Rate Reduction / Tax Strategy Note</label><input type="text" id="deckSubsidyNote" placeholder="e.g. Qualifies for $420/mo CA Rate Reduction"></div>
+        </div>
+        <div class="grid-3" style="margin-top: 0.4rem;">
+            <div class="form-group">
+                <label>Covered Members (One per line: Role | Birthday | Gender)</label>
+                <textarea id="membersTextarea" rows="3" placeholder="Primary Applicant | 04/15/1980 | Male&#10;Spouse | 08/22/1982 | Female"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Preferred South Bay Medical Groups (Comma-separated)</label>
+                <textarea id="networksTextarea" rows="3">Torrance Memorial (TMIPA), UCLA Health, Providence Little Company of Mary</textarea>
+            </div>
+            <div class="form-group">
+                <label>Doctors, Prescriptions &amp; Priorities Verified</label>
+                <textarea id="clientNotes" rows="3" placeholder="Dr. Smith (TMIPA Primary Care) verified in-network..."></textarea>
+            </div>
+        </div>
+
+        <h2>2. Side-by-Side Medical Plan Options (Slide 4)</h2>
+        <div class="grid-3">
+            <div class="plan-card rec">
+                <strong style="color:var(--primary); display:block; margin-bottom:0.5rem;">Option 1 (Primary Recommendation)</strong>
+                <div class="form-group"><label>Carrier &amp; Plan Name</label><input type="text" id="m1Name" value="Blue Shield Silver 70 PPO"></div>
+                <div class="form-group"><label>Network Structure</label><input type="text" id="m1Type" value="PPO (Open Specialist Access)"></div>
+                <div class="form-group"><label>Estimated Monthly Rate</label><input type="text" id="m1Rate" placeholder="e.g. $1,140/mo"></div>
+                <div class="form-group"><label>Annual Deductible &amp; Worst-Case Cap</label><input type="text" id="m1Ded" value="$5,400 Ded. / $9,100 Max"></div>
+                <div class="form-group"><label>Primary / Specialist Copay</label><input type="text" id="m1Copay" value="$50 Primary / $85 Specialist"></div>
+                <div class="form-group"><label>South Bay Doctor Fit</label><input type="text" id="m1Fit" value="Includes TMIPA + UCLA Health without referrals"></div>
+            </div>
+            <div class="plan-card">
+                <strong style="color:var(--primary); display:block; margin-bottom:0.5rem;">Option 2 (Coordinated Local HMO)</strong>
+                <div class="form-group"><label>Carrier &amp; Plan Name</label><input type="text" id="m2Name" value="Blue Shield Trio Silver 70 HMO"></div>
+                <div class="form-group"><label>Network Structure</label><input type="text" id="m2Type" value="HMO (Local Medical Group)"></div>
+                <div class="form-group"><label>Estimated Monthly Rate</label><input type="text" id="m2Rate" placeholder="e.g. $890/mo"></div>
+                <div class="form-group"><label>Annual Deductible &amp; Worst-Case Cap</label><input type="text" id="m2Ded" value="$5,400 Ded. / $9,100 Max"></div>
+                <div class="form-group"><label>Primary / Specialist Copay</label><input type="text" id="m2Copay" value="$50 Primary / $85 Specialist"></div>
+                <div class="form-group"><label>South Bay Doctor Fit</label><input type="text" id="m2Fit" value="Includes Torrance Memorial (TMIPA) &amp; Providence"></div>
+            </div>
+            <div class="plan-card">
+                <strong style="color:var(--primary); display:block; margin-bottom:0.5rem;">Option 3 (HSA / Lower Monthly Rate)</strong>
+                <div class="form-group"><label>Carrier &amp; Plan Name</label><input type="text" id="m3Name" value="Anthem / Kaiser Bronze 60 HDHP"></div>
+                <div class="form-group"><label>Network Structure</label><input type="text" id="m3Type" value="HSA-Eligible Plan"></div>
+                <div class="form-group"><label>Estimated Monthly Rate</label><input type="text" id="m3Rate" placeholder="e.g. $740/mo"></div>
+                <div class="form-group"><label>Annual Deductible &amp; Worst-Case Cap</label><input type="text" id="m3Ded" value="$7,500 Ded. / $7,500 Max"></div>
+                <div class="form-group"><label>Primary / Specialist Copay</label><input type="text" id="m3Copay" value="$0 after annual deductible"></div>
+                <div class="form-group"><label>South Bay Doctor Fit</label><input type="text" id="m3Fit" value="Pairs with tax-deductible Health Savings Account"></div>
+            </div>
+        </div>
+
+        <h2>3. Supplemental Dental &amp; Vision Options (Slide 5)</h2>
+        <div class="grid-3">
+            <div class="form-group">
+                <label>Recommended Dental Plan &amp; Monthly Rate</label>
+                <input type="text" id="dentalOption" value="Delta Dental PPO ($62/mo • $2,000 Annual Maximum)">
+            </div>
+            <div class="form-group">
+                <label>Recommended Vision Plan &amp; Monthly Rate</label>
+                <input type="text" id="visionOption" value="VSP Individual Vision ($17/mo • $15 Exam / $25 Lenses)">
+            </div>
+        </div>
+
+        <div style="margin-top: 1.5rem;">
+            <button type="button" class="btn" style="width: 100%;" onclick="launchQuoteDeck()">Generate 6-Slide Client Proposal Deck in New Tab</button>
+        </div>
+    </div>
+
+    <script>
+        function escapeHtml(str) {
+            return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        function loadFromImportToken() {
+            const raw = document.getElementById('importTokenInput').value.trim();
+            if (!raw) return;
+            try {
+                const data = JSON.parse(decodeURIComponent(escape(atob(raw))));
+                if (data.name) document.getElementById('cName').value = data.name;
+                if (data.zip) document.getElementById('cZip').value = data.zip;
+                if (data.income) document.getElementById('householdIncome').value = data.income;
+                if (data.hh) document.getElementById('taxHouseholdSize').value = data.hh;
+                if (data.notes) document.getElementById('clientNotes').value = data.notes;
+                if (Array.isArray(data.net) && data.net.length > 0) {
+                    document.getElementById('networksTextarea').value = data.net.join(', ');
+                }
+                if (Array.isArray(data.census) && data.census.length > 0) {
+                    document.getElementById('membersTextarea').value = data.census.map(m => `${m.role} | ${m.dob} | ${m.gender}`).join('\n');
+                }
+            } catch (e) {
+                alert('Could not read the import code. Make sure you copied the full single-line code from the bottom of the inquiry email.');
+            }
+        }
+
+        function launchQuoteDeck() {
+            const name = escapeHtml(document.getElementById('cName').value.trim() || 'Valued Client Family');
+            const zip = escapeHtml(document.getElementById('cZip').value.trim() || '90503');
+            const income = escapeHtml(document.getElementById('householdIncome').value.trim() || 'Reviewed for Optimal Tier');
+            const hhSize = escapeHtml(document.getElementById('taxHouseholdSize').value.trim() || 'Household');
+            const notes = escapeHtml(document.getElementById('clientNotes').value.trim() || 'Verify South Bay primary care and specialist participation prior to enrollment.');
+            const effDate = escapeHtml(document.getElementById('deckEffectiveDate').value.trim() || 'Upcoming Effective Date');
+            const cobraCost = escapeHtml(document.getElementById('deckCobraCost').value.trim() || 'Current Plan / COBRA Benchmark');
+            const subsidyNote = escapeHtml(document.getElementById('deckSubsidyNote').value.trim() || 'California Rate & Tax-Advantaged Review');
+
+            const netRaw = document.getElementById('networksTextarea').value.split(',').map(s => s.trim()).filter(Boolean);
+            const netBadgesHtml = netRaw.map(n => `<span class="net-pill">${escapeHtml(n)}</span>`).join('');
+
+            const memberLines = document.getElementById('membersTextarea').value.split('\n').map(s => s.trim()).filter(Boolean);
+            const membersHtml = memberLines.length > 0
+                ? memberLines.map(line => `<li>${escapeHtml(line)}</li>`).join('')
+                : `<li>Primary Applicant (ZIP ${zip})</li>`;
+
+            const m1 = {
+                name: escapeHtml(document.getElementById('m1Name').value),
+                type: escapeHtml(document.getElementById('m1Type').value),
+                rate: escapeHtml(document.getElementById('m1Rate').value || '$TBD/mo'),
+                ded: escapeHtml(document.getElementById('m1Ded').value),
+                copay: escapeHtml(document.getElementById('m1Copay').value),
+                fit: escapeHtml(document.getElementById('m1Fit').value)
+            };
+            const m2 = {
+                name: escapeHtml(document.getElementById('m2Name').value),
+                type: escapeHtml(document.getElementById('m2Type').value),
+                rate: escapeHtml(document.getElementById('m2Rate').value || '$TBD/mo'),
+                ded: escapeHtml(document.getElementById('m2Ded').value),
+                copay: escapeHtml(document.getElementById('m2Copay').value),
+                fit: escapeHtml(document.getElementById('m2Fit').value)
+            };
+            const m3 = {
+                name: escapeHtml(document.getElementById('m3Name').value),
+                type: escapeHtml(document.getElementById('m3Type').value),
+                rate: escapeHtml(document.getElementById('m3Rate').value || '$TBD/mo'),
+                ded: escapeHtml(document.getElementById('m3Ded').value),
+                copay: escapeHtml(document.getElementById('m3Copay').value),
+                fit: escapeHtml(document.getElementById('m3Fit').value)
+            };
+            const dental = escapeHtml(document.getElementById('dentalOption').value);
+            const vision = escapeHtml(document.getElementById('visionOption').value);
+
+            const deckHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Coverage Proposal - ${name} | Pinpoint Solution Insurance Services LLC</title>
+<style>
+    :root { --primary:#374F62; --secondary:#9ACC59; --secondary-dark:#4b784f; --accent:#FDBE40; --dark:#0f172a; --text:#334155; --light:#f8fafc; --border:#cbd5e1; }
+    * { box-sizing:border-box; margin:0; padding:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    body { background:#1e293b; color:var(--text); padding:68px 0 40px 0; display:flex; flex-direction:column; align-items:center; gap:28px; }
+    .toolbar { position:fixed; top:0; left:0; right:0; background:#0f172a; color:#fff; padding:12px 24px; display:flex; justify-content:space-between; align-items:center; z-index:999; border-bottom:2px solid var(--secondary); font-size:14px; }
+    .toolbar button { background:var(--accent); color:#0f172a; border:none; padding:7px 14px; border-radius:6px; font-weight:700; cursor:pointer; margin-left:6px; font-size:13px; }
+    .toolbar button.sec { background:#334155; color:#fff; }
+    .slide { width:1280px; height:720px; background:#ffffff; border-radius:8px; overflow:hidden; position:relative; padding:46px 60px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 12px 32px rgba(0,0,0,0.35); page-break-after:always; }
+    .slide-title { background:linear-gradient(125deg, #2c4050 0%, #374F62 58%, #4b784f 100%); color:#ffffff; }
+    .slide-header { border-bottom:3px solid var(--secondary); padding-bottom:12px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:flex-end; }
+    .slide-header h2 { color:var(--primary); font-size:26px; font-weight:800; }
+    .slide-header span { font-size:12px; font-weight:700; color:var(--secondary-dark); text-transform:uppercase; letter-spacing:1px; background:rgba(154,204,89,0.16); padding:4px 10px; border-radius:4px; }
+    .slide-grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:26px; flex:1; align-items:stretch; }
+    .slide-grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; }
+    .box { background:var(--light); border:1px solid var(--border); border-top:4px solid var(--primary); border-radius:10px; padding:24px; display:flex; flex-direction:column; justify-content:flex-start; }
+    .box.green-top { border-top-color:var(--secondary); }
+    .box.gold-top { border-top-color:var(--accent); }
+    .box h3 { color:var(--primary); font-size:19px; margin-bottom:12px; }
+    .box ul { margin-left:20px; line-height:1.75; font-size:15px; }
+    .kpi-card { background:var(--light); border:1px solid var(--border); border-left:5px solid var(--primary); border-radius:8px; padding:16px 20px; }
+    .kpi-card.gold { border-left-color:var(--accent); background:rgba(253,190,64,0.08); }
+    .kpi-card small { display:block; font-size:12px; font-weight:700; text-transform:uppercase; color:var(--secondary-dark); letter-spacing:0.6px; margin-bottom:4px; }
+    .kpi-card strong { font-size:22px; color:var(--primary); font-weight:800; }
+    .net-pill { display:inline-block; background:#ffffff; border:1px solid var(--border); border-left:4px solid var(--secondary); color:var(--primary); padding:6px 12px; border-radius:6px; font-weight:700; font-size:14px; margin:0 8px 8px 0; }
+    table { width:100%; border-collapse:collapse; font-size:15px; margin-top:4px; }
+    th, td { border:1px solid var(--border); padding:13px 16px; text-align:left; vertical-align:middle; }
+    th { background:var(--primary); color:#fff; font-weight:700; font-size:15px; }
+    th.rec-head { background:#2c4050; border-top:4px solid var(--accent); }
+    td.rec { background:rgba(154,204,89,0.11); font-weight:700; color:var(--dark); }
+    .rate-highlight { font-size:20px; font-weight:800; color:var(--primary); }
+    .step-num { display:inline-block; background:var(--primary); color:#fff; width:30px; height:30px; line-height:30px; text-align:center; border-radius:50%; font-weight:800; font-size:15px; margin-bottom:10px; }
+    .slide-footer { border-top:1px solid var(--border); padding-top:10px; font-size:12.5px; color:#64748b; display:flex; justify-content:space-between; }
+    .edit-outline [contenteditable="true"] { outline:2px dashed var(--secondary); outline-offset:3px; }
+    body.single-slide-mode .slide { display:none; }
+    body.single-slide-mode .slide.active-slide { display:flex; }
+    @media print {
+        @page { size:1280px 720px; margin:0; }
+        body { background:#fff; padding:0; gap:0; }
+        body.single-slide-mode .slide { display:flex !important; }
+        .no-print { display:none !important; }
+        .slide { border-radius:0; box-shadow:none; }
+    }
+</style>
+</head>
+<body>
+    <div class="toolbar no-print">
+        <div><strong>Pinpoint Solution Proposal Deck</strong> • Click any text on any slide to customize before saving as PDF</div>
+        <div>
+            <button class="sec" onclick="prevSlide()">Previous Slide</button>
+            <button class="sec" onclick="nextSlide()">Next Slide</button>
+            <button class="sec" onclick="toggleViewMode(this)">Single Slide Mode</button>
+            <button onclick="document.body.classList.toggle('edit-outline')">Highlight Editable Text</button>
+            <button onclick="window.print()">Print / Save as PDF</button>
+        </div>
+    </div>
+
+    <!-- Slide 1: Executive Title Slide (Strict CDI License Separation) -->
+    <section class="slide slide-title active-slide">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <img src="https://pinpointins.com/images/logo-white.png" alt="Pinpoint Solution Insurance Services LLC" style="height:46px;" onerror="this.style.display='none'">
+            <span style="background:rgba(255,255,255,0.14); padding:6px 14px; border-radius:4px; font-weight:700; font-size:13px;">Pinpoint Solution Insurance Services LLC • CA Corporate License #0I31557</span>
+        </div>
+        <div contenteditable="true">
+            <p style="color:var(--accent); font-weight:700; text-transform:uppercase; letter-spacing:2px; margin-bottom:10px;">Personalized Health &amp; Benefits Comparison</p>
+            <h1 style="font-size:44px; font-weight:800; line-height:1.18; margin-bottom:14px;">Prepared for ${name}</h1>
+            <p style="font-size:20px; color:#e2e8f0; margin-bottom:32px;">Target Effective Date: ${effDate} &nbsp;|&nbsp; Rating Region: ZIP ${zip}</p>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:920px;">
+                <div style="background:rgba(255,255,255,0.12); padding:18px 22px; border-radius:8px; border-left:5px solid var(--accent); display:flex; align-items:center; gap:14px;">
+                    <img src="https://pinpointins.com/images/greg-higa.jpg" alt="Greg Higa" style="width:58px; height:58px; border-radius:50%; object-fit:cover; border:2px solid var(--accent);" onerror="this.style.display='none'">
+                    <div>
+                        <strong style="display:block; font-size:16px;">Greg Higa</strong>
+                        <span style="display:block; font-size:12.5px; color:var(--accent); font-weight:700;">Principal Broker • CA License #0I31557</span>
+                        <span style="font-size:13px; color:#f1f5f9;">(310) 533-8877 | (800) 951-6456 ext. 801 | ghiga@pinpointins.com</span>
+                    </div>
+                </div>
+                <div style="background:rgba(255,255,255,0.12); padding:18px 22px; border-radius:8px; border-left:5px solid var(--secondary); display:flex; align-items:center; gap:14px;">
+                    <img src="https://pinpointins.com/images/daniel-park.jpg" alt="Daniel Park" style="width:58px; height:58px; border-radius:50%; object-fit:cover; border:2px solid var(--secondary);" onerror="this.style.display='none'">
+                    <div>
+                        <strong style="display:block; font-size:16px;">Daniel Park</strong>
+                        <span style="display:block; font-size:12.5px; color:#d9f99d; font-weight:700;">Operations &amp; Client Relations</span>
+                        <span style="font-size:13px; color:#f1f5f9;">(800) 951-6456 ext. 803 | daniel@pinpointins.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="font-size:13px; color:#cbd5e1;">21235 Hawthorne Blvd #200, Torrance, CA 90503 • Objective Multi-Carrier Comparison</div>
+    </section>
+
+    <!-- Slide 2: Household Profile & South Bay Doctor Priorities -->
+    <section class="slide">
+        <div class="slide-header"><h2 contenteditable="true">1. Household Profile &amp; South Bay Doctor Priorities</h2><span>Slide 2 of 6</span></div>
+        <div class="slide-grid-2" contenteditable="true">
+            <div class="box">
+                <h3>Covered Family / Team Members (ZIP ${zip})</h3>
+                <ul>${membersHtml}</ul>
+                <div style="margin-top:auto; padding-top:16px; border-top:1px solid var(--border); font-size:14.5px;">
+                    <strong>Tax Household Size:</strong> ${hhSize} &nbsp;|&nbsp; <strong>Target Effective Date:</strong> ${effDate}
+                </div>
+            </div>
+            <div class="box green-top">
+                <h3>Preferred South Bay Hospitals &amp; Medical Groups</h3>
+                <div style="margin-bottom:16px;">${netBadgesHtml}</div>
+                <h3 style="font-size:16px; margin-top:8px;">Doctors, Prescriptions &amp; Priorities Verified</h3>
+                <p style="font-size:15px; line-height:1.6;">${notes}</p>
+            </div>
+        </div>
+        <div class="slide-footer"><span>Pinpoint Solution Insurance Services LLC • CA Corporate License #0I31557</span><span>21235 Hawthorne Blvd #200, Torrance, CA 90503</span></div>
+    </section>
+
+    <!-- Slide 3: Budget, Rate Reduction & Benchmark Overview -->
+    <section class="slide">
+        <div class="slide-header"><h2 contenteditable="true">2. Budget, Rate Strategy &amp; Benchmark Overview</h2><span>Slide 3 of 6</span></div>
+        <div contenteditable="true" style="display:flex; flex-direction:column; gap:22px; flex:1;">
+            <div class="slide-grid-3">
+                <div class="kpi-card">
+                    <small>Current Plan / COBRA Benchmark</small>
+                    <strong>${cobraCost}</strong>
+                </div>
+                <div class="kpi-card gold">
+                    <small>Rate Reduction / Tax Strategy</small>
+                    <strong>${subsidyNote}</strong>
+                </div>
+                <div class="kpi-card">
+                    <small>Estimated Household Income</small>
+                    <strong>${income}</strong>
+                </div>
+            </div>
+            <div class="slide-grid-2">
+                <div class="box">
+                    <h3>How We Lower Your Fixed Monthly Cost</h3>
+                    <p style="font-size:15px; line-height:1.65;">California health insurance rates are strictly regulated by state law—meaning you never pay a broker fee or markup to work with our office. By comparing PPO, HMO, and HSA-eligible tiers side by side, you can keep your preferred South Bay doctors while avoiding overpriced COBRA or rigid single-carrier renewals.</p>
+                </div>
+                <div class="box green-top">
+                    <h3>Understanding Your Two Key Numbers</h3>
+                    <ul style="font-size:14.5px;">
+                        <li><strong>Fixed Monthly Rate:</strong> What you pay each month to keep the policy active.</li>
+                        <li><strong>Out-of-Pocket Maximum (Worst-Case Annual Cap):</strong> The absolute maximum you would ever pay out of pocket in a major medical year for covered in-network care.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer"><span>Pinpoint Solution Insurance Services LLC • CA Corporate License #0I31557</span><span>100% Regulated State Carrier Rates ($0 Broker Fee Markup)</span></div>
+    </section>
+
+    <!-- Slide 4: Side-by-Side Medical Plan Comparison -->
+    <section class="slide">
+        <div class="slide-header"><h2 contenteditable="true">3. Side-by-Side Medical Plan Comparison</h2><span>Slide 4 of 6</span></div>
+        <div style="flex:1;" contenteditable="true">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width:22%;">Plan Feature</th>
+                        <th class="rec-head" style="width:26%;">PRIMARY RECOMMENDATION<br>${m1.name}</th>
+                        <th style="width:26%;">Option 2<br>${m2.name}</th>
+                        <th style="width:26%;">Option 3<br>${m3.name}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Network Structure</strong></td><td class="rec">${m1.type}</td><td>${m2.type}</td><td>${m3.type}</td></tr>
+                    <tr><td><strong>Estimated Monthly Rate</strong></td><td class="rec"><span class="rate-highlight">${m1.rate}</span></td><td><span class="rate-highlight">${m2.rate}</span></td><td><span class="rate-highlight">${m3.rate}</span></td></tr>
+                    <tr><td><strong>Annual Deductible &amp; Worst-Case Yearly Cap</strong></td><td class="rec">${m1.ded}</td><td>${m2.ded}</td><td>${m3.ded}</td></tr>
+                    <tr><td><strong>Doctor Visit Copays (Primary / Specialist)</strong></td><td class="rec">${m1.copay}</td><td>${m2.copay}</td><td>${m3.copay}</td></tr>
+                    <tr><td><strong>South Bay Doctor &amp; Hospital Fit</strong></td><td class="rec">${m1.fit}</td><td>${m2.fit}</td><td>${m3.fit}</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="slide-footer"><span>Pinpoint Solution Insurance Services LLC • CA Corporate License #0I31557</span><span>Preventive annual physicals and screenings are covered at $0 copay in-network on all plans.</span></div>
+    </section>
+
+    <!-- Slide 5: Dental & Vision Options -->
+    <section class="slide">
+        <div class="slide-header"><h2 contenteditable="true">4. Optional Dental &amp; Vision Coverage</h2><span>Slide 5 of 6</span></div>
+        <div class="slide-grid-2" contenteditable="true">
+            <div class="box">
+                <span style="font-size:12px; font-weight:700; text-transform:uppercase; color:var(--secondary-dark); margin-bottom:6px;">Dental PPO / DHMO</span>
+                <h3>Recommended Dental Coverage</h3>
+                <p style="font-size:18px; font-weight:800; color:var(--primary); margin-bottom:14px;">${dental}</p>
+                <ul>
+                    <li>Diagnostic exams, X-rays, and routine cleanings covered at 100% in-network</li>
+                    <li>Freedom to visit any Delta Dental PPO dentist in Torrance and the South Bay</li>
+                    <li>Can be added or adjusted independently of your medical plan</li>
+                </ul>
+            </div>
+            <div class="box green-top">
+                <span style="font-size:12px; font-weight:700; text-transform:uppercase; color:var(--secondary-dark); margin-bottom:6px;">Standalone Vision</span>
+                <h3>Recommended Vision Coverage</h3>
+                <p style="font-size:18px; font-weight:800; color:var(--primary); margin-bottom:14px;">${vision}</p>
+                <ul>
+                    <li>Broad VSP network access with independent South Bay optometrists</li>
+                    <li>Low copays for annual comprehensive eye exams and prescription lenses</li>
+                    <li>Annual allowance toward frames or contact lenses</li>
+                </ul>
+            </div>
+        </div>
+        <div class="slide-footer"><span>Pinpoint Solution Insurance Services LLC • CA Corporate License #0I31557</span><span>Supplemental Dental &amp; Vision Summary</span></div>
+    </section>
+
+    <!-- Slide 6: Simple 3-Step Enrollment Roadmap (Strict CDI Role Separation) -->
+    <section class="slide">
+        <div class="slide-header"><h2 contenteditable="true">5. Simple 3-Step Enrollment Roadmap</h2><span>Slide 6 of 6</span></div>
+        <div contenteditable="true" style="display:flex; flex-direction:column; justify-content:space-between; flex:1; gap:20px;">
+            <div class="slide-grid-3">
+                <div class="box">
+                    <span class="step-num">1</span>
+                    <h3>Select Your Preferred Plan</h3>
+                    <p style="font-size:14.5px; line-height:1.6;">Let us know which medical, dental, or vision option feels right for your household or team budget.</p>
+                </div>
+                <div class="box green-top">
+                    <span class="step-num" style="background:var(--secondary-dark);">2</span>
+                    <h3>Confirm Primary Doctors</h3>
+                    <p style="font-size:14.5px; line-height:1.6;">If you choose an HMO tier, we verify your exact primary care physician ID numbers so your card prints accurately.</p>
+                </div>
+                <div class="box gold-top">
+                    <span class="step-num" style="background:var(--accent); color:#0f172a;">3</span>
+                    <h3>Signature &amp; Effective Date</h3>
+                    <p style="font-size:14.5px; line-height:1.6;">Complete the brief carrier application and initial binder payment prior to <strong>${effDate}</strong>.</p>
+                </div>
+            </div>
+            <div class="box" style="padding:18px 24px; background:#f1f5f9;">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+                    <div>
+                        <strong style="color:var(--primary); font-size:15px;">Greg Higa, Principal Broker (CA Corporate License #0I31557):</strong> (310) 533-8877 | (800) 951-6456 ext. 801 | ghiga@pinpointins.com<br>
+                        <strong style="color:var(--primary); font-size:15px;">Daniel Park, Operations &amp; Client Relations:</strong> (800) 951-6456 ext. 803 | daniel@pinpointins.com
+                    </div>
+                    <div style="font-size:12px; color:#64748b; max-width:440px;">
+                        Notice: Coverage cannot be bound, altered, or canceled via email or voicemail without written carrier confirmation. Pinpoint Solution Insurance Services LLC (CA License #0I31557).
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer"><span>Pinpoint Solution Insurance Services LLC • CA Corporate License #0I31557</span><span>21235 Hawthorne Blvd #200, Torrance, CA 90503</span></div>
+    </section>
+
+    <script>
+        let currentSlideIdx = 0;
+        const slides = document.querySelectorAll('.slide');
+        function showSlide(idx) {
+            slides.forEach((s, i) => s.classList.toggle('active-slide', i === idx));
+        }
+        function nextSlide() {
+            currentSlideIdx = (currentSlideIdx + 1) % slides.length;
+            if (!document.body.classList.contains('single-slide-mode')) {
+                slides[currentSlideIdx].scrollIntoView({ behavior: 'smooth' });
+            } else {
+                showSlide(currentSlideIdx);
+            }
+        }
+        function prevSlide() {
+            currentSlideIdx = (currentSlideIdx - 1 + slides.length) % slides.length;
+            if (!document.body.classList.contains('single-slide-mode')) {
+                slides[currentSlideIdx].scrollIntoView({ behavior: 'smooth' });
+            } else {
+                showSlide(currentSlideIdx);
+            }
+        }
+        function toggleViewMode(btn) {
+            const single = document.body.classList.toggle('single-slide-mode');
+            btn.textContent = single ? 'View All Slides' : 'Single Slide Mode';
+            showSlide(currentSlideIdx);
+        }
+    <\/script>
+</body>
+</html>`;
+
+            const win = window.open('', '_blank');
+            if (!win) {
+                alert('Please allow pop-ups for this page to open the generated 6-Slide Proposal Deck in a new tab.');
+                return;
+            }
+            win.document.write(deckHtml);
+            win.document.close();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Group & Ministry Benefits Proposal Request | Pinpoint Solution Insurance Services LLC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #374F62;
+      --secondary: #9ACC59;
+      --secondary-dark: #4b784f;
+      --accent-yellow: #FDBE40;
+      --dark: #0f172a;
+      --text: #334155;
+      --light: #f8fafc;
+      --border: #94a3b8;
+      --border-light: #cbd5e1;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      background: #e2e8f0;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--dark);
+      padding: 28px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .screen-toolbar {
+      width: 8.5in;
+      max-width: 100%;
+      background: var(--primary);
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.12);
+      font-size: 13px;
+    }
+
+    .screen-toolbar button {
+      background: var(--accent-yellow);
+      color: var(--dark);
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .screen-toolbar button:hover {
+      background: #e6ab33;
+    }
+
+    .page {
+      width: 8.5in;
+      min-height: 11in;
+      background: #ffffff;
+      padding: 0.38in 0.48in 0.35in 0.48in;
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.14);
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .form-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px solid var(--primary);
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-wrap img {
+      height: 46px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .logo-fallback {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    .logo-fallback span {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--secondary-dark);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .title-block {
+      text-align: right;
+    }
+
+    .title-block h1 {
+      font-size: 15.5px;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .title-block p {
+      font-size: 10px;
+      color: var(--text);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .required-notice {
+      background: #f8fafc;
+      border: 1px solid var(--border-light);
+      border-left: 4px solid var(--accent-yellow);
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 10px;
+      color: var(--dark);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .required-notice strong {
+      color: var(--primary);
+    }
+
+    .req-star {
+      color: #dc2626;
+      font-weight: 800;
+    }
+
+    .section-title {
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4.5px 10px;
+      border-radius: 4px 4px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .section-title span.sub {
+      font-size: 9.2px;
+      font-weight: 500;
+      color: #e2e8f0;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .form-box {
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 4px 4px;
+      padding: 8px 12px;
+      margin-bottom: 10px;
+    }
+
+    .field-row {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .field-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .cols-2 { grid-template-columns: 1.25fr 1fr; }
+    .cols-3 { grid-template-columns: 1.1fr 1.1fr 0.9fr; }
+    .cols-4 { grid-template-columns: 1.4fr 0.9fr 0.45fr 0.75fr; }
+
+    .write-field {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      font-size: 10.5px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      min-height: 20px;
+    }
+
+    .write-field label {
+      font-weight: 700;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    .write-field .fill-space {
+      flex: 1;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 10.2px;
+      flex-wrap: wrap;
+      padding: 2px 0;
+    }
+
+    .checkbox-group strong {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .cb-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 600;
+      color: var(--dark);
+      white-space: nowrap;
+    }
+
+    .box-sq {
+      display: inline-block;
+      width: 11px;
+      height: 11px;
+      border: 1.4px solid var(--primary);
+      border-radius: 2px;
+      background: #ffffff;
+    }
+
+    /* Section 2: Group Census Table (100% Fixed Layout & Non-Wrapping Cells) */
+    .census-reminder {
+      background: rgba(154, 204, 89, 0.14);
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      padding: 5px 10px;
+      font-size: 9.6px;
+      color: var(--dark);
+      line-height: 1.35;
+    }
+
+    .census-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 4px;
+      font-size: 10.2px;
+      table-layout: fixed;
+    }
+
+    .census-table th,
+    .census-table td {
+      border: 1px solid var(--border);
+      padding: 4.5px 6px;
+      vertical-align: middle;
+    }
+
+    .census-table th {
+      background: #f1f5f9;
+      color: var(--primary);
+      font-weight: 800;
+      text-align: left;
+      font-size: 9.8px;
+      line-height: 1.2;
+    }
+
+    /* 4% + 22% + 24% + 14% + 22% + 14% = 100% */
+    .census-table td.num-cell {
+      width: 4%;
+      text-align: center;
+      font-weight: 700;
+      color: #64748b;
+      background: #f8fafc;
+    }
+
+    .census-table td.name-cell {
+      width: 22%;
+    }
+
+    .census-table td.role-cell {
+      width: 24%;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .census-table td.gender-cell {
+      width: 14%;
+      text-align: center;
+      white-space: nowrap;
+      background: #fffbeb;
+    }
+
+    .census-table td.dob-cell {
+      width: 22%;
+      text-align: center;
+      white-space: nowrap;
+      color: #64748b;
+      font-weight: 600;
+      font-size: 10.5px;
+      letter-spacing: 0.02em;
+      background: #fffbeb;
+    }
+
+    .census-table td.zip-cell {
+      width: 14%;
+      text-align: center;
+      white-space: nowrap;
+      background: #fffbeb;
+    }
+
+    .dependent-note {
+      font-size: 9.2px;
+      color: var(--text);
+      font-style: italic;
+      margin-bottom: 9px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .lines-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .lined-row {
+      border-bottom: 1px solid var(--border);
+      height: 18px;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 2px;
+      font-size: 9.8px;
+      color: #64748b;
+    }
+
+    .form-footer {
+      border-top: 2px solid var(--primary);
+      padding-top: 7px;
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 9.6px;
+      color: var(--text);
+      line-height: 1.38;
+    }
+
+    .form-footer strong {
+      color: var(--primary);
+    }
+
+    @media print {
+      body {
+        background: none;
+        padding: 0;
+      }
+      .screen-toolbar {
+        display: none !important;
+      }
+      .page {
+        box-shadow: none;
+        border-radius: 0;
+        width: 100%;
+        min-height: auto;
+        padding: 0.32in 0.42in;
+      }
+      @page {
+        size: letter portrait;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="screen-toolbar">
+    <div>
+      <strong>Pinpoint Solution — Group &amp; Ministry Benefits Proposal Request</strong><br>
+      <span>Click "Print / Save as PDF" to print a copy or save as a clean 1-page PDF for employers and ministry leaders.</span>
+    </div>
+    <button onclick="window.print()">Print / Save as PDF</button>
+  </div>
+
+  <div class="page">
+    <div>
+      <div class="form-header">
+        <div class="logo-wrap">
+          <img src="images/logo-color.png" alt="Pinpoint Solution Insurance Services" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div class="logo-fallback" style="display:none;">
+            PINPOINT SOLUTION
+            <span>Insurance Services LLC</span>
+          </div>
+        </div>
+        <div class="title-block">
+          <h1>Group &amp; Ministry Benefits Proposal Request</h1>
+          <p>Small Businesses • Nonprofits &amp; Churches</p>
+        </div>
+      </div>
+
+      <div class="required-notice">
+        <span><span class="req-star">*</span> <strong>Starred fields are required</strong> for California carriers to calculate accurate group rates. (Or attach an existing Excel census roster.)</span>
+        <span><strong>Torrance Office:</strong> (310) 533-8877</span>
+      </div>
+
+      <div class="section-title">
+        <span>1. Organization Profile &amp; Coverage Goals</span>
+        <span class="sub">CA Corporate License #0I31557 • Strictly Confidential</span>
+      </div>
+      <div class="form-box">
+        <div class="field-row cols-2">
+          <div class="write-field"><label><span class="req-star">*</span>Organization / Business / Church Name:</label><span class="fill-space"></span></div>
+          <div class="write-field"><label><span class="req-star">*</span>Primary Contact &amp; Title:</label><span class="fill-space"></span></div>
+        </div>
+
+        <div class="field-row cols-3">
+          <div class="write-field"><label><span class="req-star">*</span>Phone Number:</label><span class="fill-space"></span></div>
+          <div class="write-field"><label><span class="req-star">*</span>Email Address:</label><span class="fill-space"></span></div>
+          <div class="write-field"><label>Date:</label><span class="fill-space"></span></div>
+        </div>
+
+        <div class="field-row cols-4">
+          <div class="write-field"><label>Physical Address:</label><span class="fill-space"></span></div>
+          <div class="write-field"><label>City:</label><span class="fill-space"></span></div>
+          <div class="write-field"><label>State:</label><span class="fill-space" style="text-align:center; font-weight:600;">CA</span></div>
+          <div class="write-field"><label><span class="req-star">*</span>Organization ZIP:</label><span class="fill-space"></span></div>
+        </div>
+
+        <div class="field-row cols-2" style="margin-top: 6px; padding-top: 5px; border-top: 1px dashed var(--border-light);">
+          <div class="checkbox-group">
+            <strong>Organization Type:</strong>
+            <span class="cb-item"><span class="box-sq"></span> Small Business</span>
+            <span class="cb-item"><span class="box-sq"></span> Church / Ministry</span>
+            <span class="cb-item"><span class="box-sq"></span> School / Academy</span>
+            <span class="cb-item"><span class="box-sq"></span> Nonprofit</span>
+          </div>
+          <div class="write-field"><label>Industry / Ministry Description (SIC):</label><span class="fill-space"></span></div>
+        </div>
+
+        <div class="field-row cols-2" style="margin-top: 4px;">
+          <div class="checkbox-group">
+            <strong><span class="req-star">*</span>Lines to Compare:</strong>
+            <span class="cb-item"><span class="box-sq"></span> Group Medical</span>
+            <span class="cb-item"><span class="box-sq"></span> QSEHRA / HRA</span>
+            <span class="cb-item"><span class="box-sq"></span> Dental</span>
+            <span class="cb-item"><span class="box-sq"></span> Vision</span>
+            <span class="cb-item"><span class="box-sq"></span> Group Life / Disability</span>
+          </div>
+          <div class="checkbox-group">
+            <strong>Plan Types:</strong>
+            <span class="cb-item"><span class="box-sq"></span> HMO</span>
+            <span class="cb-item"><span class="box-sq"></span> PPO</span>
+            <span class="cb-item"><span class="box-sq"></span> Kaiser</span>
+            <span class="cb-item"><span class="box-sq"></span> HSA / Level-Funded</span>
+          </div>
+        </div>
+
+        <div class="field-row cols-3" style="margin-top: 4px;">
+          <div class="write-field"><label><span class="req-star">*</span>Target Renewal / Effective Date:</label><span class="fill-space"></span></div>
+          <div class="write-field"><label>Total Full-Time Staff (30+ hrs/wk):</label><span class="fill-space"></span></div>
+          <div class="write-field"><label>Current Carrier(s):</label><span class="fill-space"></span></div>
+        </div>
+
+        <div class="field-row cols-2">
+          <div class="write-field"><label>Current Employer Contribution (e.g., 50%–100% of Employee / $ Fixed Budget):</label><span class="fill-space"></span></div>
+          <div class="write-field"><label>Current Total Monthly Premium: $</label><span class="fill-space"></span></div>
+        </div>
+      </div>
+
+      <div class="section-title">
+        <span>2. Employee, Pastoral &amp; Dependent Census</span>
+        <span class="sub">Have more than 10 lines? Simply attach your existing Excel roster or renewal bill.</span>
+      </div>
+      <div class="census-reminder">
+        <strong>Why Highlighted Columns Are Required:</strong> California small-group carriers calculate rates by each person's <strong>Role (Employee vs. Spouse/Child)</strong>, <strong>Gender</strong>, <strong>Exact Date of Birth (MM/DD/YYYY)</strong>, and <strong>Home ZIP Code</strong>. Please list each eligible employee and any family members they wish to cover on separate lines below:
+      </div>
+      <table class="census-table">
+        <thead>
+          <tr>
+            <th style="width:4%; text-align:center;">#</th>
+            <th style="width:22%;">Employee or Family Member Name</th>
+            <th style="width:24%; text-align:center;"><span class="req-star">*</span>Relationship / Role<br><span style="font-weight:600; font-size:8.8px;">(Check One Per Line)</span></th>
+            <th style="width:14%; text-align:center;"><span class="req-star">*</span>Gender<br><span style="font-weight:600; font-size:8.8px;">(Required)</span></th>
+            <th style="width:22%; text-align:center;"><span class="req-star">*</span>Exact Date of Birth<br><span style="font-weight:600; font-size:8.8px;">(MM / DD / YYYY)</span></th>
+            <th style="width:14%; text-align:center;"><span class="req-star">*</span>Home ZIP<br><span style="font-weight:600; font-size:8.8px;">(5-Digit ZIP)</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="num-cell">1</td>
+            <td class="name-cell"></td>
+            <td class="role-cell"><span class="cb-item"><span class="box-sq"></span> Emp</span> &nbsp;<span class="cb-item"><span class="box-sq"></span> Spouse</span> &nbsp;<span class="cb-item"><span class="box-sq"></span> Child</span></td>
+            <td class="gender-cell"><span class="cb-item"><span class="box-sq"></span> M</span> &nbsp; <span class="cb-item"><span class="box-sq"></span> F</span></td>
+            <td class="dob-cell">___ / ___ / _____</td>
+            <td class="zip-cell"></td>
+          </tr>
+          <tr>
+            <td class="num-cell">2</td>
+            <td class="name-cell"></td>
+            <td class="role-cell"><span class="cb-item"><span class="box-sq"></span> Emp</span> &nbsp;<span class="cb-item"><span class="box-sq"></span> Spouse</span> &nbsp;<span class="cb-item"><span class="box-sq"></span> Child</span></td>
+            <td class="gender-cell"><span class="cb-item"><span class="box-sq"></span> M</span> &nbsp; <span class="cb-item"><span class="box-sq"></span> F</span></td>
+            <td class="dob-cell">___ / ___ / _____</td>
+            <td class="zip-cell"></td>
+          </tr>
+          <tr>
+            <td class="num-cell">3</td>
+            <td class="name-cell"></td>
+            <td class="role-cell"><span class="cb-item"><span class="box-sq"></span> Emp</span> &nbsp;<span class="cb-item"><span class="box-sq"></span> Spouse</span> &nbsp;<span class="cb-item"><span class="box-sq"></span> Child</span></td>
+            <td class="gender-cell"><span class="cb-item"><span class="box-sq"></span> M</span> &nbsp; <span class="cb-item"><span class="box-sq"></span> F</span></td>
+            <td class="dob-cell">___ / ___ / _____</td>
+            <td class="zip-cell"></td>
+          </tr>
+          <tr>
+            <td class="num-cell">4</td>
+            <td class="name-cell"></td>
+            <td class="role-cell"><span class="cb-item"><span class="box-sq"></span> Emp</span> &nbsp;<span class="cb-item"><span class="box-sq"></span> Spouse</span> &nbsp;<span class="cb-item"><span class="box-sq"></span> Child</span></td>
+            <td class="gender-cell"><span class="cb-item"><span class="box-sq"></span> M</span> &nbsp; <span class="cb-item"><span class="box-sq"></span> F</span></td>
+            <td class="dob-cell">___ / ___ / _____</td>
+            <td class="zip-cell"></td>
+          </tr>
+          <tr>
+            <td class="num-cell">5</td>
+            <td class="name-cell"></td>
+            <td class="role-cell"><span class="cb-item"><span class="box-sq"></span> Emp</span> &nbsp;<span class="cb-item"><span class="box-sq"></span> Spouse</span> &nbsp;<span class="cb-item"><span class="box-sq"></span> Child</span></td>
+            <td class="gender-cell"><span class="cb-item"><span class="box-sq"></span> M</span> &nbsp; <span class="cb-item"><span class="box-sq"></span> F</span></td>
+            <td class="dob-cell">___ / ___ / _____</td>
+            <td class="zip-cell"></td>
+          </tr>
+          <tr>
+            <td class="num-cell">6</td>
+            <td class="name-cell"></td>
+            <td class="role-cell"><span class="cb-item"><span class="box-sq"></span> Emp</span> &nbsp;<span class="cb-item"><span class="box-sq"></span> Spouse</span> &nbsp;<span class="cb-item"><span class="box-sq"></span> Child</span></td>
+            <td class="gender-cell"><span class="cb-item"><span class="box-sq"></span> M</span> &nbsp; <span class="cb-item"><span class="box-sq"></span> F</span></td>
+            <td class="dob-cell">___ / ___ / _____</td>
+            <td class="zip-cell"></td>
+          </tr>
+          <tr>
+            <td class="num-cell">7</td>
+            <td class="name-cell"></td>
+            <td class="role-cell"><span class="cb-item"><span class="box-sq"></span> Emp</span> &nbsp;<span class="cb-item"><span class="box-sq"></span> Spouse</span> &nbsp;<span class="cb-item"><span class="box-sq"></span> Child</span></td>
+            <td class="gender-cell"><span class="cb-item"><span class="box-sq"></span> M</span> &nbsp; <span class="cb-item"><span class="box-sq"></span> F</span></td>
+            <td class="dob-cell">___ / ___ / _____</td>
+            <td class="zip-cell"></td>
+          </tr>
+          <tr>
+            <td class="num-cell">8</td>
+            <td class="name-cell"></td>
+            <td class="role-cell"><span class="cb-item"><span class="box-sq"></span> Emp</span> &nbsp;<span class="cb-item"><span class="box-sq"></span> Spouse</span> &nbsp;<span class="cb-item"><span class="box-sq"></span> Child</span></td>
+            <td class="gender-cell"><span class="cb-item"><span class="box-sq"></span> M</span> &nbsp; <span class="cb-item"><span class="box-sq"></span> F</span></td>
+            <td class="dob-cell">___ / ___ / _____</td>
+            <td class="zip-cell"></td>
+          </tr>
+          <tr>
+            <td class="num-cell">9</td>
+            <td class="name-cell"></td>
+            <td class="role-cell"><span class="cb-item"><span class="box-sq"></span> Emp</span> &nbsp;<span class="cb-item"><span class="box-sq"></span> Spouse</span> &nbsp;<span class="cb-item"><span class="box-sq"></span> Child</span></td>
+            <td class="gender-cell"><span class="cb-item"><span class="box-sq"></span> M</span> &nbsp; <span class="cb-item"><span class="box-sq"></span> F</span></td>
+            <td class="dob-cell">___ / ___ / _____</td>
+            <td class="zip-cell"></td>
+          </tr>
+          <tr>
+            <td class="num-cell">10</td>
+            <td class="name-cell"></td>
+            <td class="role-cell"><span class="cb-item"><span class="box-sq"></span> Emp</span> &nbsp;<span class="cb-item"><span class="box-sq"></span> Spouse</span> &nbsp;<span class="cb-item"><span class="box-sq"></span> Child</span></td>
+            <td class="gender-cell"><span class="cb-item"><span class="box-sq"></span> M</span> &nbsp; <span class="cb-item"><span class="box-sq"></span> F</span></td>
+            <td class="dob-cell">___ / ___ / _____</td>
+            <td class="zip-cell"></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="dependent-note">
+        <span>* Dependent children are eligible up to age 26.</span>
+        <span><strong>Tip:</strong> For larger teams, feel free to email your current carrier invoice or spreadsheet instead of writing by hand.</span>
+      </div>
+
+      <div class="section-title">
+        <span>3. Preferred South Bay Medical Groups &amp; Organization Priorities</span>
+        <span class="sub">Helps us preserve your team's doctors while respecting your budget</span>
+      </div>
+      <div class="form-box" style="margin-bottom: 0;">
+        <div class="checkbox-group" style="margin-bottom: 5px;">
+          <strong>Important Hospitals / Networks for Your Team:</strong>
+          <span class="cb-item"><span class="box-sq"></span> Torrance Memorial (TMIPA)</span>
+          <span class="cb-item"><span class="box-sq"></span> Providence Little Co. of Mary</span>
+          <span class="cb-item"><span class="box-sq"></span> UCLA Health</span>
+          <span class="cb-item"><span class="box-sq"></span> Optum South Bay</span>
+          <span class="cb-item"><span class="box-sq"></span> Kaiser</span>
+        </div>
+
+        <div class="lines-grid">
+          <div class="lined-row"><strong>Key Doctors to Verify or Main Goals for This Review (e.g., Lowering Renewal Increase, Adding Kaiser/PPO Choice, Pastoral Stipend):</strong></div>
+          <div class="lined-row"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <div>
+        <strong>Return Completed Form (or Existing Census Spreadsheet) By Email To:</strong><br>
+        Greg Higa, Principal Broker (CA Lic. #0I31557): <strong>ghiga@pinpointins.com</strong><br>
+        Daniel Park, Operations &amp; Client Relations: <strong>daniel@pinpointins.com</strong>
+      </div>
+      <div style="text-align: right;">
+        <strong>Pinpoint Solution Insurance Services LLC</strong> • CA Corporate License #0I31557<br>
+        21235 Hawthorne Blvd #200, Torrance, CA 90503<br>
+        Local: <strong>(310) 533-8877</strong> &nbsp;|&nbsp; Toll-Free: <strong>(800) 951-6456</strong> &nbsp;|&nbsp; <strong>pinpointins.com</strong>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

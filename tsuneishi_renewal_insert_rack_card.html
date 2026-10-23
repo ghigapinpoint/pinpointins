@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pinpoint Solution — Tsuneishi Renewal Insert (4" x 9")</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #374F62;
+      --secondary: #9ACC59;
+      --secondary-dark: #4b784f;
+      --accent-yellow: #FDBE40;
+      --dark: #0f172a;
+      --text: #334155;
+      --light: #f8fafc;
+      --border: #cbd5e1;
+      --card-bg: #FFFFFF;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #e2e8f0;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 36px 20px;
+      gap: 28px;
+    }
+
+    .screen-controls {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      background: #ffffff;
+      padding: 10px 20px;
+      border-radius: 999px;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .screen-controls span.hint {
+      font-weight: 500;
+      color: #64748b;
+      font-size: 12px;
+      border-left: 1px solid var(--border);
+      padding-left: 12px;
+    }
+
+    .btn-toggle-draft {
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #f59e0b;
+      padding: 7px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 12px;
+      transition: all 0.15s;
+    }
+
+    .btn-toggle-draft:hover {
+      background: #fde68a;
+    }
+
+    .btn-print {
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 12.5px;
+      transition: background 0.15s;
+    }
+
+    .btn-print:hover {
+      background: #263847;
+    }
+
+    .cards-wrapper {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .rack-card {
+      width: 4in;
+      height: 9in;
+      background: var(--card-bg);
+      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.14);
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    [contenteditable="true"]:focus {
+      outline: 2px dashed var(--secondary);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    .front-header {
+      padding: 16px 24px 12px 24px;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+    }
+
+    .co-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .co-brand-top {
+      font-size: 8.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--secondary-dark);
+    }
+
+    .co-brand-main {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.01em;
+    }
+
+    .brand-logo-img {
+      height: 32px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .hero-photo-wrap {
+      width: 100%;
+      height: 104px;
+      position: relative;
+      background: var(--primary);
+      overflow: hidden;
+      border-bottom: 3px solid var(--secondary);
+    }
+
+    .hero-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 45%;
+      display: block;
+    }
+
+    .photo-caption {
+      position: absolute;
+      bottom: 6px;
+      right: 10px;
+      font-size: 8px;
+      color: rgba(255, 255, 255, 0.94);
+      background: rgba(15, 23, 42, 0.45);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+
+    .front-body {
+      padding: 14px 24px 12px 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+    }
+
+    .letter-card {
+      background: var(--light);
+      border: 1px solid #cbd5e1;
+      border-left: 3.5px solid var(--primary);
+      border-radius: 6px;
+      padding: 12px 15px;
+      position: relative;
+    }
+
+    .ai-draft-notice {
+      background: #fef3c7;
+      border: 1px dashed #d97706;
+      color: #92400e;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 8.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .ai-draft-notice span.sub {
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 8.5px;
+    }
+
+    body.hide-draft-badge .ai-draft-notice {
+      display: none !important;
+    }
+
+    .letter-eyebrow {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--secondary-dark);
+      margin-bottom: 5px;
+    }
+
+    .letter-salutation {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+
+    .letter-prose {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 11.1px;
+      line-height: 1.48;
+      color: #1e293b;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .letter-signoff {
+      margin-top: 9px;
+      padding-top: 7px;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .signature-name {
+      font-family: 'Newsreader', Georgia, serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--primary);
+    }
+
+    .signature-title {
+      font-size: 8.8px;
+      font-weight: 600;
+      color: #64748b;
+    }
+
+    .story-bridge {
+      margin-top: 10px;
+      padding: 0 2px;
+    }
+
+    .story-bridge-title {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 15.5px;
+      font-weight: 500;
+      color: var(--primary);
+      margin-bottom: 5px;
+      line-height: 1.25;
+    }
+
+    .story-bridge-text {
+      font-size: 10.4px;
+      line-height: 1.48;
+      color: var(--text);
+      margin-bottom: 7px;
+    }
+
+    .stewardship-promise {
+      background: rgba(154, 204, 89, 0.12);
+      border: 1px solid rgba(75, 120, 79, 0.25);
+      border-radius: 5px;
+      padding: 8px 11px;
+      font-size: 9.8px;
+      line-height: 1.42;
+      color: var(--dark);
+    }
+
+    .stewardship-promise strong {
+      color: var(--secondary-dark);
+      font-weight: 700;
+    }
+
+    .front-footer-strip {
+      background: var(--primary);
+      color: #ffffff;
+      padding: 9px 22px;
+      text-align: center;
+      font-size: 9.5px;
+      letter-spacing: 0.02em;
+      line-height: 1.4;
+    }
+
+    .front-footer-strip span {
+      color: var(--accent-yellow);
+      font-weight: 700;
+    }
+
+    .back {
+      background: #ffffff;
+      padding: 18px 24px 12px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .back-header {
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 9px;
+    }
+
+    .back-eyebrow {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--secondary-dark);
+      margin-bottom: 3px;
+    }
+
+    .back-title {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 17.5px;
+      color: var(--primary);
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .back-lead {
+      font-size: 10.2px;
+      line-height: 1.42;
+      color: var(--text);
+      margin-top: 4px;
+    }
+
+    .commitments-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 8px 0;
+    }
+
+    .commitment-card {
+      padding: 7px 11px;
+      background: var(--light);
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+    }
+
+    .commitment-card h4 {
+      font-size: 10.6px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 2px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .commitment-num {
+      font-size: 8.8px;
+      font-weight: 800;
+      color: var(--secondary-dark);
+      background: rgba(154, 204, 89, 0.22);
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+
+    .commitment-card p {
+      font-size: 9.6px;
+      line-height: 1.4;
+      color: var(--text);
+    }
+
+    .team-section-label {
+      font-size: 8.8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #64748b;
+      margin-bottom: 5px;
+    }
+
+    .team-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 8px;
+    }
+
+    .team-card {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 7px 10px;
+    }
+
+    .team-photo {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--light);
+      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.12);
+      flex-shrink: 0;
+      background: var(--primary);
+    }
+
+    .team-info h4 {
+      font-size: 10.8px;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.2;
+    }
+
+    .team-info .team-role {
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--secondary-dark);
+      margin-bottom: 2px;
+    }
+
+    .team-info p {
+      font-size: 9.2px;
+      line-height: 1.34;
+      color: var(--text);
+    }
+
+    .network-strip {
+      border-top: 1px dashed var(--border);
+      border-bottom: 1px dashed var(--border);
+      padding: 5px 4px;
+      text-align: center;
+      font-size: 9px;
+      color: var(--text);
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+
+    .network-strip strong {
+      color: var(--primary);
+    }
+
+    .cta-box {
+      background: var(--primary);
+      color: #ffffff;
+      border-radius: 7px;
+      padding: 11px 13px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cta-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .cta-tag {
+      font-size: 8px;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      color: var(--accent-yellow);
+      margin-bottom: 2px;
+    }
+
+    .cta-content h4 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 6px;
+      color: #ffffff;
+    }
+
+    .cta-contact-grid {
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      row-gap: 2.5px;
+      column-gap: 6px;
+      font-size: 9.5px;
+      line-height: 1.35;
+      align-items: baseline;
+    }
+
+    .cta-label {
+      color: #cbd5e1;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .cta-val {
+      color: #ffffff;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .qr-container {
+      background: #ffffff;
+      padding: 6px;
+      border-radius: 5px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .qr-container img {
+      width: 58px;
+      height: 58px;
+      display: block;
+    }
+
+    .qr-hint {
+      font-size: 7.2px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--primary);
+      letter-spacing: 0.03em;
+    }
+
+    .back-footer-legal {
+      margin-top: 6px;
+      text-align: center;
+      font-size: 8px;
+      line-height: 1.35;
+      color: #64748b;
+    }
+
+    @media print {
+      body {
+        background: none;
+        padding: 0;
+        margin: 0;
+        gap: 0;
+      }
+      .screen-controls {
+        display: none !important;
+      }
+      .cards-wrapper {
+        gap: 0;
+        display: block;
+      }
+      .rack-card {
+        page-break-after: always;
+        box-shadow: none;
+        border-radius: 0;
+        width: 4in;
+        height: 9in;
+      }
+      @page {
+        size: 4in 9in portrait;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="screen-controls">
+    <span>Tsuneishi Renewal Insert (4" x 9" Double-Sided)</span>
+    <span class="hint">Click any text to edit</span>
+    <button class="btn-toggle-draft" id="toggleDraftBtn" onclick="toggleDraftNotice()">Hide "AI Draft" Label for Final Print</button>
+    <button class="btn-print" onclick="window.print()">Print / Save as PDF</button>
+  </div>
+
+  <div class="cards-wrapper">
+
+    <!-- FRONT CARD: MARK'S FIRST-PERSON LETTER -->
+    <div class="rack-card front">
+      <div class="front-header">
+        <div class="co-brand" contenteditable="true">
+          <span class="co-brand-top">A Personal Introduction From</span>
+          <span class="co-brand-main">TSUNEISHI INSURANCE AGENCY</span>
+        </div>
+        <img src="images/logo-color.png" alt="Pinpoint Solution" class="brand-logo-img" onerror="this.outerHTML='<strong style=\'color:var(--primary);font-size:13px;letter-spacing:-0.02em;\'>PINPOINT SOLUTION</strong>'">
+      </div>
+
+      <div class="hero-photo-wrap">
+        <img src="images/hero-south-bay.jpg" alt="South Bay Coastline" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80'">
+        <span class="photo-caption" contenteditable="true">Serving the South Bay &amp; Southern California</span>
+      </div>
+
+      <div class="front-body">
+        <div class="letter-card" contenteditable="true">
+          <div class="ai-draft-notice">
+            <span>Generated by AI — Draft for Mark's Review</span>
+            <span class="sub">Feel free to edit any wording</span>
+          </div>
+          <div class="letter-eyebrow">A Personal Note with Your Renewal</div>
+          <div class="letter-salutation">Dear Valued Client and Friend,</div>
+          <div class="letter-prose">
+            <p>
+              Thank you for allowing me and my team at Tsuneishi Insurance to protect what you have worked so hard to build. For years, our agency has been built on a simple conviction: insurance is not about policies and paperwork—it is about faithfully looking out for the people who trust you.
+            </p>
+            <p>
+              As your policies come up for renewal, many of you have asked me where to turn for honest, dependable help with <strong>health, dental, vision, and life insurance</strong>—whether for your own family, your business, or the church or nonprofit you help lead.
+            </p>
+            <p>
+              Because I want you cared for with the exact same patience and integrity you expect from my office, I have partnered closely with <strong>Greg Higa</strong> and his team at <strong>Pinpoint Solution Insurance Services</strong> right here in Torrance. I know Greg's character firsthand. He listens carefully, tells the truth even when it means advising you to stay right where you are, and treats my clients like family.
+            </p>
+          </div>
+          <div class="letter-signoff">
+            <span class="signature-name">Mark Tsuneishi</span>
+            <span class="signature-title">Tsuneishi Insurance Agency, Inc.</span>
+          </div>
+        </div>
+
+        <div class="story-bridge" contenteditable="true">
+          <h2 class="story-bridge-title">Stewardship for the People Behind Every Policy</h2>
+          <p class="story-bridge-text">
+            At Pinpoint Solution, we are a dedicated local advisory practice in Torrance. We believe health and employee benefits are one of the most tangible ways you care for your family, your staff, or your ministry team.
+          </p>
+          <div class="stewardship-promise">
+            <strong>Our Promise to Mark's Clients:</strong> If we review your current coverage and find that your existing plan is already the wisest option for your doctors and budget, we will tell you plainly and encourage you to keep it.
+          </div>
+        </div>
+      </div>
+
+      <div class="front-footer-strip" contenteditable="true">
+        <span>Turn Over</span> to meet Greg and Daniel and see how we serve you year-round.
+      </div>
+    </div>
+
+    <!-- BACK CARD: WHY PINPOINT & DEDICATED TEAM -->
+    <div class="rack-card back">
+      <div class="back-header" contenteditable="true">
+        <div class="back-eyebrow">Why Families, Employers &amp; Ministries Choose Us</div>
+        <h3 class="back-title">An Advisory Practice Built on Trust</h3>
+        <p class="back-lead">
+          Choosing health coverage—for your household or an entire organization—rarely comes down to a spreadsheet alone. It comes down to having a steady local advocate when it matters most.
+        </p>
+      </div>
+
+      <div class="commitments-list" contenteditable="true">
+        <div class="commitment-card">
+          <h4><span class="commitment-num">01</span> Unhurried Guidance &amp; Whole-Truth Advice</h4>
+          <p>
+            We translate complex deductibles, network tiers, and renewal increases into plain English. We walk through every trade-off candidly so you can make decisions with peace of mind.
+          </p>
+        </div>
+
+        <div class="commitment-card">
+          <h4><span class="commitment-num">02</span> Caring for the Doctors Your People Trust</h4>
+          <p>
+            Before recommending any change, we carefully check your preferred physicians and hospitals across Torrance Memorial (TMIPA), Providence Little Company of Mary, UCLA Health, Optum, and Kaiser Permanente.
+          </p>
+        </div>
+
+        <div class="commitment-card">
+          <h4><span class="commitment-num">03</span> People Who Know Your Account by Name</h4>
+          <p>
+            Our work does not end at enrollment. When an employee, pastor, or family member faces a billing error, a delayed claim, or a life transition, you don't have to repeat your story to a different stranger every time—Greg and Daniel know your account and see it through.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <div class="team-section-label" contenteditable="true">Your Dedicated Torrance Team</div>
+        <div class="team-grid">
+          <div class="team-card" contenteditable="true">
+            <img src="images/greg-higa.jpg" alt="Greg Higa" class="team-photo" onerror="this.outerHTML='<div class=\'team-photo\' style=\'display:flex;align-items:center;justify-content:center;background:var(--primary);color:#fff;font-weight:700;font-size:13px;\'>GH</div>'">
+            <div class="team-info">
+              <h4>Greg Higa</h4>
+              <div class="team-role">Principal Broker • CA Corporate License #0I31557</div>
+              <p>Walks alongside business owners, families, churches, and nonprofits to design sustainable medical, dental, vision, and life coverage with clarity and care.</p>
+            </div>
+          </div>
+
+          <div class="team-card" contenteditable="true">
+            <img src="images/daniel-park.jpg" alt="Daniel Park" class="team-photo" onerror="this.outerHTML='<div class=\'team-photo\' style=\'display:flex;align-items:center;justify-content:center;background:var(--secondary-dark);color:#fff;font-weight:700;font-size:13px;\'>DP</div>'">
+            <div class="team-info">
+              <h4>Daniel Park</h4>
+              <div class="team-role">Operations &amp; Client Relations</div>
+              <p>Coordinates smooth enrollments, carrier paperwork, census updates, and attentive day-to-day administrative support so nothing falls through the cracks.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="network-strip" contenteditable="true">
+        <strong>Independent Access Across California's Leading Carriers:</strong><br>
+        Blue Shield • Anthem Blue Cross • Kaiser Permanente • UnitedHealthcare • Health Net • Delta Dental • VSP
+      </div>
+
+      <div class="cta-box">
+        <div class="cta-content" contenteditable="true">
+          <div class="cta-tag">No Pressure • No Obligation</div>
+          <h4>Ask a Question or Request a Review</h4>
+          <div class="cta-contact-grid">
+            <span class="cta-label">Local:</span>
+            <span class="cta-val">(310) 533-8877</span>
+
+            <span class="cta-label">Toll-Free:</span>
+            <span class="cta-val">(800) 951-6456</span>
+
+            <span class="cta-label">Greg:</span>
+            <span class="cta-val">ghiga@pinpointins.com</span>
+
+            <span class="cta-label">Daniel:</span>
+            <span class="cta-val">daniel@pinpointins.com</span>
+
+            <span class="cta-label">Website:</span>
+            <span class="cta-val">pinpointins.com</span>
+          </div>
+        </div>
+        <div class="qr-container">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fpinpointins.com&color=37-79-98&margin=0" alt="Scan to Visit Pinpoint Solution">
+          <span class="qr-hint" contenteditable="true">Visit Website</span>
+        </div>
+      </div>
+
+      <div class="back-footer-legal" contenteditable="true">
+        <strong>Pinpoint Solution Insurance Services LLC</strong> • CA Corporate License #0I31557<br>
+        In association with Tsuneishi Insurance Agency, Inc. (CA License #0599528)<br>
+        21235 Hawthorne Blvd #200, Torrance, CA 90503 • pinpointins.com
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function toggleDraftNotice() {
+      document.body.classList.toggle('hide-draft-badge');
+      var btn = document.getElementById('toggleDraftBtn');
+      if (document.body.classList.contains('hide-draft-badge')) {
+        btn.textContent = 'Show "AI Draft" Label for Mark\'s Review';
+      } else {
+        btn.textContent = 'Hide "AI Draft" Label for Final Print';
+      }
+    }
+  </script>
+
+</body>
+</html>

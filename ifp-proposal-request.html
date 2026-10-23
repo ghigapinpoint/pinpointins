@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Individual & Family Proposal Request | Pinpoint Solution Insurance Services LLC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #374F62;
+      --secondary: #9ACC59;
+      --secondary-dark: #4b784f;
+      --accent-yellow: #FDBE40;
+      --dark: #0f172a;
+      --text: #334155;
+      --light: #f8fafc;
+      --border: #94a3b8;
+      --border-light: #cbd5e1;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      background: #e2e8f0;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--dark);
+      padding: 28px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .screen-toolbar {
+      width: 8.5in;
+      max-width: 100%;
+      background: var(--primary);
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.12);
+      font-size: 13px;
+    }
+
+    .screen-toolbar button {
+      background: var(--accent-yellow);
+      color: var(--dark);
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .screen-toolbar button:hover {
+      background: #e6ab33;
+    }
+
+    .page {
+      width: 8.5in;
+      min-height: 11in;
+      background: #ffffff;
+      padding: 0.42in 0.5in 0.38in 0.5in;
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.14);
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .form-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px solid var(--primary);
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-wrap img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .logo-fallback {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    .logo-fallback span {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--secondary-dark);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .title-block {
+      text-align: right;
+    }
+
+    .title-block h1 {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .title-block p {
+      font-size: 10.5px;
+      color: var(--text);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .required-notice {
+      background: #f8fafc;
+      border: 1px solid var(--border-light);
+      border-left: 4px solid var(--accent-yellow);
+      padding: 7px 12px;
+      border-radius: 4px;
+      font-size: 10.5px;
+      color: var(--dark);
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .required-notice strong {
+      color: var(--primary);
+    }
+
+    .req-star {
+      color: #dc2626;
+      font-weight: 800;
+    }
+
+    .section-title {
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 5px 10px;
+      border-radius: 4px 4px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .section-title span.sub {
+      font-size: 9.5px;
+      font-weight: 500;
+      color: #e2e8f0;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .form-box {
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 4px 4px;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+    }
+
+    .field-row {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .field-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .cols-2 { grid-template-columns: 1.3fr 1fr; }
+    .cols-3 { grid-template-columns: 1.3fr 1fr 0.8fr; }
+    .cols-4 { grid-template-columns: 1.4fr 0.9fr 0.45fr 0.75fr; }
+
+    .write-field {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      font-size: 11px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 3px;
+      min-height: 22px;
+    }
+
+    .write-field label {
+      font-weight: 700;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    .write-field .fill-space {
+      flex: 1;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      flex-wrap: wrap;
+      padding: 2px 0;
+    }
+
+    .checkbox-group strong {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .cb-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 600;
+      color: var(--dark);
+      white-space: nowrap;
+    }
+
+    .box-sq {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border: 1.4px solid var(--primary);
+      border-radius: 2px;
+      background: #ffffff;
+    }
+
+    .census-reminder {
+      background: rgba(154, 204, 89, 0.14);
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      padding: 6px 10px;
+      font-size: 10px;
+      color: var(--dark);
+      line-height: 1.35;
+    }
+
+    .census-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 4px;
+      font-size: 11px;
+      table-layout: fixed;
+    }
+
+    .census-table th,
+    .census-table td {
+      border: 1px solid var(--border);
+      padding: 6px 8px;
+      vertical-align: middle;
+    }
+
+    .census-table th {
+      background: #f1f5f9;
+      color: var(--primary);
+      font-weight: 800;
+      text-align: left;
+      font-size: 10.5px;
+      line-height: 1.25;
+    }
+
+    .census-table td.role-cell {
+      font-weight: 700;
+      color: var(--primary);
+      background: #f8fafc;
+      width: 16%;
+      white-space: nowrap;
+    }
+
+    .census-table td.name-cell {
+      width: 25%;
+    }
+
+    .census-table td.gender-cell {
+      width: 18%;
+      text-align: center;
+      white-space: nowrap;
+      background: #fffbeb;
+    }
+
+    .census-table td.dob-cell {
+      width: 24%;
+      text-align: center;
+      white-space: nowrap;
+      color: #64748b;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 0.02em;
+      background: #fffbeb;
+    }
+
+    .census-table td.freq-cell {
+      width: 17%;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .dependent-note {
+      font-size: 9.5px;
+      color: var(--text);
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+
+    .lines-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .lined-row {
+      border-bottom: 1px solid var(--border);
+      height: 20px;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 2px;
+      font-size: 10px;
+      color: #64748b;
+    }
+
+    .form-footer {
+      border-top: 2px solid var(--primary);
+      padding-top: 8px;
+      margin-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .form-footer strong {
+      color: var(--primary);
+    }
+
+    @media print {
+      body {
+        background: none;
+        padding: 0;
+      }
+      .screen-toolbar {
+        display: none !important;
+      }
+      .page {
+        box-shadow: none;
+        border-radius: 0;
+        width: 100%;
+        min-height: auto;
+        padding: 0.35in 0.45in;
+      }
+      @page {
+        size: letter portrait;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="screen-toolbar">
+    <div>
+      <strong>Pinpoint Solution — Printable Individual &amp; Family Proposal Request</strong><br>
+      <span>Click "Print / Save as PDF" to print a copy or save as a clean PDF for clients.</span>
+    </div>
+    <button onclick="window.print()">Print / Save as PDF</button>
+  </div>
+
+  <div class="page">
+    <div>
+      <div class="form-header">
+        <div class="logo-wrap">
+          <img src="images/logo-color.png" alt="Pinpoint Solution Insurance Services" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div class="logo-fallback" style="display:none;">
+            PINPOINT SOLUTION
+            <span>Insurance Services LLC</span>
+          </div>
+        </div>
+        <div class="title-block">
+          <h1>Individual &amp; Family Proposal Request</h1>
+          <p>CA Corporate License #0I31557 &nbsp;|&nbsp; 21235 Hawthorne Blvd #200, Torrance, CA 90503</p>
+        </div>
+      </div>
+
+      <div class="required-notice">
+        <span><span class="req-star">*</span> <strong>Starred fields are the minimum required</strong> for California carriers to calculate an accurate rate.</span>
+        <span><strong>Questions?</strong> Call (310) 533-8877 or (800) 951-6456</span>
+      </div>
+
+      <div class="section-title">
+        <span>1. Applicant Contact &amp; Coverage Preferences</span>
+        <span class="sub">We never sell or share your information</span>
+      </div>
+      <div class="form-box">
+        <div class="field-row cols-2">
+          <div class="write-field"><label><span class="req-star">*</span>Full Name:</label><span class="fill-space"></span></div>
+          <div class="write-field"><label>Date:</label><span class="fill-space"></span></div>
+        </div>
+
+        <div class="field-row cols-2">
+          <div class="write-field"><label><span class="req-star">*</span>Phone Number:</label><span class="fill-space"></span></div>
+          <div class="write-field"><label><span class="req-star">*</span>Email Address:</label><span class="fill-space"></span></div>
+        </div>
+
+        <div class="field-row cols-4">
+          <div class="write-field"><label>Street Address:</label><span class="fill-space"></span></div>
+          <div class="write-field"><label>City:</label><span class="fill-space"></span></div>
+          <div class="write-field"><label>State:</label><span class="fill-space" style="text-align:center; font-weight:600;">CA</span></div>
+          <div class="write-field"><label><span class="req-star">*</span>ZIP Code:</label><span class="fill-space"></span></div>
+        </div>
+
+        <div class="field-row cols-2" style="margin-top: 10px; padding-top: 6px; border-top: 1px dashed var(--border-light);">
+          <div class="checkbox-group">
+            <strong><span class="req-star">*</span>Coverage Needed:</strong>
+            <span class="cb-item"><span class="box-sq"></span> Medical</span>
+            <span class="cb-item"><span class="box-sq"></span> Dental</span>
+            <span class="cb-item"><span class="box-sq"></span> Vision</span>
+            <span class="cb-item"><span class="box-sq"></span> Life</span>
+          </div>
+          <div class="checkbox-group">
+            <strong>Network Preference:</strong>
+            <span class="cb-item"><span class="box-sq"></span> PPO</span>
+            <span class="cb-item"><span class="box-sq"></span> HMO</span>
+            <span class="cb-item"><span class="box-sq"></span> HSA</span>
+            <span class="cb-item"><span class="box-sq"></span> Open / Compare Both</span>
+          </div>
+        </div>
+
+        <div class="field-row cols-3" style="margin-top: 6px;">
+          <div class="write-field"><label>Desired Effective Date:</label><span class="fill-space"></span></div>
+          <div class="write-field"><label>Reason for Change (e.g. COBRA, Renewal):</label><span class="fill-space"></span></div>
+          <div class="write-field"><label>Desired Deductible / Copay:</label><span class="fill-space"></span></div>
+        </div>
+
+        <div class="field-row cols-2">
+          <div class="write-field"><label>Current Carrier &amp; Plan Name:</label><span class="fill-space"></span></div>
+          <div class="write-field"><label><span class="req-star">*</span>Current Monthly Premium or Target Budget: $</label><span class="fill-space"></span></div>
+        </div>
+
+        <div class="field-row cols-2">
+          <div class="write-field"><label>Est. Annual Household Income <span style="font-weight:400; color:#64748b;">(Optional — for CA subsidy check)</span>: $</label><span class="fill-space"></span></div>
+          <div class="write-field"><label># of People on Tax Return <span style="font-weight:400; color:#64748b;">(Optional)</span>:</label><span class="fill-space"></span></div>
+        </div>
+      </div>
+
+      <div class="section-title">
+        <span>2. Family Members to Be Covered (Required for Accurate Rates)</span>
+        <span class="sub">Please check Gender &amp; write full MM/DD/YYYY birthday for each person</span>
+      </div>
+      <div class="census-reminder">
+        <strong>Important Note:</strong> California insurance carriers calculate rates using the <strong>exact Date of Birth (MM/DD/YYYY)</strong> and <strong>Gender</strong> of each family member being covered. Please complete both highlighted columns for every person needing coverage.
+      </div>
+      <table class="census-table">
+        <thead>
+          <tr>
+            <th style="width:16%;"><span class="req-star">*</span>Relationship</th>
+            <th style="width:25%;">First &amp; Last Name (If Different)</th>
+            <th style="width:18%; text-align:center;"><span class="req-star">*</span>Gender (Required)</th>
+            <th style="width:24%; text-align:center;"><span class="req-star">*</span>Exact Date of Birth<br><span style="font-weight:600; font-size:9.5px;">(MM / DD / YYYY)</span></th>
+            <th style="width:17%; text-align:center;">How Often Do You<br>See the Doctor?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="role-cell">Applicant (Self)</td>
+            <td class="name-cell"></td>
+            <td class="gender-cell"><span class="cb-item"><span class="box-sq"></span> M</span> &nbsp;&nbsp; <span class="cb-item"><span class="box-sq"></span> F</span></td>
+            <td class="dob-cell">___ / ___ / _____</td>
+            <td class="freq-cell"><span style="font-size:9.5px; color:#64748b;">Rarely / Mod / Often</span></td>
+          </tr>
+          <tr>
+            <td class="role-cell">Spouse / Partner</td>
+            <td class="name-cell"></td>
+            <td class="gender-cell"><span class="cb-item"><span class="box-sq"></span> M</span> &nbsp;&nbsp; <span class="cb-item"><span class="box-sq"></span> F</span></td>
+            <td class="dob-cell">___ / ___ / _____</td>
+            <td class="freq-cell"><span style="font-size:9.5px; color:#64748b;">Rarely / Mod / Often</span></td>
+          </tr>
+          <tr>
+            <td class="role-cell">Child 1</td>
+            <td class="name-cell"></td>
+            <td class="gender-cell"><span class="cb-item"><span class="box-sq"></span> M</span> &nbsp;&nbsp; <span class="cb-item"><span class="box-sq"></span> F</span></td>
+            <td class="dob-cell">___ / ___ / _____</td>
+            <td class="freq-cell"><span style="font-size:9.5px; color:#64748b;">Rarely / Mod / Often</span></td>
+          </tr>
+          <tr>
+            <td class="role-cell">Child 2</td>
+            <td class="name-cell"></td>
+            <td class="gender-cell"><span class="cb-item"><span class="box-sq"></span> M</span> &nbsp;&nbsp; <span class="cb-item"><span class="box-sq"></span> F</span></td>
+            <td class="dob-cell">___ / ___ / _____</td>
+            <td class="freq-cell"><span style="font-size:9.5px; color:#64748b;">Rarely / Mod / Often</span></td>
+          </tr>
+          <tr>
+            <td class="role-cell">Child 3</td>
+            <td class="name-cell"></td>
+            <td class="gender-cell"><span class="cb-item"><span class="box-sq"></span> M</span> &nbsp;&nbsp; <span class="cb-item"><span class="box-sq"></span> F</span></td>
+            <td class="dob-cell">___ / ___ / _____</td>
+            <td class="freq-cell"><span style="font-size:9.5px; color:#64748b;">Rarely / Mod / Often</span></td>
+          </tr>
+          <tr>
+            <td class="role-cell">Child 4</td>
+            <td class="name-cell"></td>
+            <td class="gender-cell"><span class="cb-item"><span class="box-sq"></span> M</span> &nbsp;&nbsp; <span class="cb-item"><span class="box-sq"></span> F</span></td>
+            <td class="dob-cell">___ / ___ / _____</td>
+            <td class="freq-cell"><span style="font-size:9.5px; color:#64748b;">Rarely / Mod / Often</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="dependent-note">
+        * Dependent children are eligible to remain on a parent's health plan up to age 26.
+      </div>
+
+      <div class="section-title">
+        <span>3. Important Doctors, Hospitals &amp; Prescriptions to Verify</span>
+        <span class="sub">Helps us check that your preferred physicians are in-network</span>
+      </div>
+      <div class="form-box" style="margin-bottom: 0;">
+        <div class="checkbox-group" style="margin-bottom: 6px;">
+          <strong>Preferred Medical Groups / Hospitals:</strong>
+          <span class="cb-item"><span class="box-sq"></span> Torrance Memorial (TMIPA)</span>
+          <span class="cb-item"><span class="box-sq"></span> Providence Little Co. of Mary</span>
+          <span class="cb-item"><span class="box-sq"></span> UCLA Health</span>
+          <span class="cb-item"><span class="box-sq"></span> Optum South Bay</span>
+          <span class="cb-item"><span class="box-sq"></span> Kaiser</span>
+        </div>
+
+        <div class="lines-grid">
+          <div class="lined-row"><strong>Doctor Names &amp; Cities (Primary Care / Specialists / Pediatricians):</strong></div>
+          <div class="lined-row"></div>
+          <div class="lined-row"><strong>Ongoing Prescriptions or Upcoming Medical Needs (Optional):</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <div>
+        <strong>Return Completed Form By Email To:</strong><br>
+        Greg Higa, Principal Broker (CA Lic. #0I31557): <strong>ghiga@pinpointins.com</strong><br>
+        Daniel Park, Operations &amp; Client Relations: <strong>daniel@pinpointins.com</strong>
+      </div>
+      <div style="text-align: right;">
+        <strong>Pinpoint Solution Insurance Services LLC</strong> • CA Corporate License #0I31557<br>
+        21235 Hawthorne Blvd #200, Torrance, CA 90503<br>
+        Local: <strong>(310) 533-8877</strong> &nbsp;|&nbsp; Toll-Free: <strong>(800) 951-6456</strong> &nbsp;|&nbsp; <strong>pinpointins.com</strong>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
