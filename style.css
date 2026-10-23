@@ -17,9 +17,9 @@
 [data-theme="dark"] {
     --primary: #8ab0ce;
     --primary-dark: #a3c4de;
-    --secondary-dark: #9fd47c;
-    --sage-tint: rgba(159, 212, 124, 0.12);
-    --sage-border: rgba(159, 212, 124, 0.28);
+    --secondary-dark: #86b38a; /* Desaturated Silver-Sage for calm Dark Mode accents */
+    --sage-tint: rgba(134, 179, 138, 0.12);
+    --sage-border: rgba(134, 179, 138, 0.25);
     --accent-yellow: #FDBE40;
     --dark: #f1f5f9;
     --text: #cbd5e1;
@@ -555,3 +555,28 @@ footer a { color: #ffffff; text-decoration: none; }
 footer a:hover { text-decoration: underline; }
 .license-badge { display: inline-block; margin-top: 0.45rem; font-weight: 700; background: rgba(255, 255, 255, 0.14); padding: 0.3rem 0.9rem; border-radius: 0.3rem; }
 .privacy-note { max-width: 700px; margin: 0.9rem auto 0 auto; font-size: 0.78rem; opacity: 0.86; }
+
+
+/* Calm Carrier Transition Callout Box (Health Net Group Exit) */
+.transition-callout {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent-yellow);
+    border-radius: 10px;
+    padding: 1.65rem 2rem;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.035);
+}
+.transition-callout h3 {
+    color: var(--primary);
+    font-size: 1.25rem;
+    margin-bottom: 0.55rem;
+}
+.transition-callout p {
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-bottom: 0.65rem;
+}
+.transition-callout p:last-child {
+    margin-bottom: 0;
+}

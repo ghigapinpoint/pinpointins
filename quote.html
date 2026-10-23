@@ -7,7 +7,7 @@
     <title>Contact Us | Pinpoint Solution Insurance Services LLC</title>
     <link rel="canonical" href="https://pinpointins.com/quote.html">
     <link rel="icon" type="image/png" href="images/logo-mark-white.png">
-    <link rel="stylesheet" href="style.css?v=2026.15">
+    <link rel="stylesheet" href="style.css?v=2026.17">
     <script>
         (function() {
             const saved = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -28,7 +28,7 @@
             <nav class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="benefits.html">Employee Benefits</a>
-                <a href="nonprofits-churches.html">Nonprofits &amp; Churches</a>
+                <a href="nonprofits-churches.html">Churches &amp; Nonprofits</a>
                 <a href="resources.html">Resources</a>
                 <a href="about.html">About Us</a>
                 <a href="quote.html" class="btn-nav active">Contact Us</a>
@@ -55,7 +55,7 @@
                     <span class="pillar-tag">Personal Guidance Over Automated Quoters</span>
                     <h3>We Get to Know You Before Running Numbers</h3>
                     <p>Online quote engines spit out dozens of plans without ever asking which South Bay doctors you trust, how your organization's budget works, or whether your current policy is already the wisest choice.</p>
-                    <p>At Pinpoint Solution, we follow a simple two-step process: <strong>First, we have a brief, unhurried conversation</strong> to understand what you are trying to accomplish. <strong>Second, if a comparison makes sense, we gather your basic census details</strong>—either over the phone, via our printable proposal request forms, or online—and walk through clear options together.</p>
+                    <p>At Pinpoint Solution, we follow a simple two-step process: <strong>First, we have a brief, unhurried conversation</strong> to understand what you are trying to accomplish. <strong>Second, if a comparison makes sense, we gather your basic family or team details</strong>—either over the phone, via our printable proposal request forms, or online—and walk through clear options together.</p>
                 </div>
                 <div class="architectural-panel">
                     <h4>Printable Proposal Request Forms</h4>
@@ -95,7 +95,7 @@
                             <p class="team-role">Operations &amp; Client Relations</p>
                         </div>
                     </div>
-                    <p style="margin-bottom: 0.85rem;">Client intake coordination, South Bay doctor network checks, proposal worksheet assistance, and day-to-day support.</p>
+                    <p style="margin-bottom: 0.85rem;">Client relations, South Bay doctor network checks, proposal worksheet assistance, and day-to-day support.</p>
                     <p style="margin-bottom: 0.4rem;"><strong>Phone:</strong> <a href="tel:18009516456" class="card-link" style="margin-top:0;">(800) 951-6456 ext. 803</a> &nbsp;|&nbsp; <a href="tel:13105338877" class="card-link" style="margin-top:0;">(310) 533-8877</a></p>
                     <p style="margin-bottom: 0;"><strong>Email:</strong> <span class="email-text">daniel@pinpointins.com</span></p>
                 </div>
@@ -103,11 +103,11 @@
 
             <div class="content-block" style="max-width: 900px; margin: 0 auto;">
                 <h2 style="text-align: left; font-size: 1.55rem; margin-bottom: 0.4rem;">Send Us a Note or Schedule a Call</h2>
-                <p style="margin-bottom: 1.25rem; font-size: 0.95rem;">Use <strong>Step 1: Start a Conversation</strong> below to let us know how we can help and when you'd like to talk—or switch to <strong>Step 2: Include Family Census Online</strong> if you want to include your family birthdays and gender directly in this message.</p>
+                <p style="margin-bottom: 1.25rem; font-size: 0.95rem;">Use <strong>Step 1: Start a Conversation</strong> below to let us know how we can help and when you'd like to talk—or switch to <strong>Step 2: Include Family Details for a Quote</strong> if you want to include your family birthdays and gender directly in this message.</p>
 
                 <div class="mode-tabs" role="tablist">
                     <button type="button" class="mode-tab active" id="tabQuestion" onclick="setFormMode('question')">Step 1: Start a Conversation / Request a Call</button>
-                    <button type="button" class="mode-tab" id="tabMedical" onclick="setFormMode('medical')">Step 2 (Optional): Include Family Census Online</button>
+                    <button type="button" class="mode-tab" id="tabMedical" onclick="setFormMode('medical')">Step 2 (Optional): Include Family Details for a Quote</button>
                 </div>
 
                 <form id="consultationForm" onsubmit="handleConsultationSubmit(event)">
@@ -207,7 +207,7 @@
                         <div class="pills-container" role="group" aria-label="Coverage lines">
                             <button type="button" class="pill selected" aria-pressed="true" onclick="toggleLinePill(this)" data-value="Individual / Family Medical">Individual / Family Medical</button>
                             <button type="button" class="pill" aria-pressed="false" onclick="toggleLinePill(this)" data-value="Small Business Group Benefits">Small Business Group Benefits</button>
-                            <button type="button" class="pill" aria-pressed="false" onclick="toggleLinePill(this)" data-value="Nonprofit / Church">Nonprofit or Church</button>
+                            <button type="button" class="pill" aria-pressed="false" onclick="toggleLinePill(this)" data-value="Church / Nonprofit">Church or Nonprofit</button>
                             <button type="button" class="pill" aria-pressed="false" onclick="toggleLinePill(this)" data-value="Dental & Vision">Dental &amp; Vision</button>
                             <button type="button" class="pill" aria-pressed="false" onclick="toggleLinePill(this)" data-value="Life / Disability">Life / Disability</button>
                         </div>
@@ -227,8 +227,9 @@
                     </div>
 
                     <div class="form-group" style="margin-top: 1.35rem;">
-                        <label for="clientNotes">Tell Us a Little About Your Situation, Doctors, or Questions</label>
-                        <textarea id="clientNotes" name="notes" rows="3" placeholder="For example: 'We are a 12-person firm in Torrance reviewing our renewal,' or 'Leaving corporate coverage and want to keep our TMIPA doctors...'"></textarea>
+                        <label for="clientNotes">Tell Us a Little About Your Situation, Preferred Doctors, or Questions</label>
+                        <span class="field-hint">For your privacy, please do not include Social Security numbers or sensitive medical histories in this box.</span>
+                        <textarea id="clientNotes" name="notes" rows="3" maxlength="1500" placeholder="For example: 'We are a 12-person firm in Torrance reviewing our renewal,' or 'Leaving corporate coverage and want to keep our TMIPA doctors...'"></textarea>
                     </div>
 
                     <div class="form-grid" style="margin-top: 1.25rem; align-items: center;">
@@ -287,6 +288,13 @@
         let lastPreparedBody = '';
 
         document.getElementById('mathLabel').textContent = `Human Verification: What is ${mathA} + ${mathB}? *`;
+
+        function encodeUtf8Base64(str) {
+            const bytes = new TextEncoder().encode(str);
+            let bin = "";
+            bytes.forEach(b => { bin += String.fromCharCode(b); });
+            return btoa(bin);
+        }
 
         function formatBirthdayInput(input) {
             let digits = input.value.replace(/\D/g, '').slice(0, 8);
@@ -433,7 +441,7 @@
             }
 
             const payloadObj = { name, email, phone, zip, income, hh: hhSize, net: selectedNetworks, notes, census: censusArray };
-            const importToken = btoa(unescape(encodeURIComponent(JSON.stringify(payloadObj))));
+            const importToken = encodeUtf8Base64(JSON.stringify(payloadObj));
 
             const subject = `Pinpoint Inquiry (${currentMode === 'medical' ? 'Medical Census' : 'Conversation Request'}) - ${name} (${zip})`;
             const clientSummary = [

@@ -126,14 +126,29 @@
 
     <script>
         function escapeHtml(str) {
-            return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+            return String(str || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;')
+                .replace(/`/g, '&#96;');
+        }
+
+        function decodeUtf8Base64(b64) {
+            const bin = atob(b64);
+            const bytes = new Uint8Array(bin.length);
+            for (let i = 0; i < bin.length; i++) {
+                bytes[i] = bin.charCodeAt(i);
+            }
+            return new TextDecoder().decode(bytes);
         }
 
         function loadFromImportToken() {
             const raw = document.getElementById('importTokenInput').value.trim();
             if (!raw) return;
             try {
-                const data = JSON.parse(decodeURIComponent(escape(atob(raw))));
+                const data = JSON.parse(decodeUtf8Base64(raw));
                 if (data.name) document.getElementById('cName').value = data.name;
                 if (data.zip) document.getElementById('cZip').value = data.zip;
                 if (data.income) document.getElementById('householdIncome').value = data.income;
