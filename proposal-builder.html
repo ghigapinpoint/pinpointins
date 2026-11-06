@@ -145,11 +145,11 @@
         }
 
         function loadFromImportToken() {
-            const raw = document.getElementById('importTokenInput').value.trim();
+            const raw = document.getElementById('importTokenInput').value.trim().replace(/\s+/g, '');
             if (!raw) return;
             try {
                 const data = JSON.parse(decodeUtf8Base64(raw));
-                if (data.name) document.getElementById('cName').value = data.name;
+                if (data.name) document.getElementById('cName').value = (data.org && data.org !== 'Individual / Family') ? `${data.name} (${data.org})` : data.name;
                 if (data.zip) document.getElementById('cZip').value = data.zip;
                 if (data.income) document.getElementById('householdIncome').value = data.income;
                 if (data.hh) document.getElementById('taxHouseholdSize').value = data.hh;
@@ -345,7 +345,7 @@
             <div class="slide-grid-2">
                 <div class="box">
                     <h3>How We Lower Your Fixed Monthly Cost</h3>
-                    <p style="font-size:15px; line-height:1.65;">California health insurance rates are strictly regulated by state law—meaning you never pay a broker fee or markup to work with our office. By comparing PPO, HMO, and HSA-eligible tiers side by side, you can keep your preferred South Bay doctors while avoiding overpriced COBRA or rigid single-carrier renewals.</p>
+                    <p style="font-size:15px; line-height:1.65;">California health insurance rates are strictly regulated by state law—meaning you never pay a broker fee or markup to work with our office. By comparing PPO, HMO, and HSA-eligible tiers side by side, you can keep your preferred South Bay doctors and find a plan that fits your budget.</p>
                 </div>
                 <div class="box green-top">
                     <h3>Understanding Your Two Key Numbers</h3>

@@ -52,14 +52,14 @@
         <section>
             <div class="content-block content-split" style="margin-bottom: 2.5rem;">
                 <div>
-                    <span class="pillar-tag">Talk With Us Directly</span>
-                    <h3>We Get to Know You Before Running Numbers</h3>
-                    <p>Online quote sites list dozens of plans without checking whether your doctors and hospitals are actually in-network or explaining how the deductibles and copays work in real life.</p>
-                    <p>Here is how we work: <strong>First, give us a call or send a quick note</strong> so we know what you are looking for. <strong>Second, if you want to compare plans, we gather your basic family or group details</strong>—over the phone, on our 1-page printable form, or online below—check your doctors first, and send you a clear side-by-side comparison.</p>
+                    <span class="pillar-tag">Simple Two-Step Process</span>
+                    <h3>How a Coverage Review Works</h3>
+                    <p>When you are looking at health plans, the monthly rate is only half the picture—it is just as important to make sure your doctors and hospitals are in-network and that the deductibles and copays fit how you use your coverage.</p>
+                    <p>Getting started is simple: <strong>First, call our office or send a quick note below</strong> with your questions. <strong>Second, if you would like to see plan rates, share your basic family or group details</strong>—over the phone, on a 1-page printable worksheet, or in Step 2 below—so we can check your doctors and put together a clear comparison.</p>
                 </div>
                 <div class="architectural-panel">
-                    <h4>Printable Proposal Request Forms</h4>
-                    <p style="font-size: 0.88rem; margin-bottom: 0.9rem;">Prefer to print or save a 1-page PDF worksheet to complete at your desk and email back to us? Select the form that fits you below:</p>
+                    <h4>Printable 1-Page Worksheets</h4>
+                    <p style="font-size: 0.88rem; margin-bottom: 0.9rem;">Prefer to fill out a 1-page PDF worksheet at your desk and email it back? Open the form that fits your situation below:</p>
                     <div class="arch-list">
                         <div class="arch-item" style="display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
                             <strong style="margin-bottom: 0;">Individual &amp; Family Proposal Request</strong>
@@ -297,7 +297,7 @@
                 </div>
 
                 <p style="font-size: 0.82rem; color: var(--text); margin-top: 1.25rem; opacity: 0.85;">
-                    <strong>Privacy Guarantee:</strong> Your information goes solely to Pinpoint Solution Insurance Services LLC in Torrance, CA. We never sell leads or share data with third-party aggregators.
+                    <strong>Privacy Guarantee:</strong> Your information goes directly to our Torrance office and is kept strictly confidential.
                 </p>
             </div>
         </section>
@@ -313,7 +313,7 @@
             <span class="email-text">info@pinpointins.com</span>
         </p>
         <div class="license-badge">CA Corporate License #0I31557</div>
-        <p class="privacy-note"><strong>Privacy Commitment:</strong> We never sell or share your personal, household, or medical network information with third-party lead aggregators.</p>
+        <p class="privacy-note"><strong>Privacy Commitment:</strong> Your information stays strictly confidential with our Torrance office—we never sell or share your personal details.</p>
         <p style="margin-top: 0.85rem; opacity: 0.8; font-size: 0.82rem;">&copy; 2026 Pinpoint Solution Insurance Services LLC. All rights reserved.</p>
     </footer>
 
@@ -480,6 +480,7 @@
         }
 
         function resetQuoteForm() {
+            document.getElementById('submissionConfirm').style.display = 'none';
             const submitBtn = document.getElementById('submitBtn');
             submitBtn.disabled = false;
             setFormMode(currentMode);
@@ -509,30 +510,76 @@
         }
 
         function toggleCoiPill(btn) {
-            const isPressed = btn.getAttribute('aria-pressed') === 'true';
-            btn.setAttribute('aria-pressed', String(!isPressed));
-            btn.classList.toggle('selected', !isPressed);
             const val = btn.getAttribute('data-value');
-            if (!isPressed && !selectedCoiEndorsements.includes(val)) selectedCoiEndorsements.push(val);
-            else selectedCoiEndorsements = selectedCoiEndorsements.filter(i => i !== val);
+            const isPressed = btn.getAttribute('aria-pressed') === 'true';
+            const container = btn.closest('.pills-container');
+            const standardVal = 'Standard Proof of Coverage Only';
+
+            if (!isPressed) {
+                if (val === standardVal) {
+                    container.querySelectorAll('.pill').forEach(p => {
+                        p.setAttribute('aria-pressed', 'false');
+                        p.classList.remove('selected');
+                    });
+                    selectedCoiEndorsements = [standardVal];
+                } else {
+                    const stdBtn = container.querySelector(`[data-value="${standardVal}"]`);
+                    if (stdBtn) {
+                        stdBtn.setAttribute('aria-pressed', 'false');
+                        stdBtn.classList.remove('selected');
+                    }
+                    selectedCoiEndorsements = selectedCoiEndorsements.filter(i => i !== standardVal);
+                    if (!selectedCoiEndorsements.includes(val)) selectedCoiEndorsements.push(val);
+                }
+                btn.setAttribute('aria-pressed', 'true');
+                btn.classList.add('selected');
+            } else {
+                btn.setAttribute('aria-pressed', 'false');
+                btn.classList.remove('selected');
+                selectedCoiEndorsements = selectedCoiEndorsements.filter(i => i !== val);
+                if (selectedCoiEndorsements.length === 0) {
+                    const stdBtn = container.querySelector(`[data-value="${standardVal}"]`);
+                    if (stdBtn) {
+                        stdBtn.setAttribute('aria-pressed', 'true');
+                        stdBtn.classList.add('selected');
+                    }
+                    selectedCoiEndorsements = [standardVal];
+                }
+            }
         }
 
-        window.addEventListener('DOMContentLoaded', function() {
+        function applyHashRoute() {
             const hash = window.location.hash.toLowerCase();
             if (hash === '#coi') {
                 setFormMode('coi');
+                document.getElementById('consultationForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
             } else if (hash === '#medical' || hash === '#quote' || hash === '#step2') {
                 setFormMode('medical');
+                document.getElementById('consultationForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
             } else {
                 updatePhoneRequirement();
             }
-        });
+        }
+        window.addEventListener('DOMContentLoaded', applyHashRoute);
+        window.addEventListener('hashchange', applyHashRoute);
 
         async function handleConsultationSubmit(e) {
             e.preventDefault();
 
             const honeypot = document.getElementById('websiteUrl').value;
-            if (honeypot !== '' || (Date.now() - pageLoadTime) < 2500) {
+            if (honeypot !== '') {
+                return;
+            }
+            if ((Date.now() - pageLoadTime) < 1200) {
+                alert('Please wait a moment and click Send again.');
+                return;
+            }
+
+            const phoneInputEl = document.getElementById('cPhone');
+            const phoneDigits = phoneInputEl.value.replace(/\D/g, '');
+            if (phoneInputEl.required && phoneDigits.length < 10) {
+                alert('Please enter a complete 10-digit phone number so we can call you (or switch your preference to Email Response First).');
+                phoneInputEl.focus();
                 return;
             }
 
@@ -592,7 +639,7 @@
                 censusBlock.push(`Requested Endorsements: ${coiEndorsements}`);
             }
 
-            const payloadObj = { name, email, phone, zip, income, hh: hhSize, net: selectedNetworks, notes, census: censusArray };
+            const payloadObj = { name, org, email, phone, zip, income, hh: hhSize, net: selectedNetworks, notes, census: censusArray };
             const importToken = encodeUtf8Base64(JSON.stringify(payloadObj));
 
             const modeLabel = currentMode === 'medical'
@@ -645,6 +692,7 @@
                     headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                     body: JSON.stringify({
                         honeypot: honeypot,
+                        website_url: honeypot,
                         inquiryType: modeLabel,
                         name: name,
                         organization: org,
