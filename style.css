@@ -1,4 +1,4 @@
-/* Pinpoint Solution Insurance Services LLC — v2026.24 Design System (Option B: Deep Forest Sage #4b784f Accents Only) */
+/* Pinpoint Solution Insurance Services LLC — v2026.27 Design System (Option B: Deep Forest Sage #4b784f Accents Only) */
 :root {
     --primary: #374F62;
     --primary-dark: #283a49;
@@ -198,20 +198,40 @@ header {
     }
 }
 
-/* Hero Banner */
+/* Hero Banner — Noticeable Background Image With Balanced Translucent Slate Overlay */
 .hero {
-    background: linear-gradient(135deg, #283a49 0%, #374F62 100%);
+    background-color: #374F62;
+    background-image:
+        linear-gradient(135deg, rgba(40, 58, 73, 0.52) 0%, rgba(55, 79, 98, 0.44) 100%),
+        url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=80');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: #ffffff;
     text-align: center;
-    padding: 4rem 1.5rem 3.6rem;
+    padding: 4.35rem 1.5rem 3.95rem;
     position: relative;
+    overflow: hidden;
+}
+
+.hero .eyebrow,
+.hero h1,
+.hero p {
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 10px rgba(15, 23, 42, 0.55);
 }
 
 .hero-mark {
-    height: 44px;
+    position: absolute;
+    right: 6%;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 210px;
     width: auto;
-    margin-bottom: 0.85rem;
-    opacity: 0.92;
+    opacity: 0.22;
+    pointer-events: none;
+    z-index: 1;
 }
 
 .hero .eyebrow {
@@ -232,7 +252,7 @@ header {
 }
 
 .hero p {
-    color: #e2e8f0;
+    color: #f8fafc;
     font-size: 1.06rem;
     max-width: 640px;
     margin: 0 auto;
@@ -407,6 +427,7 @@ section > h2 {
     border-radius: 6px;
     text-decoration: none;
     border: 1px solid rgba(75, 120, 79, 0.25);
+    transition: all 0.15s ease;
 }
 
 .worksheet-link:hover {
@@ -425,13 +446,13 @@ section > h2 {
 
 .scenic-banner img {
     width: 100%;
-    height: 250px;
+    height: 260px;
     object-fit: cover;
     display: block;
 }
 
 .scenic-caption {
-    background: var(--primary);
+    background: rgba(55, 79, 98, 0.92);
     color: #ffffff;
     font-size: 0.85rem;
     font-weight: 600;
@@ -525,7 +546,7 @@ section > h2 {
     font-weight: 600;
 }
 
-/* Carrier Grid */
+/* Carrier Grid — Refined Monochrome Grayscale by Default, Full Color on Hover */
 .carrier-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -539,25 +560,44 @@ section > h2 {
 }
 
 .carrier-card {
-    background: var(--light);
+    background: #ffffff;
     border: 1px solid var(--border);
     border-radius: 8px;
     height: 82px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0.75rem;
+    padding: 0.75rem 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+[data-theme="dark"] .carrier-card {
+    background: #f1f5f9;
 }
 
 .carrier-card img {
-    max-height: 44px;
+    max-height: 42px;
     max-width: 130px;
     object-fit: contain;
+    filter: grayscale(100%);
+    opacity: 0.68;
+    transition: filter 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
+}
+
+.carrier-card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(55, 79, 98, 0.08);
+}
+
+.carrier-card:hover img {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.03);
 }
 
 .carrier-fallback {
     font-weight: 700;
-    color: var(--primary);
+    color: #374F62;
     font-size: 0.9rem;
 }
 
@@ -639,32 +679,51 @@ section > h2 {
     }
 }
 
-/* Forms (quote.html) */
+/* Forms & Interactive Mode Tabs (quote.html) */
 .mode-tabs {
     display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
+    gap: 0.65rem;
+    margin-bottom: 0.85rem;
     flex-wrap: wrap;
 }
 
 .mode-tab {
     flex: 1;
-    min-width: 220px;
+    min-width: 240px;
     background: var(--light);
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     color: var(--text);
-    padding: 0.75rem 1rem;
+    padding: 0.85rem 1.1rem;
     border-radius: 8px;
     font-weight: 700;
-    font-size: 0.88rem;
+    font-size: 0.9rem;
     cursor: pointer;
     text-align: center;
+    transition: all 0.18s ease;
+    user-select: none;
+}
+
+.mode-tab:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: var(--card-bg);
 }
 
 .mode-tab.active {
     background: var(--primary);
     color: #ffffff;
     border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(55, 79, 98, 0.22);
+}
+
+.mode-status-banner {
+    background: var(--sage-tint);
+    border-left: 4px solid var(--secondary-dark);
+    color: var(--dark);
+    padding: 0.7rem 1rem;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    margin-bottom: 1.35rem;
 }
 
 .form-grid {
@@ -711,7 +770,7 @@ section > h2 {
 
 .census-panel {
     background: var(--light);
-    border: 1px solid var(--border);
+    border: 1.5px solid var(--primary);
     border-radius: 8px;
     padding: 1.25rem;
     margin-top: 1.25rem;
@@ -741,6 +800,13 @@ section > h2 {
     font-weight: 700;
     font-size: 0.84rem;
     cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.add-member-btn:hover,
+.remove-member-btn:hover {
+    background: var(--primary);
+    color: #ffffff;
 }
 
 .pills-container {
@@ -751,19 +817,27 @@ section > h2 {
 
 .pill {
     background: var(--light);
-    border: 1px solid var(--border);
+    border: 1.5px solid var(--border);
     color: var(--text);
-    padding: 0.45rem 0.85rem;
+    padding: 0.48rem 0.9rem;
     border-radius: 20px;
     font-size: 0.84rem;
     font-weight: 600;
     cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: none;
+}
+
+.pill:hover {
+    border-color: var(--primary);
+    color: var(--primary);
 }
 
 .pill.selected {
     background: var(--primary);
     color: #ffffff;
     border-color: var(--primary);
+    box-shadow: 0 2px 6px rgba(55, 79, 98, 0.18);
 }
 
 .btn {
@@ -775,6 +849,7 @@ section > h2 {
     font-weight: 700;
     font-size: 0.98rem;
     cursor: pointer;
+    transition: background 0.15s ease;
 }
 
 .btn:hover {

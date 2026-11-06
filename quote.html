@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Contact Greg Higa and Daniel Park at Pinpoint Solution Insurance Services LLC in Torrance, CA. Start a conversation, ask a question, get help printing or ordering a medical ID card, or download a printable proposal request form.">
+    <meta name="description" content="Contact Greg Higa and Daniel Park at Pinpoint Solution Insurance Services LLC in Torrance, CA. Start a conversation, ask a question, or download a printable proposal request form.">
     <title>Contact Us | Pinpoint Solution Insurance Services LLC</title>
     <link rel="canonical" href="https://pinpointins.com/quote.html">
     <link rel="icon" type="image/png" href="images/logo-mark-white.png">
-    <link rel="stylesheet" href="style.css?v=2026.24">
+    <link rel="stylesheet" href="style.css?v=2026.27">
     <script>
         (function() {
             const saved = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -42,7 +42,7 @@
             <img src="images/logo-mark-white.png" alt="" class="hero-mark" onerror="this.style.display='none'">
             <div class="eyebrow">Torrance Office • Serving Clients Since 2002</div>
             <h1>Talk With Greg or Daniel</h1>
-            <p>Whether you have a question about your current plan, need help getting a medical ID card, or want to see if there is a better option for your doctors and budget, give us a call or send an email.</p>
+            <p>Whether you have a question about your current plan or want to see if there is a better option for your doctors and budget, give us a call or send an email.</p>
         </section>
 
         <div class="trust-bar">
@@ -95,7 +95,7 @@
                             <p class="team-role">Operations &amp; Client Relations</p>
                         </div>
                     </div>
-                    <p style="margin-bottom: 0.85rem;">Client relations, South Bay doctor network checks, replacement medical &amp; dental ID card help, proposal worksheet assistance, and day-to-day support.</p>
+                    <p style="margin-bottom: 0.85rem;">Client relations, South Bay doctor network checks, proposal worksheet assistance, and day-to-day member support.</p>
                     <p style="margin-bottom: 0.4rem;"><strong>Office:</strong> <a href="tel:13105338877" class="card-link" style="margin-top:0;">(310) 533-8877</a> &nbsp;|&nbsp; <strong>Direct:</strong> <a href="tel:18009516456" class="card-link" style="margin-top:0;">(800) 951-6456 ext. 2</a></p>
                     <p style="margin-bottom: 0;"><strong>Email:</strong> <span class="email-text">daniel@pinpointins.com</span></p>
                 </div>
@@ -103,12 +103,15 @@
 
             <div class="content-block" style="max-width: 900px; margin: 0 auto;">
                 <h2 style="text-align: left; font-size: 1.55rem; margin-bottom: 0.4rem;">How Can We Help You Today?</h2>
-                <p style="margin-bottom: 1.25rem; font-size: 0.95rem;">Use <strong>Step 1: Start a Conversation</strong> to ask a question or set up a call, switch to <strong>Step 2: Include Family Details for a Quote</strong> if you want to share birthdays and gender for plan rates, or select <strong>Existing Clients: ID Card &amp; Member Help</strong> if you need help printing or getting a replacement medical or dental card.</p>
+                <p style="margin-bottom: 1.25rem; font-size: 0.95rem;">Choose <strong>Step 1: Start a Conversation</strong> to send a quick question or schedule a phone call, or click <strong>Step 2: Include Family Details for a Quote</strong> if you want to include birthdays and gender for plan rates.</p>
 
                 <div class="mode-tabs" role="tablist">
-                    <button type="button" class="mode-tab active" id="tabQuestion" onclick="setFormMode('question')">Step 1: Start a Conversation / Request a Call</button>
-                    <button type="button" class="mode-tab" id="tabMedical" onclick="setFormMode('medical')">Step 2 (Optional): Include Family Details for a Quote</button>
-                    <button type="button" class="mode-tab" id="tabIdCard" onclick="setFormMode('idcard')">Existing Clients: ID Card &amp; Member Help</button>
+                    <button type="button" class="mode-tab active" id="tabQuestion" aria-selected="true" onclick="setFormMode('question')">Step 1: Start a Conversation / Request a Call</button>
+                    <button type="button" class="mode-tab" id="tabMedical" aria-selected="false" onclick="setFormMode('medical')">Step 2 (Optional): Include Family Details for a Quote</button>
+                </div>
+
+                <div class="mode-status-banner" id="modeStatusBanner">
+                    <strong>Step 1 Active (Quick Note or Call Request):</strong> Share your contact details and a brief note below—no birthdays or income details required.
                 </div>
 
                 <form id="consultationForm" onsubmit="handleConsultationSubmit(event)">
@@ -201,56 +204,10 @@
                         </div>
                     </div>
 
-                    <div id="idCardRequestSection" style="display: none;">
-                        <div class="census-panel" style="margin-top: 1.25rem;">
-                            <label style="display: block; font-size: 0.94rem; font-weight: 800; color: var(--primary); margin-bottom: 0.25rem;">
-                                Medical, Dental &amp; Vision ID Card Assistance *
-                            </label>
-                            <p style="font-size: 0.84rem; margin-bottom: 0.9rem;">Let us know which insurance carrier you have and what you need. We can look up your member ID number for an upcoming appointment, email you a printable temporary card, or order a replacement card to your home address within <strong>1 business day</strong>.</p>
-
-                            <div class="form-grid">
-                                <div class="form-group">
-                                    <label for="cardCarrier">Your Insurance Carrier *</label>
-                                    <select id="cardCarrier">
-                                        <option value="Blue Shield of California">Blue Shield of California</option>
-                                        <option value="Anthem Blue Cross">Anthem Blue Cross</option>
-                                        <option value="Kaiser Permanente">Kaiser Permanente</option>
-                                        <option value="UnitedHealthcare">UnitedHealthcare</option>
-                                        <option value="Health Net">Health Net</option>
-                                        <option value="Aetna">Aetna</option>
-                                        <option value="Delta Dental">Delta Dental</option>
-                                        <option value="VSP Vision">VSP Vision</option>
-                                        <option value="Other / Not Sure">Other / Not Sure</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="cardUrgency">When Is Your Next Appointment? *</label>
-                                    <select id="cardUrgency">
-                                        <option value="Standard (Within 1 Business Day)">No Rush (Within 1 Business Day)</option>
-                                        <option value="Upcoming Appointment This Week">Upcoming Appointment This Week</option>
-                                        <option value="Appointment Today / Tomorrow (Urgent)">Appointment Today / Tomorrow (Please also call 310-533-8877)</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div style="margin-top: 1rem;">
-                                <label style="display: block; font-size: 0.88rem; font-weight: 700; color: var(--primary); margin-bottom: 0.35rem;">
-                                    How Can We Help With Your Card? (Select any that apply):
-                                </label>
-                                <div class="pills-container" role="group" aria-label="ID Card Help">
-                                    <button type="button" class="pill selected" aria-pressed="true" onclick="toggleIdCardPill(this)" data-value="Email Printable Temporary ID Card / Member Number">Email Printable ID Card / Member Number</button>
-                                    <button type="button" class="pill" aria-pressed="false" onclick="toggleIdCardPill(this)" data-value="Order Physical Replacement Card by Mail">Order Replacement Card by Mail</button>
-                                    <button type="button" class="pill" aria-pressed="false" onclick="toggleIdCardPill(this)" data-value="Update HMO Primary Care Doctor (PCP) on Card">Update HMO Primary Doctor (PCP) on Card</button>
-                                    <button type="button" class="pill" aria-pressed="false" onclick="toggleIdCardPill(this)" data-value="Help Logging Into Carrier Portal / App">Help Logging Into Carrier Portal / App</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <div id="standardPillsSection">
                         <div style="margin-top: 1.35rem;">
                             <label style="display: block; font-size: 0.88rem; font-weight: 700; color: var(--primary); margin-bottom: 0.35rem;">
-                                What Are You Exploring Today? (Optional):
+                                What Are You Exploring Today? (Click any that apply):
                             </label>
                             <div class="pills-container" role="group" aria-label="Coverage lines">
                                 <button type="button" class="pill selected" aria-pressed="true" onclick="toggleLinePill(this)" data-value="Individual / Family Medical">Individual / Family Medical</button>
@@ -335,7 +292,6 @@
         let currentMode = 'question';
         let selectedLines = ['Individual / Family Medical'];
         let selectedNetworks = [];
-        let selectedIdCardHelp = ['Email Printable Temporary ID Card / Member Number'];
         let lastPreparedBody = '';
 
         document.getElementById('mathLabel').textContent = `Human Verification: What is ${mathA} + ${mathB}? *`;
@@ -387,63 +343,34 @@
         function setFormMode(mode) {
             currentMode = mode;
             const medSection = document.getElementById('medicalCensusSection');
-            const idCardSection = document.getElementById('idCardRequestSection');
-            const stdPills = document.getElementById('standardPillsSection');
-            const bestTimeGroup = document.getElementById('bestTimeGroup');
-
             const tabQ = document.getElementById('tabQuestion');
             const tabMed = document.getElementById('tabMedical');
-            const tabIdCard = document.getElementById('tabIdCard');
-
+            const statusBanner = document.getElementById('modeStatusBanner');
             const incomeInput = document.getElementById('householdIncome');
-            const cOrgInput = document.getElementById('cOrg');
-            const cOrgLabel = document.getElementById('cOrgLabel');
-            const notesLabel = document.getElementById('clientNotesLabel');
-            const notesBox = document.getElementById('clientNotes');
             const submitBtn = document.getElementById('submitBtn');
             const dobInputs = document.querySelectorAll('.member-dob');
             const genderInputs = document.querySelectorAll('.member-gender');
 
             tabQ.classList.toggle('active', mode === 'question');
+            tabQ.setAttribute('aria-selected', String(mode === 'question'));
             tabMed.classList.toggle('active', mode === 'medical');
-            tabIdCard.classList.toggle('active', mode === 'idcard');
+            tabMed.setAttribute('aria-selected', String(mode === 'medical'));
 
             if (mode === 'medical') {
                 medSection.style.display = 'block';
-                idCardSection.style.display = 'none';
-                stdPills.style.display = 'block';
-                bestTimeGroup.style.display = 'block';
                 incomeInput.required = true;
-                cOrgInput.required = false;
-                cOrgLabel.textContent = 'Business, Church, or Organization Name (If Applicable)';
-                notesLabel.textContent = 'Tell Us a Little About Your Situation, Preferred Doctors, or Questions';
-                notesBox.placeholder = "For example: 'We are a 12-person firm in Torrance reviewing our renewal,' or 'Leaving corporate coverage and want to keep our TMIPA doctors...'";
+                if (statusBanner) {
+                    statusBanner.innerHTML = '<strong>Step 2 Active (Include Family Details for a Quote):</strong> Enter your contact info plus family birthdays &amp; gender in the highlighted box below so we can run exact carrier rates.';
+                }
                 submitBtn.textContent = 'Send Note & Quote Details to Greg & Daniel';
                 dobInputs.forEach(el => el.required = true);
                 genderInputs.forEach(el => el.required = true);
-            } else if (mode === 'idcard') {
-                medSection.style.display = 'none';
-                idCardSection.style.display = 'block';
-                stdPills.style.display = 'none';
-                bestTimeGroup.style.display = 'block';
-                incomeInput.required = false;
-                cOrgInput.required = false;
-                cOrgLabel.textContent = 'Employer, Church, or Group Name (If Covered Through Work)';
-                notesLabel.textContent = 'Family Member Name(s), New Doctor Name (If Changing HMO Doctor), or Mailing Address Update';
-                notesBox.placeholder = "Let us know which family member needs a card, or share the doctor's name if you need us to update your primary care physician on an HMO card...";
-                submitBtn.textContent = 'Send ID Card & Member Help Request';
-                dobInputs.forEach(el => el.required = false);
-                genderInputs.forEach(el => el.required = false);
             } else {
                 medSection.style.display = 'none';
-                idCardSection.style.display = 'none';
-                stdPills.style.display = 'block';
-                bestTimeGroup.style.display = 'block';
                 incomeInput.required = false;
-                cOrgInput.required = false;
-                cOrgLabel.textContent = 'Business, Church, or Organization Name (If Applicable)';
-                notesLabel.textContent = 'Tell Us a Little About Your Situation, Preferred Doctors, or Questions';
-                notesBox.placeholder = "For example: 'We are a 12-person firm in Torrance reviewing our renewal,' or 'Leaving corporate coverage and want to keep our TMIPA doctors...'";
+                if (statusBanner) {
+                    statusBanner.innerHTML = '<strong>Step 1 Active (Quick Note or Call Request):</strong> Share your contact details and a brief note below—no birthdays or income details required.';
+                }
                 submitBtn.textContent = 'Send Note to Greg & Daniel in Torrance';
                 dobInputs.forEach(el => el.required = false);
                 genderInputs.forEach(el => el.required = false);
@@ -467,7 +394,7 @@
                 </div>
                 <div class="form-group">
                     <label>Birthday (MM/DD/YYYY) *</label>
-                    <input type="text" class="member-dob" ${isReq} pattern="(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/(19|20)[0-9]{2}" title="Please enter a complete birthday as MM/DD/YYYY (e.g. 04/15/1980)" placeholder="MM/DD/YYYY" maxlength="10" inputmode="numeric" oninput="formatBirthdayInput(this)">
+                    <input type="text" class="member-dob" ${isReq} pattern="(0[1-9]|1[0-2])\\/(0[1-9]|[12][0-9]|3[01])\\/(19|20)[0-9]{2}" title="Please enter a complete birthday as MM/DD/YYYY (e.g. 04/15/1980)" placeholder="MM/DD/YYYY" maxlength="10" inputmode="numeric" oninput="formatBirthdayInput(this)">
                 </div>
                 <div class="form-group">
                     <label>Gender *</label>
@@ -514,21 +441,9 @@
             else selectedNetworks = selectedNetworks.filter(i => i !== val);
         }
 
-        function toggleIdCardPill(btn) {
-            const val = btn.getAttribute('data-value');
-            const isPressed = btn.getAttribute('aria-pressed') === 'true';
-            btn.setAttribute('aria-pressed', String(!isPressed));
-            btn.classList.toggle('selected', !isPressed);
-            if (!isPressed && !selectedIdCardHelp.includes(val)) selectedIdCardHelp.push(val);
-            else selectedIdCardHelp = selectedIdCardHelp.filter(i => i !== val);
-        }
-
         function applyHashRoute() {
             const hash = window.location.hash.toLowerCase();
-            if (hash === '#idcard' || hash === '#id-card' || hash === '#cards') {
-                setFormMode('idcard');
-                document.getElementById('consultationForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
-            } else if (hash === '#medical' || hash === '#quote' || hash === '#step2') {
+            if (hash === '#medical' || hash === '#quote' || hash === '#step2') {
                 setFormMode('medical');
                 document.getElementById('consultationForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
             } else {
@@ -566,7 +481,7 @@
             }
 
             const rawNotes = document.getElementById('clientNotes').value.trim();
-            if (/\d{3}-\d{2}-\d{4}/.test(rawNotes)) {
+            if (/\b\d{3}-\d{2}-\d{4}\b/.test(rawNotes)) {
                 alert('For your security, please remove any Social Security numbers from the notes box before submitting.');
                 document.getElementById('clientNotes').focus();
                 return;
@@ -579,16 +494,8 @@
             const org = document.getElementById('cOrg').value.trim() || 'Individual / Family';
             const bestTime = document.getElementById('cBestTime').value;
             const notes = rawNotes || 'None provided';
-            const cardCarrier = document.getElementById('cardCarrier').value;
-            const cardUrgency = document.getElementById('cardUrgency').value;
-            const cardHelpItems = selectedIdCardHelp.length > 0 ? selectedIdCardHelp.join(', ') : 'ID Card Assistance';
-
-            const lines = currentMode === 'idcard'
-                ? `ID Card & Member Help (${cardCarrier})`
-                : (selectedLines.length > 0 ? selectedLines.join(', ') : 'General');
-            const networks = currentMode === 'idcard'
-                ? `Appointment Timing: ${cardUrgency} | Request: ${cardHelpItems}`
-                : (selectedNetworks.length > 0 ? selectedNetworks.join(', ') : 'None specified');
+            const lines = selectedLines.length > 0 ? selectedLines.join(', ') : 'General';
+            const networks = selectedNetworks.length > 0 ? selectedNetworks.join(', ') : 'None specified';
 
             let censusBlock = [];
             let censusArray = [];
@@ -608,18 +515,12 @@
                     censusBlock.push(`  ${idx + 1}. ${role} | DOB: ${dob} | Gender: ${gender}`);
                     censusArray.push({ role, dob, gender });
                 });
-            } else if (currentMode === 'idcard') {
-                censusBlock.push(`Insurance Carrier: ${cardCarrier}`);
-                censusBlock.push(`Appointment Timing: ${cardUrgency}`);
-                censusBlock.push(`Requested ID Card Help: ${cardHelpItems}`);
             }
 
             const payloadObj = { name, org, email, phone, zip, income, hh: hhSize, net: selectedNetworks, notes, census: censusArray };
             const importToken = encodeUtf8Base64(JSON.stringify(payloadObj));
 
-            const modeLabel = currentMode === 'medical'
-                ? 'Quote Details'
-                : (currentMode === 'idcard' ? 'ID Card Help' : 'Conversation Request');
+            const modeLabel = currentMode === 'medical' ? 'Quote Details' : 'Conversation Request';
 
             const subject = `Pinpoint Inquiry (${modeLabel}) - ${name} (${zip})`;
             const clientSummary = [
@@ -631,30 +532,22 @@
                 `ZIP Code: ${zip}`,
                 ...censusBlock,
                 ``,
-                `Request Type: ${lines}`,
-                ...(currentMode === 'idcard' ? [] : [`Preferred South Bay Networks: ${networks}`]),
+                `Coverage Lines: ${lines}`,
+                `Preferred South Bay Networks: ${networks}`,
                 ``,
                 `Notes / Questions:`,
                 `${notes}`
-            ].join('
-');
+            ].join('\r\n');
 
-            const emailBodyForOffice = currentMode === 'idcard'
-                ? clientSummary
-                : [
-                    clientSummary,
-                    ``,
-                    `--------------------------------------------------`,
-                    `PROPOSAL BUILDER IMPORT CODE (Copy & paste into proposal-builder.html):`,
-                    importToken
-                ].join('
-');
+            const emailBodyForOffice = [
+                clientSummary,
+                ``,
+                `--------------------------------------------------`,
+                `PROPOSAL BUILDER IMPORT CODE (Copy & paste into proposal-builder.html):`,
+                importToken
+            ].join('\r\n');
 
-            lastPreparedBody = `To: daniel@pinpointins.com
-CC: ghiga@pinpointins.com
-Subject: ${subject}
-
-${clientSummary}`;
+            lastPreparedBody = `To: daniel@pinpointins.com\nCC: ghiga@pinpointins.com\nSubject: ${subject}\n\n${clientSummary}`;
 
             document.getElementById('gmailWebLink').href = `https://mail.google.com/mail/?view=cm&fs=1&to=daniel@pinpointins.com&cc=ghiga@pinpointins.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(clientSummary)}`;
             document.getElementById('preparedSummaryBox').textContent = lastPreparedBody;
@@ -692,12 +585,8 @@ ${clientSummary}`;
                         body: emailBodyForOffice
                     })
                 });
-                document.getElementById('confirmHeading').textContent = currentMode === 'idcard'
-                    ? 'Thank You — Your ID Card Request Has Been Sent'
-                    : 'Thank You — Your Note Has Been Sent to Greg & Daniel';
-                document.getElementById('confirmSubtext').textContent = currentMode === 'idcard'
-                    ? 'We have received your ID card request in our Torrance office and will follow up within 1 business day with your member details or temporary card. A copy of your request is shown below:'
-                    : 'We have received your request in our Torrance office and will reach out personally within 1 business day. A copy of your note is shown below:';
+                document.getElementById('confirmHeading').textContent = 'Thank You — Your Note Has Been Sent to Greg & Daniel';
+                document.getElementById('confirmSubtext').textContent = 'We have received your request in our Torrance office and will reach out personally within 1 business day. A copy of your note is shown below:';
                 submitBtn.textContent = 'Note Sent';
             } catch (err) {
                 document.getElementById('confirmHeading').textContent = 'Your Request Summary Is Ready';
