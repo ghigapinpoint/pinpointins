@@ -1,4 +1,4 @@
-/* Pinpoint Solution Insurance Services LLC — v2026.27 Design System (Option B: Deep Forest Sage #4b784f Accents Only) */
+/* Pinpoint Solution Insurance Services LLC — v2026.28 Design System (South Bay Coastal Hero + Monochrome Carrier Grid) */
 :root {
     --primary: #374F62;
     --primary-dark: #283a49;
@@ -198,18 +198,19 @@ header {
     }
 }
 
-/* Hero Banner — Noticeable Background Image With Balanced Translucent Slate Overlay */
+/* Hero Banner — Authentic South Bay Coastal Horizon With Noticeable Translucent Overlay */
 .hero {
     background-color: #374F62;
     background-image:
-        linear-gradient(135deg, rgba(40, 58, 73, 0.52) 0%, rgba(55, 79, 98, 0.44) 100%),
-        url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=80');
+        linear-gradient(135deg, rgba(40, 58, 73, 0.56) 0%, rgba(55, 79, 98, 0.46) 100%),
+        url('images/hero-bg.jpg'),
+        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80');
     background-size: cover;
-    background-position: center;
+    background-position: center 55%;
     background-repeat: no-repeat;
     color: #ffffff;
     text-align: center;
-    padding: 4.35rem 1.5rem 3.95rem;
+    padding: 4.4rem 1.5rem 4rem;
     position: relative;
     overflow: hidden;
 }
@@ -219,7 +220,7 @@ header {
 .hero p {
     position: relative;
     z-index: 2;
-    text-shadow: 0 2px 10px rgba(15, 23, 42, 0.55);
+    text-shadow: 0 2px 12px rgba(15, 23, 42, 0.55);
 }
 
 .hero-mark {
@@ -229,7 +230,7 @@ header {
     transform: translateY(-50%);
     height: 210px;
     width: auto;
-    opacity: 0.22;
+    opacity: 0.20;
     pointer-events: none;
     z-index: 1;
 }
@@ -546,7 +547,7 @@ section > h2 {
     font-weight: 600;
 }
 
-/* Carrier Grid — Refined Monochrome Grayscale by Default, Full Color on Hover */
+/* Carrier Grid — Strictly Monochrome Grayscale by Default, Full Color Only on Hover */
 .carrier-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -579,20 +580,22 @@ section > h2 {
     max-height: 42px;
     max-width: 130px;
     object-fit: contain;
-    filter: grayscale(100%);
-    opacity: 0.68;
-    transition: filter 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
+    -webkit-filter: grayscale(100%) contrast(1.05) !important;
+    filter: grayscale(100%) contrast(1.05) !important;
+    opacity: 0.62 !important;
+    transition: -webkit-filter 0.25s ease, filter 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
 }
 
 .carrier-card:hover {
     border-color: var(--primary);
-    box-shadow: 0 4px 12px rgba(55, 79, 98, 0.08);
+    box-shadow: 0 4px 12px rgba(55, 79, 98, 0.10);
 }
 
 .carrier-card:hover img {
-    filter: grayscale(0%);
-    opacity: 1;
-    transform: scale(1.03);
+    -webkit-filter: grayscale(0%) contrast(1) !important;
+    filter: grayscale(0%) contrast(1) !important;
+    opacity: 1 !important;
+    transform: scale(1.04);
 }
 
 .carrier-fallback {
@@ -724,6 +727,7 @@ section > h2 {
     border-radius: 6px;
     font-size: 0.88rem;
     margin-bottom: 1.35rem;
+    transition: background-color 0.25s ease;
 }
 
 .form-grid {
