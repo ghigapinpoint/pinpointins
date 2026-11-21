@@ -1,4 +1,4 @@
-/* Pinpoint Solution Insurance Services LLC — v2026.32 Design System (South Bay Coastal Hero + Monochrome Carrier Grid + Two-Door Client Portal Hub) */
+/* Pinpoint Solution Insurance Services LLC — v2026.35 Design System (South Bay Coastal Hero + Monochrome Carrier Grid + Two-Door Client Portal Hub) */
 :root {
     --primary: #374F62;
     --primary-dark: #283a49;
@@ -741,6 +741,7 @@ section > h2 {
     align-items: center;
     justify-content: center;
     padding: 0.75rem 1rem;
+    overflow: hidden;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -768,6 +769,70 @@ section > h2 {
     filter: grayscale(0%) contrast(1) !important;
     opacity: 1 !important;
     transform: scale(1.04);
+}
+
+/* Gentle margin trim on Covered California & boost for Kaiser Permanente */
+.carrier-card img.logo-coveredca {
+    max-height: 52px;
+    max-width: 152px;
+    transform: scale(1.16);
+}
+
+.carrier-card:hover img.logo-coveredca {
+    transform: scale(1.21);
+}
+
+.carrier-card img.logo-kaiser {
+    max-height: 54px;
+    max-width: 162px;
+    transform: scale(1.24);
+}
+
+.carrier-card:hover img.logo-kaiser {
+    transform: scale(1.30);
+}
+
+/* Compact 3-column inline carrier grid inside content-split left column (benefits.html) */
+.carrier-grid-inline {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.7rem;
+    margin-top: 1.25rem;
+}
+
+.carrier-grid-inline .carrier-card {
+    height: 68px;
+    padding: 0.5rem 0.65rem;
+}
+
+.carrier-grid-inline .carrier-card img {
+    max-height: 35px;
+    max-width: 112px;
+}
+
+.carrier-grid-inline .carrier-card img.logo-coveredca {
+    max-height: 44px;
+    max-width: 132px;
+    transform: scale(1.14);
+}
+
+.carrier-grid-inline .carrier-card:hover img.logo-coveredca {
+    transform: scale(1.19);
+}
+
+.carrier-grid-inline .carrier-card img.logo-kaiser {
+    max-height: 45px;
+    max-width: 136px;
+    transform: scale(1.22);
+}
+
+.carrier-grid-inline .carrier-card:hover img.logo-kaiser {
+    transform: scale(1.27);
+}
+
+@media (max-width: 580px) {
+    .carrier-grid-inline {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 .carrier-fallback {
